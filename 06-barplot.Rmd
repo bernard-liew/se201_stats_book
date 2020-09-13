@@ -1,0 +1,245 @@
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               lubridate, # Time
+               openxlsx) # writing excel documents
+
+```
+
+```{r echo = FALSE, cache = FALSE}
+# This block needs cache=FALSE to set fig.width and fig.height, and have those
+# persist across cached builds.
+
+source("utils.R", local = TRUE)
+```
+
+
+# Bar Graphs {#CHAPTER-BAR-GRAPH}
+
+Bar graphs are perhaps the most commonly used kind of data visualization. They're typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn't be as good for showing prices over time, where time is a continuous variable -- though it can be done.
+
+There's an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent *counts* of cases in the data set, and sometimes they represent *values* in the data set. Keep this distinction in mind -- it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I'll discuss always use bar graphs with *values*. 
+
+Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called `"fms_pt3.xlsx"`
+
+```{r}
+dat <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
+                   sheet = "Sheet1")
+
+fct_lvls <- c("squat", "push_up", "hurdle", "lunge", "leg_raise", "rot_stab", "shd_mob")
+
+dat <- dat %>%
+  mutate (task = factor (task, levels = fct_lvls))
+
+dat
+```
+
+Let us also create another dataset where  we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+```{r}
+dat_summ <- dat %>%
+  group_by(task) %>%
+  summarize (total = min (score)) %>%
+  ungroup ()
+
+dat_summ
+```
+
+
+## Making a Basic Bar Graph {#BAR-GRAPH-BASIC-BAR}
+
+### Problem
+
+You have a data frame where one column represents the *x* position of each bar, and another column represents the vertical *y* height of each bar.
+
+### Solution
+
+Use `ggplot()` with `geom_col()` and specify what variables you want on the x- and y-axes (Figure \@ref(fig:FIG-BAR-GRAPH-BASIC-BAR)):
+
+```{r FIG-BAR-GRAPH-BASIC-BAR, fig.cap='Bar graph of values with a discrete x-axis'}
+
+ggplot(dat_summ) + 
+  geom_col(aes(x = task, y = total))
+
+```
+
+
+### Discussion
+
+By default, bar graphs use a dark grey for the bars. To use a color fill, use `fill`. Also, by default, there is no outline around the fill. To add an outline, use `colour`. For Figure \@ref(fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL), we use a light blue fill and a black outline:
+
+```{r FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL, fig.cap="A single fill and outline color for all bars"}
+ggplot(dat_summ) + 
+  geom_col(aes(x = task, y = total), fill = "lightblue", colour = "black") 
+```
+
+**Note** In ggplot2, the default is to use the British spelling, colour, instead of the American spelling, color. Internally, American spellings are remapped to the British ones, so if you use the American spelling it will still work.
+
+
+## Grouping Bars Together {#BAR-GRAPH-GROUPED-BAR}
+
+### Problem
+
+You want to group bars together by a second variable.
+
+### Solution
+
+Map a variable to fill, and use `geom_col(position = "dodge")`.
+
+In this example we'll use the `dat` data set, in which we have an FMS score one for each `side`. 
+
+
+We'll map `task` to the *x* position and map `side` to the fill color (Figure \@ref(fig:FIG-BAR-GRAPH-GROUPED-BAR)):
+
+```{r FIG-BAR-GRAPH-GROUPED-BAR, fig.cap="Graph with grouped bars"}
+ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge")
+```
+
+### Discussion
+
+The most basic bar graphs have one categorical variable on the x-axis and one continuous variable on the y-axis. Sometimes you'll want to use another categorical variable to divide up the data, in addition to the variable on the x-axis. You can produce a grouped bar plot by mapping that variable to fill, which represents the fill color of the bars. You must also use `position = "dodge"`, which tells the bars to "dodge" each other horizontally; if you don't, you'll end up with a stacked bar plot. Try remove this argument `position = "dodge"`, and see what happens!
+
+As with variables mapped to the x-axis of a bar graph, variables that are mapped to the fill color of bars must be categorical rather than continuous variables.
+
+Other aesthetics, such as `colour` (the color of the outlines of the bars), can also be used for grouping variables, but `fill` is probably what you'll want to use.
+
+## Using Colors in a Bar Graph {#BAR-GRAPH-COLORS}
+
+### Problem
+
+You want to use different colors for the bars in your graph.The default colors aren't the most appealing, so you may want to set them using `scale_fill_manual()`. We'll set the outline color of the bars to black, with `colour="black"` (Figure \@ref(fig:FIG-BAR-GRAPH-FILL-MANUAL)). 
+
+### Solution
+
+Map the appropriate variable to the fill aesthetic (Figure \@ref(fig:FIG-BAR-GRAPH-FILL-MANUAL)).
+
+```{r FIG-BAR-GRAPH-FILL-MANUAL, fig.cap="Graph with different colors, black outlines, and sorted by percentage change", fig.width=6, fig.height=3.5}
+ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") +
+  scale_fill_manual(values = c("red", "blue", "green")) 
+```
+
+### Discussion
+
+In the variable `side`, there are three values - `c`, `l`, `r`. How does R know if the `red` is for what value, and ditto for other colors. Well, if you did not specify the levels, it goes in alphabetical order. So `"red"`" is for `c`, and `"green"` is for `r`. See Recipe \@ref(WRANGLE-CHARACTERS-2-FACTORS) for how to change the order of levels in a factor. There are plethora of color names that is availabe in R and that you can select to be used in `scale_fill_manual` (Figure \@ref(fig:FIG-COLOR-NAMES)).
+```{r FIG-COLOR-NAMES, echo=FALSE, fig.align='center', fig.cap="Names of many colors available in R.", fig.height=15}
+knitr::include_graphics(c("images/chapter-6/color_names.png"))
+```
+
+
+## Changing Axes titles in a Bar Graph {#BAR-GRAPH-AXES}
+
+
+### Problem
+
+You want to use a different name to label each axis. Some may simply want to use the same names with capitalizations, or  totally different names, especially if abbreviations are used in your spreadsheet. For this we will be using the `labs()` function.  
+
+### Solution
+
+Map the appropriate variable to the fill aesthetic (Figure \@ref(fig:FIG-BAR-GRAPH-AXES)).
+
+```{r FIG-BAR-GRAPH-AXES, fig.cap="Graph different axes titles"}
+ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") +
+  scale_fill_manual(values = c("red", "blue", "green")) +
+  labs (x = "Tasks",
+        y = "FMS Score")
+```
+
+
+## Changing Legend titles in a Bar Graph {#BAR-GRAPH-LEGEND}
+
+### Problem
+
+You want to use a different name for the legend title. Some may simply want to use the same names with capitalizations, or  totally different names, especially if abbreviations are used in your spreadsheet. For this we will be using the `labs()` function, and within it the *fill* argument. In this example, the  visual component that separates different sides was the fill color, that is why we changed the name of the fill component.  
+
+### Solution
+
+Map the appropriate variable to the fill aesthetic (Figure \@ref(fig:FIG-BAR-GRAPH-LEGEND)).
+
+```{r FIG-BAR-GRAPH-LEGEND, fig.cap="Graph different legend title"}
+ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") +
+  scale_fill_manual(values = c("red", "blue", "green")) +
+  labs (x = "Tasks",
+        y = "FMS Score",
+        fill = "Side")
+```
+
+## Changing font size uniformly across the Bar Graph {#BAR-GRAPH-FONTSIZE}
+
+### Problem
+
+You want to magnify the font size for the axes titles, axes labels, legend title, and legend labels. In this case you can use the `theme(text = element_text(size=)` function. For advance users which is not convered in this book, you can actually custom the fontsize of each and every component to be different.  
+
+### Solution
+
+Map the appropriate variable to the fill aesthetic (Figure \@ref(fig:FIG-BAR-GRAPH-FONTSIZE)).
+
+```{r FIG-BAR-GRAPH-FONTSIZE, fig.cap="Graph with font size = 16"}
+ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") +
+  scale_fill_manual(values = c("red", "blue", "green")) +
+  labs (x = "Tasks",
+        y = "FMS Score",
+        fill = "Side") +
+  theme(text = element_text(size= 16))
+```
+
+
+## Outputting to Bitmap (PNG/TIFF) Files {#BAR-OUTPUT-BITMAP}
+
+### Problem
+
+You want to create a bitmap of your plot, writing to a PNG file.
+
+### Solution
+
+We will be using `ggsave()`. First we need to assign the gplot we created with `ggplot()` to an object, which we can name anything. Here we call the object simply `f`. There are several important arguments you need. `filename` is the name of the file and extension you want your image to be called. Here we will use `filename = "my_plot.png"`. `plot` is the specific figure you want to save. Hwere we will use `plot = f`. `width` and `height` allows you to specify how big your image is. `unit` is whether your `width` and `height` are defined in centimeters, `"cm"`, or inches, `"in"`. Here I will use `units = "cm"`, and a 8 cm by 4 cm `width` and `height`, respectively. Lastly, the `dpi` argument specifies the resoultion of the image. Here we use `dpi = 300`. The file is saved to the working directory of the session.
+
+```{r eval=FALSE}
+f <- ggplot(dat) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") +
+  scale_fill_manual(values = c("red", "blue", "green")) +
+  labs (x = "Tasks",
+        y = "FMS Score",
+        fill = "Side") +
+  theme(text = element_text(size= 16))
+
+# Default dimensions are in inches, but you can specify the unit
+ggsave(filename = "myplot.png", 
+       plot = f, # the name of the image object you created above.
+       width = 8, 
+       height = 8, 
+       unit = "cm", 
+       dpi = 300)
+```
+
+### Discussion
+
+For high-quality print output, use at least 300 ppi. Figure \@ref(fig:FIG-OUTPUT-BITMAP-RES) shows portions of the same plot at different resolutions. 
+
+
+```{r FIG-OUTPUT-BITMAP-RES, echo=FALSE, fig.cap="From left to right: PNG output at 72, 150, and 300 ppi (actual size)", fig.width=3.5}
+knitr::include_graphics("images/chapter-6/output-ppi.png")
+```
+
+
+R supports other bitmap formats, like BMP, TIFF, and JPEG, but there's really not much reason to use them instead of PNG.
+
+The exact appearance of the resulting bitmaps varies from platform to platform. Unlike R's PDF output device, which renders consistently across platforms, the bitmap output devices may render the same plot differently on Windows, Linux, and Mac OS X. There can even be variation within each of these operating systems.
+
+## Learning check {#BAR-LEARNING-CHECK}
+
+
+1. From your learning check in \@ref (WRANGLE-LEARNING-CHECK), open up your `practice_script.R`. 
+
+2. Import the Excel file `data/fms_pt3.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
+
+3. Create another dataset, `dat_summ` where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+4. Using the data `dat_summ`, create a barplot of `task` as the *x* axis, and the `total` FMS score as the *y* axis. See Recipe \@ref(BAR-GRAPH-BASIC-BAR).
+
+5. Make the line `colour` `"red"`, and `fill` the barplot with the colour `"blue"`. See \@ref(fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL).

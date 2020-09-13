@@ -1,0 +1,303 @@
+---
+title: "Laboratory Testing Report"
+author: "Bernard Liew"
+date: "`r Sys.time()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri(file.path("HPU_logo.jpg")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px;')
+
+
+```
+
+
+---
+
+```{r, message=FALSE, warning=FALSE, echo = FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               kableExtra,
+               tibbletime,
+               lubridate, # Time
+               rio) # writing excel documents
+
+curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL) 
+{
+    if (!empirical & missing(domain)) {
+        stop("'domain' must be provided with non-empirical curves")
+    }
+    if (!empirical & (length(domain) != 2 | !is.numeric(domain))) {
+        stop("'domain' must be a two-value numeric vector, like c(0, 10)")
+    }
+    if (empirical) {
+        curve1_f <- approxfun(curve1$x, curve1$y, rule = 2)
+        curve2_f <- approxfun(curve2$x, curve2$y, rule = 2)
+        point_x <- uniroot(function(x) curve1_f(x) - curve2_f(x), 
+            c(min(curve1$x), max(curve1$x)))$root
+        point_y <- curve2_f(point_x)
+    }
+    else {
+        point_x <- uniroot(function(x) curve1(x) - curve2(x), 
+            domain)$root
+        point_y <- curve2(point_x)
+    }
+    return(list(x = point_x, y = point_y))
+}
+
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo = FALSE)
+```
+
+```{r}
+dat <-  import_list("../data/report.xlsx")
+```
+**HPU Telephone: ** "01206 873290"
+
+**HPU Email: ** "hpu@essex.ac.uk"
+
+
+**Athlete's name: **`r dat$demog$name`
+
+**Athlete's age (yo): **`r dat$demog$age`
+
+**Athlete's height (cm): **`r dat$demog$height`
+
+**Athlete's weight (kg): **`r dat$demog$weight`
+
+**Athlete's blood pressure (mm/Hg)): **`r dat$demog$bp`
+
+**Athlete's date of testing: **`r dat$demog$test_date`
+
+# Functional Movement Screen (FMS)
+
+The Functional Movement Screen (FMS) is a movement competency test. This test is designed to identify potential dysfunctional or inefficient movement patterns which may limit your performance, or increase your risk of injury. During this assessment, you performed seven foundation movements which underpin the basic movement patterns across all physical activity and sporting disciplines. Throughout the screening, our sports scientist assessed your movements against criteria, providing a score for each exercise between 0-3. Details on how these scores are allocated are provided, below:
+
+**Score of 0** - Pain experienced during the movement 
+
+**Score of 1** - Unable to perform the movement pattern, even with compensations
+
+**Score of 2** - Movement pattern completed, but with inefficient mechanics or compensations
+
+**Score of 3** - Movements pattern completed without any compensations and in line with criteria
+
+A total score out of 21 is provided. For movements which are performed bilaterally (left and right individually), the lower of the bilateral results are used in your total score. Your score for each of the tests can be seen in the chart, below.
+
+The results of this assessment allow us to individualise your conditioning exercise prescription based upon your specific functional limitations. Below, your score for each exercise, and making recommendations for conditioning exercises individualised to your scores. Scores of 3, suggesting that you performed the movements correctly without compensation, will be allocated exercises to maintain this score.
+
+## Results
+
+### Individual task results
+
+```{r}
+# Useful link for kable styling https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf
+
+kable(dat$fms, booktabs = T)%>%
+  kable_styling(full_width = T) %>%
+  column_spec(1, bold = TRUE, width = "3cm") %>%
+  column_spec(2, bold = TRUE, width = "2cm") %>%
+  column_spec(3, bold = TRUE, width = "2cm") %>%
+  column_spec(4, width = "6cm") %>%
+  column_spec(5, width = "6cm")
+```
+
+
+### Global results
+
+
+```{r}
+dat_summ <- dat$fms %>%
+  select (task, side, score) %>%
+  group_by(task) %>%
+  summarize (total = min (score)) %>%
+  ungroup ()
+
+ggplot(dat_summ) +
+  geom_col(aes(x = task, y = total), color = "black") +
+  labs (x = "Tasks",
+        y = "FMS Score") +
+  theme_bw() +
+  labs (title = "Summary of FMS Results") + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),  
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16))
+```
+
+
+***Your total FMS score out of a maximum of 21 is: * `r sum (dat_summ$total)`.
+
+# Incremental Treadmill Test
+
+The incremental treadmill test is designed to assess your physiological response to increasing intensities of running. A range of data was collected continuously throughout the test, which has been reported below. This testing session provides baseline data on your current physiological response to increasing intensities of running, which will be re-evaluated with future repeat testing.
+
+## Stage by stage results
+
+```{r}
+raw <- dat$raw
+
+new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
+
+colnames (raw)  <- new_names
+
+raw<- raw[-c(1,2), ] 
+
+raw <-  raw %>%
+  mutate (bf = as.numeric(bf),
+          vo2_norm = as.numeric(vo2_norm),
+          rer = as.numeric(rer),
+          vo2 = as.numeric(vo2),
+          vco2 = as.numeric(vco2),
+          ve = as.numeric(ve),
+          hr = as.numeric(hr))%>%
+  mutate (time = time %>% 
+            str_squish() %>% 
+            ms() %>% 
+            as.period(unit = "sec") %>%
+            as.numeric ()) %>%
+  mutate (stage = cut_interval(time, length = 210, labels = FALSE))
+
+raw_summ <- raw %>%
+  group_by(stage) %>%
+  slice(-37:-42) %>%
+  slice_tail (6) %>%
+  summarise_at (vars(bf:hr), mean)%>%
+  inner_join(dat$lactate, by = "stage") %>%
+  select (stage, speed, everything ())
+  
+kable(raw_summ, booktabs = T)%>%
+  kable_styling(full_width = T) 
+
+```
+
+
+```{r}
+last_time <- max (raw$time) %>%
+  seconds_to_period()
+
+last_stage_compl <- ifelse (max (raw$stage) == 11, "Yes", "No")
+```
+
+**Total time completed: ** `r last_time`
+
+**Last stage completed?: ** `r last_stage_compl`
+
+*Terminology  Description*
+
+**Relative Oxygen Uptake** - a measure of the volume of oxygen utilised to fuel exercise at each intensity. Your maximum oxygen uptake is reported at a Key Performance Indicator, as this reflects endurance capacity. 
+
+**Respiratory Exchange Ratio** - the ratio of carbon dioxide produced and oxygen utilised during exercise, an indicator of which fuel (carbohydrate or fat) is being metabolised to supply the body with energy. Lower RER (0.8) relates to more fat utilized, while higher RER (1.0) relates to more carbohydrates utilized.
+
+**Running Economy** - a measure of the volume of oxygen used to run at a given, sub-maximal speed. The lower this value the more economical you are which subsequently benefits your energy expenditure in endurance events. An average athletes running economy is around 200-210 ml/kg/km.
+
+**Blood Lactate Concentration** - the measurement of blood lactate has long been used as a marker of exercise intensity and training status. By monitoring your blood lactate concentrations throughout the test, we can observe your response to increasing intensities of exercise. We also use these measurements to determine lactate thresholds, which are used to track performance changes and individualise training. 
+
+**Rate of Perceived Exertion** – self reported measure to quantify your perception of effort at each intensity.  
+
+## Key performance indicators
+
+This section highlights key sub-maximal and maximal performance indicators, which will be tracked over time to identify changes in performance relevant to your discipline.
+
+
+### Maximal performance
+
+```{r}
+rolling_mean6 <- rollify(mean, window = 6)
+
+raw_roll <- raw %>%
+  arrange (desc (time)) %>%
+  summarise_at (vars(bf:hr), rolling_mean6) %>%
+  summarise_at(vars(bf:hr), max, na.rm = TRUE)
+```
+
+**Relative Peak Oxygen Uptake (ml/kg/min): ** `r round (raw_roll$vo2,2)`
+
+**Absolute Peak Oxygen Uptake (ml/kg/min): ** `r round (raw_roll$vo2_norm,2)`
+
+**Maximal Aerobic Speed (kph): ** `r max (dat$lactate$speed)`
+
+### Sub-maximal performance
+
+**Lactate threshold (LT)**
+
+Lactate threshold is the maximal intensity that can be maintained for an extended time with little or no increase of lactate in the blood. This is a sustainable exercise intensity, which theoretically can be maintained for events of 2 hours + in duration. This threshold is determined by a blood lactate concentration of 2.0 mmol/L.
+
+**Anaerobic Threshold (AT) **
+
+Anaerobic threshold is the intensity at which lactate begins to accumulate in the blood at a faster rate than it can be removed. This threshold is determined by a blood lactate concentration of 4.0 mmol/L.
+
+```{r}
+
+# Regress lacate agains speed
+m <- loess (lactate ~ speed, data = raw_summ)
+min.speed <- ceiling (min (raw_summ$speed))
+max.speed <- floor (max (raw_summ$speed))
+n_points <- 100
+  
+new_lac <- data.frame (speed = seq (min.speed, max.speed, length.out = n_points))
+new_lac$y <- predict (m, newdata = new_lac)
+colnames(new_lac)[1] <- "x"
+
+lactate_thres <- data.frame (x = seq (min.speed, max.speed, length.out = n_points),
+                             y = 2)
+
+anaerobic_thres <- data.frame (x = seq (min.speed, max.speed, length.out = n_points),
+                             y = 4)
+
+speed_at_lac_thres <- curve_intersect(new_lac, lactate_thres)$x
+speed_at_ane_thres <- curve_intersect(new_lac, anaerobic_thres)$x
+
+# Regress HR agains speed
+m <- loess (hr ~ speed, data = raw_summ)
+
+new_hr <- data.frame (speed = seq (min.speed, max.speed, length.out = n_points))
+new_hr$y <- predict (m, newdata = new_hr)
+colnames(new_hr)[1] <- "x"
+
+
+hr_at_lac_thres <- new_hr[which.min(abs(new_hr$x -speed_at_lac_thres)), "y"] %>%
+  round (0)
+hr_at_ane_thres <- new_hr[which.min(abs(new_hr$x -speed_at_ane_thres)), "y"] %>%
+  round 
+
+pi <- data.frame(Variable = c("Lactate Threshold", "Anaerobic Threshold"),
+                 Speed = c(speed_at_lac_thres, speed_at_ane_thres ),
+                 HR = c(hr_at_lac_thres, hr_at_ane_thres))
+
+  
+kable(pi, booktabs = T)%>%
+  kable_styling(position = "center")
+
+```
+
+
+```{r}
+df_plot <- data.frame(speed = new_lac$x,
+                      lactate = new_lac$y,
+                      hr = new_hr$y,
+                      speed_lac = speed_at_lac_thres,
+                      speed_ane = speed_at_ane_thres) %>%
+  pivot_longer(cols = lactate:hr,
+               names_to = "var",
+               values_to = "val")
+
+ggplot (df_plot) +
+  geom_line (aes (x = speed, y = val)) + 
+  geom_vline(xintercept = speed_at_lac_thres, color = "blue", linetype = "dashed") + 
+  geom_vline(xintercept = speed_at_ane_thres, color = "red", linetype = "dashed") + 
+  facet_wrap(~var, ncol = 2, scales = "free") +
+  labs (x = "Speed",
+        y = "Values") +
+  theme_bw() + 
+  labs (title = "Plot of Treadmill test") + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),  
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16))
+```
+

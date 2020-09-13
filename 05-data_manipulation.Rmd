@@ -1,0 +1,570 @@
+# Data manipulation{#WRANGLE}
+
+## Download and load libraries {-}
+
+```{r, message=FALSE, warning=FALSE}
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               openxlsx,# writing excel documents
+               lubridate,# date-time 
+               tibbletime) # moving average for vo2
+
+```
+
+
+
+## Import data {-}
+
+Let's load the 3 files from `data` folder into the workspace again. File one contains the FMS data, another the VO2 raw data from the treadmill test, and lastly the lactate data from the treadmill test.
+
+```{r message=FALSE, warning=FALSE}
+
+
+dat_fms <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
+                   sheet = "Sheet1")
+
+dat_vo2 <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
+                   sheet = "raw")
+
+dat_vo2_stage <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
+                   sheet = "stage")
+
+```
+
+
+## Renaming variables {#WRANGLE-RENAME-VARIABLES}
+
+### Problem
+
+The current column names in the `dat_vo2` dataset is ugly, and you like to abbreviate it. I dislike excessively using capitals in naming stuff. It is alot of effort to type.
+
+### Solution
+
+Create a vector of 8 new names that you can give to the data. The order of new names must be identical to the order of the old names from left to right.
+
+```{r }
+
+# This prints the current column names
+colnames (dat_vo2)  
+
+# New names. Notice the commas and be pedantic about spacing
+
+new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
+
+# Give the new names to the old names
+
+colnames (dat_vo2)  <- new_names
+
+# This prints the new column names
+colnames (dat_vo2)  
+
+```
+
+## Subset rows {#WRANGLE-SLICE}
+
+### Problem
+
+You want to remove a specific row  or a range of rows, and remove a specific column or a range of columns. See also Recipe \@ref(WRANGLE-FILTER).
+
+### Solution
+
+To keep or remove rows based on the row numbers, use `slice ()`. In slice, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, use `(start:end)`. To keep  keeps based on the column names, use the `select ()` function. 
+
+```{r }
+
+# This keeps only the second row
+dat_vo2 %>% 
+  slice (2) %>%
+  head()
+
+# This removes the second row
+dat_vo2 %>% 
+  slice (-2)%>%
+  head()
+
+# This removes the second and third rows
+dat_vo2 %>% 
+  slice (-(2:3))%>%
+  head()
+
+# This removes the second column
+dat_vo2 %>%
+      select (time, bf, rer) %>%
+  head()
+
+```
+
+```{r}
+# This removes the first and second row, and replaces the old data in object dat_vo2
+dat_vo2 <- dat_vo2 %>% 
+  slice (-(1:2))
+```
+
+## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
+
+### Problem
+
+The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. But let us see the type of data that was imported. The `str()` function provides us with some summary information about the dataframe.
+
+```{r}
+str(dat_vo2)
+```
+
+What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure \@ref(fig:vo2-col_class)). This will be expanded upon in the Recipe \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
+
+
+```{r vo2-col_class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
+knitr::include_graphics("images/chapter-5/dat_vo2_column_class.png")
+```
+
+### Solution
+
+Use the `mutate()` function and the `as.numeric` function. 
+
+```{r}
+
+dat_vo2 <-  dat_vo2 %>%
+  mutate (bf = as.numeric(bf),
+          vo2_norm = as.numeric(vo2_norm),
+          rer = as.numeric(rer),
+          vo2 = as.numeric(vo2),
+          vco2 = as.numeric(vco2),
+          ve = as.numeric(ve),
+          hr = as.numeric(hr))
+
+# Recheck the type of each column 
+str(dat_vo2)
+
+```
+
+## Convert characters to date and time {#WRANGLE-CHARACTER-2-TIME}
+
+### Problem
+
+The raw `dat_vo2` data `time` variable is a character with ugly white spaces. When you use the `str()` function on the time column using the `$` symbol, you can see that each value looks like `"  00:05 "`. It means that is a blank before and after the `00:05`. 
+
+```{r}
+str(dat_vo2$time)
+```
+
+### Solution
+
+Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \ref@(WRANGLE-NEW-VARIABLES).
+
+```{r}
+
+dat_vo2 <- dat_vo2 %>%
+  mutate (time = time %>% 
+            str_squish() %>% # function strips any whitespaces
+            ms() %>% # convert to minutes and seconds
+            as.period(unit = "sec") %>% # converts entirely to seconds
+            as.numeric ()) # strips the S symbol to make it a number
+
+# Recheck the type of each column 
+str(dat_vo2)
+
+```
+
+
+### Discussion
+
+Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the `time` variable.  
+
+```{r }
+# removes whitespaces around the time variable
+dat_vo2 %>%
+  mutate (time = time %>% 
+            str_squish()) %>%
+  head()
+
+
+# convert to minutes and seconds
+dat_vo2 %>%
+  mutate (time = time %>% 
+                ms())%>%
+  head()
+
+
+# converts entirely to seconds
+dat_vo2 %>%
+  mutate (time = time %>% 
+            as.period(unit = "sec"))%>%
+  head()
+
+
+# strips the S symbol to make it a number
+dat_vo2 %>%
+  mutate (time = time %>% 
+            as.numeric ())%>%
+  head()
+
+
+```
+
+## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
+
+### Problem
+
+You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not the `cut_interval` function  explain, other than to say the `length` argument is used to specify the range of evenly spaced values to categorize over.
+
+### Solution
+
+```{r}
+dat_vo2 <- dat_vo2 %>%
+  mutate (stage = cut_interval(time, length = 210, labels = FALSE))
+
+dat_vo2
+
+```
+
+### Discussion
+
+Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.
+
+
+## Tidy data {#WRANGLE-TIDY-DATA}
+
+You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is **not the data you loaded**, but rather came with the `tidyverse` package. Each dataset shows the same values of four variables *country*, *year*, *population*, and *cases*, but each dataset organises the values in a different way.
+
+```{r}
+table1
+table2
+table3
+
+# Spread across two tables
+table4a  # cases
+table4b  # population
+```
+
+These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with. 
+
+There are three interrelated rules which make a dataset tidy:
+
+1.  Each variable must have its own column.
+1.  Each observation must have its own row.
+1.  Each value must have its own cell.
+
+Figure \@ref(fig:tidy-structure) shows the rules visually.
+
+```{r tidy-structure, echo = FALSE, out.width = "100%", fig.cap = "Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells."}
+knitr::include_graphics("images/chapter-5/tidy-1.png")
+```
+
+These three rules are interrelated because it's impossible to only satisfy two of the three. 
+
+In this example, only `table1` is tidy. It's the only representation where each column is a variable.
+
+Why ensure that your data is tidy? There are two main advantages:
+
+1.  There's a general advantage to picking one consistent way of storing
+    data. If you have a consistent data structure, it's easier to learn the
+    tools that work with it because they have an underlying uniformity.
+    
+1.  There's a specific advantage to placing variables in columns because
+    most of R functions work with data in the tidy format. That makes transforming 
+    tidy data feel particularly natural.
+    
+The principles of tidy data seem so obvious that you might wonder if you'll ever encounter a dataset that isn't tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:
+
+1.  Most people aren't familiar with the principles of tidy data, and it's hard
+    to derive them yourself unless you spend a _lot_ of time working with data.
+    
+2.  Data is often organised to facilitate some use other than analysis. For 
+    example, data is often organised to make entry as easy as possible.
+    
+This means for most real analyses, you'll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. 
+The second step is to resolve one of two common problems:
+
+1. One variable might be spread across multiple columns.
+
+2. One observation might be scattered across multiple rows.
+
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` and `pivot_longer()`.
+
+## Spreading {#WRANGLE-SPREAD}
+
+### Problem
+
+You want to make your data wider, in this instance let us look at the `dat_fms` dataset. You want to have one column indicating the left FMS score, and one indicating the right FMS score. The caveat is that because some tasks in the FMS do not have left and right, we need to remove the tasks in the FMS without a left and right. In this case, we will use the `filter()` function, which will be discussed in Recipe \@ref(WRANGLE-FILTER).
+
+```{r}
+dat_fms_sub <- dat_fms %>%
+  filter (side != "c")
+```
+
+
+```{r }
+dat_wide <- dat_fms_sub %>% # original data
+  pivot_wider(names_from = "side",
+              values_from = score)
+dat_wide
+```
+
+## Gathering {#WRANGLE-GATHER}
+
+### Problem
+
+You want to make your data longer. In this instance, if you have for example a left and right FMS column and you want to bring all into one column, you use the `pivot_longer()` function. 
+
+### Solution
+
+```{r }
+dat_long <- dat_wide %>% # original data
+  pivot_longer(cols = c("l", "r"),
+              names_to = "side",
+              values_to = "score")
+dat_long 
+```
+
+
+## Rename values of a variable {#WRANGLE-RENAME-VALUES}
+
+### Problem
+
+You want to rename some values, either because it is too long, too short, or for other reasons. In this instance, in the `dat_fms` dataset, you want to call `l`, `left`, and `r`, `right`.
+
+### Solution
+
+Use the `mutate()` function and the `recode()` function. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES).
+
+```{r }
+
+dat_fms <- dat_fms %>%
+  mutate (side = recode (side, # the variable name
+                          "l" = "left", # old label = new label
+                          "r" = "right")) # old label = new label
+
+dat_fms
+```
+
+
+## Creating factors {#WRANGLE-CHARACTERS-2-FACTORS}
+
+### Problem
+
+You want to create an order in the values of a variable - like small, medium, large. 
+
+### Solution
+
+```{r}
+# Order of values I desire
+
+new_lvls <- c( "push_up","squat", "rot_stab", "hurdle", "lunge", "leg_raise",  "shd_mob")
+
+dat_fms_relvl <- dat_fms %>%
+  mutate (task = factor (task, levels = new_lvls))
+
+
+```
+
+### Discussion
+
+Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.
+
+(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS) Barplots of FMS score on original `dat_fms` (left); and new `dat_fms_relvl` when with modified the `task` variable to be a factor, with new levels (right).
+
+```{r FIG-BAR-GRAPH-FACTOR-EFFECTS, fig.show="hold", fig.cap="(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS)"}
+# Without factor 
+ggplot(dat_fms) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") 
+
+# With factor new levels
+ggplot(dat_fms_relvl) +
+  geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") 
+
+```
+
+
+## Making a new variable {#WRANGLE-NEW-VARIABLES}
+
+### Problem
+
+You want to create a new column which involves some math between columns
+
+### Solution
+
+Example, you want to create a column called `ratio` in the `dat_vo2` dataset, by dividing `vo2` by `vco2`.
+
+```{r }
+dat_vo2 <-  dat_vo2 %>%
+  mutate (ratio = vo2/vco2) 
+
+head(dat_vo2)
+```
+
+### Discussion
+
+There are many math operations you can do including subtraction (`-`), multiplication (`*`), addition (`+`), exponentiation/power to the power of 2 (`^2`). Let us go crazy and try some random creation of new variables.
+
+```{r }
+
+dat_vo2_crazy <-  dat_vo2  %>%
+  mutate (vo2_power = vo2^3,# vo2 powered to 3 
+          vco2_mod = vco2/3, # vco2 divied by 3
+          junk = (vo2+ vco2)/ (hr + bf) # divided the sum of vo2 and vco2, and sum of hr and bf
+          ) 
+  
+head(dat_vo2_crazy)
+```
+
+## Filtering {#WRANGLE-FILTER}
+
+Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe \@ref(WRANGLE-SLICE), you learnt the `slice()` function. That is for really simple filtering. The `filter()` function you will learn here gives you more flexibility, which you will learnt in a bit. Filtering deals with keeping or throwing out rows of data. Keeping or throwing out columns of data uses the `select()` function, which you will learn in Recipe \@ref(WRANGLE-SLICE).
+
+### Keep rows you want based on condition {#WRANGLE-FILTER-KEEP-CHARACTER}
+
+#### Problem
+
+In the `dat_fms` dataset, you want to keep rows that have `side == "left"` (i.e. only rows where the `side` value equals `left`). Note the `==`, double equal sign, instead of the usual `=`. In this short book, I will not go at length to explain why R is so difficult, only that I ask you to obey the rules of the language. 
+
+#### Solution
+
+```{r }
+
+dat_fms %>%
+  filter (side == "left")
+
+```
+
+
+### Keep rows based on a numerical range {#WRANGLE-FILTER-KEEP-NUMERIC}
+
+You want to keep the data when a variable is within a certain window range. Let us use the `dat_vo2` dataset. Let us see the range of values of `ve`.
+
+```{r}
+hist (dat_vo2$ve)
+```
+
+#### Problem
+
+Say I want to keep rows where 1) `ve` is less than 80, 2) `ve` more than 40, and 3) `ve` is between 40 to 80
+
+#### Solution
+
+Notice for each graph, how the minimum and maximum values have been clipped off.
+
+```{r}
+# ve less than 80
+dat_vo2_filt <- dat_vo2 %>%
+  filter (ve < 80)
+
+hist (dat_vo2_filt$ve)
+
+# ve lmore than 40
+dat_vo2_filt <- dat_vo2 %>%
+  filter (ve > 40)
+
+hist (dat_vo2_filt$ve)
+
+# ve between 40 to 80
+dat_vo2_filt <- dat_vo2 %>%
+  filter (ve > 40 & ve < 80)
+
+hist (dat_vo2_filt$ve)
+```
+
+### Discussion
+
+`filter()` works really when you want to throw out or keep rows of data based on some ranges or criteria of the variables you have. When you want to keep rows of data based on the row number, say keep the first and last row of data, use `slice ()`. See also Recipe \@ref(WRANGLE-SLICE).
+
+```{r}
+dat_vo2 %>%
+  slice(tail(row_number(), 6))
+  
+```
+
+
+## Global summary {#WRANGLE-SUMMARIZE-GLOBAL}
+
+### Problem
+
+You want to find the total FMS score across all sides and tasks
+
+### Solution
+
+In the `dat_fms` dataset, we want to use the `summarize ()` function.
+
+```{r }
+
+dat_fms %>%
+  summarize (total_score = sum (score))
+
+```
+
+I date you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!
+
+### Discussion
+
+We can also go berserk by trying out different summary functions, like `mean ()`, `median ()`, `min()` (minimum value), `max` (maximum value).
+
+```{r }
+
+dat_fms %>%
+  summarize (total_score = sum (score),
+             mean_score = mean (score),
+             median_score = median (score),
+             min_score = min (score),
+             max_score = max(score))
+
+```
+## Group-by summary {#WRANGLE-SUMMARIZE-GROUPBY}
+
+### Problem
+
+You want to perform a summary function for each chunk of group. For example, the FMS is typically scored by taking the lower of the two values of left and right for each task. In `side`, we have three values, `c`, `left` and `right`. The minimum of `c` is the same value itself.
+
+### Solution
+
+In the `dat_fms` dataset, we want to use the `group_by()` and `summarize ()` function.The  code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.
+
+```{r }
+
+dat_fms %>%
+  group_by(task) %>%
+  summarize (lower_score = min (score))
+
+```
+
+### Discussion
+
+Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the `dat_vo2` dataset. Remember in your lessons, the last 30 sec of each 3 min 30 sec stage is discarded, and the last 30s of each 3 min interval is than averaged for further analysis? Well, it means that for each `stage`, I want to keep data between 2:30 to 3min of each stage. That corresponds to rows 31 to 36 of each stage (try to think why i selected these row numbers!). I than want to average all my variables over these 6 rows per stage. I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the `summarize_at()` function? Because I want to average so many variables, I become lazy. So I specific all variable names without `""` inside the `vars()`. Note I did not type out `bf`, `vo2_norm`, `rer`, `vo2`, `vco2`, `ve`, `hr`. I used a short cut called `:`, which reads as from start to end. So `bf:hr`, means all columns from `bf` to `hr`, inclusive.
+
+```{r}
+dat_vo2_summ <- dat_vo2 %>%
+  group_by(stage) %>% # for each group
+  slice(c(31:36)) %>% 
+  summarise_at (vars(bf:hr), mean)
+
+```
+
+## Merge two tables together {#WRANGLE-INNER-JOIN}
+
+### Problem
+
+You want to combine two tables together, ensuring the each row is linked appropriately. For example, you want to combine your `dat_vo2_summ` summary data with the `dat_vo2_stage` table which contains the RPE and blood lactate values. 
+
+### Solution
+
+Use the `inner_join` function, with the `by` key as the common identifier that must be in both dataframes. 
+
+```{r }
+
+dat_vo2_summ %>%
+  inner_join(dat_vo2_stage, by = "stage")
+
+```
+
+### Discussion
+It is common sense, that if we want to join two tables, there must be some rules. First, if we want to join two tables side by side left-right, the number of rows must match. Second, there must be a way the computer knows how to join, much like a key and a keyhole. The key is the column to join by, in this example, `stage`. In the `dat_vo2_summ` there is the `stage` variable with identical number of levels `1-8`, and the same variable appears in `dat_vo2_stage`. You don't have to worry if after merging, the data is sorted correctly, if you follow these rules.
+
+## Learning check {#WRANGLE-LEARNING-CHECK}
+
+
+1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import the `data/treadmill_pt4.xlsx` file.
+
+2. Rename the columns to be `("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")`, respectively. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
+
+3. Remove the first two useless rows of the data. See Recipe \@ref(WRANGLE-SLICE).
+
+4. Convert the variable `time` into numeric seconds, and all other variables to numeric. See Recipe \@ref(WRANGLE-CHARACTER-2-TIME) and \@ref(WRANGLE-CHARACTER-2-NUMERIC), respectively.
+

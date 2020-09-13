@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization</title>
+  <meta name="description" content="Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="WRANGLE.html"/>
+<link rel="next" href="line-graphs.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.3.1</b> R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="get-started.html"><a href="get-started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="get-started.html"><a href="get-started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="get-started.html"><a href="get-started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="get-started.html"><a href="get-started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="get-started.html"><a href="get-started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="get-started.html"><a href="get-started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="get-started.html"><a href="get-started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="get-started.html"><a href="get-started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="get-started.html"><a href="get-started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="get-started.html"><a href="get-started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="get-started.html"><a href="get-started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="get-started.html"><a href="get-started.html#INSTALL-LEARNING-CHECK"><i class="fa fa-check"></i><b>2.5</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#BASICS-CONSOLE"><i class="fa fa-check"></i><b>3.1</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.2.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.3.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.3.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.4.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.4.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.4.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.3.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.3.2</b> Loading a package</a></li>
+<li class="chapter" data-level="4.3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#a-simple-approach-to-package"><i class="fa fa-check"></i><b>4.3.3</b> A simple approach to package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK"><i class="fa fa-check"></i><b>4.4</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="InputOuput.html"><a href="InputOuput.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-IMPORT"><i class="fa fa-check"></i><b>5.2</b> Reading in Excel “.xlsx” data</a></li>
+<li class="chapter" data-level="5.3" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-EXPORT"><i class="fa fa-check"></i><b>5.3</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.4" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-LEARNING-CHECK"><i class="fa fa-check"></i><b>5.4</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.1</b> Renaming variables</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>6.1.1</b> Problem</a></li>
+<li class="chapter" data-level="6.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>6.1.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.2</b> Subset rows</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>6.2.1</b> Problem</a></li>
+<li class="chapter" data-level="6.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>6.2.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.3</b> Convert characters to numeric</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>6.3.1</b> Problem</a></li>
+<li class="chapter" data-level="6.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>6.3.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.4</b> Convert characters to date and time</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>6.4.1</b> Problem</a></li>
+<li class="chapter" data-level="6.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>6.4.2</b> Solution</a></li>
+<li class="chapter" data-level="6.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>6.4.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.5</b> Split Numeric Variable into Categories</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>6.5.1</b> Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.5.2</b> Solution</a></li>
+<li class="chapter" data-level="6.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.5.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.6</b> Tidy data</a></li>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
+<li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-7"><i class="fa fa-check"></i><b>6.9.1</b> Problem</a></li>
+<li class="chapter" data-level="6.9.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.9.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-8"><i class="fa fa-check"></i><b>6.10.1</b> Problem</a></li>
+<li class="chapter" data-level="6.10.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-7"><i class="fa fa-check"></i><b>6.10.2</b> Solution</a></li>
+<li class="chapter" data-level="6.10.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>6.10.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a><ul>
+<li class="chapter" data-level="6.11.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-9"><i class="fa fa-check"></i><b>6.11.1</b> Problem</a></li>
+<li class="chapter" data-level="6.11.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-8"><i class="fa fa-check"></i><b>6.11.2</b> Solution</a></li>
+<li class="chapter" data-level="6.11.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>6.11.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a><ul>
+<li class="chapter" data-level="6.12.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER"><i class="fa fa-check"></i><b>6.12.1</b> Keep rows you want based on condition</a></li>
+<li class="chapter" data-level="6.12.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC"><i class="fa fa-check"></i><b>6.12.2</b> Keep rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.12.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>6.12.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a><ul>
+<li class="chapter" data-level="6.13.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-12"><i class="fa fa-check"></i><b>6.13.1</b> Problem</a></li>
+<li class="chapter" data-level="6.13.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-11"><i class="fa fa-check"></i><b>6.13.2</b> Solution</a></li>
+<li class="chapter" data-level="6.13.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>6.13.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a><ul>
+<li class="chapter" data-level="6.14.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-13"><i class="fa fa-check"></i><b>6.14.1</b> Problem</a></li>
+<li class="chapter" data-level="6.14.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-12"><i class="fa fa-check"></i><b>6.14.2</b> Solution</a></li>
+<li class="chapter" data-level="6.14.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-6"><i class="fa fa-check"></i><b>6.14.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a><ul>
+<li class="chapter" data-level="6.15.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-14"><i class="fa fa-check"></i><b>6.15.1</b> Problem</a></li>
+<li class="chapter" data-level="6.15.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-13"><i class="fa fa-check"></i><b>6.15.2</b> Solution</a></li>
+<li class="chapter" data-level="6.15.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-7"><i class="fa fa-check"></i><b>6.15.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.16" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK"><i class="fa fa-check"></i><b>6.16</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a><ul>
+<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
+<li class="chapter" data-level="7.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
+<li class="chapter" data-level="7.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.2</b> Grouping Bars Together</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>7.2.1</b> Problem</a></li>
+<li class="chapter" data-level="7.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>7.2.2</b> Solution</a></li>
+<li class="chapter" data-level="7.2.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>7.2.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.3</b> Using Colors in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
+<li class="chapter" data-level="7.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.4</b> Changing Axes titles in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
+<li class="chapter" data-level="7.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.5</b> Changing Legend titles in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
+<li class="chapter" data-level="7.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.6</b> Changing font size uniformly across the Bar Graph</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
+<li class="chapter" data-level="7.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.7</b> Outputting to Bitmap (PNG/TIFF) Files</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
+<li class="chapter" data-level="7.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
+<li class="chapter" data-level="7.7.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>7.7.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK"><i class="fa fa-check"></i><b>7.8</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
+<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
+<li class="chapter" data-level="8.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
+<li class="chapter" data-level="8.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
+<li class="chapter" data-level="8.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
+<li class="chapter" data-level="8.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
+<li class="chapter" data-level="8.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
+<li class="chapter" data-level="8.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
+<li class="chapter" data-level="8.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
+<li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
+<li class="chapter" data-level="8.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>8.6.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="your-assignment.html"><a href="your-assignment.html"><i class="fa fa-check"></i><b>9</b> Your Assignment</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple Cookbook for Wrangling and Visualization</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="CHAPTER-BAR-GRAPH" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Bar Graphs</h1>
+<p>Bar graphs are perhaps the most commonly used kind of data visualization. They’re typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn’t be as good for showing prices over time, where time is a continuous variable – though it can be done.</p>
+<p>There’s an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent <em>counts</em> of cases in the data set, and sometimes they represent <em>values</em> in the data set. Keep this distinction in mind – it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I’ll discuss always use bar graphs with <em>values</em>.</p>
+<p>Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called <code>"fms_pt3.xlsx"</code></p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb147-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
+<a class="sourceLine" id="cb147-3" title="3"></a>
+<a class="sourceLine" id="cb147-4" title="4">fct_lvls &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;push_up&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;shd_mob&quot;</span>)</a>
+<a class="sourceLine" id="cb147-5" title="5"></a>
+<a class="sourceLine" id="cb147-6" title="6">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb147-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> fct_lvls))</a>
+<a class="sourceLine" id="cb147-8" title="8"></a>
+<a class="sourceLine" id="cb147-9" title="9">dat</a>
+<a class="sourceLine" id="cb147-10" title="10"><span class="co">#&gt;        task side score</span></a>
+<a class="sourceLine" id="cb147-11" title="11"><span class="co">#&gt; 1     squat    c     3</span></a>
+<a class="sourceLine" id="cb147-12" title="12"><span class="co">#&gt; 2    hurdle    l     2</span></a>
+<a class="sourceLine" id="cb147-13" title="13"><span class="co">#&gt; 3    hurdle    r     2</span></a>
+<a class="sourceLine" id="cb147-14" title="14"><span class="co">#&gt;  ...&lt;6 more rows&gt;...</span></a>
+<a class="sourceLine" id="cb147-15" title="15"><span class="co">#&gt; 10 rot_stab    l     2</span></a>
+<a class="sourceLine" id="cb147-16" title="16"><span class="co">#&gt; 11 rot_stab    r     2</span></a>
+<a class="sourceLine" id="cb147-17" title="17"><span class="co">#&gt; 12  push_up    c     1</span></a></code></pre></div>
+<p>Let us also create another dataset where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">dat_summ &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total =</span> <span class="kw">min</span> (score)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb148-4" title="4"><span class="st">  </span><span class="kw">ungroup</span> ()</a>
+<a class="sourceLine" id="cb148-5" title="5"><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></a>
+<a class="sourceLine" id="cb148-6" title="6"></a>
+<a class="sourceLine" id="cb148-7" title="7">dat_summ</a>
+<a class="sourceLine" id="cb148-8" title="8"><span class="co">#&gt; # A tibble: 7 x 2</span></a>
+<a class="sourceLine" id="cb148-9" title="9"><span class="co">#&gt;   task      total</span></a>
+<a class="sourceLine" id="cb148-10" title="10"><span class="co">#&gt;   &lt;fct&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb148-11" title="11"><span class="co">#&gt; 1 squat         3</span></a>
+<a class="sourceLine" id="cb148-12" title="12"><span class="co">#&gt; 2 push_up       1</span></a>
+<a class="sourceLine" id="cb148-13" title="13"><span class="co">#&gt; 3 hurdle        2</span></a>
+<a class="sourceLine" id="cb148-14" title="14"><span class="co">#&gt; 4 lunge         3</span></a>
+<a class="sourceLine" id="cb148-15" title="15"><span class="co">#&gt; 5 leg_raise     1</span></a>
+<a class="sourceLine" id="cb148-16" title="16"><span class="co">#&gt; 6 rot_stab      2</span></a>
+<a class="sourceLine" id="cb148-17" title="17"><span class="co">#&gt; # ... with 1 more row</span></a></code></pre></div>
+<div id="BAR-GRAPH-BASIC-BAR" class="section level2">
+<h2><span class="header-section-number">7.1</span> Making a Basic Bar Graph</h2>
+<div id="problem" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Problem</h3>
+<p>You have a data frame where one column represents the <em>x</em> position of each bar, and another column represents the vertical <em>y</em> height of each bar.</p>
+</div>
+<div id="solution" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Solution</h3>
+<p>Use <code>ggplot()</code> with <code>geom_col()</code> and specify what variables you want on the x- and y-axes (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR">7.1</a>):</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-BAR"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-BAR-1.png" alt="Bar graph of values with a discrete x-axis" width="480" />
+<p class="caption">
+Figure 7.1: Bar graph of values with a discrete x-axis
+</p>
+</div>
+</div>
+<div id="discussion" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Discussion</h3>
+<p>By default, bar graphs use a dark grey for the bars. To use a color fill, use <code>fill</code>. Also, by default, there is no outline around the fill. To add an outline, use <code>colour</code>. For Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL">7.2</a>, we use a light blue fill and a black outline:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb150-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total), <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL-1.png" alt="A single fill and outline color for all bars" width="480" />
+<p class="caption">
+Figure 7.2: A single fill and outline color for all bars
+</p>
+</div>
+<p><strong>Note</strong> In ggplot2, the default is to use the British spelling, colour, instead of the American spelling, color. Internally, American spellings are remapped to the British ones, so if you use the American spelling it will still work.</p>
+</div>
+</div>
+<div id="BAR-GRAPH-GROUPED-BAR" class="section level2">
+<h2><span class="header-section-number">7.2</span> Grouping Bars Together</h2>
+<div id="problem-1" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Problem</h3>
+<p>You want to group bars together by a second variable.</p>
+</div>
+<div id="solution-1" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Solution</h3>
+<p>Map a variable to fill, and use <code>geom_col(position = "dodge")</code>.</p>
+<p>In this example we’ll use the <code>dat</code> data set, in which we have an FMS score one for each <code>side</code>.</p>
+<p>We’ll map <code>task</code> to the <em>x</em> position and map <code>side</code> to the fill color (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-GROUPED-BAR">7.3</a>):</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-GROUPED-BAR"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-GROUPED-BAR-1.png" alt="Graph with grouped bars" width="480" />
+<p class="caption">
+Figure 7.3: Graph with grouped bars
+</p>
+</div>
+</div>
+<div id="discussion-1" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Discussion</h3>
+<p>The most basic bar graphs have one categorical variable on the x-axis and one continuous variable on the y-axis. Sometimes you’ll want to use another categorical variable to divide up the data, in addition to the variable on the x-axis. You can produce a grouped bar plot by mapping that variable to fill, which represents the fill color of the bars. You must also use <code>position = "dodge"</code>, which tells the bars to “dodge” each other horizontally; if you don’t, you’ll end up with a stacked bar plot. Try remove this argument <code>position = "dodge"</code>, and see what happens!</p>
+<p>As with variables mapped to the x-axis of a bar graph, variables that are mapped to the fill color of bars must be categorical rather than continuous variables.</p>
+<p>Other aesthetics, such as <code>colour</code> (the color of the outlines of the bars), can also be used for grouping variables, but <code>fill</code> is probably what you’ll want to use.</p>
+</div>
+</div>
+<div id="BAR-GRAPH-COLORS" class="section level2">
+<h2><span class="header-section-number">7.3</span> Using Colors in a Bar Graph</h2>
+<div id="problem-2" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Problem</h3>
+<p>You want to use different colors for the bars in your graph.The default colors aren’t the most appealing, so you may want to set them using <code>scale_fill_manual()</code>. We’ll set the outline color of the bars to black, with <code>colour="black"</code> (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FILL-MANUAL">7.4</a>).</p>
+</div>
+<div id="solution-2" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Solution</h3>
+<p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FILL-MANUAL">7.4</a>).</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) </a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-FILL-MANUAL"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FILL-MANUAL-1.png" alt="Graph with different colors, black outlines, and sorted by percentage change" width="576" />
+<p class="caption">
+Figure 7.4: Graph with different colors, black outlines, and sorted by percentage change
+</p>
+</div>
+</div>
+<div id="discussion-2" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Discussion</h3>
+In the variable <code>side</code>, there are three values - <code>c</code>, <code>l</code>, <code>r</code>. How does R know if the <code>red</code> is for what value, and ditto for other colors. Well, if you did not specify the levels, it goes in alphabetical order. So <code>"red"</code>" is for <code>c</code>, and <code>"green"</code> is for <code>r</code>. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS">6.10</a> for how to change the order of levels in a factor. There are plethora of color names that is availabe in R and that you can select to be used in <code>scale_fill_manual</code> (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-COLOR-NAMES">7.5</a>).
+<div class="figure" style="text-align: center"><span id="fig:FIG-COLOR-NAMES"></span>
+<img src="images/chapter-6/color_names.png" alt="Names of many colors available in R." width="672" />
+<p class="caption">
+Figure 7.5: Names of many colors available in R.
+</p>
+</div>
+</div>
+</div>
+<div id="BAR-GRAPH-AXES" class="section level2">
+<h2><span class="header-section-number">7.4</span> Changing Axes titles in a Bar Graph</h2>
+<div id="problem-3" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Problem</h3>
+<p>You want to use a different name to label each axis. Some may simply want to use the same names with capitalizations, or totally different names, especially if abbreviations are used in your spreadsheet. For this we will be using the <code>labs()</code> function.</p>
+</div>
+<div id="solution-3" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Solution</h3>
+<p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-AXES">7.6</a>).</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb153-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-AXES"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-AXES-1.png" alt="Graph different axes titles" width="480" />
+<p class="caption">
+Figure 7.6: Graph different axes titles
+</p>
+</div>
+</div>
+</div>
+<div id="BAR-GRAPH-LEGEND" class="section level2">
+<h2><span class="header-section-number">7.5</span> Changing Legend titles in a Bar Graph</h2>
+<div id="problem-4" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Problem</h3>
+<p>You want to use a different name for the legend title. Some may simply want to use the same names with capitalizations, or totally different names, especially if abbreviations are used in your spreadsheet. For this we will be using the <code>labs()</code> function, and within it the <em>fill</em> argument. In this example, the visual component that separates different sides was the fill color, that is why we changed the name of the fill component.</p>
+</div>
+<div id="solution-4" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Solution</h3>
+<p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-LEGEND">7.7</a>).</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb154-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb154-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-LEGEND"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-LEGEND-1.png" alt="Graph different legend title" width="480" />
+<p class="caption">
+Figure 7.7: Graph different legend title
+</p>
+</div>
+</div>
+</div>
+<div id="BAR-GRAPH-FONTSIZE" class="section level2">
+<h2><span class="header-section-number">7.6</span> Changing font size uniformly across the Bar Graph</h2>
+<div id="problem-5" class="section level3">
+<h3><span class="header-section-number">7.6.1</span> Problem</h3>
+<p>You want to magnify the font size for the axes titles, axes labels, legend title, and legend labels. In this case you can use the <code>theme(text = element_text(size=)</code> function. For advance users which is not convered in this book, you can actually custom the fontsize of each and every component to be different.</p>
+</div>
+<div id="solution-5" class="section level3">
+<h3><span class="header-section-number">7.6.2</span> Solution</h3>
+<p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FONTSIZE">7.8</a>).</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb155-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb155-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-FONTSIZE"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FONTSIZE-1.png" alt="Graph with font size = 16" width="480" />
+<p class="caption">
+Figure 7.8: Graph with font size = 16
+</p>
+</div>
+</div>
+</div>
+<div id="BAR-OUTPUT-BITMAP" class="section level2">
+<h2><span class="header-section-number">7.7</span> Outputting to Bitmap (PNG/TIFF) Files</h2>
+<div id="problem-6" class="section level3">
+<h3><span class="header-section-number">7.7.1</span> Problem</h3>
+<p>You want to create a bitmap of your plot, writing to a PNG file.</p>
+</div>
+<div id="solution-6" class="section level3">
+<h3><span class="header-section-number">7.7.2</span> Solution</h3>
+<p>We will be using <code>ggsave()</code>. First we need to assign the gplot we created with <code>ggplot()</code> to an object, which we can name anything. Here we call the object simply <code>f</code>. There are several important arguments you need. <code>filename</code> is the name of the file and extension you want your image to be called. Here we will use <code>filename = "my_plot.png"</code>. <code>plot</code> is the specific figure you want to save. Hwere we will use <code>plot = f</code>. <code>width</code> and <code>height</code> allows you to specify how big your image is. <code>unit</code> is whether your <code>width</code> and <code>height</code> are defined in centimeters, <code>"cm"</code>, or inches, <code>"in"</code>. Here I will use <code>units = "cm"</code>, and a 8 cm by 4 cm <code>width</code> and <code>height</code>, respectively. Lastly, the <code>dpi</code> argument specifies the resoultion of the image. Here we use <code>dpi = 300</code>. The file is saved to the working directory of the session.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">f &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb156-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb156-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a>
+<a class="sourceLine" id="cb156-8" title="8"></a>
+<a class="sourceLine" id="cb156-9" title="9"><span class="co"># Default dimensions are in inches, but you can specify the unit</span></a>
+<a class="sourceLine" id="cb156-10" title="10"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;myplot.png&quot;</span>, </a>
+<a class="sourceLine" id="cb156-11" title="11">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
+<a class="sourceLine" id="cb156-12" title="12">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-13" title="13">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-14" title="14">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
+<a class="sourceLine" id="cb156-15" title="15">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a></code></pre></div>
+</div>
+<div id="discussion-3" class="section level3">
+<h3><span class="header-section-number">7.7.3</span> Discussion</h3>
+<p>For high-quality print output, use at least 300 ppi. Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-OUTPUT-BITMAP-RES">7.9</a> shows portions of the same plot at different resolutions.</p>
+<div class="figure" style="text-align: center"><span id="fig:FIG-OUTPUT-BITMAP-RES"></span>
+<img src="images/chapter-6/output-ppi.png" alt="From left to right: PNG output at 72, 150, and 300 ppi (actual size)" width="540" />
+<p class="caption">
+Figure 7.9: From left to right: PNG output at 72, 150, and 300 ppi (actual size)
+</p>
+</div>
+<p>R supports other bitmap formats, like BMP, TIFF, and JPEG, but there’s really not much reason to use them instead of PNG.</p>
+<p>The exact appearance of the resulting bitmaps varies from platform to platform. Unlike R’s PDF output device, which renders consistently across platforms, the bitmap output devices may render the same plot differently on Windows, Linux, and Mac OS X. There can even be variation within each of these operating systems.</p>
+</div>
+</div>
+<div id="BAR-LEARNING-CHECK" class="section level2">
+<h2><span class="header-section-number">7.8</span> Learning check</h2>
+<ol style="list-style-type: decimal">
+<li><p>From your learning check in @ref (WRANGLE-LEARNING-CHECK), open up your <code>practice_script.R</code>.</p></li>
+<li><p>Import the Excel file <code>data/fms_pt3.xlsx</code>, and assign it to an object <code>dat</code>. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>.</p></li>
+<li><p>Create another dataset, <code>dat_summ</code> where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p></li>
+<li><p>Using the data <code>dat_summ</code>, create a barplot of <code>task</code> as the <em>x</em> axis, and the <code>total</code> FMS score as the <em>y</em> axis. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR">7.1</a>.</p></li>
+<li><p>Make the line <code>colour</code> <code>"red"</code>, and <code>fill</code> the barplot with the colour <code>"blue"</code>. See <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL">7.2</a>.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="WRANGLE.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="line-graphs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

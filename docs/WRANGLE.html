@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization</title>
+  <meta name="description" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
+  
+  
+  
+
+<meta name="author" content="Bernard Liew" />
+
+
+<meta name="date" content="2020-09-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="InputOuput.html"/>
+<link rel="next" href="CHAPTER-BAR-GRAPH.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.3.1</b> R books</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
+<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="get-started.html"><a href="get-started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="get-started.html"><a href="get-started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="get-started.html"><a href="get-started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
+<li class="chapter" data-level="2.2.3" data-path="get-started.html"><a href="get-started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
+<li class="chapter" data-level="2.2.4" data-path="get-started.html"><a href="get-started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="get-started.html"><a href="get-started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
+<li class="chapter" data-level="2.3.2" data-path="get-started.html"><a href="get-started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
+<li class="chapter" data-level="2.3.3" data-path="get-started.html"><a href="get-started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="get-started.html"><a href="get-started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="get-started.html"><a href="get-started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
+<li class="chapter" data-level="2.4.3" data-path="get-started.html"><a href="get-started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="get-started.html"><a href="get-started.html#INSTALL-LEARNING-CHECK"><i class="fa fa-check"></i><b>2.5</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#BASICS-CONSOLE"><i class="fa fa-check"></i><b>3.1</b> The command-line (Console)</a></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.2.1</b> Send code from a source to the console</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.3.1</b> Commenting code with the # (pound) sign</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.3.2</b> Spacing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#numbers-versus-characters"><i class="fa fa-check"></i><b>3.4.1</b> Numbers versus characters</a></li>
+<li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.4.2</b> Creating new objects with &lt;-</a></li>
+<li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.4.3</b> How to name objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
+<li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.3.1</b> Installing a new package</a></li>
+<li class="chapter" data-level="4.3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.3.2</b> Loading a package</a></li>
+<li class="chapter" data-level="4.3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#a-simple-approach-to-package"><i class="fa fa-check"></i><b>4.3.3</b> A simple approach to package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK"><i class="fa fa-check"></i><b>4.4</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="5.1" data-path="InputOuput.html"><a href="InputOuput.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
+<li class="chapter" data-level="5.2" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-IMPORT"><i class="fa fa-check"></i><b>5.2</b> Reading in Excel “.xlsx” data</a></li>
+<li class="chapter" data-level="5.3" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-EXPORT"><i class="fa fa-check"></i><b>5.3</b> Writing a Data Frame to Excel</a></li>
+<li class="chapter" data-level="5.4" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-LEARNING-CHECK"><i class="fa fa-check"></i><b>5.4</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-libraries"><i class="fa fa-check"></i>Download and load libraries</a></li>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.1</b> Renaming variables</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>6.1.1</b> Problem</a></li>
+<li class="chapter" data-level="6.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>6.1.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.2</b> Subset rows</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>6.2.1</b> Problem</a></li>
+<li class="chapter" data-level="6.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>6.2.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.3</b> Convert characters to numeric</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>6.3.1</b> Problem</a></li>
+<li class="chapter" data-level="6.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>6.3.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.4</b> Convert characters to date and time</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>6.4.1</b> Problem</a></li>
+<li class="chapter" data-level="6.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>6.4.2</b> Solution</a></li>
+<li class="chapter" data-level="6.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>6.4.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.5</b> Split Numeric Variable into Categories</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>6.5.1</b> Problem</a></li>
+<li class="chapter" data-level="6.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.5.2</b> Solution</a></li>
+<li class="chapter" data-level="6.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.5.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.6</b> Tidy data</a></li>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
+<li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-7"><i class="fa fa-check"></i><b>6.9.1</b> Problem</a></li>
+<li class="chapter" data-level="6.9.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.9.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-8"><i class="fa fa-check"></i><b>6.10.1</b> Problem</a></li>
+<li class="chapter" data-level="6.10.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-7"><i class="fa fa-check"></i><b>6.10.2</b> Solution</a></li>
+<li class="chapter" data-level="6.10.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>6.10.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a><ul>
+<li class="chapter" data-level="6.11.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-9"><i class="fa fa-check"></i><b>6.11.1</b> Problem</a></li>
+<li class="chapter" data-level="6.11.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-8"><i class="fa fa-check"></i><b>6.11.2</b> Solution</a></li>
+<li class="chapter" data-level="6.11.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>6.11.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a><ul>
+<li class="chapter" data-level="6.12.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER"><i class="fa fa-check"></i><b>6.12.1</b> Keep rows you want based on condition</a></li>
+<li class="chapter" data-level="6.12.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC"><i class="fa fa-check"></i><b>6.12.2</b> Keep rows based on a numerical range</a></li>
+<li class="chapter" data-level="6.12.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>6.12.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a><ul>
+<li class="chapter" data-level="6.13.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-12"><i class="fa fa-check"></i><b>6.13.1</b> Problem</a></li>
+<li class="chapter" data-level="6.13.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-11"><i class="fa fa-check"></i><b>6.13.2</b> Solution</a></li>
+<li class="chapter" data-level="6.13.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>6.13.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a><ul>
+<li class="chapter" data-level="6.14.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-13"><i class="fa fa-check"></i><b>6.14.1</b> Problem</a></li>
+<li class="chapter" data-level="6.14.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-12"><i class="fa fa-check"></i><b>6.14.2</b> Solution</a></li>
+<li class="chapter" data-level="6.14.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-6"><i class="fa fa-check"></i><b>6.14.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a><ul>
+<li class="chapter" data-level="6.15.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-14"><i class="fa fa-check"></i><b>6.15.1</b> Problem</a></li>
+<li class="chapter" data-level="6.15.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-13"><i class="fa fa-check"></i><b>6.15.2</b> Solution</a></li>
+<li class="chapter" data-level="6.15.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-7"><i class="fa fa-check"></i><b>6.15.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.16" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK"><i class="fa fa-check"></i><b>6.16</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a><ul>
+<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
+<li class="chapter" data-level="7.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
+<li class="chapter" data-level="7.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.2</b> Grouping Bars Together</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>7.2.1</b> Problem</a></li>
+<li class="chapter" data-level="7.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>7.2.2</b> Solution</a></li>
+<li class="chapter" data-level="7.2.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>7.2.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.3</b> Using Colors in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
+<li class="chapter" data-level="7.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.4</b> Changing Axes titles in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
+<li class="chapter" data-level="7.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.5</b> Changing Legend titles in a Bar Graph</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
+<li class="chapter" data-level="7.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.6</b> Changing font size uniformly across the Bar Graph</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
+<li class="chapter" data-level="7.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.7</b> Outputting to Bitmap (PNG/TIFF) Files</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
+<li class="chapter" data-level="7.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
+<li class="chapter" data-level="7.7.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>7.7.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK"><i class="fa fa-check"></i><b>7.8</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
+<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
+<li class="chapter" data-level="8.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
+<li class="chapter" data-level="8.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
+<li class="chapter" data-level="8.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
+<li class="chapter" data-level="8.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
+<li class="chapter" data-level="8.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
+<li class="chapter" data-level="8.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
+<li class="chapter" data-level="8.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
+<li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
+<li class="chapter" data-level="8.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>8.6.3</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="your-assignment.html"><a href="your-assignment.html"><i class="fa fa-check"></i><b>9</b> Your Assignment</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple Cookbook for Wrangling and Visualization</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="WRANGLE" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Data manipulation</h1>
+<div id="download-and-load-libraries" class="section level2 unnumbered">
+<h2>Download and load libraries</h2>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb69-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb69-3" title="3">               openxlsx,<span class="co"># writing excel documents</span></a>
+<a class="sourceLine" id="cb69-4" title="4">               lubridate,<span class="co"># date-time </span></a>
+<a class="sourceLine" id="cb69-5" title="5">               tibbletime) <span class="co"># moving average for vo2</span></a></code></pre></div>
+</div>
+<div id="import-data" class="section level2 unnumbered">
+<h2>Import data</h2>
+<p>Let’s load the 3 files from <code>data</code> folder into the workspace again. File one contains the FMS data, another the VO2 raw data from the treadmill test, and lastly the lactate data from the treadmill test.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">dat_fms &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb70-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
+<a class="sourceLine" id="cb70-3" title="3"></a>
+<a class="sourceLine" id="cb70-4" title="4">dat_vo2 &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb70-5" title="5">                   <span class="dt">sheet =</span> <span class="st">&quot;raw&quot;</span>)</a>
+<a class="sourceLine" id="cb70-6" title="6"></a>
+<a class="sourceLine" id="cb70-7" title="7">dat_vo2_stage &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb70-8" title="8">                   <span class="dt">sheet =</span> <span class="st">&quot;stage&quot;</span>)</a></code></pre></div>
+</div>
+<div id="WRANGLE-RENAME-VARIABLES" class="section level2">
+<h2><span class="header-section-number">6.1</span> Renaming variables</h2>
+<div id="problem" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Problem</h3>
+<p>The current column names in the <code>dat_vo2</code> dataset is ugly, and you like to abbreviate it. I dislike excessively using capitals in naming stuff. It is alot of effort to type.</p>
+</div>
+<div id="solution" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Solution</h3>
+<p>Create a vector of 8 new names that you can give to the data. The order of new names must be identical to the order of the old names from left to right.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># This prints the current column names</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="kw">colnames</span> (dat_vo2)  </a></code></pre></div>
+<pre><code>## [1] &quot;Time&quot;   &quot;BF&quot;     &quot;VO2/kg&quot; &quot;RER&quot;    &quot;V&#39;O2&quot;   &quot;V&#39;CO2&quot;  &quot;V&#39;E&quot;    &quot;HR&quot;</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># New names. Notice the commas and be pedantic about spacing</span></a>
+<a class="sourceLine" id="cb73-2" title="2"></a>
+<a class="sourceLine" id="cb73-3" title="3">new_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;bf&quot;</span>, <span class="st">&quot;vo2_norm&quot;</span>, <span class="st">&quot;rer&quot;</span>, <span class="st">&quot;vo2&quot;</span>, <span class="st">&quot;vco2&quot;</span>, <span class="st">&quot;ve&quot;</span>, <span class="st">&quot;hr&quot;</span>)</a>
+<a class="sourceLine" id="cb73-4" title="4"></a>
+<a class="sourceLine" id="cb73-5" title="5"><span class="co"># Give the new names to the old names</span></a>
+<a class="sourceLine" id="cb73-6" title="6"></a>
+<a class="sourceLine" id="cb73-7" title="7"><span class="kw">colnames</span> (dat_vo2)  &lt;-<span class="st"> </span>new_names</a>
+<a class="sourceLine" id="cb73-8" title="8"></a>
+<a class="sourceLine" id="cb73-9" title="9"><span class="co"># This prints the new column names</span></a>
+<a class="sourceLine" id="cb73-10" title="10"><span class="kw">colnames</span> (dat_vo2)  </a></code></pre></div>
+<pre><code>## [1] &quot;time&quot;     &quot;bf&quot;       &quot;vo2_norm&quot; &quot;rer&quot;      &quot;vo2&quot;      &quot;vco2&quot;     &quot;ve&quot;      
+## [8] &quot;hr&quot;</code></pre>
+</div>
+</div>
+<div id="WRANGLE-SLICE" class="section level2">
+<h2><span class="header-section-number">6.2</span> Subset rows</h2>
+<div id="problem-1" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Problem</h3>
+<p>You want to remove a specific row or a range of rows, and remove a specific column or a range of columns. See also Recipe <a href="WRANGLE.html#WRANGLE-FILTER">6.12</a>.</p>
+</div>
+<div id="solution-1" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Solution</h3>
+<p>To keep or remove rows based on the row numbers, use <code>slice ()</code>. In slice, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, <code>-</code>, before the number. If you want to keep or remove a range of numbers, use <code>(start:end)</code>. To keep keeps based on the column names, use the <code>select ()</code> function.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># This keeps only the second row</span></a>
+<a class="sourceLine" id="cb75-2" title="2">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##       time       bf vo2_norm      rer      vo2     vco2       ve   hr
+## 1                   min/kg                                       &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># This removes the second row</span></a>
+<a class="sourceLine" id="cb77-2" title="2">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="dv">2</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##       time       bf vo2_norm      rer      vo2     vco2       ve  hr
+## 1   min     1/min     ml/             ml/min   ml/min    L/min   bpm
+## 2   00:05        37     21.4     0.93     1371     1272       46 119
+## 3   00:10        58      2.5     0.84      159      133       12 120
+## 4   00:15        30     23.5     0.74     1506     1110       35 121
+## 5   00:20        34     22.4     0.86     1437     1229       43 123
+## 6   00:25        23     15.6     0.73     1004      735       22 124</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># This removes the second and third rows</span></a>
+<a class="sourceLine" id="cb79-2" title="2">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb79-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##       time       bf vo2_norm      rer      vo2     vco2       ve  hr
+## 1   min     1/min     ml/             ml/min   ml/min    L/min   bpm
+## 2   00:10        58      2.5     0.84      159      133       12 120
+## 3   00:15        30     23.5     0.74     1506     1110       35 121
+## 4   00:20        34     22.4     0.86     1437     1229       43 123
+## 5   00:25        23     15.6     0.73     1004      735       22 124
+## 6   00:30        27     30.5     0.76     1960     1489       48 124</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># This removes the second column</span></a>
+<a class="sourceLine" id="cb81-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-3" title="3"><span class="st">      </span><span class="kw">select</span> (time, bf, rer) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##       time       bf      rer
+## 1   min     1/min           
+## 2                           
+## 3   00:05        37     0.93
+## 4   00:10        58     0.84
+## 5   00:15        30     0.74
+## 6   00:20        34     0.86</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># This removes the first and second row, and replaces the old data in object dat_vo2</span></a>
+<a class="sourceLine" id="cb83-2" title="2">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb83-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a></code></pre></div>
+</div>
+</div>
+<div id="WRANGLE-CHARACTER-2-NUMERIC" class="section level2">
+<h2><span class="header-section-number">6.3</span> Convert characters to numeric</h2>
+<div id="problem-2" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Problem</h3>
+<p>The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. But let us see the type of data that was imported. The <code>str()</code> function provides us with some summary information about the dataframe.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="kw">str</span>(dat_vo2)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	330 obs. of  8 variables:
+##  $ time    : chr  &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; ...
+##  $ bf      : chr  &quot;37&quot; &quot;58&quot; &quot;30&quot; &quot;34&quot; ...
+##  $ vo2_norm: chr  &quot;21.4&quot; &quot;2.5&quot; &quot;23.5&quot; &quot;22.4&quot; ...
+##  $ rer     : chr  &quot;0.93&quot; &quot;0.84&quot; &quot;0.74&quot; &quot;0.86&quot; ...
+##  $ vo2     : chr  &quot;1371&quot; &quot;159&quot; &quot;1506&quot; &quot;1437&quot; ...
+##  $ vco2    : chr  &quot;1272&quot; &quot;133&quot; &quot;1110&quot; &quot;1229&quot; ...
+##  $ ve      : chr  &quot;46&quot; &quot;12&quot; &quot;35&quot; &quot;43&quot; ...
+##  $ hr      : chr  &quot;119&quot; &quot;120&quot; &quot;121&quot; &quot;123&quot; ...</code></pre>
+<p>What you will see is something like this. For the variable <code>bf</code>, you will see <code>$ bf      : chr  "37" "58" "30" "34" ...</code>. <code>chr</code> after the colon indicates that this variable is a character (<code>chr</code>). In R language, a character is anything from a letter, e.g. <code>a</code>, to a word, e.g. <code>word</code>, to even a phrase of sentence, e.g. <code>i hate biomechanics</code>. A character is always enclosed inside a <code>""</code>. Why is R so “stupid”, that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure @ref(fig:vo2-col_class)). This will be expanded upon in the Recipe <a href="WRANGLE.html#WRANGLE-TIDY-DATA">6.6</a>, about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add <code>apples</code> and <code>orange</code> can you?</p>
+<div class="figure">
+<img src="images/chapter-5/dat_vo2_column_class.png" alt="The type of data for each class as it was imported." width="100%" />
+<p class="caption">
+(#fig:vo2-col_class)The type of data for each class as it was imported.
+</p>
+</div>
+</div>
+<div id="solution-2" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Solution</h3>
+<p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">bf =</span> <span class="kw">as.numeric</span>(bf),</a>
+<a class="sourceLine" id="cb86-3" title="3">          <span class="dt">vo2_norm =</span> <span class="kw">as.numeric</span>(vo2_norm),</a>
+<a class="sourceLine" id="cb86-4" title="4">          <span class="dt">rer =</span> <span class="kw">as.numeric</span>(rer),</a>
+<a class="sourceLine" id="cb86-5" title="5">          <span class="dt">vo2 =</span> <span class="kw">as.numeric</span>(vo2),</a>
+<a class="sourceLine" id="cb86-6" title="6">          <span class="dt">vco2 =</span> <span class="kw">as.numeric</span>(vco2),</a>
+<a class="sourceLine" id="cb86-7" title="7">          <span class="dt">ve =</span> <span class="kw">as.numeric</span>(ve),</a>
+<a class="sourceLine" id="cb86-8" title="8">          <span class="dt">hr =</span> <span class="kw">as.numeric</span>(hr))</a>
+<a class="sourceLine" id="cb86-9" title="9"></a>
+<a class="sourceLine" id="cb86-10" title="10"><span class="co"># Recheck the type of each column </span></a>
+<a class="sourceLine" id="cb86-11" title="11"><span class="kw">str</span>(dat_vo2)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	330 obs. of  8 variables:
+##  $ time    : chr  &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; ...
+##  $ bf      : num  37 58 30 34 23 27 39 34 26 27 ...
+##  $ vo2_norm: num  21.4 2.5 23.5 22.4 15.6 30.5 23.3 29.6 31.9 29.4 ...
+##  $ rer     : num  0.93 0.84 0.74 0.86 0.73 0.76 0.73 0.75 0.8 0.8 ...
+##  $ vo2     : num  1371 159 1506 1437 1004 ...
+##  $ vco2    : num  1272 133 1110 1229 735 ...
+##  $ ve      : num  46 12 35 43 22 48 38 49 53 49 ...
+##  $ hr      : num  119 120 121 123 124 124 124 124 124 125 ...</code></pre>
+</div>
+</div>
+<div id="WRANGLE-CHARACTER-2-TIME" class="section level2">
+<h2><span class="header-section-number">6.4</span> Convert characters to date and time</h2>
+<div id="problem-3" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Problem</h3>
+<p>The raw <code>dat_vo2</code> data <code>time</code> variable is a character with ugly white spaces. When you use the <code>str()</code> function on the time column using the <code>$</code> symbol, you can see that each value looks like <code>"  00:05 "</code>. It means that is a blank before and after the <code>00:05</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">str</span>(dat_vo2<span class="op">$</span>time)</a></code></pre></div>
+<pre><code>##  chr [1:330] &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; &quot;  00:25 &quot; ...</code></pre>
+</div>
+<div id="solution-3" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Solution</h3>
+<p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function. You will learn the <code>mutate ()</code> function more in Recipe (WRANGLE-NEW-VARIABLES).</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-3" title="3"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># function strips any whitespaces</span></a>
+<a class="sourceLine" id="cb90-4" title="4"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert to minutes and seconds</span></a>
+<a class="sourceLine" id="cb90-5" title="5"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># converts entirely to seconds</span></a>
+<a class="sourceLine" id="cb90-6" title="6"><span class="st">            </span><span class="kw">as.numeric</span> ()) <span class="co"># strips the S symbol to make it a number</span></a>
+<a class="sourceLine" id="cb90-7" title="7"></a>
+<a class="sourceLine" id="cb90-8" title="8"><span class="co"># Recheck the type of each column </span></a>
+<a class="sourceLine" id="cb90-9" title="9"><span class="kw">str</span>(dat_vo2)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	330 obs. of  8 variables:
+##  $ time    : num  5 10 15 20 25 30 35 40 45 50 ...
+##  $ bf      : num  37 58 30 34 23 27 39 34 26 27 ...
+##  $ vo2_norm: num  21.4 2.5 23.5 22.4 15.6 30.5 23.3 29.6 31.9 29.4 ...
+##  $ rer     : num  0.93 0.84 0.74 0.86 0.73 0.76 0.73 0.75 0.8 0.8 ...
+##  $ vo2     : num  1371 159 1506 1437 1004 ...
+##  $ vco2    : num  1272 133 1110 1229 735 ...
+##  $ ve      : num  46 12 35 43 22 48 38 49 53 49 ...
+##  $ hr      : num  119 120 121 123 124 124 124 124 124 125 ...</code></pre>
+</div>
+<div id="discussion" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> Discussion</h3>
+<p>Notice in the function above, I chained a series of steps together, using the pipe, <code>%&gt;%</code>, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the <code>time</code> variable.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># removes whitespaces around the time variable</span></a>
+<a class="sourceLine" id="cb92-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb92-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb92-4" title="4"><span class="st">            </span><span class="kw">str_squish</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb92-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
+## 1    5 37     21.4 0.93 1371 1272 46 119
+## 2   10 58      2.5 0.84  159  133 12 120
+## 3   15 30     23.5 0.74 1506 1110 35 121
+## 4   20 34     22.4 0.86 1437 1229 43 123
+## 5   25 23     15.6 0.73 1004  735 22 124
+## 6   30 27     30.5 0.76 1960 1489 48 124</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co"># convert to minutes and seconds</span></a>
+<a class="sourceLine" id="cb94-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb94-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="st">                </span><span class="kw">ms</span>())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb94-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## Warning: Problem with `mutate()` input `time`.
+## x Some strings failed to parse, or all strings are NAs
+## i Input `time` is `time %&gt;% ms()`.</code></pre>
+<pre><code>## Warning in .parse_hms(..., order = &quot;MS&quot;, quiet = quiet): Some strings failed to
+## parse, or all strings are NAs</code></pre>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
+## 1 &lt;NA&gt; 37     21.4 0.93 1371 1272 46 119
+## 2 &lt;NA&gt; 58      2.5 0.84  159  133 12 120
+## 3 &lt;NA&gt; 30     23.5 0.74 1506 1110 35 121
+## 4 &lt;NA&gt; 34     22.4 0.86 1437 1229 43 123
+## 5 &lt;NA&gt; 23     15.6 0.73 1004  735 22 124
+## 6 &lt;NA&gt; 27     30.5 0.76 1960 1489 48 124</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># converts entirely to seconds</span></a>
+<a class="sourceLine" id="cb98-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb98-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-4" title="4"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb98-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
+## 1   5S 37     21.4 0.93 1371 1272 46 119
+## 2  10S 58      2.5 0.84  159  133 12 120
+## 3  15S 30     23.5 0.74 1506 1110 35 121
+## 4  20S 34     22.4 0.86 1437 1229 43 123
+## 5  25S 23     15.6 0.73 1004  735 22 124
+## 6  30S 27     30.5 0.76 1960 1489 48 124</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># strips the S symbol to make it a number</span></a>
+<a class="sourceLine" id="cb100-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-4" title="4"><span class="st">            </span><span class="kw">as.numeric</span> ())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
+## 1    5 37     21.4 0.93 1371 1272 46 119
+## 2   10 58      2.5 0.84  159  133 12 120
+## 3   15 30     23.5 0.74 1506 1110 35 121
+## 4   20 34     22.4 0.86 1437 1229 43 123
+## 5   25 23     15.6 0.73 1004  735 22 124
+## 6   30 27     30.5 0.76 1960 1489 48 124</code></pre>
+</div>
+</div>
+<div id="WRANGLE-NUMERIC-CATEGORY" class="section level2">
+<h2><span class="header-section-number">6.5</span> Split Numeric Variable into Categories</h2>
+<div id="problem-4" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Problem</h3>
+<p>You want to split the <code>time</code> variable of the <code>dat_vo2</code> dataset into chunks of 210 sec, and create a new variable called <code>stage</code>. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>. I will not the <code>cut_interval</code> function explain, other than to say the <code>length</code> argument is used to specify the range of evenly spaced values to categorize over.</p>
+</div>
+<div id="solution-4" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Solution</h3>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb102-3" title="3"></a>
+<a class="sourceLine" id="cb102-4" title="4">dat_vo2</a></code></pre></div>
+<pre><code>##     time bf vo2_norm      rer  vo2 vco2  ve  hr stage
+## 1      5 37 21.40000 0.930000 1371 1272  46 119     1
+## 2     10 58  2.50000 0.840000  159  133  12 120     1
+## 3     15 30 23.50000 0.740000 1506 1110  35 121     1
+## 4     20 34 22.40000 0.860000 1437 1229  43 123     1
+## 5     25 23 15.60000 0.730000 1004  735  22 124     1
+## 6     30 27 30.50000 0.760000 1960 1489  48 124     1
+## 7     35 39 23.30000 0.730000 1499 1092  38 124     1
+## 8     40 34 29.60000 0.750000 1902 1427  49 124     1
+## 9     45 26 31.90000 0.800000 2048 1641  53 124     1
+## 10    50 27 29.40000 0.800000 1891 1519  49 125     1
+## 11    55 34 28.90000 0.790000 1856 1465  47 126     1
+## 12    60 32 29.90000 0.800000 1919 1526  49 126     1
+## 13    65 31 29.90000 0.790000 1922 1513  46 124     1
+## 14    70 24 33.00000 0.840000 2118 1779  56 126     1
+## 15    75 42 29.90000 0.800000 1921 1543  50 126     1
+## 16    80 33 31.70000 0.800000 2035 1638  51 124     1
+## 17    85 24 32.10000 0.820000 2060 1692  50 125     1
+## 18    90 28 32.90000 0.820000 2112 1731  53 126     1
+## 19    95 28 33.70000 0.830000 2164 1795  52 130     1
+## 20   100 24 33.40000 0.870000 2142 1863  57 128     1
+## 21   105 31 31.10000 0.850000 1997 1694  52 129     1
+## 22   110 21 34.50000 0.880000 2214 1945  58 130     1
+## 23   115 37 32.70000 0.840000 2098 1761  55 131     1
+## 24   120 28 34.70000 0.850000 2230 1905  58 131     1
+## 25   125 33 34.30000 0.870000 2201 1904  61 132     1
+## 26   130 30 28.30000 0.870000 1814 1579  51 133     1
+## 27   135 29 32.60000 0.890000 2094 1861  57 133     1
+## 28   140 32 35.40000 0.860000 2275 1961  60 133     1
+## 29   145 30 33.50000 0.880000 2149 1889  58 133     1
+## 30   150 28 33.90000 0.900000 2176 1962  60 134     1
+## 31   155 24 33.70000 0.930000 2166 2013  63 134     1
+## 32   160 34 17.50000 0.880000 1124  993  34 135     1
+## 33   165 25 36.30000 0.790000 2332 1844  48 136     1
+## 34   170 33 38.00000 0.840000 2439 2053  65 137     1
+## 35   175 34 33.90000 0.870000 2179 1896  61 138     1
+## 36   180 34 32.40000 0.900000 2077 1868  60 139     1
+## 37   185 46 32.20000 0.860000 2069 1773  61 140     1
+## 38   190 26 25.30000 1.000000 1625 1623  63 141     1
+## 39   195 27 17.00000 1.090000 1094 1198  49 145     1
+## 40   200 27 15.20000 1.150000  977 1122  47 148     1
+## 41   205 27 15.80000 1.180000 1017 1196  49 151     1
+## 42   210 24 12.10000 1.130000  779  879  36 154     1
+## 43   215 51 18.30000 0.960000 1175 1130  45 156     2
+## 44   220 40 35.80000 0.820000 2299 1892  57 149     2
+## 45   225 57 29.30000 0.770000 1883 1442  50 138     2
+## 46   230 33 33.00000 0.880000 2118 1869  62 131     2
+## 47   235 35 26.90000 0.940000 1727 1620  55 130     2
+## 48   240 46 27.70000 0.810000 1776 1444  49 132     2
+## 49   245 35 35.00000 0.840000 2245 1888  63 132     2
+## 50   250 43 29.70000 0.840000 1906 1595  54 133     2
+## 51   255 27 30.50000 0.840000 1961 1643  52 137     2
+## 52   260 23 31.30000 0.800000 2012 1612  48 139     2
+## 53   265 29 35.90000 0.810000 2306 1871  57 140     2
+## 54   270 31 34.00000 0.820000 2181 1790  55 139     2
+## 55   275 34 31.40000 0.830000 2018 1666  52 137     2
+## 56   280 34 36.80000 0.850000 2363 1997  63 140     2
+## 57   285 34 34.90000 0.840000 2240 1889  59 142     2
+## 58   290 24 36.00000 0.890000 2314 2059  62 144     2
+## 59   295 28 31.30000 0.830000 2007 1667  47 145     2
+## 60   300 40 36.70000 0.800000 2354 1888  57 146     2
+## 61   305 30 36.90000 0.870000 2369 2053  62 145     2
+## 62   310 37 25.00000 0.830000 1603 1338  41 145     2
+## 63   315 32 37.40000 0.870000 2399 2083  63 144     2
+## 64   320 29 36.40000 0.890000 2338 2081  64 145     2
+## 65   325 35 34.20000 0.860000 2193 1880  58 144     2
+## 66   330 32 26.40000 0.890000 1696 1507  48 146     2
+## 67   335 17 40.00000 0.820000 2571 2101  51 147     2
+## 68   340 26 38.80000 0.820000 2491 2033  55 147     2
+## 69   345 21 33.70000 0.840000 2163 1817  48 147     2
+## 70   350 29 36.70000 0.840000 2356 1991  57 147     2
+## 71   355 33 31.20000 0.850000 2005 1707  51 146     2
+## 72   360 38 39.40000 0.840000 2530 2114  63 145     2
+## 73   365 30 35.60000 0.880000 2288 2009  60 145     2
+## 74   370 27 33.30000 0.890000 2135 1907  55 145     2
+## 75   375 40 36.50000 0.870000 2344 2043  64 146     2
+## 76   380 31 26.00000 0.890000 1672 1487  45 147     2
+## 77   385 43 41.40000 0.860000 2661 2285  69 149     2
+## 78   390 37 34.80000 0.900000 2233 2014  63 150     2
+## 79   395 47 32.10000 0.910000 2063 1879  65 150     2
+## 80   400 28 27.90000 1.050000 1791 1872  71 150     2
+## 81   405 32 16.00000 1.150000 1027 1180  52 156     2
+## 82   410 30 16.40000 1.270000 1051 1334  60 159     2
+## 83   415 32 10.30000 1.200000  662  795  38 163     2
+## 84   420 26 17.50000 1.130000 1125 1266  47 164     2
+## 85   425 47 21.80000 0.930000 1403 1301  46 166     3
+## 86   430 35 37.40000 0.890000 2404 2138  65 158     3
+## 87   435 42 31.70000 0.900000 2037 1826  60 149     3
+## 88   440 33 29.80000 0.930000 1912 1781  55 141     3
+## 89   445 23 32.00000 0.920000 2054 1890  57 141     3
+## 90   450 41 30.40000 0.850000 1955 1662  53 144     3
+## 91   455 44 32.40000 0.830000 2081 1727  57 145     3
+## 92   460 37 34.10000 0.840000 2192 1833  58 145     3
+## 93   465 25 34.00000 0.890000 2183 1940  59 145     3
+## 94   470 29 34.20000 0.850000 2198 1866  56 148     3
+## 95   475 36 36.40000 0.830000 2336 1949  60 148     3
+## 96   480 35 35.90000 0.860000 2303 1978  61 149     3
+## 97   485 34 38.50000 0.890000 2471 2194  68 150     3
+## 98   490 36 34.70000 0.870000 2229 1949  60 151     3
+## 99   495 28 36.50000 0.870000 2346 2053  60 154     3
+## 100  500 32 37.10000 0.880000 2382 2085  62 153     3
+## 101  505 29 38.20000 0.880000 2452 2163  63 153     3
+## 102  510 27 35.00000 0.860000 2246 1924  54 154     3
+## 103  515 30 39.10000 0.880000 2513 2216  65 154     3
+## 104  520 25 37.10000 0.920000 2380 2178  64 154     3
+## 105  525 39 38.10000 0.890000 2444 2171  67 155     3
+## 106  530 33 38.10000 0.920000 2448 2248  68 157     3
+## 107  535 30 37.90000 0.900000 2436 2198  63 159     3
+## 108  540 34 37.80000 0.900000 2426 2191  65 159     3
+## 109  545 38 38.20000 0.890000 2455 2195  67 158     3
+## 110  550 33 38.70000 0.920000 2482 2276  68 159     3
+## 111  555 33 38.10000 0.930000 2448 2288  70 159     3
+## 112  560 32 38.00000 0.940000 2441 2298  70 161     3
+## 113  565 32 38.90000 0.920000 2496 2302  69 161     3
+## 114  570 28 37.80000 0.940000 2427 2271  68 162     3
+## 115  575 27 36.70000 0.900000 2356 2120  60 162     3
+## 116  580 35 31.70000 0.890000 2033 1801  53 162     3
+## 117  585 35 40.30000 0.900000 2587 2323  70 162     3
+## 118  590 39 40.00000 0.910000 2571 2336  73 161     3
+## 119  595 38 38.00000 0.930000 2439 2279  73 160     3
+## 120  600 34 37.80000 0.940000 2425 2289  71 161     3
+## 121  605 48 32.40000 0.900000 2079 1879  65 162     3
+## 122  610 34 26.70000 1.020000 1716 1752  68 163     3
+## 123  615 31 17.00000 1.200000 1094 1317  62 165     3
+## 124  620 34 17.30000 1.270000 1111 1417  66 169     3
+## 125  625 39 17.00000 1.200000 1092 1306  58 174     3
+## 126  630 52 14.50000 1.070000  929  998  46 176     3
+## 127  635 48 22.20000 0.950000 1425 1356  51 177     4
+## 128  640 50 41.10000 0.840000 2636 2225  67 174     4
+## 129  645 38 38.30000 0.890000 2461 2190  68 165     4
+## 130  650 46 33.40000 0.920000 2146 1971  66 156     4
+## 131  655 36 31.70000 0.940000 2036 1911  62 154     4
+## 132  660 31 38.00000 0.910000 2441 2210  70 156     4
+## 133  665 34 34.80000 0.890000 2236 1996  66 158     4
+## 134  670 38 34.30000 0.870000 2202 1921  62 158     4
+## 135  675 35 38.80000 0.850000 2488 2110  65 159     4
+## 136  680 30 38.00000 0.890000 2437 2179  69 160     4
+## 137  685 28 34.90000 0.870000 2238 1936  55 160     4
+## 138  690 25 36.30000 0.840000 2332 1965  56 162     4
+## 139  695 39 38.40000 0.830000 2468 2044  62 163     4
+## 140  700 35 40.50000 0.880000 2602 2284  71 163     4
+## 141  705 30 38.90000 0.920000 2497 2286  69 164     4
+## 142  710 38 37.20000 0.890000 2387 2131  65 164     4
+## 143  715 31 38.50000 0.900000 2473 2234  66 166     4
+## 144  720 30 39.00000 0.910000 2502 2272  66 166     4
+## 145  725 32 38.00000 0.910000 2440 2227  66 166     4
+## 146  730 26 37.40000 0.910000 2403 2189  62 167     4
+## 147  735 29 37.70000 0.900000 2418 2170  62 168     4
+## 148  740 31 37.80000 0.920000 2424 2230  65 169     4
+## 149  745 35 38.90000 0.900000 2496 2242  66 168     4
+## 150  750 35 38.20000 0.920000 2450 2261  67 168     4
+## 151  755 48 39.80000 0.920000 2554 2351  74 168     4
+## 152  760 40 37.80000 0.950000 2428 2316  72 168     4
+## 153  765 36 38.10000 0.960000 2447 2344  72 169     4
+## 154  770 39 38.70000 0.950000 2484 2353  71 170     4
+## 155  775 35 39.00000 0.960000 2502 2391  73 171     4
+## 156  780 41 39.90000 0.970000 2564 2486  78 171     4
+## 157  785 42 37.20000 0.970000 2389 2321  74 171     4
+## 158  790 42 37.10000 0.960000 2381 2288  72 172     4
+## 159  795 40 40.00000 0.970000 2569 2504  80 172     4
+## 160  800 33 35.90000 0.930000 2304 2147  61 172     4
+## 161  805 37 38.90000 0.930000 2498 2332  71 173     4
+## 162  810 34 37.90000 0.940000 2433 2283  69 173     4
+## 163  815 42 34.70000 0.950000 2231 2109  70 173     4
+## 164  820 35 23.00000 1.110000 1476 1634  70 173     4
+## 165  825 34 16.40000 1.280000 1056 1348  64 175     4
+## 166  830 30 15.30000 1.300000  985 1282  56 178     4
+## 167  835 36 17.50000 1.190000 1122 1341  54 180     4
+## 168  840 39 19.70000 1.160000 1263 1464  59 181     4
+## 169  845 59 25.40000 1.030000 1628 1669  63 181     5
+## 170  850 49 39.80000 0.900000 2554 2302  69 177     5
+## 171  855 41 35.20000 0.950000 2258 2147  68 171     5
+## 172  860 43 32.70000 1.000000 2099 2109  70 165     5
+## 173  865 40 37.20000 0.980000 2386 2340  77 163     5
+## 174  870 37 34.90000 0.960000 2237 2155  72 164     5
+## 175  875 42 35.00000 0.930000 2246 2099  70 164     5
+## 176  880 37 34.50000 0.890000 2216 1973  62 166     5
+## 177  885 43 39.40000 0.920000 2530 2331  78 167     5
+## 178  890 36 36.30000 0.920000 2333 2155  70 168     5
+## 179  895 43 39.00000 0.920000 2506 2299  74 168     5
+## 180  900 46 40.20000 0.930000 2583 2393  79 169     5
+## 181  905 44 38.80000 0.960000 2491 2384  79 170     5
+## 182  910 33 35.50000 0.900000 2277 2044  58 171     5
+## 183  915 42 41.20000 0.920000 2646 2447  78 172     5
+## 184  920 40 40.50000 0.960000 2598 2490  80 173     5
+## 185  925 45 34.70000 0.940000 2231 2107  68 173     5
+## 186  930 41 43.20000 0.950000 2776 2641  82 174     5
+## 187  935 44 42.20000 0.970000 2712 2627  84 174     5
+## 188  940 36 40.70000 0.990000 2615 2581  80 175     5
+## 189  945 32 40.80000 0.970000 2620 2529  74 176     5
+## 190  950 33 40.50000 0.970000 2597 2524  76 176     5
+## 191  955 37 42.00000 0.980000 2699 2638  81 176     5
+## 192  960 38 41.90000 1.000000 2692 2683  82 176     5
+## 193  965 48 40.10000 0.960000 2577 2471  78 176     5
+## 194  970 44 42.20000 0.970000 2710 2619  82 176     5
+## 195  975 46 41.90000 0.980000 2691 2628  83 176     5
+## 196  980 43 42.20000 1.000000 2712 2713  86 176     5
+## 197  985 37 39.90000 0.990000 2564 2528  76 176     5
+## 198  990 42 43.70000 0.990000 2805 2791  88 177     5
+## 199  995 45 42.30000 1.000000 2716 2728  88 178     5
+## 200 1000 41 41.10000 0.980000 2640 2587  79 178     5
+## 201 1005 44 43.60000 1.010000 2800 2823  91 178     5
+## 202 1010 46 40.90000 1.020000 2629 2672  89 179     5
+## 203 1015 47 41.90000 1.000000 2687 2700  86 179     5
+## 204 1020 41 40.20000 1.010000 2578 2606  81 179     5
+## 205 1025 47 38.70000 1.000000 2482 2476  81 179     5
+## 206 1030 46 27.60000 1.150000 1769 2037  87 179     5
+## 207 1035 37 20.30000 1.210000 1306 1583  63 180     5
+## 208 1040 39 22.90000 1.230000 1469 1802  75 181     5
+## 209 1045 37 21.30000 1.220000 1369 1666  67 183     5
+## 210 1050 38 21.20000 1.190000 1363 1621  64 184     5
+## 211 1055 48 21.30000 1.150000 1366 1571  64 184     6
+## 212 1060 54 40.90000 1.000000 2627 2627  81 183     6
+## 213 1065 46 39.30000 1.030000 2523 2603  84 181     6
+## 214 1070 42 34.40000 1.080000 2211 2379  78 176     6
+## 215 1075 42 37.20000 1.040000 2389 2480  82 173     6
+## 216 1080 43 37.10000 1.010000 2381 2400  81 172     6
+## 217 1085 44 38.20000 1.010000 2450 2469  86 171     6
+## 218 1090 43 37.20000 0.960000 2391 2301  78 172     6
+## 219 1095 46 40.60000 0.960000 2604 2503  86 173     6
+## 220 1100 46 40.40000 0.980000 2595 2551  89 174     6
+## 221 1105 46 40.20000 1.000000 2582 2579  90 176     6
+## 222 1110 43 41.10000 0.980000 2641 2595  88 177     6
+## 223 1115 43 40.80000 0.980000 2622 2582  86 179     6
+## 224 1120 46 42.40000 0.990000 2720 2689  90 180     6
+## 225 1125 43 42.70000 0.990000 2740 2715  89 180     6
+## 226 1130 43 42.20000 0.990000 2707 2674  87 181     6
+## 227 1135 42 43.00000 0.980000 2764 2698  85 181     6
+## 228 1140 45 42.40000 0.980000 2724 2673  85 181     6
+## 229 1145 45 45.90000 0.980000 2944 2899  93 181     6
+## 230 1150 46 42.70000 1.010000 2744 2780  94 181     6
+## 231 1155 45 42.10000 1.020000 2702 2750  91 182     6
+## 232 1160 37 42.30000 1.010000 2713 2748  85 183     6
+## 233 1165 46 43.10000 1.010000 2770 2790  91 184     6
+## 234 1170 51 42.00000 1.010000 2697 2718  91 184     6
+## 235 1175 51 45.30000 0.990000 2908 2884  93 184     6
+## 236 1180 41 43.40000 1.010000 2789 2811  88 184     6
+## 237 1185 46 43.80000 1.050000 2810 2937 100 184     6
+## 238 1190 46 44.50000 1.050000 2858 3002  99 185     6
+## 239 1195 45 44.90000 1.050000 2880 3016  99 185     6
+## 240 1200 46 44.90000 1.050000 2883 3034 100 185     6
+## 241 1205 46 43.50000 1.060000 2790 2953  98 185     6
+## 242 1210 46 43.50000 1.060000 2790 2962 100 186     6
+## 243 1215 45 43.80000 1.060000 2812 2979  99 186     6
+## 244 1220 46 45.30000 1.050000 2905 3051 101 186     6
+## 245 1225 45 43.60000 1.060000 2798 2969 100 186     6
+## 246 1230 46 43.40000 1.070000 2787 2973 101 186     6
+## 247 1235 48 36.20000 1.060000 2322 2472  88 186     6
+## 248 1240 45 27.00000 1.170000 1733 2030  87 187     6
+## 249 1245 42 22.20000 1.230000 1422 1749  76 188     6
+## 250 1250 47 27.60000 1.210000 1772 2144  88 188     6
+## 251 1255 52 26.50000 1.160000 1700 1971  83 189     6
+## 252 1260 47 26.30000 1.180000 1691 2003  86 189     6
+## 253 1265 62 28.90000 1.120000 1858 2082  84 189     7
+## 254 1270 46 44.30000 1.080000 2847 3067  98 188     7
+## 255 1275 47 39.30000 1.100000 2523 2782  95 184     7
+## 256 1280 46 37.80000 1.140000 2424 2759 100 181     7
+## 257 1285 48 39.10000 1.090000 2508 2742 101 180     7
+## 258 1290 46 40.10000 1.050000 2576 2702  99 180     7
+## 259 1295 46 41.50000 1.020000 2662 2722 101 180     7
+## 260 1300 40 39.10000 0.980000 2507 2450  82 181     7
+## 261 1305 46 44.20000 0.980000 2839 2786 101 182     7
+## 262 1310 47 43.70000 1.000000 2807 2805 104 183     7
+## 263 1315 46 43.10000 1.010000 2765 2790 101 184     7
+## 264 1320 44 43.00000 1.000000 2764 2777  97 185     7
+## 265 1325 46 45.00000 1.020000 2889 2936 104 186     7
+## 266 1330 46 43.40000 1.020000 2785 2842  99 186     7
+## 267 1335 49 43.40000 1.020000 2788 2856 102 187     7
+## 268 1340 47 44.00000 1.040000 2826 2933 104 187     7
+## 269 1345 43 42.20000 1.040000 2709 2829  94 188     7
+## 270 1350 46 47.50000 1.040000 3047 3167 106 188     7
+## 271 1355 46 45.00000 1.050000 2889 3026 102 188     7
+## 272 1360 49 43.80000 1.050000 2815 2957 102 189     7
+## 273 1365 46 45.00000 1.060000 2891 3054 102 189     7
+## 274 1370 47 46.00000 1.060000 2955 3132 106 189     7
+## 275 1375 46 45.00000 1.070000 2888 3093 105 190     7
+## 276 1380 45 43.60000 1.070000 2796 2984  98 190     7
+## 277 1385 47 47.20000 1.070000 3030 3239 108 190     7
+## 278 1390 46 45.50000 1.070000 2918 3136 105 190     7
+## 279 1395 46 46.30000 1.090000 2973 3238 108 191     7
+## 280 1400 46 44.50000 1.080000 2856 3096 103 191     7
+## 281 1405 46 44.80000 1.090000 2879 3145 105 192     7
+## 282 1410 46 44.90000 1.090000 2886 3133 105 192     7
+## 283 1415 46 45.20000 1.090000 2900 3166 105 192     7
+## 284 1420 54 45.60000 1.080000 2927 3160 109 192     7
+## 285 1425 56 45.10000 1.090000 2893 3148 109 192     7
+## 286 1430 55 46.20000 1.100000 2967 3263 112 192     7
+## 287 1435 57 46.50000 1.100000 2983 3290 114 193     7
+## 288 1440 59 44.40000 1.100000 2851 3148 113 193     7
+## 289 1445 54 38.20000 1.120000 2455 2744 101 193     7
+## 290 1450 52 29.10000 1.190000 1869 2224  96 194     7
+## 291 1455 53 27.60000 1.220000 1772 2163  96 194     7
+## 292 1460 53 27.30000 1.200000 1755 2101  91 194     7
+## 293 1465 44 25.40000 1.200000 1628 1955  75 194     7
+## 294 1470 49 29.10000 1.200000 1869 2240  94 193     7
+## 295 1475 45 24.00000 1.230000 1541 1890  84 192     8
+## 296 1480 69 38.70000 1.100000 2485 2740 100 191     8
+## 297 1485 53 43.70000 1.160000 2806 3249 108 191     8
+## 298 1490 49 39.90000 1.210000 2562 3095 109 188     8
+## 299 1495 54 40.40000 1.140000 2593 2958 109 187     8
+## 300 1500 47 40.70000 1.100000 2613 2875 107 185     8
+## 301 1505 51 41.40000 1.050000 2657 2799 107 187     8
+## 302 1510 54 44.70000 1.020000 2870 2919 112 188     8
+## 303 1515 58 44.90000 1.010000 2882 2906 110 189     8
+## 304 1520 52 45.30000 1.020000 2910 2979 111 190     8
+## 305 1525 54 45.30000 1.030000 2910 3006 111 191     8
+## 306 1530 54 45.30000 1.040000 2907 3031 111 191     8
+## 307 1535 62 45.30000 1.030000 2906 2998 113 192     8
+## 308 1540 52 44.50000 1.060000 2855 3035 111 192     8
+## 309 1545 61 45.90000 1.050000 2944 3093 114 193     8
+## 310 1550 54 44.70000 1.020000 2870 2919 112 193     8
+## 311 1555 58 44.90000 1.010000 2882 2906 110 193     8
+## 312 1560 59 45.42188 1.042656 2907 3031 110 190     8
+## 313 1565 55 45.40625 1.031659 2906 2998 111 191     8
+## 314 1570 52 44.60938 1.063047 2855 3035 111 191     8
+## 315 1575 54 46.00000 1.050611 2944 3093 112 192     8
+## 316 1580 53 44.84375 1.017073 2870 2919 111 192     8
+## 317 1585 56 45.03125 1.008328 2882 2906 111 190     8
+## 318 1590 57 45.42188 1.042656 2907 3031 112 191     8
+## 319 1595 60 45.40625 1.031659 2906 2998 112 191     8
+## 320 1600 54 44.60938 1.063047 2855 3035 111 192     8
+## 321 1605 57 46.00000 1.050611 2944 3093 113 192     8
+## 322 1610 56 44.84375 1.017073 2870 2919 111 193     8
+## 323 1615 59 45.03125 1.008328 2882 2906 112 193     8
+## 324 1620 62 45.40625 1.031659 2906 2998 113 193     8
+## 325 1625 55 45.31250 1.068966 2900 3100 112 194     8
+## 326 1630 57 45.32812 1.034126 2901 3000 111 195     8
+## 327 1635 52 44.60938 1.063047 2855 3035 111 194     8
+## 328 1640 59 46.50000 1.041667 2976 3100 112 197     8
+## 329 1645 60 45.14062 1.067844 2889 3085 113 196     8
+## 330 1650 61 46.00000 1.050611 2944 3093 114 195     8</code></pre>
+</div>
+<div id="discussion-1" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> Discussion</h3>
+<p>Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.</p>
+</div>
+</div>
+<div id="WRANGLE-TIDY-DATA" class="section level2">
+<h2><span class="header-section-number">6.6</span> Tidy data</h2>
+<p>You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is <strong>not the data you loaded</strong>, but rather came with the <code>tidyverse</code> package. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organises the values in a different way.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">table1</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">table2</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">table3</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="co"># Spread across two tables</span></a>
+<a class="sourceLine" id="cb110-2" title="2">table4a  <span class="co"># cases</span></a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">table4b  <span class="co"># population</span></a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country         `1999`     `2000`
+## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan   19987071   20595360
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583</code></pre>
+<p>These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with.</p>
+<p>There are three interrelated rules which make a dataset tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell.</li>
+</ol>
+<p>Figure <a href="WRANGLE.html#fig:tidy-structure">6.1</a> shows the rules visually.</p>
+<div class="figure"><span id="fig:tidy-structure"></span>
+<img src="images/chapter-5/tidy-1.png" alt="Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells." width="100%" />
+<p class="caption">
+Figure 6.1: Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.
+</p>
+</div>
+<p>These three rules are interrelated because it’s impossible to only satisfy two of the three.</p>
+<p>In this example, only <code>table1</code> is tidy. It’s the only representation where each column is a variable.</p>
+<p>Why ensure that your data is tidy? There are two main advantages:</p>
+<ol style="list-style-type: decimal">
+<li><p>There’s a general advantage to picking one consistent way of storing
+data. If you have a consistent data structure, it’s easier to learn the
+tools that work with it because they have an underlying uniformity.</p></li>
+<li><p>There’s a specific advantage to placing variables in columns because
+most of R functions work with data in the tidy format. That makes transforming
+tidy data feel particularly natural.</p></li>
+</ol>
+<p>The principles of tidy data seem so obvious that you might wonder if you’ll ever encounter a dataset that isn’t tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:</p>
+<ol style="list-style-type: decimal">
+<li><p>Most people aren’t familiar with the principles of tidy data, and it’s hard
+to derive them yourself unless you spend a <em>lot</em> of time working with data.</p></li>
+<li><p>Data is often organised to facilitate some use other than analysis. For
+example, data is often organised to make entry as easy as possible.</p></li>
+</ol>
+<p>This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data.
+The second step is to resolve one of two common problems:</p>
+<ol style="list-style-type: decimal">
+<li><p>One variable might be spread across multiple columns.</p></li>
+<li><p>One observation might be scattered across multiple rows.</p></li>
+</ol>
+<p>Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: <code>pivot_wider()</code> and <code>pivot_longer()</code>.</p>
+</div>
+<div id="WRANGLE-SPREAD" class="section level2">
+<h2><span class="header-section-number">6.7</span> Spreading</h2>
+<div id="problem-5" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> Problem</h3>
+<p>You want to make your data wider, in this instance let us look at the <code>dat_fms</code> dataset. You want to have one column indicating the left FMS score, and one indicating the right FMS score. The caveat is that because some tasks in the FMS do not have left and right, we need to remove the tasks in the FMS without a left and right. In this case, we will use the <code>filter()</code> function, which will be discussed in Recipe <a href="WRANGLE.html#WRANGLE-FILTER">6.12</a>.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">dat_fms_sub &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">!=</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
+<a class="sourceLine" id="cb115-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
+<a class="sourceLine" id="cb115-3" title="3">              <span class="dt">values_from =</span> score)</a>
+<a class="sourceLine" id="cb115-4" title="4">dat_wide</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   task          l     r
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 hurdle        2     2
+## 2 lunge         3     3
+## 3 leg_raise     2     1
+## 4 shd_mob       1     2
+## 5 rot_stab      2     2</code></pre>
+</div>
+</div>
+<div id="WRANGLE-GATHER" class="section level2">
+<h2><span class="header-section-number">6.8</span> Gathering</h2>
+<div id="problem-6" class="section level3">
+<h3><span class="header-section-number">6.8.1</span> Problem</h3>
+<p>You want to make your data longer. In this instance, if you have for example a left and right FMS column and you want to bring all into one column, you use the <code>pivot_longer()</code> function.</p>
+</div>
+<div id="solution-5" class="section level3">
+<h3><span class="header-section-number">6.8.2</span> Solution</h3>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">dat_long &lt;-<span class="st"> </span>dat_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
+<a class="sourceLine" id="cb117-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</a>
+<a class="sourceLine" id="cb117-3" title="3">              <span class="dt">names_to =</span> <span class="st">&quot;side&quot;</span>,</a>
+<a class="sourceLine" id="cb117-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a>
+<a class="sourceLine" id="cb117-5" title="5">dat_long </a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    task      side  score
+##    &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
+##  1 hurdle    l         2
+##  2 hurdle    r         2
+##  3 lunge     l         3
+##  4 lunge     r         3
+##  5 leg_raise l         2
+##  6 leg_raise r         1
+##  7 shd_mob   l         1
+##  8 shd_mob   r         2
+##  9 rot_stab  l         2
+## 10 rot_stab  r         2</code></pre>
+</div>
+</div>
+<div id="WRANGLE-RENAME-VALUES" class="section level2">
+<h2><span class="header-section-number">6.9</span> Rename values of a variable</h2>
+<div id="problem-7" class="section level3">
+<h3><span class="header-section-number">6.9.1</span> Problem</h3>
+<p>You want to rename some values, either because it is too long, too short, or for other reasons. In this instance, in the <code>dat_fms</code> dataset, you want to call <code>l</code>, <code>left</code>, and <code>r</code>, <code>right</code>.</p>
+</div>
+<div id="solution-6" class="section level3">
+<h3><span class="header-section-number">6.9.2</span> Solution</h3>
+<p>Use the <code>mutate()</code> function and the <code>recode()</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">dat_fms &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb119-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">side =</span> <span class="kw">recode</span> (side, <span class="co"># the variable name</span></a>
+<a class="sourceLine" id="cb119-3" title="3">                          <span class="st">&quot;l&quot;</span> =<span class="st"> &quot;left&quot;</span>, <span class="co"># old label = new label</span></a>
+<a class="sourceLine" id="cb119-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a>
+<a class="sourceLine" id="cb119-5" title="5"></a>
+<a class="sourceLine" id="cb119-6" title="6">dat_fms</a></code></pre></div>
+<pre><code>##         task  side score
+## 1      squat     c     3
+## 2     hurdle  left     2
+## 3     hurdle right     2
+## 4      lunge  left     3
+## 5      lunge right     3
+## 6  leg_raise  left     2
+## 7  leg_raise right     1
+## 8    shd_mob  left     1
+## 9    shd_mob right     2
+## 10  rot_stab  left     2
+## 11  rot_stab right     2
+## 12   push_up     c     1</code></pre>
+</div>
+</div>
+<div id="WRANGLE-CHARACTERS-2-FACTORS" class="section level2">
+<h2><span class="header-section-number">6.10</span> Creating factors</h2>
+<div id="problem-8" class="section level3">
+<h3><span class="header-section-number">6.10.1</span> Problem</h3>
+<p>You want to create an order in the values of a variable - like small, medium, large.</p>
+</div>
+<div id="solution-7" class="section level3">
+<h3><span class="header-section-number">6.10.2</span> Solution</h3>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="co"># Order of values I desire</span></a>
+<a class="sourceLine" id="cb121-2" title="2"></a>
+<a class="sourceLine" id="cb121-3" title="3">new_lvls &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;push_up&quot;</span>,<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>,  <span class="st">&quot;shd_mob&quot;</span>)</a>
+<a class="sourceLine" id="cb121-4" title="4"></a>
+<a class="sourceLine" id="cb121-5" title="5">dat_fms_relvl &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb121-6" title="6"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> new_lvls))</a></code></pre></div>
+</div>
+<div id="discussion-2" class="section level3">
+<h3><span class="header-section-number">6.10.3</span> Discussion</h3>
+<p>Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.</p>
+
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co"># Without factor </span></a>
+<a class="sourceLine" id="cb122-2" title="2"><span class="kw">ggplot</span>(dat_fms) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a>
+<a class="sourceLine" id="cb122-4" title="4"></a>
+<a class="sourceLine" id="cb122-5" title="5"><span class="co"># With factor new levels</span></a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="kw">ggplot</span>(dat_fms_relvl) <span class="op">+</span></a>
+<a class="sourceLine" id="cb122-7" title="7"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<div class="figure"><span id="fig:FIG-BAR-GRAPH-FACTOR-EFFECTS"></span>
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-1.png" alt="Barplots of FMS score on original dat_fms (left); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (right)." width="672" /><img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.png" alt="Barplots of FMS score on original dat_fms (left); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (right)." width="672" />
+<p class="caption">
+Figure 6.2: Barplots of FMS score on original <code>dat_fms</code> (left); and new <code>dat_fms_relvl</code> when with modified the <code>task</code> variable to be a factor, with new levels (right).
+</p>
+</div>
+</div>
+</div>
+<div id="WRANGLE-NEW-VARIABLES" class="section level2">
+<h2><span class="header-section-number">6.11</span> Making a new variable</h2>
+<div id="problem-9" class="section level3">
+<h3><span class="header-section-number">6.11.1</span> Problem</h3>
+<p>You want to create a new column which involves some math between columns</p>
+</div>
+<div id="solution-8" class="section level3">
+<h3><span class="header-section-number">6.11.2</span> Solution</h3>
+<p>Example, you want to create a column called <code>ratio</code> in the <code>dat_vo2</code> dataset, by dividing <code>vo2</code> by <code>vco2</code>.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a>
+<a class="sourceLine" id="cb123-3" title="3"></a>
+<a class="sourceLine" id="cb123-4" title="4"><span class="kw">head</span>(dat_vo2)</a></code></pre></div>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr stage    ratio
+## 1    5 37     21.4 0.93 1371 1272 46 119     1 1.077830
+## 2   10 58      2.5 0.84  159  133 12 120     1 1.195489
+## 3   15 30     23.5 0.74 1506 1110 35 121     1 1.356757
+## 4   20 34     22.4 0.86 1437 1229 43 123     1 1.169243
+## 5   25 23     15.6 0.73 1004  735 22 124     1 1.365986
+## 6   30 27     30.5 0.76 1960 1489 48 124     1 1.316320</code></pre>
+</div>
+<div id="discussion-3" class="section level3">
+<h3><span class="header-section-number">6.11.3</span> Discussion</h3>
+<p>There are many math operations you can do including subtraction (<code>-</code>), multiplication (<code>*</code>), addition (<code>+</code>), exponentiation/power to the power of 2 (<code>^2</code>). Let us go crazy and try some random creation of new variables.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_crazy &lt;-<span class="st">  </span>dat_vo2  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2_power =</span> vo2<span class="op">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></a>
+<a class="sourceLine" id="cb125-3" title="3">          <span class="dt">vco2_mod =</span> vco2<span class="op">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></a>
+<a class="sourceLine" id="cb125-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf) <span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a>
+<a class="sourceLine" id="cb125-5" title="5">          ) </a>
+<a class="sourceLine" id="cb125-6" title="6">  </a>
+<a class="sourceLine" id="cb125-7" title="7"><span class="kw">head</span>(dat_vo2_crazy)</a></code></pre></div>
+<pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr stage    ratio  vo2_power  vco2_mod
+## 1    5 37     21.4 0.93 1371 1272 46 119     1 1.077830 2576987811 424.00000
+## 2   10 58      2.5 0.84  159  133 12 120     1 1.195489    4019679  44.33333
+## 3   15 30     23.5 0.74 1506 1110 35 121     1 1.356757 3415662216 370.00000
+## 4   20 34     22.4 0.86 1437 1229 43 123     1 1.169243 2967360453 409.66667
+## 5   25 23     15.6 0.73 1004  735 22 124     1 1.365986 1012048064 245.00000
+## 6   30 27     30.5 0.76 1960 1489 48 124     1 1.316320 7529536000 496.33333
+##        junk
+## 1 16.942308
+## 2  1.640449
+## 3 17.324503
+## 4 16.980892
+## 5 11.829932
+## 6 22.841060</code></pre>
+</div>
+</div>
+<div id="WRANGLE-FILTER" class="section level2">
+<h2><span class="header-section-number">6.12</span> Filtering</h2>
+<p>Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>, you learnt the <code>slice()</code> function. That is for really simple filtering. The <code>filter()</code> function you will learn here gives you more flexibility, which you will learnt in a bit. Filtering deals with keeping or throwing out rows of data. Keeping or throwing out columns of data uses the <code>select()</code> function, which you will learn in Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p>
+<div id="WRANGLE-FILTER-KEEP-CHARACTER" class="section level3">
+<h3><span class="header-section-number">6.12.1</span> Keep rows you want based on condition</h3>
+<div id="problem-10" class="section level4">
+<h4><span class="header-section-number">6.12.1.1</span> Problem</h4>
+<p>In the <code>dat_fms</code> dataset, you want to keep rows that have <code>side == "left"</code> (i.e. only rows where the <code>side</code> value equals <code>left</code>). Note the <code>==</code>, double equal sign, instead of the usual <code>=</code>. In this short book, I will not go at length to explain why R is so difficult, only that I ask you to obey the rules of the language.</p>
+</div>
+<div id="solution-9" class="section level4">
+<h4><span class="header-section-number">6.12.1.2</span> Solution</h4>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>)</a></code></pre></div>
+<pre><code>##        task side score
+## 1    hurdle left     2
+## 2     lunge left     3
+## 3 leg_raise left     2
+## 4   shd_mob left     1
+## 5  rot_stab left     2</code></pre>
+</div>
+</div>
+<div id="WRANGLE-FILTER-KEEP-NUMERIC" class="section level3">
+<h3><span class="header-section-number">6.12.2</span> Keep rows based on a numerical range</h3>
+<p>You want to keep the data when a variable is within a certain window range. Let us use the <code>dat_vo2</code> dataset. Let us see the range of values of <code>ve</code>.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<div id="problem-11" class="section level4">
+<h4><span class="header-section-number">6.12.2.1</span> Problem</h4>
+<p>Say I want to keep rows where 1) <code>ve</code> is less than 80, 2) <code>ve</code> more than 40, and 3) <code>ve</code> is between 40 to 80</p>
+</div>
+<div id="solution-10" class="section level4">
+<h4><span class="header-section-number">6.12.2.2</span> Solution</h4>
+<p>Notice for each graph, how the minimum and maximum values have been clipped off.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="co"># ve less than 80</span></a>
+<a class="sourceLine" id="cb130-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb130-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb130-4" title="4"></a>
+<a class="sourceLine" id="cb130-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="co"># ve lmore than 40</span></a>
+<a class="sourceLine" id="cb131-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb131-4" title="4"></a>
+<a class="sourceLine" id="cb131-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-73-2.png" width="672" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="co"># ve between 40 to 80</span></a>
+<a class="sourceLine" id="cb132-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb132-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb132-4" title="4"></a>
+<a class="sourceLine" id="cb132-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-73-3.png" width="672" /></p>
+</div>
+</div>
+<div id="discussion-4" class="section level3">
+<h3><span class="header-section-number">6.12.3</span> Discussion</h3>
+<p><code>filter()</code> works really when you want to throw out or keep rows of data based on some ranges or criteria of the variables you have. When you want to keep rows of data based on the row number, say keep the first and last row of data, use <code>slice ()</code>. See also Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">tail</span>(<span class="kw">row_number</span>(), <span class="dv">6</span>))</a></code></pre></div>
+<pre><code>##   time bf vo2_norm      rer  vo2 vco2  ve  hr stage     ratio
+## 1 1625 55 45.31250 1.068966 2900 3100 112 194     8 0.9354839
+## 2 1630 57 45.32812 1.034126 2901 3000 111 195     8 0.9670000
+## 3 1635 52 44.60938 1.063047 2855 3035 111 194     8 0.9406919
+## 4 1640 59 46.50000 1.041667 2976 3100 112 197     8 0.9600000
+## 5 1645 60 45.14062 1.067844 2889 3085 113 196     8 0.9364668
+## 6 1650 61 46.00000 1.050611 2944 3093 114 195     8 0.9518267</code></pre>
+</div>
+</div>
+<div id="WRANGLE-SUMMARIZE-GLOBAL" class="section level2">
+<h2><span class="header-section-number">6.13</span> Global summary</h2>
+<div id="problem-12" class="section level3">
+<h3><span class="header-section-number">6.13.1</span> Problem</h3>
+<p>You want to find the total FMS score across all sides and tasks</p>
+</div>
+<div id="solution-11" class="section level3">
+<h3><span class="header-section-number">6.13.2</span> Solution</h3>
+<p>In the <code>dat_fms</code> dataset, we want to use the <code>summarize ()</code> function.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb135-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score))</a></code></pre></div>
+<pre><code>##   total_score
+## 1          24</code></pre>
+<p>I date you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!</p>
+</div>
+<div id="discussion-5" class="section level3">
+<h3><span class="header-section-number">6.13.3</span> Discussion</h3>
+<p>We can also go berserk by trying out different summary functions, like <code>mean ()</code>, <code>median ()</code>, <code>min()</code> (minimum value), <code>max</code> (maximum value).</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb137-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score),</a>
+<a class="sourceLine" id="cb137-3" title="3">             <span class="dt">mean_score =</span> <span class="kw">mean</span> (score),</a>
+<a class="sourceLine" id="cb137-4" title="4">             <span class="dt">median_score =</span> <span class="kw">median</span> (score),</a>
+<a class="sourceLine" id="cb137-5" title="5">             <span class="dt">min_score =</span> <span class="kw">min</span> (score),</a>
+<a class="sourceLine" id="cb137-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score))</a></code></pre></div>
+<pre><code>##   total_score mean_score median_score min_score max_score
+## 1          24          2            2         1         3</code></pre>
+</div>
+</div>
+<div id="WRANGLE-SUMMARIZE-GROUPBY" class="section level2">
+<h2><span class="header-section-number">6.14</span> Group-by summary</h2>
+<div id="problem-13" class="section level3">
+<h3><span class="header-section-number">6.14.1</span> Problem</h3>
+<p>You want to perform a summary function for each chunk of group. For example, the FMS is typically scored by taking the lower of the two values of left and right for each task. In <code>side</code>, we have three values, <code>c</code>, <code>left</code> and <code>right</code>. The minimum of <code>c</code> is the same value itself.</p>
+</div>
+<div id="solution-12" class="section level3">
+<h3><span class="header-section-number">6.14.2</span> Solution</h3>
+<p>In the <code>dat_fms</code> dataset, we want to use the <code>group_by()</code> and <code>summarize ()</code> function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb139-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   task      lower_score
+##   &lt;chr&gt;           &lt;dbl&gt;
+## 1 hurdle              2
+## 2 leg_raise           1
+## 3 lunge               3
+## 4 push_up             1
+## 5 rot_stab            2
+## 6 shd_mob             1
+## 7 squat               3</code></pre>
+</div>
+<div id="discussion-6" class="section level3">
+<h3><span class="header-section-number">6.14.3</span> Discussion</h3>
+<p>Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the <code>dat_vo2</code> dataset. Remember in your lessons, the last 30 sec of each 3 min 30 sec stage is discarded, and the last 30s of each 3 min interval is than averaged for further analysis? Well, it means that for each <code>stage</code>, I want to keep data between 2:30 to 3min of each stage. That corresponds to rows 31 to 36 of each stage (try to think why i selected these row numbers!). I than want to average all my variables over these 6 rows per stage. I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the <code>summarize_at()</code> function? Because I want to average so many variables, I become lazy. So I specific all variable names without <code>""</code> inside the <code>vars()</code>. Note I did not type out <code>bf</code>, <code>vo2_norm</code>, <code>rer</code>, <code>vo2</code>, <code>vco2</code>, <code>ve</code>, <code>hr</code>. I used a short cut called <code>:</code>, which reads as from start to end. So <code>bf:hr</code>, means all columns from <code>bf</code> to <code>hr</code>, inclusive.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb142-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
+<a class="sourceLine" id="cb142-3" title="3"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">c</span>(<span class="dv">31</span><span class="op">:</span><span class="dv">36</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb142-4" title="4"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
+</div>
+</div>
+<div id="WRANGLE-INNER-JOIN" class="section level2">
+<h2><span class="header-section-number">6.15</span> Merge two tables together</h2>
+<div id="problem-14" class="section level3">
+<h3><span class="header-section-number">6.15.1</span> Problem</h3>
+<p>You want to combine two tables together, ensuring the each row is linked appropriately. For example, you want to combine your <code>dat_vo2_summ</code> summary data with the <code>dat_vo2_stage</code> table which contains the RPE and blood lactate values.</p>
+</div>
+<div id="solution-13" class="section level3">
+<h3><span class="header-section-number">6.15.2</span> Solution</h3>
+<p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">dat_vo2_summ <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 11
+##   stage    bf vo2_norm   rer   vo2  vco2    ve    hr speed   rpe lactate
+##   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1  30.7     32.0 0.868 2053. 1778.  55.2  136.     1    10     1  
+## 2     2  34.7     34.6 0.882 2222. 1958.  59.3  147      2    11     1.5
+## 3     3  34.7     37.4 0.912 2402. 2191.  66.7  161.     3    12     1.8
+## 4     4  38       37.8 0.95  2429  2312.  71.2  172.     4    13     2.5
+## 5     5  44       41.7 1.00  2675  2686   85.7  178.     5    14     6  
+## 6     6  45.7     43.8 1.06  2814. 2981.  99.8  186.     6    15     7.7
+## 7     7  54.5     45.5 1.09  2920. 3196. 110.   192.     7    16     9  
+## 8     8  57.3     45.5 1.05  2911. 3069. 112.   195.     8    17    10</code></pre>
+</div>
+<div id="discussion-7" class="section level3">
+<h3><span class="header-section-number">6.15.3</span> Discussion</h3>
+<p>It is common sense, that if we want to join two tables, there must be some rules. First, if we want to join two tables side by side left-right, the number of rows must match. Second, there must be a way the computer knows how to join, much like a key and a keyhole. The key is the column to join by, in this example, <code>stage</code>. In the <code>dat_vo2_summ</code> there is the <code>stage</code> variable with identical number of levels <code>1-8</code>, and the same variable appears in <code>dat_vo2_stage</code>. You don’t have to worry if after merging, the data is sorted correctly, if you follow these rules.</p>
+</div>
+</div>
+<div id="WRANGLE-LEARNING-CHECK" class="section level2">
+<h2><span class="header-section-number">6.16</span> Learning check</h2>
+<ol style="list-style-type: decimal">
+<li><p>From your learning check in <a href="InputOuput.html#INPUT-LEARNING-CHECK">5.4</a>, open up your <code>practice_script.R</code>. You should already have the codes to import the <code>data/treadmill_pt4.xlsx</code> file.</p></li>
+<li><p>Rename the columns to be <code>("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")</code>, respectively. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.1</a>.</p></li>
+<li><p>Remove the first two useless rows of the data. See Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p></li>
+<li><p>Convert the variable <code>time</code> into numeric seconds, and all other variables to numeric. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME">6.4</a> and <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.3</a>, respectively.</p></li>
+</ol>
+
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 3.6.3</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="InputOuput.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="CHAPTER-BAR-GRAPH.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

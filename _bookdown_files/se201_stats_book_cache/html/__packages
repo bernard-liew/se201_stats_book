@@ -1,0 +1,17 @@
+base
+pacman
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+openxlsx
+lubridate
+tibbletime
+igraph
+MASS
+gcookbook

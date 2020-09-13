@@ -1,0 +1,93 @@
+# Input and Output {#InputOuput}
+
+## Download and load libraries {-}
+
+```{r, message=FALSE, warning=FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               openxlsx) # writing excel documents
+
+```
+
+## Dealing with “Cannot Open File” in Windows
+
+You are running R on Windows, and you are using filenames such as `C:\data\sample.xlsx`. R says it cannot open the file, but you know the file does exist.
+
+The backslashes in the filepath are causing trouble. You can solve this problem in one of two ways:
+
+-   Change the backslashes, `\`, to forward, `/`, slashes: `"C:/data/sample.txt"`.
+
+-   Double the backslashes: `"C:\\data\\sample.txt"`.
+
+When you open a file in R, you give the filename as a character string. Problems arise when the name contains backslashes (`\`) because backslashes have a special meaning inside strings. You’ll probably get something like this:
+
+``` {r, eval=TRUE, error=TRUE}
+samp <- read.xlsx ("data\STRENGTH.xlsx")
+```
+R escapes every character that follows a backslash and then removes the backslashes. That leaves a meaningless filepath, such as
+`C:Datasample-data.csv` in this example.
+
+The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
+
+``` {r, eval=FALSE}
+samp <- read.xlsx ("data/STRENGTH.xlsx")
+```
+
+An alternative solution is to double the backslashes, since R replaces two consecutive backslashes with a single backslash:
+
+``` {r, eval=FALSE}
+samp <- read.xlsx ("data\\STRENGTH.xlsx")
+```
+
+
+## Reading in Excel ".xlsx" data  {#INPUT-IMPORT}
+
+If you have a .xlsx file that you want to read into R, use the `read.xlsx()` function in the `openxlsx` package.
+
+| Argument| Description| 
+|:------------|:-------------------------------------------------|
+|`xlsxFile`| The document's file path relative to the working directory unless specified otherwise. For example `xlsxFile = "SubjectData.xlsx"` looks for the text file directly in the working directory, while `xlsxFile = "data/SubjectData.xlsx"` will look for the file in an existing folder called `data` inside the working directory.<br>If the file is outside of your working directory, you can also specify a full file path (`xlsxFile = "C:/Users/bl19622/Box/myBox/Documents/teaching/se747_ResearchMeth/sample_book/data/SubjectData.xlsx"`).|
+|`sheet`|  The name of the excel sheet or the numerical index. This is useful if you have many sheets in one Excel workbook. If this is not specified, the function automatically reads in the first sheet in the Excel workbook.|
+
+
+Let's test this function out by reading in an Excel file titled `strength.xlsx`. Since the file is located in a folder called `data` in my working directory, I'll use the file path `xlsxFile = "strength.xlsx"`, and since the sheet I have is named `"data"`, I will use `sheet = "data"`:
+
+
+```{r message=FALSE, warning=FALSE}
+
+strn <-  read.xlsx (xlsxFile = "data/STRENGTH.xlsx",
+                    sheet = "data")
+
+```
+
+
+## Writing a Data Frame to Excel {#INPUT-EXPORT}
+
+You want to write an R data frame to an Excel file. 
+
+| Argument| Description| 
+|:------------|:-------------------------------------------------|
+|`x`| The object you are trying to export and write into an Excel file, commonly a dataframe you modified. For example `x = strn`.|
+|`sheetName`|  If you want to name the sheet of the Excel workbook.|
+|`file`| Specifying where you want to export the Excel sheet relative to the working directory, and how you want to name the sheet you exported.|
+
+
+```{r, message=FALSE, eval=FALSE}
+
+write.xlsx(x = strn,
+           sheetName = "strength",
+           file = "data/STRENGTH_write.xlsx")
+```
+
+
+
+## Learning check {#INPUT-LEARNING-CHECK}
+
+
+1. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
+
+2. Import the Excel file `data/treadmill_pt4.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
+
+
+
