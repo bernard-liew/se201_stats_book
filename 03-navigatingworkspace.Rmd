@@ -155,6 +155,18 @@ a
 
 ```
 
-6. Close RStudio, reopen RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?
+6. Enter the code below to install and load the packages.
+
+```{r, eval = FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               openxlsx,# writing excel documents
+               lubridate,# date-time 
+               tibbletime) # moving average for vo2
+
+```
+
+7. Close RStudio, reopen RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?
 
 

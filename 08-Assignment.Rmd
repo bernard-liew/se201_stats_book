@@ -3,7 +3,7 @@
 
 This assignment is designed to create a graph of lactate and heart rate against speed in the Incremental Treadmill Test. There are two things to note:
 
-1. With the graphs creates, export it and paste into your word assignment document. 
+1. With the graphs createed, export it and paste into your word assignment document. 
 
 2. Copy the entire code below as an appendix in the word assignment document. 
 
@@ -11,13 +11,13 @@ The assignment is **EASY**!!! I am only asking you to copy and paste relevant re
 
 To do your assignment, follow these steps:
 
-1. Create a folder called `se201_assignment` on your desktop.
+1. In your desktop's`se201` folder, created in learning check \@ref(NAVIGATE-PROJECTS).
 
-2. Create a project called `analysis` inside the folder. See Reciple \@ref(NAVIGATE-PROJECTS).
+2. Create a project called `assignment` inside the folder. See Reciple \@ref(NAVIGATE-PROJECTS).
 
 3. Create a new R script called `treadmill_analysis.R`, paste the codes you see below, and save it. 
 
-4. Paste you Excel data into the `se201_assignment` folder. Remember your `treadmill_analysis.R` and Excel files should be in the same folder.
+4. Inside `assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. 
 
 5. **Task 1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Reciple \@ref(INPUT-IMPORT).
 
@@ -90,10 +90,10 @@ curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL)
 
 ## Import data (Task 1)
 
-dat_vo2 <-  read.xlsx (xlsxFile = "XXX.xlsx",
+dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
-dat_stage <-  read.xlsx (xlsxFile = "XXX.xlsx",
+dat_stage <-  read.xlsx (xlsxFile = "data/XX.xlsx",
                        sheet = "XXX")
 
 ## Analyze VO2 data ----------------------------------------------------------------------
@@ -107,7 +107,7 @@ colnames (dat_vo2)  <- new_names
 ### Remove first row 
 
 dat_vo2 <- dat_vo2 %>% 
-  slice (-(1))
+  slice (-c(1))
 
 ### Convert column type (Task 3)
 
@@ -186,6 +186,7 @@ ggsave(filename = "heartrate.png",
        dpi = 300)
 
 ## Bonus Codes to help you -------------------------------------------------
+### Click on everything and run
 
 ### Get VO2 max , VO2 max relative
 
@@ -193,7 +194,8 @@ rolling_mean6 <- rollify(mean, window = 6)
 
 raw_roll <- dat_vo2 %>%
   arrange (desc (time)) %>%
-  summarise_at (vars(bf:hr), rolling_mean6) %>%
+  mutate_at (vars(bf:hr), rolling_mean6) %>%
+  na.omit() %>%
   summarise_at(vars(bf:hr), max, na.rm = TRUE)
 
 ### Get Lactate and Anaerobic Thresold

@@ -23,7 +23,7 @@ The backslashes in the filepath are causing trouble. You can solve this problem 
 When you open a file in R, you give the filename as a character string. Problems arise when the name contains backslashes (`\`) because backslashes have a special meaning inside strings. You’ll probably get something like this:
 
 ``` {r, eval=TRUE, error=TRUE}
-samp <- read.xlsx ("data\STRENGTH.xlsx")
+samp <- read.xlsx ("data\strength.xlsx")
 ```
 R escapes every character that follows a backslash and then removes the backslashes. That leaves a meaningless filepath, such as
 `C:Datasample-data.csv` in this example.
@@ -31,13 +31,13 @@ R escapes every character that follows a backslash and then removes the backslas
 The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
 
 ``` {r, eval=FALSE}
-samp <- read.xlsx ("data/STRENGTH.xlsx")
+samp <- read.xlsx ("data/strength.xlsx")
 ```
 
 An alternative solution is to double the backslashes, since R replaces two consecutive backslashes with a single backslash:
 
 ``` {r, eval=FALSE}
-samp <- read.xlsx ("data\\STRENGTH.xlsx")
+samp <- read.xlsx ("data\\strength.xlsx")
 ```
 
 
@@ -51,12 +51,12 @@ If you have a .xlsx file that you want to read into R, use the `read.xlsx()` fun
 |`sheet`|  The name of the excel sheet or the numerical index. This is useful if you have many sheets in one Excel workbook. If this is not specified, the function automatically reads in the first sheet in the Excel workbook.|
 
 
-Let's test this function out by reading in an Excel file titled `strength.xlsx`. Since the file is located in a folder called `data` in my working directory, I'll use the file path `xlsxFile = "strength.xlsx"`, and since the sheet I have is named `"data"`, I will use `sheet = "data"`:
+In my projects folder, I tend tend to have a habit of create a folder named `data`. This contains all my original data, that I do not want to touch!!! Let's test this function out by reading in an Excel file titled `strength.xlsx`. Since the file is located in a folder called `data` in my working directory, I'll use the file path `xlsxFile = "strength.xlsx"`, and since the sheet I have is named `"data"`, I will use `sheet = "data"`:
 
 
 ```{r message=FALSE, warning=FALSE}
 
-strn <-  read.xlsx (xlsxFile = "data/STRENGTH.xlsx",
+strn <-  read.xlsx (xlsxFile = "data/strength.xlsx",
                     sheet = "data")
 
 ```
@@ -85,9 +85,11 @@ write.xlsx(x = strn,
 ## Learning check {#INPUT-LEARNING-CHECK}
 
 
-1. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
+1. Download the `data` folder from Moodle week 6. You must unzip it, and placed that folder inside your se201/practice folder.
 
-2. Import the Excel file `data/treadmill_pt4.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
+2. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
+
+3. Import the Excel file `data/treadmill_pt4.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
 
 
 

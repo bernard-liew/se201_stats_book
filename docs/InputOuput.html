@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-09-13" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -357,9 +357,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Input and Output</h1>
 <div id="download-and-load-libraries" class="section level2 unnumbered">
 <h2>Download and load libraries</h2>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb62-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
-<a class="sourceLine" id="cb62-3" title="3">               openxlsx) <span class="co"># writing excel documents</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb63-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb63-3" title="3">               openxlsx) <span class="co"># writing excel documents</span></a></code></pre></div>
 </div>
 <div id="dealing-with-cannot-open-file-in-windows" class="section level2">
 <h2><span class="header-section-number">5.1</span> Dealing with “Cannot Open File” in Windows</h2>
@@ -370,14 +370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Double the backslashes: <code>"C:\\data\\sample.txt"</code>.</p></li>
 </ul>
 <p>When you open a file in R, you give the filename as a character string. Problems arise when the name contains backslashes (<code>\</code>) because backslashes have a special meaning inside strings. You’ll probably get something like this:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data\STRENGTH.xlsx&quot;</span>)</a></code></pre></div>
-<pre><code>## Error: &#39;\S&#39; is an unrecognized escape in character string starting &quot;&quot;data\S&quot;</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data\strength.xlsx&quot;</span>)</a></code></pre></div>
+<pre><code>## Error: &#39;\s&#39; is an unrecognized escape in character string starting &quot;&quot;data\s&quot;</code></pre>
 <p>R escapes every character that follows a backslash and then removes the backslashes. That leaves a meaningless filepath, such as
 <code>C:Datasample-data.csv</code> in this example.</p>
 <p>The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data/STRENGTH.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data/strength.xlsx&quot;</span>)</a></code></pre></div>
 <p>An alternative solution is to double the backslashes, since R replaces two consecutive backslashes with a single backslash:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data</span><span class="ch">\\</span><span class="st">STRENGTH.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">samp &lt;-<span class="st"> </span><span class="kw">read.xlsx</span> (<span class="st">&quot;data</span><span class="ch">\\</span><span class="st">strength.xlsx&quot;</span>)</a></code></pre></div>
 </div>
 <div id="INPUT-IMPORT" class="section level2">
 <h2><span class="header-section-number">5.2</span> Reading in Excel “.xlsx” data</h2>
@@ -404,9 +404,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Let’s test this function out by reading in an Excel file titled <code>strength.xlsx</code>. Since the file is located in a folder called <code>data</code> in my working directory, I’ll use the file path <code>xlsxFile = "strength.xlsx"</code>, and since the sheet I have is named <code>"data"</code>, I will use <code>sheet = "data"</code>:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">strn &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/STRENGTH.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb67-2" title="2">                    <span class="dt">sheet =</span> <span class="st">&quot;data&quot;</span>)</a></code></pre></div>
+<p>In my projects folder, I tend tend to have a habit of create a folder named <code>data</code>. This contains all my original data, that I do not want to touch!!! Let’s test this function out by reading in an Excel file titled <code>strength.xlsx</code>. Since the file is located in a folder called <code>data</code> in my working directory, I’ll use the file path <code>xlsxFile = "strength.xlsx"</code>, and since the sheet I have is named <code>"data"</code>, I will use <code>sheet = "data"</code>:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">strn &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/strength.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb68-2" title="2">                    <span class="dt">sheet =</span> <span class="st">&quot;data&quot;</span>)</a></code></pre></div>
 </div>
 <div id="INPUT-EXPORT" class="section level2">
 <h2><span class="header-section-number">5.3</span> Writing a Data Frame to Excel</h2>
@@ -437,13 +437,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">write.xlsx</span>(<span class="dt">x =</span> strn,</a>
-<a class="sourceLine" id="cb68-2" title="2">           <span class="dt">sheetName =</span> <span class="st">&quot;strength&quot;</span>,</a>
-<a class="sourceLine" id="cb68-3" title="3">           <span class="dt">file =</span> <span class="st">&quot;data/STRENGTH_write.xlsx&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">write.xlsx</span>(<span class="dt">x =</span> strn,</a>
+<a class="sourceLine" id="cb69-2" title="2">           <span class="dt">sheetName =</span> <span class="st">&quot;strength&quot;</span>,</a>
+<a class="sourceLine" id="cb69-3" title="3">           <span class="dt">file =</span> <span class="st">&quot;data/STRENGTH_write.xlsx&quot;</span>)</a></code></pre></div>
 </div>
 <div id="INPUT-LEARNING-CHECK" class="section level2">
 <h2><span class="header-section-number">5.4</span> Learning check</h2>
 <ol style="list-style-type: decimal">
+<li><p>Download the <code>data</code> folder from Moodle week 6. You must unzip it, and placed that folder inside your se201/practice folder.</p></li>
 <li><p>From your learning check in <a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK">4.4</a>, open RStudio via the <code>.Rproj</code> symbol. In the Files tab on the bottom right, you should see the script you created <code>practice_script.R</code>. Click on it to open.</p></li>
 <li><p>Import the Excel file <code>data/treadmill_pt4.xlsx</code>, and the sheet named <code>raw</code> and assign it to an object <code>dat</code>. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>. Remember to add some comments to remind yourself what this line of code is trying to do. Save it.</p></li>
 </ol>

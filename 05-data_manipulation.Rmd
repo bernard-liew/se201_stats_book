@@ -68,7 +68,7 @@ You want to remove a specific row  or a range of rows, and remove a specific col
 
 ### Solution
 
-To keep or remove rows based on the row numbers, use `slice ()`. In slice, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, use `(start:end)`. To keep  keeps based on the column names, use the `select ()` function. 
+To keep or remove rows based on the row numbers, use `slice ()`. In slice, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, use `(start:end)`. To keep based on the column names, use the `select ()` function. 
 
 ```{r }
 
@@ -87,7 +87,7 @@ dat_vo2 %>%
   slice (-(2:3))%>%
   head()
 
-# This removes the second column
+# This selects the first, second, and fourth column, and discards the rest
 dat_vo2 %>%
       select (time, bf, rer) %>%
   head()
@@ -95,9 +95,9 @@ dat_vo2 %>%
 ```
 
 ```{r}
-# This removes the first and second row, and replaces the old data in object dat_vo2
+# This removes the first row, and replaces the old data in object dat_vo2
 dat_vo2 <- dat_vo2 %>% 
-  slice (-(1:2))
+  slice (-(1))
 ```
 
 ## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
@@ -110,12 +110,15 @@ The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is nume
 str(dat_vo2)
 ```
 
-What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure \@ref(fig:vo2-col_class)). This will be expanded upon in the Recipe \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
+What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure \@ref(fig:col-class)). 
+
+This will be expanded upon in the Recipe \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
 
 
-```{r vo2-col_class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
+```{r col-class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
 knitr::include_graphics("images/chapter-5/dat_vo2_column_class.png")
 ```
+
 
 ### Solution
 
@@ -213,7 +216,8 @@ You want to split the `time` variable of the `dat_vo2` dataset into chunks of 21
 dat_vo2 <- dat_vo2 %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE))
 
-dat_vo2
+dat_vo2 %>%
+  head()
 
 ```
 

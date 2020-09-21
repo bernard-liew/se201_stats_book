@@ -234,7 +234,7 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 ## Learning check {#BAR-LEARNING-CHECK}
 
 
-1. From your learning check in \@ref (WRANGLE-LEARNING-CHECK), open up your `practice_script.R`. 
+1. From your learning check in \@ref(WRANGLE-LEARNING-CHECK), open up your `practice_script.R`. 
 
 2. Import the Excel file `data/fms_pt3.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
 

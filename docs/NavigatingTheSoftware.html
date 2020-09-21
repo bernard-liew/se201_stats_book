@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-09-13" />
+<meta name="date" content="2020-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -470,6 +470,14 @@ Figure 4.6: When you install a new package, you’ll see some random text like t
 <a class="sourceLine" id="cb61-3" title="3">a <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
 <a class="sourceLine" id="cb61-4" title="4">a</a></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
+<li>Enter the code below to install and load the packages.</li>
+</ol>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb62-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb62-3" title="3">               openxlsx,<span class="co"># writing excel documents</span></a>
+<a class="sourceLine" id="cb62-4" title="4">               lubridate,<span class="co"># date-time </span></a>
+<a class="sourceLine" id="cb62-5" title="5">               tibbletime) <span class="co"># moving average for vo2</span></a></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
 <li>Close RStudio, reopen RStudio via the <code>.Rproj</code> symbol. In the Files tab on the bottom right, you should see the script you created <code>practice_script.R</code>. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?</li>
 </ol>
 
