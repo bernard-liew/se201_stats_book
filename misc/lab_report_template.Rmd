@@ -3,22 +3,11 @@ title: "Laboratory Testing Report"
 author: "Bernard Liew"
 date: "`r Sys.time()`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
+editor_options: 
+  chunk_output_type: console
 ---
-
-
-```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri(file.path("HPU_logo.jpg")), 
-               alt = 'logo', 
-               style = 'position:absolute; top:0; right:0; padding:10px;')
-
-
-```
-
-
----
-
 ```{r, message=FALSE, warning=FALSE, echo = FALSE}
 
 if (!require("pacman")) install.packages("pacman")
@@ -52,10 +41,23 @@ curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL)
 }
 
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, echo = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 ```
 
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri(file.path("misc/HPU_logo.jpg")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px;')
+
+
+```
+
+
+---
+
+
 ```{r}
-dat <-  import_list("../data/report.xlsx")
+dat <-  import_list("data/report.xlsx")
 ```
 **HPU Telephone: ** "01206 873290"
 
@@ -66,9 +68,9 @@ dat <-  import_list("../data/report.xlsx")
 
 **Athlete's age (yo): **`r dat$demog$age`
 
-**Athlete's height (cm): **`r dat$demog$height`
+**Athlete's height (cm): **`r dat$demog$ht`
 
-**Athlete's weight (kg): **`r dat$demog$weight`
+**Athlete's weight (kg): **`r dat$demog$wt`
 
 **Athlete's blood pressure (mm/Hg)): **`r dat$demog$bp`
 
@@ -112,7 +114,7 @@ kable(dat$fms, booktabs = T)%>%
 
 ```{r}
 dat_summ <- dat$fms %>%
-  select (task, side, score) %>%
+  dplyr::select (task, side, score) %>%
   group_by(task) %>%
   summarize (total = min (score)) %>%
   ungroup ()
@@ -164,11 +166,10 @@ raw <-  raw %>%
 
 raw_summ <- raw %>%
   group_by(stage) %>%
-  slice(-37:-42) %>%
-  slice_tail (6) %>%
+  slice(c(31:36)) %>% 
   summarise_at (vars(bf:hr), mean)%>%
   inner_join(dat$lactate, by = "stage") %>%
-  select (stage, speed, everything ())
+  dplyr::select (stage, speed, everything ())
   
 kable(raw_summ, booktabs = T)%>%
   kable_styling(full_width = T) 
@@ -211,7 +212,8 @@ rolling_mean6 <- rollify(mean, window = 6)
 
 raw_roll <- raw %>%
   arrange (desc (time)) %>%
-  summarise_at (vars(bf:hr), rolling_mean6) %>%
+  mutate_at (vars(bf:hr), rolling_mean6) %>%
+  na.omit() %>%
   summarise_at(vars(bf:hr), max, na.rm = TRUE)
 ```
 
