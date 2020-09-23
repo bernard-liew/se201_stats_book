@@ -4,3 +4,12 @@ language:
   ui:
     chapter_name: "Chapter "
 output_dir: "docs"
+rmd_files: ["index.Rmd", 
+            "01-gettingstarted.Rmd", 
+            "02-basics.Rmd",
+            "03-navigatingworkspace.Rmd",
+            "04-input_output.Rmd",
+            "05-data_manipulation.Rmd",
+            "06-barplot.Rmd",
+            "07-lineplot.Rmd",
+            "08-Assignment.Rmd"]
