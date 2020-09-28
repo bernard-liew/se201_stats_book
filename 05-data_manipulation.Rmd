@@ -564,11 +564,11 @@ It is common sense, that if we want to join two tables, there must be some rules
 ## Learning check {#WRANGLE-LEARNING-CHECK}
 
 
-1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import the `data/treadmill_pt4.xlsx` file.
+1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import the `data/Athlete_1_treadmill.xlsx` file, and label the data called `dat`.
 
-2. Rename the columns to be `("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")`, respectively. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
+2. Rename the columns of `dat` to be `("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")`, respectively. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
-3. Remove the first two useless rows of the data. See Recipe \@ref(WRANGLE-SLICE).
+3. Remove the first useless rows of the `dat` data. See Recipe \@ref(WRANGLE-SLICE).
 
-4. Convert the variable `time` into numeric seconds, and all other variables to numeric. See Recipe \@ref(WRANGLE-CHARACTER-2-TIME) and \@ref(WRANGLE-CHARACTER-2-NUMERIC), respectively.
+4. Convert the variable `time` variable of `dat` into numeric seconds, and all other variables to numeric. See Recipe \@ref(WRANGLE-CHARACTER-2-TIME) and \@ref(WRANGLE-CHARACTER-2-NUMERIC), respectively.
 

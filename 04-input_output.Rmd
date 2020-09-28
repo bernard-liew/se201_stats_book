@@ -89,7 +89,10 @@ write.xlsx(x = strn,
 
 2. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
 
-3. Import the Excel file `data/treadmill_pt4.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
+3. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
 
+4. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet named `stage` and assign it to an object `dat_stage`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
 
+5. Import the Excel file `data/Athlete_1_FMS.xlsx`, and the sheet named `Sheet1` and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. Save it.
 
+6. Repeat steps 3 to 5, with other athlete's data.

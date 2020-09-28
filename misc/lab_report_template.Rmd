@@ -169,7 +169,8 @@ raw_summ <- raw %>%
   slice(c(31:36)) %>% 
   summarise_at (vars(bf:hr), mean)%>%
   inner_join(dat$lactate, by = "stage") %>%
-  dplyr::select (stage, speed, everything ())
+  dplyr::select (stage, speed, everything ()) %>%
+  mutate_at (vars(bf:lactate), round, 2)
   
 kable(raw_summ, booktabs = T)%>%
   kable_styling(full_width = T) 
@@ -269,7 +270,8 @@ hr_at_ane_thres <- new_hr[which.min(abs(new_hr$x -speed_at_ane_thres)), "y"] %>%
 
 pi <- data.frame(Variable = c("Lactate Threshold", "Anaerobic Threshold"),
                  Speed = c(speed_at_lac_thres, speed_at_ane_thres ),
-                 HR = c(hr_at_lac_thres, hr_at_ane_thres))
+                 HR = c(hr_at_lac_thres, hr_at_ane_thres)) %>%
+  mutate_if (is.numeric, round, 2)
 
   
 kable(pi, booktabs = T)%>%

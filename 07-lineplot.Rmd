@@ -30,9 +30,7 @@ dat <-  read.xlsx (xlsxFile = "data/treadmill_pt4_clean.xlsx",
 dat <- dat %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE)) %>%
   group_by(stage) %>%
-  group_by(stage) %>%
-  slice(-c(37:42)) %>%
-  slice(tail(row_number(), 6)) %>%
+  slice(c(31:36)) %>%  
   summarise_at (vars(bf:hr), mean)
 
 ```
@@ -179,7 +177,7 @@ ggplot(dat_long) +
 
 To convert a variable to a factor , see also Recipe \@ref(WRANGLE-CHARACTERS-2-FACTORS).
 
-Notice the use of `group = ar`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will give an error:
+Notice the use of `group = var`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will give an error:
 
 ```{r eval=FALSE}
 
@@ -415,11 +413,9 @@ theme_set(theme_grey())
 
 3. Create another dataset, `dat_summ`, and create another variable called `stage`, where you create intervals of stage each of 3:30min intervals. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
 
-4. Using the data `dat_summ`, remove the last 30s of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+4. Using the data `dat_summ`, keep the interval of 2:30 to 3:00min of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-5. From step 4, keep the last 30s of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+5. From step 5, find the mean of each 30s of data of each stage, across all variables. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-6. From step 5, find the mean of each 30s of data of each stage, across all variables. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
-
-7. Make a line plot with with `vo2` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
+6. Make a line plot with with `vo2` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 
