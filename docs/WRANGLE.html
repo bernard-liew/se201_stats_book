@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-09-23" />
+<meta name="date" content="2020-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -553,6 +553,9 @@ Figure 6.1: The type of data for each class as it was imported.
 <a class="sourceLine" id="cb95-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb95-4" title="4"><span class="st">                </span><span class="kw">ms</span>())<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb95-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## Warning: Problem with `mutate()` input `time`.
+## x Some strings failed to parse, or all strings are NAs
+## i Input `time` is `time %&gt;% ms()`.</code></pre>
 <pre><code>## Warning in .parse_hms(..., order = &quot;MS&quot;, quiet = quiet): Some strings failed to
 ## parse, or all strings are NAs</code></pre>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
@@ -562,11 +565,11 @@ Figure 6.1: The type of data for each class as it was imported.
 ## 4 &lt;NA&gt; 34     22.4 0.86 1437 1229 43 123
 ## 5 &lt;NA&gt; 23     15.6 0.73 1004  735 22 124
 ## 6 &lt;NA&gt; 27     30.5 0.76 1960 1489 48 124</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># converts entirely to seconds</span></a>
-<a class="sourceLine" id="cb98-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb98-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb98-4" title="4"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb98-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># converts entirely to seconds</span></a>
+<a class="sourceLine" id="cb99-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-4" title="4"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
 ## 1   5S 37     21.4 0.93 1371 1272 46 119
 ## 2  10S 58      2.5 0.84  159  133 12 120
@@ -574,11 +577,11 @@ Figure 6.1: The type of data for each class as it was imported.
 ## 4  20S 34     22.4 0.86 1437 1229 43 123
 ## 5  25S 23     15.6 0.73 1004  735 22 124
 ## 6  30S 27     30.5 0.76 1960 1489 48 124</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># strips the S symbol to make it a number</span></a>
-<a class="sourceLine" id="cb100-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb100-4" title="4"><span class="st">            </span><span class="kw">as.numeric</span> ())<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># strips the S symbol to make it a number</span></a>
+<a class="sourceLine" id="cb101-2" title="2">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-4" title="4"><span class="st">            </span><span class="kw">as.numeric</span> ())<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr
 ## 1    5 37     21.4 0.93 1371 1272 46 119
 ## 2   10 58      2.5 0.84  159  133 12 120
@@ -596,11 +599,11 @@ Figure 6.1: The type of data for each class as it was imported.
 </div>
 <div id="solution-4" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Solution</h3>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
-<a class="sourceLine" id="cb102-3" title="3"></a>
-<a class="sourceLine" id="cb102-4" title="4">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb103-3" title="3"></a>
+<a class="sourceLine" id="cb103-4" title="4">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-5" title="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr stage
 ## 1    5 37     21.4 0.93 1371 1272 46 119     1
 ## 2   10 58      2.5 0.84  159  133 12 120     1
@@ -617,7 +620,7 @@ Figure 6.1: The type of data for each class as it was imported.
 <div id="WRANGLE-TIDY-DATA" class="section level2">
 <h2><span class="header-section-number">6.6</span> Tidy data</h2>
 <p>You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is <strong>not the data you loaded</strong>, but rather came with the <code>tidyverse</code> package. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organises the values in a different way.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">table1</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -627,7 +630,7 @@ Figure 6.1: The type of data for each class as it was imported.
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">table2</a></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -643,7 +646,7 @@ Figure 6.1: The type of data for each class as it was imported.
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">table3</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -653,15 +656,15 @@ Figure 6.1: The type of data for each class as it was imported.
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="co"># Spread across two tables</span></a>
-<a class="sourceLine" id="cb110-2" title="2">table4a  <span class="co"># cases</span></a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="co"># Spread across two tables</span></a>
+<a class="sourceLine" id="cb111-2" title="2">table4a  <span class="co"># cases</span></a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">table4b  <span class="co"># population</span></a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">table4b  <span class="co"># population</span></a></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
@@ -713,12 +716,12 @@ The second step is to resolve one of two common problems:</p>
 <div id="problem-5" class="section level3">
 <h3><span class="header-section-number">6.7.1</span> Problem</h3>
 <p>You want to make your data wider, in this instance let us look at the <code>dat_fms</code> dataset. You want to have one column indicating the left FMS score, and one indicating the right FMS score. The caveat is that because some tasks in the FMS do not have left and right, we need to remove the tasks in the FMS without a left and right. In this case, we will use the <code>filter()</code> function, which will be discussed in Recipe <a href="WRANGLE.html#WRANGLE-FILTER">6.12</a>.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">dat_fms_sub &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">!=</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
-<a class="sourceLine" id="cb115-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb115-3" title="3">              <span class="dt">values_from =</span> score)</a>
-<a class="sourceLine" id="cb115-4" title="4">dat_wide</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">dat_fms_sub &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">!=</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
+<a class="sourceLine" id="cb116-3" title="3">              <span class="dt">values_from =</span> score)</a>
+<a class="sourceLine" id="cb116-4" title="4">dat_wide</a></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   task          l     r
 ##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -737,11 +740,11 @@ The second step is to resolve one of two common problems:</p>
 </div>
 <div id="solution-5" class="section level3">
 <h3><span class="header-section-number">6.8.2</span> Solution</h3>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">dat_long &lt;-<span class="st"> </span>dat_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
-<a class="sourceLine" id="cb117-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</a>
-<a class="sourceLine" id="cb117-3" title="3">              <span class="dt">names_to =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb117-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a>
-<a class="sourceLine" id="cb117-5" title="5">dat_long </a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1">dat_long &lt;-<span class="st"> </span>dat_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
+<a class="sourceLine" id="cb118-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</a>
+<a class="sourceLine" id="cb118-3" title="3">              <span class="dt">names_to =</span> <span class="st">&quot;side&quot;</span>,</a>
+<a class="sourceLine" id="cb118-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a>
+<a class="sourceLine" id="cb118-5" title="5">dat_long </a></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ##    task      side  score
 ##    &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
@@ -766,12 +769,12 @@ The second step is to resolve one of two common problems:</p>
 <div id="solution-6" class="section level3">
 <h3><span class="header-section-number">6.9.2</span> Solution</h3>
 <p>Use the <code>mutate()</code> function and the <code>recode()</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">dat_fms &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb119-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">side =</span> <span class="kw">recode</span> (side, <span class="co"># the variable name</span></a>
-<a class="sourceLine" id="cb119-3" title="3">                          <span class="st">&quot;l&quot;</span> =<span class="st"> &quot;left&quot;</span>, <span class="co"># old label = new label</span></a>
-<a class="sourceLine" id="cb119-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a>
-<a class="sourceLine" id="cb119-5" title="5"></a>
-<a class="sourceLine" id="cb119-6" title="6">dat_fms</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">dat_fms &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb120-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">side =</span> <span class="kw">recode</span> (side, <span class="co"># the variable name</span></a>
+<a class="sourceLine" id="cb120-3" title="3">                          <span class="st">&quot;l&quot;</span> =<span class="st"> &quot;left&quot;</span>, <span class="co"># old label = new label</span></a>
+<a class="sourceLine" id="cb120-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a>
+<a class="sourceLine" id="cb120-5" title="5"></a>
+<a class="sourceLine" id="cb120-6" title="6">dat_fms</a></code></pre></div>
 <pre><code>##         task  side score
 ## 1      squat     c     3
 ## 2     hurdle  left     2
@@ -795,24 +798,24 @@ The second step is to resolve one of two common problems:</p>
 </div>
 <div id="solution-7" class="section level3">
 <h3><span class="header-section-number">6.10.2</span> Solution</h3>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="co"># Order of values I desire</span></a>
-<a class="sourceLine" id="cb121-2" title="2"></a>
-<a class="sourceLine" id="cb121-3" title="3">new_lvls &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;push_up&quot;</span>,<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>,  <span class="st">&quot;shd_mob&quot;</span>)</a>
-<a class="sourceLine" id="cb121-4" title="4"></a>
-<a class="sourceLine" id="cb121-5" title="5">dat_fms_relvl &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb121-6" title="6"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> new_lvls))</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co"># Order of values I desire</span></a>
+<a class="sourceLine" id="cb122-2" title="2"></a>
+<a class="sourceLine" id="cb122-3" title="3">new_lvls &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;push_up&quot;</span>,<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>,  <span class="st">&quot;shd_mob&quot;</span>)</a>
+<a class="sourceLine" id="cb122-4" title="4"></a>
+<a class="sourceLine" id="cb122-5" title="5">dat_fms_relvl &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> new_lvls))</a></code></pre></div>
 </div>
 <div id="discussion-2" class="section level3">
 <h3><span class="header-section-number">6.10.3</span> Discussion</h3>
 <p>Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.</p>
 
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co"># Without factor </span></a>
-<a class="sourceLine" id="cb122-2" title="2"><span class="kw">ggplot</span>(dat_fms) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a>
-<a class="sourceLine" id="cb122-4" title="4"></a>
-<a class="sourceLine" id="cb122-5" title="5"><span class="co"># With factor new levels</span></a>
-<a class="sourceLine" id="cb122-6" title="6"><span class="kw">ggplot</span>(dat_fms_relvl) <span class="op">+</span></a>
-<a class="sourceLine" id="cb122-7" title="7"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="co"># Without factor </span></a>
+<a class="sourceLine" id="cb123-2" title="2"><span class="kw">ggplot</span>(dat_fms) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a>
+<a class="sourceLine" id="cb123-4" title="4"></a>
+<a class="sourceLine" id="cb123-5" title="5"><span class="co"># With factor new levels</span></a>
+<a class="sourceLine" id="cb123-6" title="6"><span class="kw">ggplot</span>(dat_fms_relvl) <span class="op">+</span></a>
+<a class="sourceLine" id="cb123-7" title="7"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
 <div class="figure"><span id="fig:FIG-BAR-GRAPH-FACTOR-EFFECTS"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-1.png" alt="Barplots of FMS score on original dat_fms (left); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (right)." width="672" /><img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.png" alt="Barplots of FMS score on original dat_fms (left); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (right)." width="672" />
 <p class="caption">
@@ -830,10 +833,10 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="solution-8" class="section level3">
 <h3><span class="header-section-number">6.11.2</span> Solution</h3>
 <p>Example, you want to create a column called <code>ratio</code> in the <code>dat_vo2</code> dataset, by dividing <code>vo2</code> by <code>vco2</code>.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a>
-<a class="sourceLine" id="cb123-3" title="3"></a>
-<a class="sourceLine" id="cb123-4" title="4"><span class="kw">head</span>(dat_vo2)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb124-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a>
+<a class="sourceLine" id="cb124-3" title="3"></a>
+<a class="sourceLine" id="cb124-4" title="4"><span class="kw">head</span>(dat_vo2)</a></code></pre></div>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr stage    ratio
 ## 1    5 37     21.4 0.93 1371 1272 46 119     1 1.077830
 ## 2   10 58      2.5 0.84  159  133 12 120     1 1.195489
@@ -845,13 +848,13 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="discussion-3" class="section level3">
 <h3><span class="header-section-number">6.11.3</span> Discussion</h3>
 <p>There are many math operations you can do including subtraction (<code>-</code>), multiplication (<code>*</code>), addition (<code>+</code>), exponentiation/power to the power of 2 (<code>^2</code>). Let us go crazy and try some random creation of new variables.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_crazy &lt;-<span class="st">  </span>dat_vo2  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2_power =</span> vo2<span class="op">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></a>
-<a class="sourceLine" id="cb125-3" title="3">          <span class="dt">vco2_mod =</span> vco2<span class="op">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></a>
-<a class="sourceLine" id="cb125-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf) <span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a>
-<a class="sourceLine" id="cb125-5" title="5">          ) </a>
-<a class="sourceLine" id="cb125-6" title="6">  </a>
-<a class="sourceLine" id="cb125-7" title="7"><span class="kw">head</span>(dat_vo2_crazy)</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">dat_vo2_crazy &lt;-<span class="st">  </span>dat_vo2  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb126-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2_power =</span> vo2<span class="op">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></a>
+<a class="sourceLine" id="cb126-3" title="3">          <span class="dt">vco2_mod =</span> vco2<span class="op">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></a>
+<a class="sourceLine" id="cb126-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf) <span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a>
+<a class="sourceLine" id="cb126-5" title="5">          ) </a>
+<a class="sourceLine" id="cb126-6" title="6">  </a>
+<a class="sourceLine" id="cb126-7" title="7"><span class="kw">head</span>(dat_vo2_crazy)</a></code></pre></div>
 <pre><code>##   time bf vo2_norm  rer  vo2 vco2 ve  hr stage    ratio  vo2_power  vco2_mod
 ## 1    5 37     21.4 0.93 1371 1272 46 119     1 1.077830 2576987811 424.00000
 ## 2   10 58      2.5 0.84  159  133 12 120     1 1.195489    4019679  44.33333
@@ -879,8 +882,8 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 </div>
 <div id="solution-9" class="section level4">
 <h4><span class="header-section-number">6.12.1.2</span> Solution</h4>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb127-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb128-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>)</a></code></pre></div>
 <pre><code>##        task side score
 ## 1    hurdle left     2
 ## 2     lunge left     3
@@ -892,7 +895,7 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="WRANGLE-FILTER-KEEP-NUMERIC" class="section level3">
 <h3><span class="header-section-number">6.12.2</span> Keep rows based on a numerical range</h3>
 <p>You want to keep the data when a variable is within a certain window range. Let us use the <code>dat_vo2</code> dataset. Let us see the range of values of <code>ve</code>.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
 <p><img src="se201_stats_book_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <div id="problem-11" class="section level4">
 <h4><span class="header-section-number">6.12.2.1</span> Problem</h4>
@@ -901,31 +904,31 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="solution-10" class="section level4">
 <h4><span class="header-section-number">6.12.2.2</span> Solution</h4>
 <p>Notice for each graph, how the minimum and maximum values have been clipped off.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1"><span class="co"># ve less than 80</span></a>
-<a class="sourceLine" id="cb130-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb130-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb130-4" title="4"></a>
-<a class="sourceLine" id="cb130-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="co"># ve lmore than 40</span></a>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="co"># ve less than 80</span></a>
 <a class="sourceLine" id="cb131-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb131-4" title="4"></a>
 <a class="sourceLine" id="cb131-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-2.png" width="672" /></p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="co"># ve between 40 to 80</span></a>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="co"># ve lmore than 40</span></a>
 <a class="sourceLine" id="cb132-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb132-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
 <a class="sourceLine" id="cb132-4" title="4"></a>
 <a class="sourceLine" id="cb132-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-2.png" width="672" /></p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="co"># ve between 40 to 80</span></a>
+<a class="sourceLine" id="cb133-2" title="2">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-3" title="3"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb133-4" title="4"></a>
+<a class="sourceLine" id="cb133-5" title="5"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
 <p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-3.png" width="672" /></p>
 </div>
 </div>
 <div id="discussion-4" class="section level3">
 <h3><span class="header-section-number">6.12.3</span> Discussion</h3>
 <p><code>filter()</code> works really when you want to throw out or keep rows of data based on some ranges or criteria of the variables you have. When you want to keep rows of data based on the row number, say keep the first and last row of data, use <code>slice ()</code>. See also Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">tail</span>(<span class="kw">row_number</span>(), <span class="dv">6</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-2" title="2"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">tail</span>(<span class="kw">row_number</span>(), <span class="dv">6</span>))</a></code></pre></div>
 <pre><code>##   time bf vo2_norm      rer  vo2 vco2  ve  hr stage     ratio
 ## 1 1625 55 45.31250 1.068966 2900 3100 112 194     8 0.9354839
 ## 2 1630 57 45.32812 1.034126 2901 3000 111 195     8 0.9670000
@@ -944,8 +947,8 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="solution-11" class="section level3">
 <h3><span class="header-section-number">6.13.2</span> Solution</h3>
 <p>In the <code>dat_fms</code> dataset, we want to use the <code>summarize ()</code> function.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb135-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score))</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb136-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score))</a></code></pre></div>
 <pre><code>##   total_score
 ## 1          24</code></pre>
 <p>I date you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!</p>
@@ -953,12 +956,12 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="discussion-5" class="section level3">
 <h3><span class="header-section-number">6.13.3</span> Discussion</h3>
 <p>We can also go berserk by trying out different summary functions, like <code>mean ()</code>, <code>median ()</code>, <code>min()</code> (minimum value), <code>max</code> (maximum value).</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb137-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score),</a>
-<a class="sourceLine" id="cb137-3" title="3">             <span class="dt">mean_score =</span> <span class="kw">mean</span> (score),</a>
-<a class="sourceLine" id="cb137-4" title="4">             <span class="dt">median_score =</span> <span class="kw">median</span> (score),</a>
-<a class="sourceLine" id="cb137-5" title="5">             <span class="dt">min_score =</span> <span class="kw">min</span> (score),</a>
-<a class="sourceLine" id="cb137-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score))</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb138-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score),</a>
+<a class="sourceLine" id="cb138-3" title="3">             <span class="dt">mean_score =</span> <span class="kw">mean</span> (score),</a>
+<a class="sourceLine" id="cb138-4" title="4">             <span class="dt">median_score =</span> <span class="kw">median</span> (score),</a>
+<a class="sourceLine" id="cb138-5" title="5">             <span class="dt">min_score =</span> <span class="kw">min</span> (score),</a>
+<a class="sourceLine" id="cb138-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score))</a></code></pre></div>
 <pre><code>##   total_score mean_score median_score min_score max_score
 ## 1          24          2            2         1         3</code></pre>
 </div>
@@ -972,9 +975,10 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="solution-12" class="section level3">
 <h3><span class="header-section-number">6.14.2</span> Solution</h3>
 <p>In the <code>dat_fms</code> dataset, we want to use the <code>group_by()</code> and <code>summarize ()</code> function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb139-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb139-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score))</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb140-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 7 x 2
 ##   task      lower_score
 ##   &lt;chr&gt;           &lt;dbl&gt;
@@ -989,10 +993,10 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="discussion-6" class="section level3">
 <h3><span class="header-section-number">6.14.3</span> Discussion</h3>
 <p>Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the <code>dat_vo2</code> dataset. Remember in your lessons, the last 30 sec of each 3 min 30 sec stage is discarded, and the last 30s of each 3 min interval is than averaged for further analysis? Well, it means that for each <code>stage</code>, I want to keep data between 2:30 to 3min of each stage. That corresponds to rows 31 to 36 of each stage (try to think why i selected these row numbers!). I than want to average all my variables over these 6 rows per stage. I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the <code>summarize_at()</code> function? Because I want to average so many variables, I become lazy. So I specific all variable names without <code>""</code> inside the <code>vars()</code>. Note I did not type out <code>bf</code>, <code>vo2_norm</code>, <code>rer</code>, <code>vo2</code>, <code>vco2</code>, <code>ve</code>, <code>hr</code>. I used a short cut called <code>:</code>, which reads as from start to end. So <code>bf:hr</code>, means all columns from <code>bf</code> to <code>hr</code>, inclusive.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
-<a class="sourceLine" id="cb141-3" title="3"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">c</span>(<span class="dv">31</span><span class="op">:</span><span class="dv">36</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb141-4" title="4"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
+<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">slice</span>(<span class="kw">c</span>(<span class="dv">31</span><span class="op">:</span><span class="dv">36</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb143-4" title="4"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
 </div>
 </div>
 <div id="WRANGLE-INNER-JOIN" class="section level2">
@@ -1004,8 +1008,8 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="solution-13" class="section level3">
 <h3><span class="header-section-number">6.15.2</span> Solution</h3>
 <p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">dat_vo2_summ <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb142-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">dat_vo2_summ <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 8 x 11
 ##   stage    bf vo2_norm   rer   vo2  vco2    ve    hr speed   rpe lactate
 ##   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -1026,13 +1030,14 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (left); and n
 <div id="WRANGLE-LEARNING-CHECK" class="section level2">
 <h2><span class="header-section-number">6.16</span> Learning check</h2>
 <ol style="list-style-type: decimal">
-<li><p>From your learning check in <a href="InputOuput.html#INPUT-LEARNING-CHECK">5.4</a>, open up your <code>practice_script.R</code>. You should already have the codes to import the <code>data/treadmill_pt4.xlsx</code> file.</p></li>
-<li><p>Rename the columns to be <code>("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")</code>, respectively. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.1</a>.</p></li>
-<li><p>Remove the first two useless rows of the data. See Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p></li>
-<li><p>Convert the variable <code>time</code> into numeric seconds, and all other variables to numeric. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME">6.4</a> and <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.3</a>, respectively.</p></li>
+<li><p>From your learning check in <a href="InputOuput.html#INPUT-LEARNING-CHECK">5.4</a>, open up your <code>practice_script.R</code>. You should already have the codes to import the <code>data/Athlete_1_treadmill.xlsx</code> file, and label the data called <code>dat</code>.</p></li>
+<li><p>Rename the columns of <code>dat</code> to be <code>("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")</code>, respectively. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.1</a>.</p></li>
+<li><p>Remove the first useless rows of the <code>dat</code> data. See Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.2</a>.</p></li>
+<li><p>Convert the variable <code>time</code> variable of <code>dat</code> into numeric seconds, and all other variables to numeric. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME">6.4</a> and <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.3</a>, respectively.</p></li>
 </ol>
 
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.6.3</code></pre>
+<pre><code>## Warning: package &#39;MASS&#39; was built under R version 3.6.3</code></pre>
 </div>
 </div>
             </section>
