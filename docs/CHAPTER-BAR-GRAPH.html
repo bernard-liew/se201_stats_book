@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-09-28" />
+<meta name="date" content="2020-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -358,40 +358,134 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bar graphs are perhaps the most commonly used kind of data visualization. They’re typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn’t be as good for showing prices over time, where time is a continuous variable – though it can be done.</p>
 <p>There’s an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent <em>counts</em> of cases in the data set, and sometimes they represent <em>values</em> in the data set. Keep this distinction in mind – it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I’ll discuss always use bar graphs with <em>values</em>.</p>
 <p>Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called <code>"fms_pt3.xlsx"</code></p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb148-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
-<a class="sourceLine" id="cb148-3" title="3"></a>
-<a class="sourceLine" id="cb148-4" title="4">fct_lvls &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;push_up&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;shd_mob&quot;</span>)</a>
-<a class="sourceLine" id="cb148-5" title="5"></a>
-<a class="sourceLine" id="cb148-6" title="6">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb148-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> fct_lvls))</a>
-<a class="sourceLine" id="cb148-8" title="8"></a>
-<a class="sourceLine" id="cb148-9" title="9">dat</a>
-<a class="sourceLine" id="cb148-10" title="10"><span class="co">#&gt;        task side score</span></a>
-<a class="sourceLine" id="cb148-11" title="11"><span class="co">#&gt; 1     squat    c     3</span></a>
-<a class="sourceLine" id="cb148-12" title="12"><span class="co">#&gt; 2    hurdle    l     2</span></a>
-<a class="sourceLine" id="cb148-13" title="13"><span class="co">#&gt; 3    hurdle    r     2</span></a>
-<a class="sourceLine" id="cb148-14" title="14"><span class="co">#&gt;  ...&lt;6 more rows&gt;...</span></a>
-<a class="sourceLine" id="cb148-15" title="15"><span class="co">#&gt; 10 rot_stab    l     2</span></a>
-<a class="sourceLine" id="cb148-16" title="16"><span class="co">#&gt; 11 rot_stab    r     2</span></a>
-<a class="sourceLine" id="cb148-17" title="17"><span class="co">#&gt; 12  push_up    c     1</span></a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb129-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
+<a class="sourceLine" id="cb129-3" title="3"></a>
+<a class="sourceLine" id="cb129-4" title="4">fct_lvls &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;push_up&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;shd_mob&quot;</span>)</a>
+<a class="sourceLine" id="cb129-5" title="5"></a>
+<a class="sourceLine" id="cb129-6" title="6">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> fct_lvls))</a>
+<a class="sourceLine" id="cb129-8" title="8"></a>
+<a class="sourceLine" id="cb129-9" title="9">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-10" title="10"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">task</th>
+<th align="left">side</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">squat</td>
+<td align="left">c</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">hurdle</td>
+<td align="left">l</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">hurdle</td>
+<td align="left">r</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">lunge</td>
+<td align="left">l</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">lunge</td>
+<td align="left">r</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">leg_raise</td>
+<td align="left">l</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">leg_raise</td>
+<td align="left">r</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">shd_mob</td>
+<td align="left">l</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">shd_mob</td>
+<td align="left">r</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">rot_stab</td>
+<td align="left">l</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">rot_stab</td>
+<td align="left">r</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">push_up</td>
+<td align="left">c</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
 <p>Let us also create another dataset where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1">dat_summ &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total =</span> <span class="kw">min</span> (score)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb149-4" title="4"><span class="st">  </span><span class="kw">ungroup</span> ()</a>
-<a class="sourceLine" id="cb149-5" title="5"></a>
-<a class="sourceLine" id="cb149-6" title="6">dat_summ</a>
-<a class="sourceLine" id="cb149-7" title="7"><span class="co">#&gt; # A tibble: 7 x 2</span></a>
-<a class="sourceLine" id="cb149-8" title="8"><span class="co">#&gt;   task      total</span></a>
-<a class="sourceLine" id="cb149-9" title="9"><span class="co">#&gt;   &lt;fct&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb149-10" title="10"><span class="co">#&gt; 1 squat         3</span></a>
-<a class="sourceLine" id="cb149-11" title="11"><span class="co">#&gt; 2 push_up       1</span></a>
-<a class="sourceLine" id="cb149-12" title="12"><span class="co">#&gt; 3 hurdle        2</span></a>
-<a class="sourceLine" id="cb149-13" title="13"><span class="co">#&gt; 4 lunge         3</span></a>
-<a class="sourceLine" id="cb149-14" title="14"><span class="co">#&gt; 5 leg_raise     1</span></a>
-<a class="sourceLine" id="cb149-15" title="15"><span class="co">#&gt; 6 rot_stab      2</span></a>
-<a class="sourceLine" id="cb149-16" title="16"><span class="co">#&gt; # ... with 1 more row</span></a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">dat_summ &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb130-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb130-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total =</span> <span class="kw">min</span> (score)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb130-4" title="4"><span class="st">  </span><span class="kw">ungroup</span> ()</a>
+<a class="sourceLine" id="cb130-5" title="5"><span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span></a>
+<a class="sourceLine" id="cb130-6" title="6"></a>
+<a class="sourceLine" id="cb130-7" title="7">dat_summ <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb130-8" title="8"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">task</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">squat</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">push_up</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">hurdle</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">lunge</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">leg_raise</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">rot_stab</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">shd_mob</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
 <div id="BAR-GRAPH-BASIC-BAR" class="section level2">
 <h2><span class="header-section-number">7.1</span> Making a Basic Bar Graph</h2>
 <div id="problem" class="section level3">
@@ -401,9 +495,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="solution" class="section level3">
 <h3><span class="header-section-number">7.1.2</span> Solution</h3>
 <p>Use <code>ggplot()</code> with <code>geom_col()</code> and specify what variables you want on the x- and y-axes (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR">7.1</a>):</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"></a>
-<a class="sourceLine" id="cb150-2" title="2"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb150-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total))</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"></a>
+<a class="sourceLine" id="cb131-2" title="2"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-BAR"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-BAR-1.png" alt="Bar graph of values with a discrete x-axis" width="480" />
 <p class="caption">
@@ -414,8 +508,8 @@ Figure 7.1: Bar graph of values with a discrete x-axis
 <div id="discussion" class="section level3">
 <h3><span class="header-section-number">7.1.3</span> Discussion</h3>
 <p>By default, bar graphs use a dark grey for the bars. To use a color fill, use <code>fill</code>. Also, by default, there is no outline around the fill. To add an outline, use <code>colour</code>. For Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL">7.2</a>, we use a light blue fill and a black outline:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb151-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total), <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">ggplot</span>(dat_summ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb132-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> total), <span class="dt">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL-1.png" alt="A single fill and outline color for all bars" width="480" />
 <p class="caption">
@@ -436,8 +530,8 @@ Figure 7.2: A single fill and outline color for all bars
 <p>Map a variable to fill, and use <code>geom_col(position = "dodge")</code>.</p>
 <p>In this example we’ll use the <code>dat</code> data set, in which we have an FMS score one for each <code>side</code>.</p>
 <p>We’ll map <code>task</code> to the <em>x</em> position and map <code>side</code> to the fill color (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-GROUPED-BAR">7.3</a>):</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb152-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-GROUPED-BAR"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-GROUPED-BAR-1.png" alt="Graph with grouped bars" width="480" />
 <p class="caption">
@@ -461,9 +555,9 @@ Figure 7.3: Graph with grouped bars
 <div id="solution-2" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> Solution</h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FILL-MANUAL">7.4</a>).</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb134-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) </a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-FILL-MANUAL"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FILL-MANUAL-1.png" alt="Graph with different colors, black outlines, and sorted by percentage change" width="576" />
 <p class="caption">
@@ -491,11 +585,11 @@ Figure 7.5: Names of many colors available in R.
 <div id="solution-3" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Solution</h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-AXES">7.6</a>).</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
-<a class="sourceLine" id="cb154-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb135-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb135-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb135-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb135-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-AXES"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-AXES-1.png" alt="Graph different axes titles" width="480" />
 <p class="caption">
@@ -513,12 +607,12 @@ Figure 7.6: Graph different axes titles
 <div id="solution-4" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Solution</h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-LEGEND">7.7</a>).</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
-<a class="sourceLine" id="cb155-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
-<a class="sourceLine" id="cb155-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb136-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb136-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb136-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-LEGEND"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-LEGEND-1.png" alt="Graph different legend title" width="480" />
 <p class="caption">
@@ -536,13 +630,13 @@ Figure 7.7: Graph different legend title
 <div id="solution-5" class="section level3">
 <h3><span class="header-section-number">7.6.2</span> Solution</h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FONTSIZE">7.8</a>).</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
-<a class="sourceLine" id="cb156-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
-<a class="sourceLine" id="cb156-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb137-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb137-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-FONTSIZE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FONTSIZE-1.png" alt="Graph with font size = 16" width="480" />
 <p class="caption">
@@ -560,21 +654,21 @@ Figure 7.8: Graph with font size = 16
 <div id="solution-6" class="section level3">
 <h3><span class="header-section-number">7.7.2</span> Solution</h3>
 <p>We will be using <code>ggsave()</code>. First we need to assign the gplot we created with <code>ggplot()</code> to an object, which we can name anything. Here we call the object simply <code>f</code>. There are several important arguments you need. <code>filename</code> is the name of the file and extension you want your image to be called. Here we will use <code>filename = "my_plot.png"</code>. <code>plot</code> is the specific figure you want to save. Hwere we will use <code>plot = f</code>. <code>width</code> and <code>height</code> allows you to specify how big your image is. <code>unit</code> is whether your <code>width</code> and <code>height</code> are defined in centimeters, <code>"cm"</code>, or inches, <code>"in"</code>. Here I will use <code>units = "cm"</code>, and a 8 cm by 4 cm <code>width</code> and <code>height</code>, respectively. Lastly, the <code>dpi</code> argument specifies the resoultion of the image. Here we use <code>dpi = 300</code>. The file is saved to the working directory of the session.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">f &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb157-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb157-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb157-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
-<a class="sourceLine" id="cb157-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
-<a class="sourceLine" id="cb157-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb157-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a>
-<a class="sourceLine" id="cb157-8" title="8"></a>
-<a class="sourceLine" id="cb157-9" title="9"><span class="co"># Default dimensions are in inches, but you can specify the unit</span></a>
-<a class="sourceLine" id="cb157-10" title="10"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;myplot.png&quot;</span>, </a>
-<a class="sourceLine" id="cb157-11" title="11">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
-<a class="sourceLine" id="cb157-12" title="12">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb157-13" title="13">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb157-14" title="14">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
-<a class="sourceLine" id="cb157-15" title="15">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">f &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-3" title="3"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-4" title="4"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Tasks&quot;</span>,</a>
+<a class="sourceLine" id="cb138-5" title="5">        <span class="dt">y =</span> <span class="st">&quot;FMS Score&quot;</span>,</a>
+<a class="sourceLine" id="cb138-6" title="6">        <span class="dt">fill =</span> <span class="st">&quot;Side&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span> <span class="dv">16</span>))</a>
+<a class="sourceLine" id="cb138-8" title="8"></a>
+<a class="sourceLine" id="cb138-9" title="9"><span class="co"># Default dimensions are in inches, but you can specify the unit</span></a>
+<a class="sourceLine" id="cb138-10" title="10"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;myplot.png&quot;</span>, </a>
+<a class="sourceLine" id="cb138-11" title="11">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
+<a class="sourceLine" id="cb138-12" title="12">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb138-13" title="13">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb138-14" title="14">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
+<a class="sourceLine" id="cb138-15" title="15">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a></code></pre></div>
 </div>
 <div id="discussion-3" class="section level3">
 <h3><span class="header-section-number">7.7.3</span> Discussion</h3>
@@ -593,7 +687,7 @@ Figure 7.9: From left to right: PNG output at 72, 150, and 300 ppi (actual size)
 <h2><span class="header-section-number">7.8</span> Learning check</h2>
 <ol style="list-style-type: decimal">
 <li><p>From your learning check in <a href="WRANGLE.html#WRANGLE-LEARNING-CHECK">6.16</a>, open up your <code>practice_script.R</code>.</p></li>
-<li><p>Import the Excel file <code>data/fms_pt3.xlsx</code>, and assign it to an object <code>dat</code>. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>.</p></li>
+<li><p>Import the Excel file <code>data/Athlete_1_FMS.xlsx</code>, and assign it to an object <code>dat</code>. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>.</p></li>
 <li><p>Create another dataset, <code>dat_summ</code> where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p></li>
 <li><p>Using the data <code>dat_summ</code>, create a barplot of <code>task</code> as the <em>x</em> axis, and the <code>total</code> FMS score as the <em>y</em> axis. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR">7.1</a>.</p></li>
 <li><p>Make the line <code>colour</code> <code>"red"</code>, and <code>fill</code> the barplot with the colour <code>"blue"</code>. See <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL">7.2</a>.</p></li>

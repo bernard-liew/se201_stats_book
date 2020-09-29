@@ -135,7 +135,9 @@ dat_vo2 <- dat_vo2 %>%
 
 dat_vo2_summ <- dat_vo2 %>%
   group_by(XXX) %>% # for each group
-  slice(XXX:XXX) %>% # keep time 2:30 - 3min per stage
+  mutate (row_id = row_number()) %>%
+  filter (row_id < XXX) %>% # throw all data between 3 to 3:30 min
+  slice_tail (n = XXX)%>% # keep last 30 sec per stage
   summarise_at (vars(bf:hr), mean)
 
 ### Combine stage and average data (Task 5)

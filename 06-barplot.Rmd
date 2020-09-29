@@ -32,7 +32,8 @@ fct_lvls <- c("squat", "push_up", "hurdle", "lunge", "leg_raise", "rot_stab", "s
 dat <- dat %>%
   mutate (task = factor (task, levels = fct_lvls))
 
-dat
+dat %>%
+  knitr::kable (digits = 2)
 ```
 
 Let us also create another dataset where  we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
@@ -43,7 +44,8 @@ dat_summ <- dat %>%
   summarize (total = min (score)) %>%
   ungroup ()
 
-dat_summ
+dat_summ %>%
+  knitr::kable (digits = 2)
 ```
 
 
@@ -236,7 +238,7 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 
 1. From your learning check in \@ref(WRANGLE-LEARNING-CHECK), open up your `practice_script.R`. 
 
-2. Import the Excel file `data/fms_pt3.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
+2. Import the Excel file `data/Athlete_1_FMS.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
 
 3. Create another dataset, `dat_summ` where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 

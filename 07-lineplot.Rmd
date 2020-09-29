@@ -30,7 +30,9 @@ dat <-  read.xlsx (xlsxFile = "data/treadmill_pt4_clean.xlsx",
 dat <- dat %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE)) %>%
   group_by(stage) %>%
-  slice(c(31:36)) %>%  
+  mutate (row_id = row_number()) %>%
+  filter (row_id < 37) %>%
+  slice_tail (n = 6)%>%
   summarise_at (vars(bf:hr), mean)
 
 ```
@@ -159,7 +161,8 @@ ggplot(dat_long) +
 The `dat_long` data has three columns, including the factor `var`, which we mapped to `colour` and `linetype`:
 
 ```{r}
-dat_long
+dat_long %>%
+  knitr::kable (digits = 2)
 ```
 
 > **Note**
@@ -409,13 +412,25 @@ theme_set(theme_grey())
 
 1. From your learning check in \@ref(BAR-LEARNING-CHECK), open up your `practice_script.R`. 
 
-2. Import the Excel file `data/treadmill_pt4_clean.xlsx`, and the sheet `Sheet1`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
+2. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet `raw`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Also import the the sheet `stage` from the same file, and assign it to an object `dat_stage`.
 
-3. Create another dataset, `dat_summ`, and create another variable called `stage`, where you create intervals of stage each of 3:30min intervals. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
+2. Rename the columns of `dat` to be `("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")`, respectively. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
-4. Using the data `dat_summ`, keep the interval of 2:30 to 3:00min of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+3. Remove the first row of the `dat` data, as it is useless. See Recipe \@ref(WRANGLE-SLICE).
 
-5. From step 5, find the mean of each 30s of data of each stage, across all variables. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+4. Convert the variable `time` of `dat` into numeric seconds, and all other variables to numeric. See Recipe \@ref(WRANGLE-CHARACTER-2-TIME) and \@ref(WRANGLE-CHARACTER-2-NUMERIC), respectively.
 
-6. Make a line plot with with `vo2` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
+5. Create a variable called `stage`, where each stage represents 3:30 min worth of VO2 data. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
+
+6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 min windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+7. For each stage, remove the data between 3 to 3:30min. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
+
+8. For each stage, keep the last six rows of data. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
+
+9. For each stage, calculate for all variables for the mean of the last six rows of data. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL). Assign this table to an object called `dat_summ`.
+
+10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Reciple \@ref(WRANGLE-INNER-JOIN). Assign this table to an object called `df_plot`.
+
+11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 
