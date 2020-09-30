@@ -32,6 +32,67 @@ dat_vo2_stage <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
 ```
 
 
+
+## Tidy data {#WRANGLE-TIDY-DATA}
+
+You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is **not the data you loaded**, but rather came with the `tidyverse` package. Each dataset shows the same values of four variables *country*, *year*, *population*, and *cases*, but each dataset organises the values in a different way.
+
+```{r}
+table1
+table2
+table3
+
+# Spread across two tables
+table4a  # cases
+table4b  # population
+```
+
+These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with. 
+
+There are three interrelated rules which make a dataset tidy:
+
+1.  Each variable must have its own column.
+1.  Each observation must have its own row.
+1.  Each value must have its own cell.
+
+Figure \@ref(fig:tidy-structure) shows the rules visually.
+
+```{r tidy-structure, echo = FALSE, out.width = "100%", fig.cap = "Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells."}
+knitr::include_graphics("images/chapter-5/tidy-1.png")
+```
+
+These three rules are interrelated because it's impossible to only satisfy two of the three. 
+
+In this example, only `table1` is tidy. It's the only representation where each column is a variable.
+
+Why ensure that your data is tidy? There are two main advantages:
+
+1.  There's a general advantage to picking one consistent way of storing
+    data. If you have a consistent data structure, it's easier to learn the
+    tools that work with it because they have an underlying uniformity.
+    
+1.  There's a specific advantage to placing variables in columns because
+    most of R functions work with data in the tidy format. That makes transforming 
+    tidy data feel particularly natural.
+    
+The principles of tidy data seem so obvious that you might wonder if you'll ever encounter a dataset that isn't tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:
+
+1.  Most people aren't familiar with the principles of tidy data, and it's hard
+    to derive them yourself unless you spend a _lot_ of time working with data.
+    
+2.  Data is often organised to facilitate some use other than analysis. For 
+    example, data is often organised to make entry as easy as possible.
+    
+This means for most real analyses, you'll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. 
+The second step is to resolve one of two common problems:
+
+1. One variable might be spread across multiple columns.
+
+2. One observation might be scattered across multiple rows.
+
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` and `pivot_longer()`.
+
+
 ## Renaming variables {#WRANGLE-RENAME-VARIABLES}
 
 ### Problem
@@ -60,7 +121,7 @@ colnames (dat_vo2)
 
 ```
 
-## Subset rows {#WRANGLE-SLICE}
+## Selecting rows and columns {#WRANGLE-SLICE}
 
 ### Problem
 
@@ -130,7 +191,7 @@ str(dat_vo2)
 
 What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure \@ref(fig:col-class)). 
 
-This will be expanded upon in the Recipe \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
+This was touched on in in Section \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
 
 
 ```{r col-class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
@@ -247,66 +308,6 @@ dat_vo2 %>%
 ### Discussion
 
 Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.
-
-
-## Tidy data {#WRANGLE-TIDY-DATA}
-
-You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is **not the data you loaded**, but rather came with the `tidyverse` package. Each dataset shows the same values of four variables *country*, *year*, *population*, and *cases*, but each dataset organises the values in a different way.
-
-```{r}
-table1
-table2
-table3
-
-# Spread across two tables
-table4a  # cases
-table4b  # population
-```
-
-These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with. 
-
-There are three interrelated rules which make a dataset tidy:
-
-1.  Each variable must have its own column.
-1.  Each observation must have its own row.
-1.  Each value must have its own cell.
-
-Figure \@ref(fig:tidy-structure) shows the rules visually.
-
-```{r tidy-structure, echo = FALSE, out.width = "100%", fig.cap = "Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells."}
-knitr::include_graphics("images/chapter-5/tidy-1.png")
-```
-
-These three rules are interrelated because it's impossible to only satisfy two of the three. 
-
-In this example, only `table1` is tidy. It's the only representation where each column is a variable.
-
-Why ensure that your data is tidy? There are two main advantages:
-
-1.  There's a general advantage to picking one consistent way of storing
-    data. If you have a consistent data structure, it's easier to learn the
-    tools that work with it because they have an underlying uniformity.
-    
-1.  There's a specific advantage to placing variables in columns because
-    most of R functions work with data in the tidy format. That makes transforming 
-    tidy data feel particularly natural.
-    
-The principles of tidy data seem so obvious that you might wonder if you'll ever encounter a dataset that isn't tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:
-
-1.  Most people aren't familiar with the principles of tidy data, and it's hard
-    to derive them yourself unless you spend a _lot_ of time working with data.
-    
-2.  Data is often organised to facilitate some use other than analysis. For 
-    example, data is often organised to make entry as easy as possible.
-    
-This means for most real analyses, you'll need to do some tidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. 
-The second step is to resolve one of two common problems:
-
-1. One variable might be spread across multiple columns.
-
-2. One observation might be scattered across multiple rows.
-
-Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` and `pivot_longer()`.
 
 ## Spreading {#WRANGLE-SPREAD}
 
