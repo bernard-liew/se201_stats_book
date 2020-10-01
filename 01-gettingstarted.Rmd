@@ -32,7 +32,7 @@ knitr::include_graphics(c("images/chapter-1/RScreenshot.png"))
 knitr::include_graphics(c("images/chapter-1/RStudio.png"))
 ```
 
-While you can do pretty much everything you want within base-R, you'll find that most people these days do their R programming in an application called RStudio. RStudio is a graphical user interface (GUI)-like interface for R that makes programming in R a bit easier. In fact, once you've installed RStudio, you'll likely never need to open the base R application again. To download and install RStudio (around 40mb), go to[https://rstudio.com/products/rstudio/download/#download/](https://rstudio.com/products/rstudio/download/#download)| and follow the instructions.
+While you can do pretty much everything you want within base-R, you'll find that most people these days do their R programming in an application called RStudio. RStudio is a graphical user interface (GUI)-like interface for R that makes programming in R a bit easier. In fact, once you've installed RStudio, you'll likely never need to open the base R application again. To download and install RStudio (around 40mb), go to [https://rstudio.com/products/rstudio/download/#download/](https://rstudio.com/products/rstudio/download/#download)| and follow the instructions.
 
 
 Let's go ahead and boot up RStudio and see how she looks!
@@ -75,7 +75,7 @@ The console is the heart of R. Here is where R actually evaluates code. At the b
 ```
 
 
-Try calculating 1+1 by typing the code directly into the console - then press Enter. You should see the result [1] 2. Don't worry about the [1] for now, we'll get to that later. For now, we're happy if we just see the 2. Then, type the same code into the Source, and then send the code to the Console by highlighting the code and clicking the ``Run" button on the top right hand corner of the Source window. Alternatively, you can use the hot-key "Command + Return" on Mac or "Control + Enter" on Windows.
+Try calculating 1+1 by typing the code directly into the console - then press Enter. You should see the result [1] 2. Don't worry about the [1] for now, we'll get to that later. For now, we're happy if we just see the 2. Then, type the same code into the Source, and then send the code to the Console by highlighting the code and clicking the "Run" button on the top right hand corner of the Source window. Alternatively, you can use the hot-key "Command + Return" on Mac or "Control + Enter" on Windows.
 
 **Tip**: Try to write most of your code in a document in the Source. Only type directly into the Console to do quick calculations like you are using a calculator.
 
@@ -89,7 +89,7 @@ So as you can see, you can execute code either by running it from the Source or 
 knitr::include_graphics(c("images/chapter-1/environmentss.png"))
 ```
 
-The Environment tab of this panel shows you the names of all the data objects (like vectors, matrices, and dataframes) that you've defined in your current R session. You can also see information like the number of observations and rows in data objects. The tab also has a few clickable actions like ``Import Dataset" which will open a graphical user interface (GUI) for important data into R. 
+The Environment tab of this panel shows you the names of all the data objects (like vectors, matrices, and dataframes) that you've defined in your current R session. You can also see information like the number of observations and rows in data objects. The tab also has a few clickable actions like "Import Dataset" which will open a graphical user interface (GUI) for importing data into R. 
 
 The History tab of this panel simply shows you a history of all the code you've previously evaluated in the Console. 
 
@@ -100,7 +100,7 @@ As you get more comfortable with R, you might find the Environment / History pan
 
 The Files / Plots / Packages / Help panel shows you lots of helpful information. Let's go through each tab in detail:
 
-1. Files - The files panel gives you access to the file directory on your hard drive. One nice feature of the "Files" panel is that you can use it to set your working directory - once you navigate to a folder you want to read and save files to, click "More" and then "Set As Working Directory." We'll talk about working directories in more detail soon.
+1. Files - The files panel gives you access to the file directory on your hard drive. One nice feature of the "Files" panel is that you can use it to set your working directory. We'll talk about working directories in more detail soon.
 
 2. Plots - The Plots panel (no big surprise), shows all your plots. There are buttons for opening the plot in a separate window and exporting the plot as a pdf or jpeg (though you can also do this with code using the `pdf()` or `jpeg()` functions.)
 
@@ -279,7 +279,7 @@ head(ChickWeight)
 ## Learning check {#INSTALL-LEARNING-CHECK}
 
 
-1. Download R software and RStudio software
+1. Download Base-R software and RStudio software.
 
 2. Open up RStudio software and type the following code below into the **console**. What does it give you?
 

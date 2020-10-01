@@ -1,6 +1,6 @@
 # Data manipulation{#WRANGLE}
 
-## Download and load libraries {-}
+## Download and load packages {-}
 
 ```{r, message=FALSE, warning=FALSE}
 if (!require("pacman")) install.packages("pacman")
@@ -90,7 +90,7 @@ The second step is to resolve one of two common problems:
 
 2. One observation might be scattered across multiple rows.
 
-Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` and `pivot_longer()`.
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` in Recipe \@ref(WRANGLE-SPREAD) and `pivot_longer()` in Recipe \@ref(WRANGLE-GATHER) below.
 
 
 ## Renaming variables {#WRANGLE-RENAME-VARIABLES}
@@ -106,6 +106,7 @@ Create a vector of 8 new names that you can give to the data. The order of new n
 ```{r }
 
 # This prints the current column names
+
 colnames (dat_vo2)  
 
 # New names. Notice the commas and be pedantic about spacing
@@ -117,6 +118,7 @@ new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
 colnames (dat_vo2)  <- new_names
 
 # This prints the new column names
+
 colnames (dat_vo2)  
 
 ```
@@ -129,61 +131,67 @@ You want to remove a specific row  or a range of rows, and remove a specific col
 
 ### Solution
 
-To keep or remove rows based on the row numbers, use `slice ()`, `slice_head()`, or `slice_tail()`. In `slice ()`, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, use `(start:end)`. In `slice_tail ()` and `slice_head()`, you can keep the bottom, and top, *n* number of rows, respectively.
+To keep or remove rows based on the row numbers, use `slice ()`, `slice_head()`, or `slice_tail()`. In `slice ()`, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, add `start:end` inside `slice()`. In `slice_tail ()` and `slice_head()`, you can keep the bottom, and top, *n* number of rows, respectively, by adding `n = 3` for example inside `slice_tail()` or `slice_head()`.
 
 To keep based on the column names, use the `select ()` function. 
 
 ```{r }
 
 # This keeps only the second row
+
 dat_vo2 %>% 
   slice (2) %>%
   head() %>%
   knitr::kable (digits = 2)
 
 # This removes the second row
+
 dat_vo2 %>% 
   slice (-2)%>%
   head()%>%
   knitr::kable (digits = 2)
 
 # This removes the second and third rows
+
 dat_vo2 %>% 
   slice (-(2:3))%>%
   head()%>%
   knitr::kable (digits = 2)
 
 # This keeps the top six rows
+
 dat_vo2 %>% 
   slice_head (n = 6) %>%
   head()%>%
   knitr::kable (digits = 2)
 
 # This keeps the bottom six rows
+
 dat_vo2 %>% 
   slice_tail (n = 6) %>%
   head()%>%
   knitr::kable (digits = 2)
 
 # This selects the first, second, and fourth column, and discards the rest
+
 dat_vo2 %>%
-      select (time, bf, rer) %>%
+  select (time, bf, rer) %>%
   head()%>%
   knitr::kable (digits = 2)
 
-```
 
-```{r}
 # This removes the first row, and replaces the old data in object dat_vo2
+
 dat_vo2 <- dat_vo2 %>% 
   slice (-(1))
+
 ```
 
 ## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
 
 ### Problem
 
-The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. But let us see the type of data that was imported. The `str()` function provides us with some summary information about the dataframe.
+The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. See also Section \@ref(BASIC-TYPES). But let us see the type of data that was imported. The `str()` function provides us with some summary information about the dataframe.
 
 ```{r}
 str(dat_vo2)
@@ -204,6 +212,7 @@ knitr::include_graphics("images/chapter-5/dat_vo2_column_class.png")
 Use the `mutate()` function and the `as.numeric` function. 
 
 ```{r}
+# Make all variables from bf to hr numeric, and replace the current data
 
 dat_vo2 <-  dat_vo2 %>%
   mutate (bf = as.numeric(bf),
@@ -215,6 +224,7 @@ dat_vo2 <-  dat_vo2 %>%
           hr = as.numeric(hr))
 
 # Recheck the type of each column 
+
 str(dat_vo2)
 
 ```
@@ -231,7 +241,7 @@ str(dat_vo2$time)
 
 ### Solution
 
-Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \ref@(WRANGLE-NEW-VARIABLES).
+Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES).
 
 ```{r}
 
@@ -243,6 +253,7 @@ dat_vo2 <- dat_vo2 %>%
             as.numeric ()) # strips the S symbol to make it a number
 
 # Recheck the type of each column 
+
 str(dat_vo2)
 
 ```
@@ -253,34 +264,44 @@ str(dat_vo2)
 Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the `time` variable.  
 
 ```{r }
-# removes whitespaces around the time variable
+# First, removes whitespaces around the time variable
+
 dat_vo2 %>%
   mutate (time = time %>% 
-            str_squish()) %>%
+                 str_squish()) %>%
   head()%>%
   knitr::kable (digits = 2)
 
 
-# convert to minutes and seconds
+# Second, convert to minutes and seconds
+
 dat_vo2 %>%
   mutate (time = time %>% 
-                ms())%>%
+                 str_squish()%>%  
+                 ms())%>%
   head()%>%
   knitr::kable (digits = 2)
 
 
-# converts entirely to seconds
+# Third, converts entirely to seconds
+
 dat_vo2 %>%
   mutate (time = time %>% 
-            as.period(unit = "sec"))%>%
+                 str_squish()%>%  
+                 ms() %>%
+                 as.period(unit = "sec")) %>%
   head()%>%
   knitr::kable (digits = 2)
 
 
-# strips the S symbol to make it a number
+# Fourth, strips the S symbol to make it a number
+
 dat_vo2 %>%
   mutate (time = time %>% 
-            as.numeric ())%>%
+                 str_squish()%>%  
+                 ms() %>%
+                 as.period(unit = "sec") %>% 
+                 as.numeric ())%>%
   head()%>%
   knitr::kable (digits = 2)
 
@@ -291,7 +312,7 @@ dat_vo2 %>%
 
 ### Problem
 
-You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not the `cut_interval` function  explain, other than to say the `length` argument is used to specify the range of evenly spaced values to categorize over.
+Remember, each stage in VO2 testing is 3:30min long, and you collect data in intervals of 5 sec. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
 
 ### Solution
 
@@ -392,14 +413,16 @@ dat_fms_relvl <- dat_fms %>%
 
 Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.
 
-(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS) Barplots of FMS score on original `dat_fms` (left); and new `dat_fms_relvl` when with modified the `task` variable to be a factor, with new levels (right).
+(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS) Barplots of FMS score on original `dat_fms` (top); and new `dat_fms_relvl` when with modified the `task` variable to be a factor, with new levels (bottom).
 
 ```{r FIG-BAR-GRAPH-FACTOR-EFFECTS, fig.show="hold", fig.cap="(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS)"}
 # Without factor 
+
 ggplot(dat_fms) +
   geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") 
 
 # With factor new levels
+
 ggplot(dat_fms_relvl) +
   geom_col(aes(x = task, y = score, fill = side), position = "dodge", color = "black") 
 
@@ -436,10 +459,11 @@ dat_vo2_crazy <-  dat_vo2  %>%
           junk = (vo2+ vco2)/ (hr + bf))# divided the sum of vo2 and vco2, and sum of hr and bf
   
 head(dat_vo2_crazy)%>%
-  knitr::kable (digits = 2)
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "100px")
 ```
 
-You can even create a new variable, which reflects the present row number (`row_id`). This row number reflects the number of 5 min VO2 windows. If there is 10 min of data collected, there will be two row numbers, Really quite useful for VO2 analysis. Here, inside the `mutate()` function, I will be using the function  `row_number()` to get the respective number for each row.
+You can even create a new variable, which reflects the present row number (`row_id`). This row number reflects the number of 5 sec VO2 windows. If there is 10 sec of data collected, there will be two row numbers, Really quite useful for VO2 analysis and cleaning. Here, inside the `mutate()` function, I will be using the function  `row_number()` to get the respective number for each row.
 
 ```{r}
 dat_vo2 <- dat_vo2 %>%
@@ -452,7 +476,7 @@ head(dat_vo2)%>%
 
 ## Filtering {#WRANGLE-FILTER}
 
-Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe \@ref(WRANGLE-SLICE), you learnt the `slice()` function. That is for really simple filtering. The `filter()` function you will learn here gives you more flexibility, which you will learnt in a bit. Filtering deals with keeping or throwing out rows of data. Keeping or throwing out columns of data uses the `select()` function, which you will learn in Recipe \@ref(WRANGLE-SLICE).
+Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe \@ref(WRANGLE-SLICE), you learnt the `slice()` function. That is for really simple filtering. The `filter()` function you will learn here gives you more flexibility. Filtering deals with keeping or throwing out **rows** of data. Keeping or throwing out columns of data requires the `select()` function, which you learnt in Recipe \@ref(WRANGLE-SLICE).
 
 ### Keep rows you want based on condition {#WRANGLE-FILTER-KEEP-CHARACTER}
 
@@ -473,7 +497,7 @@ dat_fms %>%
 
 ### Keep rows based on a numerical range {#WRANGLE-FILTER-KEEP-NUMERIC}
 
-You want to keep the data when a variable is within a certain window range. Let us use the `dat_vo2` dataset. Let us see the range of values of `ve`.
+You want to keep the data when a variable is within a certain window range. Let us use the `dat_vo2` dataset. Let us see the range of values of the variable `ve`.
 
 ```{r}
 hist (dat_vo2$ve)
@@ -481,26 +505,29 @@ hist (dat_vo2$ve)
 
 #### Problem
 
-Say I want to keep rows where 1) `ve` is less than 80, 2) `ve` more than 40, and 3) `ve` is between 40 to 80
+Say I want to keep rows where 1) `ve` is less than 80, 2) `ve` more than 40, and 3) `ve` is between 40 to 80.
 
 #### Solution
 
 Notice for each graph, how the minimum and maximum values have been clipped off.
 
 ```{r}
-# ve less than 80
+# Keep ve less than 80
+
 dat_vo2_filt <- dat_vo2 %>%
   filter (ve < 80)
 
 hist (dat_vo2_filt$ve)
 
-# ve lmore than 40
+# Keep ve lmore than 40
+
 dat_vo2_filt <- dat_vo2 %>%
   filter (ve > 40)
 
 hist (dat_vo2_filt$ve)
 
-# ve between 40 to 80
+# Keep ve between 40 to 80
+
 dat_vo2_filt <- dat_vo2 %>%
   filter (ve > 40 & ve < 80)
 
@@ -525,12 +552,11 @@ In the `dat_fms` dataset, we want to use the `summarize ()` function.
 ```{r }
 
 dat_fms %>%
-  summarize (total_score = sum (score)) %>%
-  knitr::kable (digits = 2)
+  summarize (total_score = sum (score)) 
 
 ```
 
-I date you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!
+I dare you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!
 
 ### Discussion
 
@@ -552,11 +578,11 @@ dat_fms %>%
 
 ### Problem
 
-You want to perform a summary function for each chunk of group. For example, the FMS is typically scored by taking the lower of the two values of left and right for each task. In `side`, we have three values, `c`, `left` and `right`. The minimum of `c` is the same value itself.
+You want to perform the same summary function for each chunk of group. For example, the FMS is typically scored by taking the lower of the two values of left and right for each task. In `side`, we have three values, `c`, `left` and `right`. The minimum of `c` is the same value itself.
 
 ### Solution
 
-In the `dat_fms` dataset, we want to use the `group_by()` and `summarize ()` function.The  code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.
+In the `dat_fms` dataset, we want to use the `group_by()` and `summarize ()` function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.
 
 ```{r }
 
@@ -571,15 +597,15 @@ dat_fms %>%
 
 Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the `dat_vo2` dataset. 
 
-Remember in your lessons, the last 30 sec of each 3 min 30 sec **complete** stage is discarded, that means that I want to throw away the data interval 3 to 3:30 min for every stage. 
+Remember in your lessons, the last 30 sec of each 3 min 30 sec **complete** stage is discarded. That means that I want to throw away the data interval between 3:00 to 3:30 min for every stage. 
 
-Thereafter, for the **complete** stage, the last 30s of each 3 min interval is than averaged for further analysis. This means keeping data between 2:30 to 3min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers! 
+Thereafter, for the **complete** stage, the last 30 sec of each 3 min interval is than averaged for further analysis. This means keeping data between 2:30 to 3:00 min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers! 
 
 For the last stage, there may be the chance that it is **incomplete**. Based on Kelly's lesson, you will need to extract the last 30 sec (i.e. last six rows) of that stage.
 
 I than want to average all my variables over these 6 rows per stage. 
 
-I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the `summarize_at()` function? Because I want to average so many variables, I become lazy. So I specific all variable names without `""` inside the `vars()`. Note I did not type out `bf`, `vo2_norm`, `rer`, `vo2`, `vco2`, `ve`, `hr`. I used a short cut called `:`, which reads as from start to end. So `bf:hr`, means all columns from `bf` to `hr`, inclusive.
+I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the `summarize_at()` function? Because I want to average so many variables, I become lazy. So I specify all variable names without `""` inside the `vars()`. Note I did not type out `bf`, `vo2_norm`, `rer`, `vo2`, `vco2`, `ve`, `hr`. I used a short cut called `:`, which reads as from start to end. So `bf:hr`, means all columns from `bf` to `hr`, inclusive.
 
 ```{r, results = "asis"}
 dat_vo2_summ <- dat_vo2 %>%
@@ -599,7 +625,7 @@ knitr::kable (dat_vo2_summ,
 
 ### Problem
 
-You want to combine two tables together, ensuring the each row is linked appropriately. For example, you want to combine your `dat_vo2_summ` summary data with the `dat_vo2_stage` table which contains the RPE and blood lactate values. 
+You want to combine two tables together, ensuring that each row is linked appropriately. For example, you want to combine your `dat_vo2_summ` summary data with the `dat_vo2_stage` table which contains the RPE and blood lactate values. 
 
 ### Solution
 
@@ -629,9 +655,9 @@ It is common sense, that if we want to join two tables, there must be some rules
 
 5. Create a variable called `stage`, where each stage represents 3:30 min worth of VO2 data. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
 
-6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 min windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 sec windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-7. For each stage, remove the data between 3 to 3:30min. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
+7. For each stage, remove the data between 3:00 to 3:30min. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
 
 8. For each stage, keep the last six rows of data. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
 

@@ -60,7 +60,8 @@ ggplot(dat) +
 In this sample data set, the *x* variable, `time`, is in one column and the *y* variable, `vo2`, is in another:
 
 ```{r}
-dat
+dat %>%
+  knitr::kable (digits = 2)
 ```
 
 
@@ -100,30 +101,6 @@ ggplot(dat) +
   geom_line(aes(x = stage, y = vo2))  +
   geom_point(aes(x = stage, y = vo2))
 ```
-
-### Discussion
-
-Sometimes it is useful to indicate each data point on a line graph. This is helpful when the density of observations is low, or when the observations do not happen at regular intervals. 
-
-In an external `worldpop` data set that comes with the installed packages, the intervals between each data point are not consistent. In the far past, the estimates were not as frequent as they are in the more recent past. Displaying points on the graph illustrates when each estimate was made (Figure \@ref(fig:FIG-LINE-GRAPH-POINTS-INTERVAL)):
-
-```{r FIG-LINE-GRAPH-POINTS-INTERVAL, fig.show="hold", fig.cap='Top: points indicate where each data point is; bottom: the same data with a log y-axis', fig.height=2}
-
-library(gcookbook) # Load gcookbook for the worldpop data set
-
-ggplot(worldpop) +
-  geom_line(aes(x = Year, y = Population)) +
-  geom_point(aes(x = Year, y = Population))
-
-# Same with a log y-axis
-ggplot(worldpop) +
-  geom_line(aes(x = Year, y = Population)) +
-  geom_point(aes(x = Year, y = Population)) +
-  scale_y_log10()
-
-```
-
-With the log y-axis, you can see that the rate of proportional change has increased in the last thousand years. The estimates for the years before 0 have a roughly constant rate of change of 10 times per 5,000 years. In the most recent 1,000 years, the population has increased at a much faster rate. We can also see that the population estimates are much more frequent in recent times--and probably more accurate!
 
 
 ## Making a Line Graph with Multiple Lines {#LINE-GRAPH-MULTIPLE-LINE}
@@ -352,22 +329,27 @@ To use a premade theme, add `theme_bw()` or another theme to your plot (Figure \
 library(gcookbook)  # Load gcookbook for the heightweight data set
 
 # Create the base plot
+
 hw_plot <- ggplot(heightweight, aes(x = ageYear, y = heightIn)) +
   geom_point()
 
 # Grey theme (the default)
+
 hw_plot +
   theme_grey()
 
 # Black-and-white theme
+
 hw_plot +
   theme_bw()
 
 # Minimal theme without background annotations
+
 hw_plot +
   theme_minimal()
 
 # Classic theme, with axis lines but no gridlines
+
 hw_plot +
   theme_classic()
 ```
@@ -398,12 +380,15 @@ You can set the default theme for the current R session with `theme_set()`, alth
 
 ```{r, eval=FALSE}
 # Set default theme for current session
+
 theme_set(theme_bw())
 
 # This will use theme_bw()
+
 hw_plot
 
 # Reset the default theme back to theme_grey()
+
 theme_set(theme_grey())
 ```
 
@@ -432,5 +417,6 @@ theme_set(theme_grey())
 
 10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Reciple \@ref(WRANGLE-INNER-JOIN). Assign this table to an object called `df_plot`.
 
-11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
+11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis, and assign it to an object called `f`. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 
+12. Save image `f` to a file called `myfig.png`. See Recipe \@ref(BAR-OUTPUT-BITMAP).

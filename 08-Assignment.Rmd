@@ -25,7 +25,7 @@ To do your assignment, follow these steps:
 
 7. **Task 3:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Reciple \@ref(WRANGLE-CHARACTER-2-NUMERIC).
 
-8. **Task 4:** Find the average 30s value (between 2:30min to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+8. **Task 4:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
 9. **Task 5:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-INNER-JOIN).
 

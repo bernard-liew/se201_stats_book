@@ -1,6 +1,6 @@
 # Input and Output {#InputOuput}
 
-## Download and load libraries {-}
+## Download and load packages {-}
 
 ```{r, message=FALSE, warning=FALSE}
 
