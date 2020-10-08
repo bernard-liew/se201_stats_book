@@ -31,7 +31,9 @@ To do your assignment, follow these steps:
 
 10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
 
-11. **Task 7:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+
+12. **Task 8:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Reciple \@ref(INPUT-EXPORT). 
 
 ```{r, eval = FALSE}
 
@@ -187,8 +189,15 @@ ggsave(filename = "heartrate.png",
        unit = "cm", 
        dpi = 300)
 
+#### Export table (Task 8)
+
+write.xlsx(x = XXX,
+           sheetName = "vo2",
+           file = "data/vo2_table.xlsx")
+
 ## Bonus Codes to help you -------------------------------------------------
 ### Click on everything and run
+
 
 ### Get VO2 max , VO2 max relative
 
@@ -198,7 +207,33 @@ raw_roll <- dat_vo2 %>%
   arrange (desc (time)) %>%
   mutate_at (vars(bf:hr), rolling_mean6) %>%
   na.omit() %>%
-  summarise_at(vars(bf:hr), max, na.rm = TRUE)
+  summarise_at(vars(bf:hr), max, na.rm = TRUE) %>%
+  mutate (vo2 = vo2/1000)
+
+cat ("The relative peak O2 uptake is:", raw_roll$vo2_norm, "(ml/kg/min)")
+cat ("The absolute peak O2 uptake is:", raw_roll$vo2, "(L/min)")
+
+### Get max aerobic speed
+
+#### Get maximal stage completed number
+max_stage <- max (dat_vo2$stage)
+
+#### Find number of rows in final stage
+dat_vo2_last <- dat_vo2 %>%
+  filter (stage == max_stage)
+
+#### Calculate based on rows the proportion of stage completed
+last_stage_prop <- nrow (dat_vo2_last)/42
+
+#### Get the speed increment, which should be even across all stage
+increment <- mean (diff(dat_vo2_comb$speed, lag = 1))
+
+#### Get the maximal aerobic speed
+ans <-  last_stage_prop * increment
+max_aerobic_speed <- ans + max (dat_vo2_comb$speed)
+
+cat ("The maximal aerobic speed:", max_aerobic_speed,  "(Km/h)")
+
 
 ### Get Lactate and Anaerobic Thresold
 
@@ -241,7 +276,8 @@ pi <- data.frame(Variable = c("Lactate Threshold", "Anaerobic Threshold"),
                  Speed = c(speed_at_lac_thres, speed_at_ane_thres ),
                  HR = c(hr_at_lac_thres, hr_at_ane_thres))
 
-pi
+cat ("The speed (km/h) and heart rate (b/min) at lactate threshold are:", pi[1,2], "and", pi[1,3])
+cat ("The speed (km/h) and heart rate (b/min) at anaerobic threshold are:", pi[2,2], "and", pi[2,3])
 
 df_plot <- data.frame(speed = new_lac$x,
                       lactate = new_lac$y,
