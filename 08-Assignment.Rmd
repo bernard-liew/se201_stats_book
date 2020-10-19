@@ -29,9 +29,9 @@ To do your assignment, follow these steps:
 
 9. **Task 5:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-INNER-JOIN).
 
-10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
 
-11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
 
 12. **Task 8:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Reciple \@ref(INPUT-EXPORT). 
 
@@ -138,7 +138,7 @@ dat_vo2 <- dat_vo2 %>%
 dat_vo2_summ <- dat_vo2 %>%
   group_by(XXX) %>% # for each group
   mutate (row_id = row_number()) %>%
-  filter (row_id < XXX) %>% # throw all data between 3 to 3:30 min
+  filter (row_id < XXX) %>% # throw away all data between 3 to 3:30 min
   slice_tail (n = XXX)%>% # keep last 30 sec per stage
   summarise_at (vars(bf:hr), mean)
 
@@ -157,10 +157,10 @@ f <- ggplot (dat_vo2_comb) +
         y = "Lactate (mmol)") +
   theme_bw() + 
   labs (title = "XXX") + 
-  theme(axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),  
-        axis.title.x = element_text(size = 16),
-        axis.title.y = element_text(size = 16))
+  theme(axis.text.x = element_text(size = XXX),
+        axis.text.y = element_text(size = XXX),  
+        axis.title.x = element_text(size = XXX),
+        axis.title.y = element_text(size = XXX))
 
 ggsave(filename = "lactate.png", 
        plot = f, # the name of the image object you created above.
@@ -177,10 +177,10 @@ f <- ggplot (dat_vo2_comb) +
         y = "Lactate (mmol)") +
   theme_bw() + 
   labs (title = "XXX") + 
-  theme(axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),  
-        axis.title.x = element_text(size = 16),
-        axis.title.y = element_text(size = 16))
+  theme(axis.text.x = element_text(size = XXX),
+        axis.text.y = element_text(size = XXX),  
+        axis.title.x = element_text(size = XXX),
+        axis.title.y = element_text(size = XXX))
 
 ggsave(filename = "heartrate.png", 
        plot = f, # the name of the image object you created above.
