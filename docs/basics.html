@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -358,7 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Download and load packages</h2>
 <p>Packages are like your iphone apps. The iphone comes with some basic functionality, e.g. weather-app. If you wanted more, you have to download. Subsequent chapters are going to start with this code chunk. This is only needed if you are running one chapter independent from others. Notice how I am using the package called <code>pacman</code>. This is a package manager, which loads any package you typed into it, and if it is not available, download it automatically from CRAN and load it.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb26-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></a></code></pre></div>
+<a class="sourceLine" id="cb26-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
+<a class="sourceLine" id="cb26-3" title="3">               yarrr) </a></code></pre></div>
 <p>In this chapter, we’ll go over the basics of the R language and the RStudio programming environment.</p>
 </div>
 <div id="BASICS-CONSOLE" class="section level2">

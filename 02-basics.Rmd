@@ -7,7 +7,8 @@ Packages are like your iphone apps. The iphone comes with some basic functionali
 ```{r , message=FALSE, warning=FALSE}
 
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(tidyverse) # All purpose wrangling for dataframes
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               yarrr) 
 
 ```
 
