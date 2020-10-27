@@ -85,7 +85,7 @@ write.xlsx(x = strn,
 ## Learning check {#INPUT-LEARNING-CHECK}
 
 
-1. Download the `data` folder from Moodle week 6. You must unzip it, and placed that folder inside your se201/practice folder.
+1. Download the `data` folder from Moodle week 7. You must unzip it, and placed that folder inside your se201/practice folder.
 
 2. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
 
