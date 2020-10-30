@@ -245,16 +245,16 @@ Use the `mutate()` function and the `as.numeric` function. You will learn the `m
 
 ```{r}
 
-dat_vo2 <- dat_vo2 %>%
+# 4 in 1 processing
+
+dat_vo2 %>%
   mutate (time = time %>% 
             str_squish() %>% # function strips any whitespaces
             ms() %>% # convert to minutes and seconds
             as.period(unit = "sec") %>% # converts entirely to seconds
-            as.numeric ()) # strips the S symbol to make it a number
-
-# Recheck the type of each column 
-
-str(dat_vo2)
+            as.numeric ()) %>% # strips the S symbol to make it a number
+  head()%>%
+  knitr::kable (digits = 2)
 
 ```
 
@@ -294,19 +294,18 @@ dat_vo2 %>%
   knitr::kable (digits = 2)
 
 
-# Fourth, strips the S symbol to make it a number
+# Fourth, strips the S symbol to make it a number, and assign it to object
 
-dat_vo2 %>%
+dat_vo2 <- dat_vo2 %>%
   mutate (time = time %>% 
                  str_squish()%>%  
                  ms() %>%
                  as.period(unit = "sec") %>% 
-                 as.numeric ())%>%
-  head()%>%
-  knitr::kable (digits = 2)
-
+                 as.numeric ())
 
 ```
+
+
 
 ## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
 
