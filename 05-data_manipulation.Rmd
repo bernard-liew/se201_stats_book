@@ -633,8 +633,10 @@ Use the `inner_join` function, with the `by` key as the common identifier that m
 
 ```{r }
 
-dat_vo2_summ %>%
-  inner_join(dat_vo2_stage, by = "stage") %>%
+dat_vo2_comb <- dat_vo2_summ %>%
+  inner_join(dat_vo2_stage, by = "stage") 
+  
+dat_vo2_comb %>%
   knitr::kable (digits = 2)
 
 ```

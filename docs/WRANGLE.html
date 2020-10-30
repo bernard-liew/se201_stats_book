@@ -2731,9 +2731,11 @@ hr
 <div id="solution-14" class="section level3">
 <h3><span class="header-section-number">6.15.2</span> Solution</h3>
 <p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_summ <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-3" title="3"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_comb &lt;-<span class="st"> </span>dat_vo2_summ <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>) </a>
+<a class="sourceLine" id="cb125-3" title="3">  </a>
+<a class="sourceLine" id="cb125-4" title="4">dat_vo2_comb <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr>
