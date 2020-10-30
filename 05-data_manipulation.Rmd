@@ -340,6 +340,7 @@ dat_fms_sub <- dat_fms %>%
   filter (side != "c")
 ```
 
+### Solution
 
 ```{r }
 dat_wide <- dat_fms_sub %>% # original data
