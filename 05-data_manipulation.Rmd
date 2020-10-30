@@ -344,7 +344,7 @@ dat_fms_sub <- dat_fms %>%
 ```{r }
 dat_wide <- dat_fms_sub %>% # original data
   pivot_wider(names_from = "side",
-              values_from = score)
+              values_from = "score")
 dat_wide%>%
   knitr::kable (digits = 2)
 ```

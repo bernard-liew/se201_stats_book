@@ -1446,7 +1446,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <a class="sourceLine" id="cb105-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">!=</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
 <a class="sourceLine" id="cb106-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb106-3" title="3">              <span class="dt">values_from =</span> score)</a>
+<a class="sourceLine" id="cb106-3" title="3">              <span class="dt">values_from =</span> <span class="st">&quot;score&quot;</span>)</a>
 <a class="sourceLine" id="cb106-4" title="4">dat_wide<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb106-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <table>
