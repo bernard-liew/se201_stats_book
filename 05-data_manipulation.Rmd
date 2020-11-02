@@ -324,7 +324,7 @@ time_mutate <- dat_vo2 %>%
 
 ```{r, echo = FALSE}
 time_mutate %>%
-  head()%>%
+  tail () %>%
   knitr::kable (digits = 2)
 ```
 
@@ -340,7 +340,7 @@ time_mutate <- dat_vo2 %>%
 
 ```{r, echo = FALSE}
 time_mutate %>%
-  head()%>%
+  tail () %>%
   knitr::kable (digits = 2)
 ```
 
