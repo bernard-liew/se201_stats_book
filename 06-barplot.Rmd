@@ -32,6 +32,9 @@ fct_lvls <- c("squat", "push_up", "hurdle", "lunge", "leg_raise", "rot_stab", "s
 dat <- dat %>%
   mutate (task = factor (task, levels = fct_lvls))
 
+```
+
+```{r, echo = FALSE}
 dat %>%
   knitr::kable (digits = 2)
 ```
@@ -44,6 +47,9 @@ dat_summ <- dat %>%
   summarize (total = min (score)) %>%
   ungroup ()
 
+```
+
+```{r, echo = FALSE}
 dat_summ %>%
   knitr::kable (digits = 2)
 ```

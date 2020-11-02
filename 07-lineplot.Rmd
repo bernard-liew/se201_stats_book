@@ -59,7 +59,7 @@ ggplot(dat) +
 
 In this sample data set, the *x* variable, `time`, is in one column and the *y* variable, `vo2`, is in another:
 
-```{r}
+```{r, echo = FALSE}
 dat %>%
   knitr::kable (digits = 2)
 ```
@@ -137,7 +137,7 @@ ggplot(dat_long) +
 
 The `dat_long` data has three columns, including the factor `var`, which we mapped to `colour` and `linetype`:
 
-```{r}
+```{r, echo = FALSE}
 dat_long %>%
   knitr::kable (digits = 2)
 ```

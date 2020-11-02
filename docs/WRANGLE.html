@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-10-30" />
+<meta name="date" content="2020-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -509,10 +509,8 @@ The second step is to resolve one of two common problems:</p>
 <p>To keep based on the column names, use the <code>select ()</code> function.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># This keeps only the second row</span></a>
 <a class="sourceLine" id="cb86-2" title="2"></a>
-<a class="sourceLine" id="cb86-3" title="3">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb86-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb86-5" title="5"><span class="st">  </span><span class="kw">head</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb86-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb86-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="dv">2</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -540,11 +538,8 @@ The second step is to resolve one of two common problems:</p>
 </tbody>
 </table>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># This removes the second row</span></a>
-<a class="sourceLine" id="cb87-2" title="2"></a>
-<a class="sourceLine" id="cb87-3" title="3">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb87-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="dv">2</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb87-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb87-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb87-2" title="2">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb87-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="dv">2</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -622,11 +617,8 @@ The second step is to resolve one of two common problems:</p>
 </tbody>
 </table>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># This removes the second and third rows</span></a>
-<a class="sourceLine" id="cb88-2" title="2"></a>
-<a class="sourceLine" id="cb88-3" title="3">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb88-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb88-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb88-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb88-2" title="2">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -705,10 +697,8 @@ The second step is to resolve one of two common problems:</p>
 </table>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># This keeps the top six rows</span></a>
 <a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb89-4" title="4"><span class="st">  </span><span class="kw">slice_head</span> (<span class="dt">n =</span> <span class="dv">6</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb89-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb89-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb89-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-4" title="4"><span class="st">  </span><span class="kw">slice_head</span> (<span class="dt">n =</span> <span class="dv">6</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -787,10 +777,8 @@ The second step is to resolve one of two common problems:</p>
 </table>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># This keeps the bottom six rows</span></a>
 <a class="sourceLine" id="cb90-2" title="2"></a>
-<a class="sourceLine" id="cb90-3" title="3">dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb90-4" title="4"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb90-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb90-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb90-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-4" title="4"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -869,10 +857,8 @@ The second step is to resolve one of two common problems:</p>
 </table>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># This selects the first, second, and fourth column, and discards the rest</span></a>
 <a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-4" title="4"><span class="st">  </span><span class="kw">select</span> (time, bf, rer) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb91-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb91-4" title="4"><span class="st">  </span><span class="kw">select</span> (time, bf, rer) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -985,14 +971,12 @@ Figure 6.2: The type of data for each class as it was imported.
 <p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># 4 in 1 processing</span></a>
 <a class="sourceLine" id="cb99-2" title="2"></a>
-<a class="sourceLine" id="cb99-3" title="3">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb99-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb99-5" title="5"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># function strips any whitespaces</span></a>
 <a class="sourceLine" id="cb99-6" title="6"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert to minutes and seconds</span></a>
 <a class="sourceLine" id="cb99-7" title="7"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># converts entirely to seconds</span></a>
-<a class="sourceLine" id="cb99-8" title="8"><span class="st">            </span><span class="kw">as.numeric</span> ()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># strips the S symbol to make it a number</span></a>
-<a class="sourceLine" id="cb99-9" title="9"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-10" title="10"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb99-8" title="8"><span class="st">            </span><span class="kw">as.numeric</span> ()) <span class="co"># strips the S symbol to make it a number</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1074,12 +1058,9 @@ Figure 6.2: The type of data for each class as it was imported.
 <h3><span class="header-section-number">6.5.3</span> Discussion</h3>
 <p>Notice in the function above, I chained a series of steps together, using the pipe, <code>%&gt;%</code>, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the <code>time</code> variable.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># First, removes whitespaces around the time variable</span></a>
-<a class="sourceLine" id="cb100-2" title="2"></a>
-<a class="sourceLine" id="cb100-3" title="3">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb100-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-6" title="6"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-7" title="7"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb100-2" title="2">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-4" title="4"><span class="st">                 </span><span class="kw">str_squish</span>()) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1158,12 +1139,10 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># Second, convert to minutes and seconds</span></a>
 <a class="sourceLine" id="cb101-2" title="2"></a>
-<a class="sourceLine" id="cb101-3" title="3">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb101-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb101-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb101-6" title="6"><span class="st">                 </span><span class="kw">ms</span>())<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-7" title="7"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-8" title="8"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb101-6" title="6"><span class="st">                 </span><span class="kw">ms</span>())</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1242,13 +1221,11 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># Third, converts entirely to seconds</span></a>
 <a class="sourceLine" id="cb102-2" title="2"></a>
-<a class="sourceLine" id="cb102-3" title="3">dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb102-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb102-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
 <a class="sourceLine" id="cb102-6" title="6"><span class="st">                 </span><span class="kw">ms</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-7" title="7"><span class="st">                 </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-8" title="8"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-9" title="9"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb102-7" title="7"><span class="st">                 </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>)) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1344,11 +1321,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <div id="solution-4" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Solution</h3>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
-<a class="sourceLine" id="cb104-3" title="3"></a>
-<a class="sourceLine" id="cb104-4" title="4">dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-5" title="5"><span class="st">  </span><span class="kw">head</span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb104-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1450,9 +1423,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <h3><span class="header-section-number">6.7.2</span> Solution</h3>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
 <a class="sourceLine" id="cb106-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb106-3" title="3">              <span class="dt">values_from =</span> <span class="st">&quot;score&quot;</span>)</a>
-<a class="sourceLine" id="cb106-4" title="4">dat_wide<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb106-3" title="3">              <span class="dt">values_from =</span> <span class="st">&quot;score&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1502,9 +1473,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">dat_long &lt;-<span class="st"> </span>dat_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
 <a class="sourceLine" id="cb107-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</a>
 <a class="sourceLine" id="cb107-3" title="3">              <span class="dt">names_to =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb107-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a>
-<a class="sourceLine" id="cb107-5" title="5">dat_long <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb107-6" title="6"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb107-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1580,10 +1549,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">dat_fms &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb108-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">side =</span> <span class="kw">recode</span> (side, <span class="co"># the variable name</span></a>
 <a class="sourceLine" id="cb108-3" title="3">                          <span class="st">&quot;l&quot;</span> =<span class="st"> &quot;left&quot;</span>, <span class="co"># old label = new label</span></a>
-<a class="sourceLine" id="cb108-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a>
-<a class="sourceLine" id="cb108-5" title="5"></a>
-<a class="sourceLine" id="cb108-6" title="6">dat_fms<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb108-7" title="7"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb108-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1703,10 +1669,7 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and ne
 <h3><span class="header-section-number">6.11.2</span> Solution</h3>
 <p>Example, you want to create a column called <code>ratio</code> in the <code>dat_vo2</code> dataset, by dividing <code>vo2</code> by <code>vco2</code>.</p>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a>
-<a class="sourceLine" id="cb111-3" title="3"></a>
-<a class="sourceLine" id="cb111-4" title="4"><span class="kw">head</span>(dat_vo2)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb111-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1804,11 +1767,7 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and ne
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">dat_vo2_crazy &lt;-<span class="st">  </span>dat_vo2  <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb112-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2_power =</span> vo2<span class="op">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></a>
 <a class="sourceLine" id="cb112-3" title="3">          <span class="dt">vco2_mod =</span> vco2<span class="op">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></a>
-<a class="sourceLine" id="cb112-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf))<span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a>
-<a class="sourceLine" id="cb112-5" title="5">  </a>
-<a class="sourceLine" id="cb112-6" title="6"><span class="kw">head</span>(dat_vo2_crazy)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-7" title="7"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-8" title="8"><span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">height =</span> <span class="st">&quot;100px&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb112-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf))<span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1922,10 +1881,7 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and ne
 </table>
 <p>You can even create a new variable, which reflects the present row number (<code>row_id</code>). This row number reflects the number of 5 sec VO2 windows. If there is 10 sec of data collected, there will be two row numbers, Really quite useful for VO2 analysis and cleaning. Here, inside the <code>mutate()</code> function, I will be using the function <code>row_number()</code> to get the respective number for each row.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb113-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>())</a>
-<a class="sourceLine" id="cb113-3" title="3"></a>
-<a class="sourceLine" id="cb113-4" title="4"><span class="kw">head</span>(dat_vo2)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb113-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb113-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>())</a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2190,9 +2146,8 @@ row_id
 </div>
 <div id="solution-10" class="section level4">
 <h4><span class="header-section-number">6.12.1.2</span> Solution</h4>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-3" title="3"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">fms_left &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2271,7 +2226,7 @@ left
 <h3><span class="header-section-number">6.12.2</span> Keep rows based on a numerical range</h3>
 <p>You want to keep the data when a variable is within a certain window range. Let us use the <code>dat_vo2</code> dataset. Let us see the range of values of the variable <code>ve</code>.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <div id="problem-11" class="section level4">
 <h4><span class="header-section-number">6.12.2.1</span> Problem</h4>
 <p>Say I want to keep rows where 1) <code>ve</code> is less than 80, 2) <code>ve</code> more than 40, and 3) <code>ve</code> is between 40 to 80.</p>
@@ -2285,21 +2240,21 @@ left
 <a class="sourceLine" id="cb116-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb116-5" title="5"></a>
 <a class="sourceLine" id="cb116-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="co"># Keep ve lmore than 40</span></a>
 <a class="sourceLine" id="cb117-2" title="2"></a>
 <a class="sourceLine" id="cb117-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb117-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
 <a class="sourceLine" id="cb117-5" title="5"></a>
 <a class="sourceLine" id="cb117-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-2.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-2.png" width="672" /></p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="co"># Keep ve between 40 to 80</span></a>
 <a class="sourceLine" id="cb118-2" title="2"></a>
 <a class="sourceLine" id="cb118-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb118-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb118-5" title="5"></a>
 <a class="sourceLine" id="cb118-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-74-3.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-3.png" width="672" /></p>
 </div>
 </div>
 <div id="discussion-4" class="section level3">
@@ -2325,13 +2280,12 @@ left
 <div id="discussion-5" class="section level3">
 <h3><span class="header-section-number">6.13.3</span> Discussion</h3>
 <p>We can also go berserk by trying out different summary functions, like <code>mean ()</code>, <code>median ()</code>, <code>min()</code> (minimum value), <code>max</code> (maximum value).</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">fms_summ &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb121-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score),</a>
 <a class="sourceLine" id="cb121-3" title="3">             <span class="dt">mean_score =</span> <span class="kw">mean</span> (score),</a>
 <a class="sourceLine" id="cb121-4" title="4">             <span class="dt">median_score =</span> <span class="kw">median</span> (score),</a>
 <a class="sourceLine" id="cb121-5" title="5">             <span class="dt">min_score =</span> <span class="kw">min</span> (score),</a>
-<a class="sourceLine" id="cb121-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb121-7" title="7"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb121-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score)) </a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2383,10 +2337,9 @@ max_score
 <div id="solution-13" class="section level3">
 <h3><span class="header-section-number">6.14.2</span> Solution</h3>
 <p>In the <code>dat_fms</code> dataset, we want to use the <code>group_by()</code> and <code>summarize ()</code> function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">fms_summ &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb122-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb122-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb122-4" title="4"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb122-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score)) </a></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <table>
 <thead>
@@ -2472,14 +2425,10 @@ squat
 <a class="sourceLine" id="cb124-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb124-4" title="4"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span><span class="dv">37</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb124-5" title="5"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb124-6" title="6"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a>
-<a class="sourceLine" id="cb124-7" title="7"></a>
-<a class="sourceLine" id="cb124-8" title="8">knitr<span class="op">::</span><span class="kw">kable</span> (dat_vo2_summ,</a>
-<a class="sourceLine" id="cb124-9" title="9">              <span class="dt">digits =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb124-10" title="10">              <span class="dt">caption =</span> <span class="st">&quot;Stage by stage VO2 analysis&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb124-6" title="6"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-78">Table 6.1: </span>Stage by stage VO2 analysis
+<span id="tab:unnamed-chunk-108">Table 6.1: </span>Stage by stage VO2 analysis
 </caption>
 <thead>
 <tr>
@@ -2732,10 +2681,7 @@ hr
 <h3><span class="header-section-number">6.15.2</span> Solution</h3>
 <p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_comb &lt;-<span class="st"> </span>dat_vo2_summ <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>) </a>
-<a class="sourceLine" id="cb125-3" title="3">  </a>
-<a class="sourceLine" id="cb125-4" title="4">dat_vo2_comb <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-5" title="5"><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span> (<span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr>

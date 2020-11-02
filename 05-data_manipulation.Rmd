@@ -136,50 +136,83 @@ To keep or remove rows based on the row numbers, use `slice ()`, `slice_head()`,
 To keep based on the column names, use the `select ()` function. 
 
 ```{r }
-
 # This keeps only the second row
 
-dat_vo2 %>% 
-  slice (2) %>%
+vo2_slice <- dat_vo2 %>% 
+  slice (2) 
+```
+
+```{r, echo = FALSE}
+vo2_slice %>%
   head() %>%
   knitr::kable (digits = 2)
+```
 
+```{r }
 # This removes the second row
+vo2_slice <- dat_vo2 %>% 
+  slice (-2) 
+```
 
-dat_vo2 %>% 
-  slice (-2)%>%
-  head()%>%
+```{r, echo = FALSE}
+vo2_slice %>%
+  head() %>%
   knitr::kable (digits = 2)
+```
 
+```{r }
 # This removes the second and third rows
+vo2_slice <- dat_vo2 %>% 
+  slice (-(2:3))
+```
 
-dat_vo2 %>% 
-  slice (-(2:3))%>%
-  head()%>%
+```{r, echo = FALSE}
+vo2_slice %>%
+  head() %>%
   knitr::kable (digits = 2)
+```
 
+```{r }
 # This keeps the top six rows
 
-dat_vo2 %>% 
-  slice_head (n = 6) %>%
-  head()%>%
-  knitr::kable (digits = 2)
+vo2_slice <- dat_vo2 %>% 
+  slice_head (n = 6) 
+```
 
+```{r, echo = FALSE}
+vo2_slice %>%
+  head() %>%
+  knitr::kable (digits = 2)
+```
+
+```{r }
 # This keeps the bottom six rows
 
-dat_vo2 %>% 
-  slice_tail (n = 6) %>%
-  head()%>%
-  knitr::kable (digits = 2)
+vo2_slice <- dat_vo2 %>% 
+  slice_tail (n = 6) 
+```
 
+```{r, echo = FALSE}
+vo2_slice %>%
+  head() %>%
+  knitr::kable (digits = 2)
+```
+
+```{r }
 # This selects the first, second, and fourth column, and discards the rest
 
-dat_vo2 %>%
-  select (time, bf, rer) %>%
-  head()%>%
+vo2_slice <- dat_vo2 %>%
+  select (time, bf, rer) 
+
+```
+
+```{r, echo = FALSE}
+vo2_slice %>%
+  head() %>%
   knitr::kable (digits = 2)
+```
 
-
+```{r }
 # This removes the first row, and replaces the old data in object dat_vo2
 
 dat_vo2 <- dat_vo2 %>% 
@@ -247,17 +280,20 @@ Use the `mutate()` function and the `as.numeric` function. You will learn the `m
 
 # 4 in 1 processing
 
-dat_vo2 %>%
+time_mutate <- dat_vo2 %>%
   mutate (time = time %>% 
             str_squish() %>% # function strips any whitespaces
             ms() %>% # convert to minutes and seconds
             as.period(unit = "sec") %>% # converts entirely to seconds
-            as.numeric ()) %>% # strips the S symbol to make it a number
-  head()%>%
-  knitr::kable (digits = 2)
+            as.numeric ()) # strips the S symbol to make it a number
 
 ```
 
+```{r, echo = FALSE}
+time_mutate %>%
+  head()%>%
+  knitr::kable (digits = 2)
+```
 
 ### Discussion
 
@@ -265,35 +301,50 @@ Notice in the function above, I chained a series of steps together, using the pi
 
 ```{r }
 # First, removes whitespaces around the time variable
-
-dat_vo2 %>%
+time_mutate <- dat_vo2 %>%
   mutate (time = time %>% 
-                 str_squish()) %>%
+                 str_squish()) 
+```
+
+```{r, echo = FALSE}
+time_mutate %>%
   head()%>%
   knitr::kable (digits = 2)
+```
 
-
+```{r }
 # Second, convert to minutes and seconds
 
-dat_vo2 %>%
+time_mutate <- dat_vo2 %>%
   mutate (time = time %>% 
                  str_squish()%>%  
-                 ms())%>%
+                 ms())
+
+```
+
+```{r, echo = FALSE}
+time_mutate %>%
   head()%>%
   knitr::kable (digits = 2)
+```
 
-
+```{r }
 # Third, converts entirely to seconds
 
-dat_vo2 %>%
+time_mutate <- dat_vo2 %>%
   mutate (time = time %>% 
                  str_squish()%>%  
                  ms() %>%
-                 as.period(unit = "sec")) %>%
+                 as.period(unit = "sec")) 
+```
+
+```{r, echo = FALSE}
+time_mutate %>%
   head()%>%
   knitr::kable (digits = 2)
+```
 
-
+```{r }
 # Fourth, strips the S symbol to make it a number, and assign it to object
 
 dat_vo2 <- dat_vo2 %>%
@@ -319,10 +370,12 @@ Remember, each stage in VO2 testing is 3:30min long, and you collect data in int
 dat_vo2 <- dat_vo2 %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE))
 
+```
+
+```{r, echo = FALSE}
 dat_vo2 %>%
   head()%>%
   knitr::kable (digits = 2)
-
 ```
 
 ### Discussion
@@ -346,6 +399,10 @@ dat_fms_sub <- dat_fms %>%
 dat_wide <- dat_fms_sub %>% # original data
   pivot_wider(names_from = "side",
               values_from = "score")
+
+```
+
+```{r, echo = FALSE}
 dat_wide%>%
   knitr::kable (digits = 2)
 ```
@@ -363,6 +420,8 @@ dat_long <- dat_wide %>% # original data
   pivot_longer(cols = c("l", "r"),
               names_to = "side",
               values_to = "score")
+```
+```{r, echo = FALSE}
 dat_long %>%
   knitr::kable (digits = 2)
 ```
@@ -385,10 +444,12 @@ dat_fms <- dat_fms %>%
                           "l" = "left", # old label = new label
                           "r" = "right")) # old label = new label
 
+```
+
+```{r, echo = FALSE}
 dat_fms%>%
   knitr::kable (digits = 2)
 ```
-
 
 ## Creating factors {#WRANGLE-CHARACTERS-2-FACTORS}
 
@@ -443,9 +504,13 @@ Example, you want to create a column called `ratio` in the `dat_vo2` dataset, by
 dat_vo2 <-  dat_vo2 %>%
   mutate (ratio = vo2/vco2) 
 
+```
+
+```{r, echo = FALSE}
 head(dat_vo2)%>%
   knitr::kable (digits = 2)
 ```
+
 
 ### Discussion
 
@@ -458,6 +523,9 @@ dat_vo2_crazy <-  dat_vo2  %>%
           vco2_mod = vco2/3, # vco2 divied by 3
           junk = (vo2+ vco2)/ (hr + bf))# divided the sum of vo2 and vco2, and sum of hr and bf
   
+```
+
+```{r, echo = FALSE}
 head(dat_vo2_crazy)%>%
   knitr::kable (digits = 2) %>%
   kableExtra::scroll_box(width = "100%", height = "100px")
@@ -469,6 +537,8 @@ You can even create a new variable, which reflects the present row number (`row_
 dat_vo2 <- dat_vo2 %>%
   mutate (row_id = row_number())
 
+```
+```{r, echo = FALSE}
 head(dat_vo2)%>%
   knitr::kable (digits = 2)
 ```
@@ -488,10 +558,13 @@ In the `dat_fms` dataset, you want to keep rows that have `side == "left"` (i.e.
 
 ```{r }
 
-dat_fms %>%
-  filter (side == "left")%>%
-  knitr::kable (digits = 2)
+fms_left <- dat_fms %>%
+  filter (side == "left") 
+```
 
+```{r, echo = FALSE}
+fms_left%>%
+  knitr::kable (digits = 2)
 ```
 
 
@@ -564,14 +637,17 @@ We can also go berserk by trying out different summary functions, like `mean ()`
 
 ```{r }
 
-dat_fms %>%
+fms_summ <- dat_fms %>%
   summarize (total_score = sum (score),
              mean_score = mean (score),
              median_score = median (score),
              min_score = min (score),
-             max_score = max(score)) %>%
-  knitr::kable (digits = 2)
+             max_score = max(score)) 
+```
 
+```{r, echo = FALSE}
+fms_summ %>%
+  knitr::kable (digits = 2)
 ```
 
 ## Group-by summary {#WRANGLE-SUMMARIZE-GROUPBY}
@@ -586,11 +662,15 @@ In the `dat_fms` dataset, we want to use the `group_by()` and `summarize ()` fun
 
 ```{r }
 
-dat_fms %>%
+fms_summ <- dat_fms %>%
   group_by(task) %>%
-  summarize (lower_score = min (score)) %>%
-  knitr::kable (digits = 2)
+  summarize (lower_score = min (score)) 
 
+```
+
+```{r, echo = FALSE}
+fms_summ %>%
+  knitr::kable (digits = 2)
 ```
 
 ### Discussion
@@ -615,10 +695,12 @@ dat_vo2_summ <- dat_vo2 %>%
   slice_tail (n = 6)%>%
   summarise_at (vars(bf:hr), mean)
 
+```
+
+```{r, echo = FALSE}
 knitr::kable (dat_vo2_summ,
               digits = 2,
               caption = "Stage by stage VO2 analysis")
-
 ```
 
 ## Merge two tables together {#WRANGLE-INNER-JOIN}
@@ -636,9 +718,11 @@ Use the `inner_join` function, with the `by` key as the common identifier that m
 dat_vo2_comb <- dat_vo2_summ %>%
   inner_join(dat_vo2_stage, by = "stage") 
   
+```
+
+```{r, echo = FALSE}
 dat_vo2_comb %>%
   knitr::kable (digits = 2)
-
 ```
 
 ### Discussion
