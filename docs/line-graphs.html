@@ -685,10 +685,10 @@ Figure 8.3: Line graph with points
 <a class="sourceLine" id="cb144-2" title="2"><span class="co"># Bring all variables into one column</span></a>
 <a class="sourceLine" id="cb144-3" title="3"></a>
 <a class="sourceLine" id="cb144-4" title="4">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-5" title="5"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(bf<span class="op">:</span>hr),</a>
-<a class="sourceLine" id="cb144-6" title="6">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
-<a class="sourceLine" id="cb144-7" title="7">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-8" title="8"><span class="st">  </span><span class="kw">filter</span> (var <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vco2&quot;</span>, <span class="st">&quot;vo2&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb144-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span> (stage, vo2, vco2) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb144-6" title="6"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(vo2<span class="op">:</span>vco2),</a>
+<a class="sourceLine" id="cb144-7" title="7">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
+<a class="sourceLine" id="cb144-8" title="8">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb144-9" title="9"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">var =</span> <span class="kw">factor</span> (var))</a>
 <a class="sourceLine" id="cb144-10" title="10"></a>
 <a class="sourceLine" id="cb144-11" title="11"><span class="co"># Map supp to colour</span></a>

@@ -118,10 +118,10 @@ In addition to the variables mapped to the x- and y-axes, map another (discrete)
 # Bring all variables into one column
 
 dat_long <- dat %>%
-  pivot_longer(cols = c(bf:hr),
+  dplyr::select (stage, vo2, vco2) %>% 
+  pivot_longer(cols = c(vo2:vco2),
                names_to = "var",
                values_to = "val") %>%
-  filter (var %in% c("vco2", "vo2")) %>%
   mutate (var = factor (var))
 
 # Map supp to colour
