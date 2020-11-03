@@ -17,11 +17,17 @@ source("utils.R", local = TRUE)
 
 # Bar Graphs {#CHAPTER-BAR-GRAPH}
 
+There are so many types of figures that you can create in R (Figure \@ref(fig:FIG-RICH-GRAPH)). In the next two chapters, I will only delve into two types of figures that I believe is most useful for your case. With this basic skills, you have the foundation to delve deeper into this software if you desire. 
+
+```{r FIG-RICH-GRAPH, echo=FALSE, fig.align='center', fig.cap="The plotting capabilities are endless.", fig.height=15}
+knitr::include_graphics(c("images/chapter-6/ggplot2_geoms.png"))
+```
+
 Bar graphs are perhaps the most commonly used kind of data visualization. They're typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn't be as good for showing prices over time, where time is a continuous variable -- though it can be done.
 
 There's an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent *counts* of cases in the data set, and sometimes they represent *values* in the data set. Keep this distinction in mind -- it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I'll discuss always use bar graphs with *values*. 
 
-Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called `"fms_pt3.xlsx"`
+Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called `"fms_pt3.xlsx"`.
 
 ```{r}
 dat <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
