@@ -80,16 +80,50 @@ ggplot(dat_summ) +
 
 
 ### Discussion
-
 By default, bar graphs use a dark grey for the bars. To use a color fill, use `fill`. Also, by default, there is no outline around the fill. To add an outline, use `colour`. For Figure \@ref(fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL), we use a light blue fill and a black outline:
 
 ```{r FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL, fig.cap="A single fill and outline color for all bars"}
 ggplot(dat_summ) + 
   geom_col(aes(x = task, y = total), fill = "lightblue", colour = "black") 
 ```
-
 **Note** In ggplot2, the default is to use the British spelling, colour, instead of the American spelling, color. Internally, American spellings are remapped to the British ones, so if you use the American spelling it will still work.
 
+## Anatomy of a Graph {#BAR-GRAPH-ANATOMY}
+
+There is alot of things that is going on behind the scene in this simple code of `ggplot(dat_summ) +  geom_col(aes(x = task, y = total))`. Let us deleve a little into it, to understand the grammar of any graph, not just the bar graph we created. Remember, for any software, this grammar or anatomy towards a graph will be similar.
+
+### Plot Background {#BAR-GRAPH-ANATOMY-BACKGROUND}
+To start building the plot, we first specify the data frame that contains the relevant data. Here we are ‘sending the `dat_summ` data set into the ggplot function’:
+
+```{r FIG-BAR-GRAPH-BACKGROUND, fig.cap='An empty plot area waiting to be filled'}
+# render background
+ggplot(dat_summ)
+```
+Running this command will produce an empty grey panel. This is because we need to specify how different columns of the data frame should be represented in the plot.
+
+### Aesthetics aes(){#BAR-GRAPH-ANATOMY-AES}
+
+We can call in different columns of data from `dat_summ` based on their column names. Column names are given as ‘aesthetic’ elements to the ggplot function, and are wrapped in the `aes()` function.
+
+Because we want a bar plot, each bar will have an x and a y coordinate. We want the x axis to represent `task` ( `x = task` ), and the y axis to represent the `total` FMS score ( y = `total` ).
+
+We give these specifications separated by a comma. Note that `" "` are not required when giving variables within aes().
+
+```{r FIG-BAR-GRAPH-AES, fig.cap='Setting the aesthetics'}
+ggplot(dat_summ, aes(x = task, y = total) )
+```
+
+### Geometric representations geom() {#BAR-GRAPH-ANATOMY-GEOMS}
+Given we want a bar plot, we need to specify that the geometric representation of the data will be in point form, using `geom_col()`.
+
+Here we are adding a layer (hence the + sign) of points to the plot. 
+
+```{r FIG-BAR-GRAPH-GEOMS, fig.cap='Setting the geometric representation'}
+ggplot(dat_summ, aes(x = task, y = total)) + 
+  geom_col() 
+```
+
+Notice the code difference in Recipe \@ref(BAR-GRAPH-ANATOMY-GEOMS) and Recipe \@ref(BAR-GRAPH-BASIC-BAR). I put the `aes()` inside `geom_col()` in Recipe \@ref(BAR-GRAPH-BASIC-BAR), but inside `ggplot ()` in Recipe \@ref(BAR-GRAPH-ANATOMY-GEOMS). Putting the `aes()` inside `ggplot()` means the aesthetic mapping will trickle down to however many layers of plots you want to overlay your figure with. I will not expand further on this to keep this book simple.
 
 ## Grouping Bars Together {#BAR-GRAPH-GROUPED-BAR}
 
