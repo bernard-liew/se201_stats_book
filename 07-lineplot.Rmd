@@ -326,12 +326,10 @@ To use a premade theme, add `theme_bw()` or another theme to your plot (Figure \
 (ref:cap-FIG-APPEARANCE-THEME) Scatter plot with `theme_grey()` (the default, top left); with `theme_bw()` (top right); with `theme_minimal()` (bottom left); with `theme_classic()` (bottom right)
 
 ```{r FIG-APPEARANCE-THEME, fig.show="hold", fig.cap="(ref:cap-FIG-APPEARANCE-THEME)"}
-library(gcookbook)  # Load gcookbook for the heightweight data set
-
 # Create the base plot
 
-hw_plot <- ggplot(heightweight, aes(x = ageYear, y = heightIn)) +
-  geom_point()
+hw_plot <- ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2)) 
 
 # Grey theme (the default)
 
@@ -354,43 +352,6 @@ hw_plot +
   theme_classic()
 ```
 
-Another theme included in ggplot2 is `theme_void()`, which makes all plot elements blank and only shows your data (Figure \@ref(fig:FIG-APPEARANCE-THEME-VOID). This is especially useful if you don't want any default theme settings, and instead want a blank slate on which to choose your own theme elements.
-
-(ref:cap-FIG-APPEARANCE-THEME-VOID) Scatter plot with `theme_void()`
-
-```{r FIG-APPEARANCE-THEME-VOID, fig.show="hold", fig.cap="(ref:cap-FIG-APPEARANCE-THEME-VOID)"}
-hw_plot +
-  theme_void()
-```
-
-### Discussion
-
-Some commonly used properties of theme elements in ggplot2 are those things that are controlled by `theme()`. Most of these things, like the title, legend, and axes, are outside the plot area, but some of them are inside the plot area, such as grid lines and the background coloring.
-
-Besides the themes included in ggplot2, it is also possible to create your own.
-
-You can set the base font family and size with either of the included themes (the default base font family is Helvetica, and the default size is 12):
-
-```{r, eval=FALSE}
-hw_plot +
-  theme_grey(base_size = 16, base_family = "Times")
-```
-
-You can set the default theme for the current R session with `theme_set()`, although it's generally not a good idea to set options globally because it may affect other plots that are unrelated to your current project:
-
-```{r, eval=FALSE}
-# Set default theme for current session
-
-theme_set(theme_bw())
-
-# This will use theme_bw()
-
-hw_plot
-
-# Reset the default theme back to theme_grey()
-
-theme_set(theme_grey())
-```
 
 ## Learning check {#LINE-GRAPH-LEARNING-CHECK}
 

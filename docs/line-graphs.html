@@ -333,7 +333,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
 <li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
-<li class="chapter" data-level="8.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>8.6.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
 </ul></li>
@@ -1088,68 +1087,36 @@ Figure 8.15: Point types available in R.
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code>theme_grey()</code>, but the examples below also showcase <code>theme_bw()</code>, <code>theme_minimal()</code>, and <code>theme_classic()</code>.</p>
 <p>To use a premade theme, add <code>theme_bw()</code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.16</a>):</p>
 
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">library</span>(gcookbook)  <span class="co"># Load gcookbook for the heightweight data set</span></a>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="co"># Create the base plot</span></a>
 <a class="sourceLine" id="cb155-2" title="2"></a>
-<a class="sourceLine" id="cb155-3" title="3"><span class="co"># Create the base plot</span></a>
-<a class="sourceLine" id="cb155-4" title="4"></a>
-<a class="sourceLine" id="cb155-5" title="5">hw_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(heightweight, <span class="kw">aes</span>(<span class="dt">x =</span> ageYear, <span class="dt">y =</span> heightIn)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb155-3" title="3">hw_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) </a>
+<a class="sourceLine" id="cb155-5" title="5"></a>
+<a class="sourceLine" id="cb155-6" title="6"><span class="co"># Grey theme (the default)</span></a>
 <a class="sourceLine" id="cb155-7" title="7"></a>
-<a class="sourceLine" id="cb155-8" title="8"><span class="co"># Grey theme (the default)</span></a>
-<a class="sourceLine" id="cb155-9" title="9"></a>
-<a class="sourceLine" id="cb155-10" title="10">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-11" title="11"><span class="st">  </span><span class="kw">theme_grey</span>()</a>
+<a class="sourceLine" id="cb155-8" title="8">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-9" title="9"><span class="st">  </span><span class="kw">theme_grey</span>()</a>
+<a class="sourceLine" id="cb155-10" title="10"></a>
+<a class="sourceLine" id="cb155-11" title="11"><span class="co"># Black-and-white theme</span></a>
 <a class="sourceLine" id="cb155-12" title="12"></a>
-<a class="sourceLine" id="cb155-13" title="13"><span class="co"># Black-and-white theme</span></a>
-<a class="sourceLine" id="cb155-14" title="14"></a>
-<a class="sourceLine" id="cb155-15" title="15">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-16" title="16"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb155-13" title="13">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-14" title="14"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb155-15" title="15"></a>
+<a class="sourceLine" id="cb155-16" title="16"><span class="co"># Minimal theme without background annotations</span></a>
 <a class="sourceLine" id="cb155-17" title="17"></a>
-<a class="sourceLine" id="cb155-18" title="18"><span class="co"># Minimal theme without background annotations</span></a>
-<a class="sourceLine" id="cb155-19" title="19"></a>
-<a class="sourceLine" id="cb155-20" title="20">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-21" title="21"><span class="st">  </span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb155-18" title="18">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-19" title="19"><span class="st">  </span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb155-20" title="20"></a>
+<a class="sourceLine" id="cb155-21" title="21"><span class="co"># Classic theme, with axis lines but no gridlines</span></a>
 <a class="sourceLine" id="cb155-22" title="22"></a>
-<a class="sourceLine" id="cb155-23" title="23"><span class="co"># Classic theme, with axis lines but no gridlines</span></a>
-<a class="sourceLine" id="cb155-24" title="24"></a>
-<a class="sourceLine" id="cb155-25" title="25">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-26" title="26"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb155-23" title="23">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-24" title="24"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-APPEARANCE-THEME"></span>
 <img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-1.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-2.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-3.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-4.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" />
 <p class="caption">
 Figure 8.16: Scatter plot with <code>theme_grey()</code> (the default, top left); with <code>theme_bw()</code> (top right); with <code>theme_minimal()</code> (bottom left); with <code>theme_classic()</code> (bottom right)
 </p>
 </div>
-<p>Another theme included in ggplot2 is <code>theme_void()</code>, which makes all plot elements blank and only shows your data (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME-VOID">8.17</a>. This is especially useful if you don’t want any default theme settings, and instead want a blank slate on which to choose your own theme elements.</p>
-
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-2" title="2"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-APPEARANCE-THEME-VOID"></span>
-<img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-VOID-1.png" alt="Scatter plot with theme_void()" width="50%" />
-<p class="caption">
-Figure 8.17: Scatter plot with <code>theme_void()</code>
-</p>
-</div>
-</div>
-<div id="discussion-4" class="section level3">
-<h3><span class="header-section-number">8.6.3</span> Discussion</h3>
-<p>Some commonly used properties of theme elements in ggplot2 are those things that are controlled by <code>theme()</code>. Most of these things, like the title, legend, and axes, are outside the plot area, but some of them are inside the plot area, such as grid lines and the background coloring.</p>
-<p>Besides the themes included in ggplot2, it is also possible to create your own.</p>
-<p>You can set the base font family and size with either of the included themes (the default base font family is Helvetica, and the default size is 12):</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb157-2" title="2"><span class="st">  </span><span class="kw">theme_grey</span>(<span class="dt">base_size =</span> <span class="dv">16</span>, <span class="dt">base_family =</span> <span class="st">&quot;Times&quot;</span>)</a></code></pre></div>
-<p>You can set the default theme for the current R session with <code>theme_set()</code>, although it’s generally not a good idea to set options globally because it may affect other plots that are unrelated to your current project:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="co"># Set default theme for current session</span></a>
-<a class="sourceLine" id="cb158-2" title="2"></a>
-<a class="sourceLine" id="cb158-3" title="3"><span class="kw">theme_set</span>(<span class="kw">theme_bw</span>())</a>
-<a class="sourceLine" id="cb158-4" title="4"></a>
-<a class="sourceLine" id="cb158-5" title="5"><span class="co"># This will use theme_bw()</span></a>
-<a class="sourceLine" id="cb158-6" title="6"></a>
-<a class="sourceLine" id="cb158-7" title="7">hw_plot</a>
-<a class="sourceLine" id="cb158-8" title="8"></a>
-<a class="sourceLine" id="cb158-9" title="9"><span class="co"># Reset the default theme back to theme_grey()</span></a>
-<a class="sourceLine" id="cb158-10" title="10"></a>
-<a class="sourceLine" id="cb158-11" title="11"><span class="kw">theme_set</span>(<span class="kw">theme_grey</span>())</a></code></pre></div>
 </div>
 </div>
 <div id="LINE-GRAPH-LEARNING-CHECK" class="section level2">
