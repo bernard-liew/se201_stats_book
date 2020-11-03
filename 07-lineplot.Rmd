@@ -368,7 +368,7 @@ hw_plot +
 
 5. Create a variable called `stage`, where each stage represents 3:30 min worth of VO2 data. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
 
-6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 min windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 sec windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
 7. For each stage, remove the data between 3 to 3:30min. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
 
