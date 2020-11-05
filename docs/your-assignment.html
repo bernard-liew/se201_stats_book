@@ -436,215 +436,217 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb156-54" title="54"></a>
 <a class="sourceLine" id="cb156-55" title="55"><span class="co">## Import data (Task 1)</span></a>
 <a class="sourceLine" id="cb156-56" title="56"></a>
-<a class="sourceLine" id="cb156-57" title="57">dat_vo2 &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb156-58" title="58">                       <span class="dt">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</a>
-<a class="sourceLine" id="cb156-59" title="59"></a>
-<a class="sourceLine" id="cb156-60" title="60">dat_stage &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/XX.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb156-61" title="61">                       <span class="dt">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</a>
-<a class="sourceLine" id="cb156-62" title="62"></a>
-<a class="sourceLine" id="cb156-63" title="63"><span class="co">## Analyze VO2 data ----------------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb156-57" title="57"><span class="co">### Import the sheet with the Vo2 data</span></a>
+<a class="sourceLine" id="cb156-58" title="58">dat_vo2 &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb156-59" title="59">                       <span class="dt">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</a>
+<a class="sourceLine" id="cb156-60" title="60"></a>
+<a class="sourceLine" id="cb156-61" title="61"><span class="co">### Import the sheet with the lactate data</span></a>
+<a class="sourceLine" id="cb156-62" title="62">dat_stage &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/XX.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb156-63" title="63">                       <span class="dt">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</a>
 <a class="sourceLine" id="cb156-64" title="64"></a>
-<a class="sourceLine" id="cb156-65" title="65"><span class="co">### Rename column names (Task 2)</span></a>
+<a class="sourceLine" id="cb156-65" title="65"><span class="co">## Analyze VO2 data ----------------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb156-66" title="66"></a>
-<a class="sourceLine" id="cb156-67" title="67">new_names &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb156-67" title="67"><span class="co">### Rename column names of Vo2 data (Task 2)</span></a>
 <a class="sourceLine" id="cb156-68" title="68"></a>
-<a class="sourceLine" id="cb156-69" title="69"><span class="kw">colnames</span> (dat_vo2)  &lt;-<span class="st"> </span>new_names</a>
+<a class="sourceLine" id="cb156-69" title="69">new_names &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
 <a class="sourceLine" id="cb156-70" title="70"></a>
-<a class="sourceLine" id="cb156-71" title="71"><span class="co">### Remove first row </span></a>
+<a class="sourceLine" id="cb156-71" title="71"><span class="kw">colnames</span> (dat_vo2)  &lt;-<span class="st"> </span>new_names</a>
 <a class="sourceLine" id="cb156-72" title="72"></a>
-<a class="sourceLine" id="cb156-73" title="73">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-74" title="74"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb156-75" title="75"></a>
-<a class="sourceLine" id="cb156-76" title="76"><span class="co">### Convert column type (Task 3)</span></a>
+<a class="sourceLine" id="cb156-73" title="73"><span class="co">### Remove first row of Vo2 data</span></a>
+<a class="sourceLine" id="cb156-74" title="74"></a>
+<a class="sourceLine" id="cb156-75" title="75">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-76" title="76"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb156-77" title="77"></a>
-<a class="sourceLine" id="cb156-78" title="78">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-79" title="79"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">bf =</span> <span class="kw">XXX</span> (bf),</a>
-<a class="sourceLine" id="cb156-80" title="80">          <span class="dt">vo2_norm =</span> <span class="kw">XXX</span>(vo2_norm),</a>
-<a class="sourceLine" id="cb156-81" title="81">          <span class="dt">rer =</span> <span class="kw">XXX</span>(rer),</a>
-<a class="sourceLine" id="cb156-82" title="82">          <span class="dt">vo2 =</span> <span class="kw">XXX</span>(vo2),</a>
-<a class="sourceLine" id="cb156-83" title="83">          <span class="dt">vco2 =</span> <span class="kw">XXX</span>(vco2),</a>
-<a class="sourceLine" id="cb156-84" title="84">          <span class="dt">ve =</span> <span class="kw">XXX</span>(ve),</a>
-<a class="sourceLine" id="cb156-85" title="85">          <span class="dt">hr =</span> <span class="kw">XXX</span>(hr)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-86" title="86"><span class="st">  </span><span class="co"># Convert time to seconds</span></a>
-<a class="sourceLine" id="cb156-87" title="87"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-88" title="88"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-89" title="89"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-90" title="90"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-91" title="91"><span class="st">            </span><span class="kw">as.numeric</span> ()) </a>
-<a class="sourceLine" id="cb156-92" title="92"></a>
-<a class="sourceLine" id="cb156-93" title="93"><span class="co">### Create a &quot;stage&quot; variable</span></a>
+<a class="sourceLine" id="cb156-78" title="78"><span class="co">### Convert column type of Vo2 data (Task 3)</span></a>
+<a class="sourceLine" id="cb156-79" title="79"></a>
+<a class="sourceLine" id="cb156-80" title="80">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-81" title="81"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">bf =</span> <span class="kw">XXX</span> (bf),</a>
+<a class="sourceLine" id="cb156-82" title="82">          <span class="dt">vo2_norm =</span> <span class="kw">XXX</span>(vo2_norm),</a>
+<a class="sourceLine" id="cb156-83" title="83">          <span class="dt">rer =</span> <span class="kw">XXX</span>(rer),</a>
+<a class="sourceLine" id="cb156-84" title="84">          <span class="dt">vo2 =</span> <span class="kw">XXX</span>(vo2),</a>
+<a class="sourceLine" id="cb156-85" title="85">          <span class="dt">vco2 =</span> <span class="kw">XXX</span>(vco2),</a>
+<a class="sourceLine" id="cb156-86" title="86">          <span class="dt">ve =</span> <span class="kw">XXX</span>(ve),</a>
+<a class="sourceLine" id="cb156-87" title="87">          <span class="dt">hr =</span> <span class="kw">XXX</span>(hr)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-88" title="88"><span class="st">  </span><span class="co"># Convert time to seconds</span></a>
+<a class="sourceLine" id="cb156-89" title="89"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-90" title="90"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-91" title="91"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-92" title="92"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-93" title="93"><span class="st">            </span><span class="kw">as.numeric</span> ()) </a>
 <a class="sourceLine" id="cb156-94" title="94"></a>
-<a class="sourceLine" id="cb156-95" title="95">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-96" title="96"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
-<a class="sourceLine" id="cb156-97" title="97"></a>
-<a class="sourceLine" id="cb156-98" title="98"><span class="co">### Calculate average 30s data per stage (Task 4)</span></a>
+<a class="sourceLine" id="cb156-95" title="95"><span class="co">### Create a &quot;stage&quot; variable in Vo2 data</span></a>
+<a class="sourceLine" id="cb156-96" title="96"></a>
+<a class="sourceLine" id="cb156-97" title="97">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-98" title="98"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a>
 <a class="sourceLine" id="cb156-99" title="99"></a>
-<a class="sourceLine" id="cb156-100" title="100">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-101" title="101"><span class="st">  </span><span class="kw">group_by</span>(XXX) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
-<a class="sourceLine" id="cb156-102" title="102"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-103" title="103"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span>XXX) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># throw away all data between 3 to 3:30 min</span></a>
-<a class="sourceLine" id="cb156-104" title="104"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> XXX)<span class="op">%&gt;%</span><span class="st"> </span><span class="co"># keep last 30 sec per stage</span></a>
-<a class="sourceLine" id="cb156-105" title="105"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a>
-<a class="sourceLine" id="cb156-106" title="106"></a>
-<a class="sourceLine" id="cb156-107" title="107"><span class="co">### Combine stage and average data (Task 5)</span></a>
+<a class="sourceLine" id="cb156-100" title="100"><span class="co">### Calculate average 30s data per stage of Vo2 data (Task 4)</span></a>
+<a class="sourceLine" id="cb156-101" title="101"></a>
+<a class="sourceLine" id="cb156-102" title="102">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-103" title="103"><span class="st">  </span><span class="kw">group_by</span>(XXX) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
+<a class="sourceLine" id="cb156-104" title="104"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-105" title="105"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span>XXX) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># throw away all data between 3 to 3:30 min</span></a>
+<a class="sourceLine" id="cb156-106" title="106"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> XXX)<span class="op">%&gt;%</span><span class="st"> </span><span class="co"># keep last 30 sec per stage</span></a>
+<a class="sourceLine" id="cb156-107" title="107"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a>
 <a class="sourceLine" id="cb156-108" title="108"></a>
-<a class="sourceLine" id="cb156-109" title="109">dat_vo2_comb &lt;-<span class="st"> </span>dat_vo2_summ <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-110" title="110"><span class="st">  </span><span class="kw">inner_join</span>(dat_stage, <span class="dt">by =</span> <span class="st">&quot;XXX&quot;</span>)</a>
-<a class="sourceLine" id="cb156-111" title="111"></a>
-<a class="sourceLine" id="cb156-112" title="112"><span class="co">### Plot</span></a>
+<a class="sourceLine" id="cb156-109" title="109"><span class="co">### Combine Vo2 staged data with lactate data (Task 5)</span></a>
+<a class="sourceLine" id="cb156-110" title="110"></a>
+<a class="sourceLine" id="cb156-111" title="111">dat_vo2_comb &lt;-<span class="st"> </span>dat_vo2_summ <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-112" title="112"><span class="st">  </span><span class="kw">inner_join</span>(dat_stage, <span class="dt">by =</span> <span class="st">&quot;XXX&quot;</span>)</a>
 <a class="sourceLine" id="cb156-113" title="113"></a>
-<a class="sourceLine" id="cb156-114" title="114"><span class="co">#### Lactate (Task 6)</span></a>
+<a class="sourceLine" id="cb156-114" title="114"><span class="co">### Plot</span></a>
 <a class="sourceLine" id="cb156-115" title="115"></a>
-<a class="sourceLine" id="cb156-116" title="116">f &lt;-<span class="st"> </span><span class="kw">ggplot</span> (dat_vo2_comb) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-117" title="117"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> XXX, <span class="dt">y =</span> XXX), <span class="dt">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-118" title="118"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</a>
-<a class="sourceLine" id="cb156-119" title="119">        <span class="dt">y =</span> <span class="st">&quot;Lactate (mmol)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-120" title="120"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-121" title="121"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-122" title="122"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
-<a class="sourceLine" id="cb156-123" title="123">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),  </a>
-<a class="sourceLine" id="cb156-124" title="124">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
-<a class="sourceLine" id="cb156-125" title="125">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX))</a>
-<a class="sourceLine" id="cb156-126" title="126"></a>
-<a class="sourceLine" id="cb156-127" title="127"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;lactate.png&quot;</span>, </a>
-<a class="sourceLine" id="cb156-128" title="128">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
-<a class="sourceLine" id="cb156-129" title="129">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb156-130" title="130">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb156-131" title="131">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
-<a class="sourceLine" id="cb156-132" title="132">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a>
-<a class="sourceLine" id="cb156-133" title="133"></a>
-<a class="sourceLine" id="cb156-134" title="134"><span class="co">#### Heart rate (Task 7)</span></a>
+<a class="sourceLine" id="cb156-116" title="116"><span class="co">#### Lactate (Task 6)</span></a>
+<a class="sourceLine" id="cb156-117" title="117"></a>
+<a class="sourceLine" id="cb156-118" title="118">f &lt;-<span class="st"> </span><span class="kw">ggplot</span> (dat_vo2_comb) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-119" title="119"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> XXX, <span class="dt">y =</span> XXX), <span class="dt">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-120" title="120"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</a>
+<a class="sourceLine" id="cb156-121" title="121">        <span class="dt">y =</span> <span class="st">&quot;Lactate (mmol)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-122" title="122"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-123" title="123"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-124" title="124"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
+<a class="sourceLine" id="cb156-125" title="125">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),  </a>
+<a class="sourceLine" id="cb156-126" title="126">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
+<a class="sourceLine" id="cb156-127" title="127">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX))</a>
+<a class="sourceLine" id="cb156-128" title="128"></a>
+<a class="sourceLine" id="cb156-129" title="129"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;lactate.png&quot;</span>, </a>
+<a class="sourceLine" id="cb156-130" title="130">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
+<a class="sourceLine" id="cb156-131" title="131">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-132" title="132">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-133" title="133">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
+<a class="sourceLine" id="cb156-134" title="134">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a>
 <a class="sourceLine" id="cb156-135" title="135"></a>
-<a class="sourceLine" id="cb156-136" title="136">f &lt;-<span class="st"> </span><span class="kw">ggplot</span> (dat_vo2_comb) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-137" title="137"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> XXX, <span class="dt">y =</span> XXX), <span class="dt">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-138" title="138"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</a>
-<a class="sourceLine" id="cb156-139" title="139">        <span class="dt">y =</span> <span class="st">&quot;Lactate (mmol)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-140" title="140"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-141" title="141"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-142" title="142"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
-<a class="sourceLine" id="cb156-143" title="143">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),  </a>
-<a class="sourceLine" id="cb156-144" title="144">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
-<a class="sourceLine" id="cb156-145" title="145">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX))</a>
-<a class="sourceLine" id="cb156-146" title="146"></a>
-<a class="sourceLine" id="cb156-147" title="147"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;heartrate.png&quot;</span>, </a>
-<a class="sourceLine" id="cb156-148" title="148">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
-<a class="sourceLine" id="cb156-149" title="149">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb156-150" title="150">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
-<a class="sourceLine" id="cb156-151" title="151">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
-<a class="sourceLine" id="cb156-152" title="152">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a>
-<a class="sourceLine" id="cb156-153" title="153"></a>
-<a class="sourceLine" id="cb156-154" title="154"><span class="co">#### Export table (Task 8)</span></a>
+<a class="sourceLine" id="cb156-136" title="136"><span class="co">#### Heart rate (Task 7)</span></a>
+<a class="sourceLine" id="cb156-137" title="137"></a>
+<a class="sourceLine" id="cb156-138" title="138">f &lt;-<span class="st"> </span><span class="kw">ggplot</span> (dat_vo2_comb) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-139" title="139"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> XXX, <span class="dt">y =</span> XXX), <span class="dt">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-140" title="140"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</a>
+<a class="sourceLine" id="cb156-141" title="141">        <span class="dt">y =</span> <span class="st">&quot;Lactate (mmol)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-142" title="142"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-143" title="143"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-144" title="144"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
+<a class="sourceLine" id="cb156-145" title="145">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),  </a>
+<a class="sourceLine" id="cb156-146" title="146">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX),</a>
+<a class="sourceLine" id="cb156-147" title="147">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> XXX))</a>
+<a class="sourceLine" id="cb156-148" title="148"></a>
+<a class="sourceLine" id="cb156-149" title="149"><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;heartrate.png&quot;</span>, </a>
+<a class="sourceLine" id="cb156-150" title="150">       <span class="dt">plot =</span> f, <span class="co"># the name of the image object you created above.</span></a>
+<a class="sourceLine" id="cb156-151" title="151">       <span class="dt">width =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-152" title="152">       <span class="dt">height =</span> <span class="dv">8</span>, </a>
+<a class="sourceLine" id="cb156-153" title="153">       <span class="dt">unit =</span> <span class="st">&quot;cm&quot;</span>, </a>
+<a class="sourceLine" id="cb156-154" title="154">       <span class="dt">dpi =</span> <span class="dv">300</span>)</a>
 <a class="sourceLine" id="cb156-155" title="155"></a>
-<a class="sourceLine" id="cb156-156" title="156"><span class="kw">write.xlsx</span>(<span class="dt">x =</span> XXX,</a>
-<a class="sourceLine" id="cb156-157" title="157">           <span class="dt">sheetName =</span> <span class="st">&quot;vo2&quot;</span>,</a>
-<a class="sourceLine" id="cb156-158" title="158">           <span class="dt">file =</span> <span class="st">&quot;data/vo2_table.xlsx&quot;</span>)</a>
-<a class="sourceLine" id="cb156-159" title="159"></a>
-<a class="sourceLine" id="cb156-160" title="160"><span class="co">## Bonus Codes to help you -------------------------------------------------</span></a>
-<a class="sourceLine" id="cb156-161" title="161"><span class="co">### Click on everything and run</span></a>
-<a class="sourceLine" id="cb156-162" title="162"></a>
-<a class="sourceLine" id="cb156-163" title="163"></a>
-<a class="sourceLine" id="cb156-164" title="164"><span class="co">### Get VO2 max , VO2 max relative</span></a>
+<a class="sourceLine" id="cb156-156" title="156"><span class="co">#### Export table (Task 8)</span></a>
+<a class="sourceLine" id="cb156-157" title="157"></a>
+<a class="sourceLine" id="cb156-158" title="158"><span class="kw">write.xlsx</span>(<span class="dt">x =</span> XXX,</a>
+<a class="sourceLine" id="cb156-159" title="159">           <span class="dt">sheetName =</span> <span class="st">&quot;vo2&quot;</span>,</a>
+<a class="sourceLine" id="cb156-160" title="160">           <span class="dt">file =</span> <span class="st">&quot;data/vo2_table.xlsx&quot;</span>)</a>
+<a class="sourceLine" id="cb156-161" title="161"></a>
+<a class="sourceLine" id="cb156-162" title="162"><span class="co">## Bonus Codes to help you -------------------------------------------------</span></a>
+<a class="sourceLine" id="cb156-163" title="163"><span class="co">### Click on everything below and run</span></a>
+<a class="sourceLine" id="cb156-164" title="164"></a>
 <a class="sourceLine" id="cb156-165" title="165"></a>
-<a class="sourceLine" id="cb156-166" title="166">rolling_mean6 &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb156-166" title="166"><span class="co">### Get VO2 max , VO2 max relative</span></a>
 <a class="sourceLine" id="cb156-167" title="167"></a>
-<a class="sourceLine" id="cb156-168" title="168">raw_roll &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-169" title="169"><span class="st">  </span><span class="kw">arrange</span> (<span class="kw">desc</span> (time)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-170" title="170"><span class="st">  </span><span class="kw">mutate_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), rolling_mean6) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-171" title="171"><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-172" title="172"><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(bf<span class="op">:</span>hr), max, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-173" title="173"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2 =</span> vo2<span class="op">/</span><span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb156-174" title="174"></a>
-<a class="sourceLine" id="cb156-175" title="175"><span class="kw">cat</span> (<span class="st">&quot;The relative peak O2 uptake is:&quot;</span>, raw_roll<span class="op">$</span>vo2_norm, <span class="st">&quot;(ml/kg/min)&quot;</span>)</a>
-<a class="sourceLine" id="cb156-176" title="176"><span class="kw">cat</span> (<span class="st">&quot;The absolute peak O2 uptake is:&quot;</span>, raw_roll<span class="op">$</span>vo2, <span class="st">&quot;(L/min)&quot;</span>)</a>
-<a class="sourceLine" id="cb156-177" title="177"></a>
-<a class="sourceLine" id="cb156-178" title="178"><span class="co">### Get max aerobic speed</span></a>
+<a class="sourceLine" id="cb156-168" title="168">rolling_mean6 &lt;-<span class="st"> </span><span class="kw">rollify</span>(mean, <span class="dt">window =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb156-169" title="169"></a>
+<a class="sourceLine" id="cb156-170" title="170">raw_roll &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-171" title="171"><span class="st">  </span><span class="kw">arrange</span> (<span class="kw">desc</span> (time)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-172" title="172"><span class="st">  </span><span class="kw">mutate_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), rolling_mean6) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-173" title="173"><span class="st">  </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-174" title="174"><span class="st">  </span><span class="kw">summarise_at</span>(<span class="kw">vars</span>(bf<span class="op">:</span>hr), max, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-175" title="175"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2 =</span> vo2<span class="op">/</span><span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb156-176" title="176"></a>
+<a class="sourceLine" id="cb156-177" title="177"><span class="kw">cat</span> (<span class="st">&quot;The relative peak O2 uptake is:&quot;</span>, raw_roll<span class="op">$</span>vo2_norm, <span class="st">&quot;(ml/kg/min)&quot;</span>)</a>
+<a class="sourceLine" id="cb156-178" title="178"><span class="kw">cat</span> (<span class="st">&quot;The absolute peak O2 uptake is:&quot;</span>, raw_roll<span class="op">$</span>vo2, <span class="st">&quot;(L/min)&quot;</span>)</a>
 <a class="sourceLine" id="cb156-179" title="179"></a>
-<a class="sourceLine" id="cb156-180" title="180"><span class="co">#### Get maximal stage completed number</span></a>
-<a class="sourceLine" id="cb156-181" title="181">max_stage &lt;-<span class="st"> </span><span class="kw">max</span> (dat_vo2<span class="op">$</span>stage)</a>
-<a class="sourceLine" id="cb156-182" title="182"></a>
-<a class="sourceLine" id="cb156-183" title="183"><span class="co">#### Find number of rows in final stage</span></a>
-<a class="sourceLine" id="cb156-184" title="184">dat_vo2_last &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-185" title="185"><span class="st">  </span><span class="kw">filter</span> (stage <span class="op">==</span><span class="st"> </span>max_stage)</a>
-<a class="sourceLine" id="cb156-186" title="186"></a>
-<a class="sourceLine" id="cb156-187" title="187"><span class="co">#### Calculate based on rows the proportion of stage completed</span></a>
-<a class="sourceLine" id="cb156-188" title="188">last_stage_prop &lt;-<span class="st"> </span><span class="kw">nrow</span> (dat_vo2_last)<span class="op">/</span><span class="dv">42</span></a>
-<a class="sourceLine" id="cb156-189" title="189"></a>
-<a class="sourceLine" id="cb156-190" title="190"><span class="co">#### Get the speed increment, which should be even across all stage</span></a>
-<a class="sourceLine" id="cb156-191" title="191">increment &lt;-<span class="st"> </span><span class="kw">mean</span> (<span class="kw">diff</span>(dat_vo2_comb<span class="op">$</span>speed, <span class="dt">lag =</span> <span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb156-192" title="192"></a>
-<a class="sourceLine" id="cb156-193" title="193"><span class="co">#### Get the maximal aerobic speed</span></a>
-<a class="sourceLine" id="cb156-194" title="194">ans &lt;-<span class="st">  </span>last_stage_prop <span class="op">*</span><span class="st"> </span>increment</a>
-<a class="sourceLine" id="cb156-195" title="195">max_aerobic_speed &lt;-<span class="st"> </span>ans <span class="op">+</span><span class="st"> </span><span class="kw">max</span> (dat_vo2_comb<span class="op">$</span>speed)</a>
-<a class="sourceLine" id="cb156-196" title="196"></a>
-<a class="sourceLine" id="cb156-197" title="197"><span class="kw">cat</span> (<span class="st">&quot;The maximal aerobic speed:&quot;</span>, max_aerobic_speed,  <span class="st">&quot;(Km/h)&quot;</span>)</a>
+<a class="sourceLine" id="cb156-180" title="180"><span class="co">### Get max aerobic speed</span></a>
+<a class="sourceLine" id="cb156-181" title="181"></a>
+<a class="sourceLine" id="cb156-182" title="182"><span class="co">#### Get maximal stage completed number</span></a>
+<a class="sourceLine" id="cb156-183" title="183">max_stage &lt;-<span class="st"> </span><span class="kw">max</span> (dat_vo2<span class="op">$</span>stage)</a>
+<a class="sourceLine" id="cb156-184" title="184"></a>
+<a class="sourceLine" id="cb156-185" title="185"><span class="co">#### Find number of rows in final stage</span></a>
+<a class="sourceLine" id="cb156-186" title="186">dat_vo2_last &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-187" title="187"><span class="st">  </span><span class="kw">filter</span> (stage <span class="op">==</span><span class="st"> </span>max_stage)</a>
+<a class="sourceLine" id="cb156-188" title="188"></a>
+<a class="sourceLine" id="cb156-189" title="189"><span class="co">#### Calculate based on rows the proportion of stage completed</span></a>
+<a class="sourceLine" id="cb156-190" title="190">last_stage_prop &lt;-<span class="st"> </span><span class="kw">nrow</span> (dat_vo2_last)<span class="op">/</span><span class="dv">42</span></a>
+<a class="sourceLine" id="cb156-191" title="191"></a>
+<a class="sourceLine" id="cb156-192" title="192"><span class="co">#### Get the speed increment, which should be even across all stage</span></a>
+<a class="sourceLine" id="cb156-193" title="193">increment &lt;-<span class="st"> </span><span class="kw">mean</span> (<span class="kw">diff</span>(dat_vo2_comb<span class="op">$</span>speed, <span class="dt">lag =</span> <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb156-194" title="194"></a>
+<a class="sourceLine" id="cb156-195" title="195"><span class="co">#### Get the maximal aerobic speed</span></a>
+<a class="sourceLine" id="cb156-196" title="196">ans &lt;-<span class="st">  </span>last_stage_prop <span class="op">*</span><span class="st"> </span>increment</a>
+<a class="sourceLine" id="cb156-197" title="197">max_aerobic_speed &lt;-<span class="st"> </span>ans <span class="op">+</span><span class="st"> </span><span class="kw">max</span> (dat_vo2_comb<span class="op">$</span>speed)</a>
 <a class="sourceLine" id="cb156-198" title="198"></a>
-<a class="sourceLine" id="cb156-199" title="199"></a>
-<a class="sourceLine" id="cb156-200" title="200"><span class="co">### Get Lactate and Anaerobic Thresold</span></a>
+<a class="sourceLine" id="cb156-199" title="199"><span class="kw">cat</span> (<span class="st">&quot;The maximal aerobic speed:&quot;</span>, max_aerobic_speed,  <span class="st">&quot;(Km/h)&quot;</span>)</a>
+<a class="sourceLine" id="cb156-200" title="200"></a>
 <a class="sourceLine" id="cb156-201" title="201"></a>
-<a class="sourceLine" id="cb156-202" title="202">m &lt;-<span class="st"> </span><span class="kw">loess</span> (lactate <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> dat_vo2_comb)</a>
-<a class="sourceLine" id="cb156-203" title="203">min.speed &lt;-<span class="st"> </span><span class="kw">ceiling</span> (<span class="kw">min</span> (dat_vo2_comb<span class="op">$</span>speed))</a>
-<a class="sourceLine" id="cb156-204" title="204">max.speed &lt;-<span class="st"> </span><span class="kw">floor</span> (<span class="kw">max</span> (dat_vo2_comb<span class="op">$</span>speed))</a>
-<a class="sourceLine" id="cb156-205" title="205">n_points &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb156-206" title="206"></a>
-<a class="sourceLine" id="cb156-207" title="207">new_lac &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">speed =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points))</a>
-<a class="sourceLine" id="cb156-208" title="208">new_lac<span class="op">$</span>y &lt;-<span class="st"> </span><span class="kw">predict</span> (m, <span class="dt">newdata =</span> new_lac)</a>
-<a class="sourceLine" id="cb156-209" title="209"><span class="kw">colnames</span>(new_lac)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;x&quot;</span></a>
-<a class="sourceLine" id="cb156-210" title="210"></a>
-<a class="sourceLine" id="cb156-211" title="211"><span class="co">#### Threshold values</span></a>
+<a class="sourceLine" id="cb156-202" title="202"><span class="co">### Get Lactate and Anaerobic Thresold</span></a>
+<a class="sourceLine" id="cb156-203" title="203"></a>
+<a class="sourceLine" id="cb156-204" title="204">m &lt;-<span class="st"> </span><span class="kw">loess</span> (lactate <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> dat_vo2_comb)</a>
+<a class="sourceLine" id="cb156-205" title="205">min.speed &lt;-<span class="st"> </span><span class="kw">ceiling</span> (<span class="kw">min</span> (dat_vo2_comb<span class="op">$</span>speed))</a>
+<a class="sourceLine" id="cb156-206" title="206">max.speed &lt;-<span class="st"> </span><span class="kw">floor</span> (<span class="kw">max</span> (dat_vo2_comb<span class="op">$</span>speed))</a>
+<a class="sourceLine" id="cb156-207" title="207">n_points &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb156-208" title="208"></a>
+<a class="sourceLine" id="cb156-209" title="209">new_lac &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">speed =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points))</a>
+<a class="sourceLine" id="cb156-210" title="210">new_lac<span class="op">$</span>y &lt;-<span class="st"> </span><span class="kw">predict</span> (m, <span class="dt">newdata =</span> new_lac)</a>
+<a class="sourceLine" id="cb156-211" title="211"><span class="kw">colnames</span>(new_lac)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;x&quot;</span></a>
 <a class="sourceLine" id="cb156-212" title="212"></a>
-<a class="sourceLine" id="cb156-213" title="213">lactate_thres &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">x =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points),</a>
-<a class="sourceLine" id="cb156-214" title="214">                             <span class="dt">y =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb156-215" title="215"></a>
-<a class="sourceLine" id="cb156-216" title="216">anaerobic_thres &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">x =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points),</a>
-<a class="sourceLine" id="cb156-217" title="217">                               <span class="dt">y =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb156-218" title="218"><span class="co">#### Speed at thresold</span></a>
-<a class="sourceLine" id="cb156-219" title="219"></a>
-<a class="sourceLine" id="cb156-220" title="220">speed_at_lac_thres &lt;-<span class="st"> </span><span class="kw">curve_intersect</span>(new_lac, lactate_thres)<span class="op">$</span>x</a>
-<a class="sourceLine" id="cb156-221" title="221">speed_at_ane_thres &lt;-<span class="st"> </span><span class="kw">curve_intersect</span>(new_lac, anaerobic_thres)<span class="op">$</span>x</a>
-<a class="sourceLine" id="cb156-222" title="222"></a>
-<a class="sourceLine" id="cb156-223" title="223"><span class="co">### Get HR at thresholds</span></a>
+<a class="sourceLine" id="cb156-213" title="213"><span class="co">#### Threshold values</span></a>
+<a class="sourceLine" id="cb156-214" title="214"></a>
+<a class="sourceLine" id="cb156-215" title="215">lactate_thres &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">x =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points),</a>
+<a class="sourceLine" id="cb156-216" title="216">                             <span class="dt">y =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb156-217" title="217"></a>
+<a class="sourceLine" id="cb156-218" title="218">anaerobic_thres &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">x =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points),</a>
+<a class="sourceLine" id="cb156-219" title="219">                               <span class="dt">y =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb156-220" title="220"><span class="co">#### Speed at thresold</span></a>
+<a class="sourceLine" id="cb156-221" title="221"></a>
+<a class="sourceLine" id="cb156-222" title="222">speed_at_lac_thres &lt;-<span class="st"> </span><span class="kw">curve_intersect</span>(new_lac, lactate_thres)<span class="op">$</span>x</a>
+<a class="sourceLine" id="cb156-223" title="223">speed_at_ane_thres &lt;-<span class="st"> </span><span class="kw">curve_intersect</span>(new_lac, anaerobic_thres)<span class="op">$</span>x</a>
 <a class="sourceLine" id="cb156-224" title="224"></a>
-<a class="sourceLine" id="cb156-225" title="225">m &lt;-<span class="st"> </span><span class="kw">loess</span> (hr <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> dat_vo2_comb)</a>
+<a class="sourceLine" id="cb156-225" title="225"><span class="co">### Get HR at thresholds</span></a>
 <a class="sourceLine" id="cb156-226" title="226"></a>
-<a class="sourceLine" id="cb156-227" title="227">new_hr &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">speed =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points))</a>
-<a class="sourceLine" id="cb156-228" title="228">new_hr<span class="op">$</span>y &lt;-<span class="st"> </span><span class="kw">predict</span> (m, <span class="dt">newdata =</span> new_hr)</a>
-<a class="sourceLine" id="cb156-229" title="229"><span class="kw">colnames</span>(new_hr)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;x&quot;</span></a>
-<a class="sourceLine" id="cb156-230" title="230"></a>
-<a class="sourceLine" id="cb156-231" title="231"></a>
-<a class="sourceLine" id="cb156-232" title="232">hr_at_lac_thres &lt;-<span class="st"> </span>new_hr[<span class="kw">which.min</span>(<span class="kw">abs</span>(new_hr<span class="op">$</span>x <span class="op">-</span>speed_at_lac_thres)), <span class="st">&quot;y&quot;</span>] <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-233" title="233"><span class="st">  </span><span class="kw">round</span> (<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb156-234" title="234">hr_at_ane_thres &lt;-<span class="st"> </span>new_hr[<span class="kw">which.min</span>(<span class="kw">abs</span>(new_hr<span class="op">$</span>x <span class="op">-</span>speed_at_ane_thres)), <span class="st">&quot;y&quot;</span>] <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-235" title="235"><span class="st">  </span>round </a>
-<a class="sourceLine" id="cb156-236" title="236"></a>
-<a class="sourceLine" id="cb156-237" title="237">pi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Variable =</span> <span class="kw">c</span>(<span class="st">&quot;Lactate Threshold&quot;</span>, <span class="st">&quot;Anaerobic Threshold&quot;</span>),</a>
-<a class="sourceLine" id="cb156-238" title="238">                 <span class="dt">Speed =</span> <span class="kw">c</span>(speed_at_lac_thres, speed_at_ane_thres ),</a>
-<a class="sourceLine" id="cb156-239" title="239">                 <span class="dt">HR =</span> <span class="kw">c</span>(hr_at_lac_thres, hr_at_ane_thres))</a>
-<a class="sourceLine" id="cb156-240" title="240"></a>
-<a class="sourceLine" id="cb156-241" title="241"><span class="kw">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at lactate threshold are:&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb156-242" title="242"><span class="kw">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at anaerobic threshold are:&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb156-243" title="243"></a>
-<a class="sourceLine" id="cb156-244" title="244">df_plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">speed =</span> new_lac<span class="op">$</span>x,</a>
-<a class="sourceLine" id="cb156-245" title="245">                      <span class="dt">lactate =</span> new_lac<span class="op">$</span>y,</a>
-<a class="sourceLine" id="cb156-246" title="246">                      <span class="dt">hr =</span> new_hr<span class="op">$</span>y,</a>
-<a class="sourceLine" id="cb156-247" title="247">                      <span class="dt">speed_lac =</span> speed_at_lac_thres,</a>
-<a class="sourceLine" id="cb156-248" title="248">                      <span class="dt">speed_ane =</span> speed_at_ane_thres) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb156-249" title="249"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> lactate<span class="op">:</span>hr,</a>
-<a class="sourceLine" id="cb156-250" title="250">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
-<a class="sourceLine" id="cb156-251" title="251">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>)</a>
-<a class="sourceLine" id="cb156-252" title="252"></a>
-<a class="sourceLine" id="cb156-253" title="253"><span class="kw">ggplot</span> (df_plot) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-254" title="254"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> speed, <span class="dt">y =</span> val)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-255" title="255"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> speed_at_lac_thres, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-256" title="256"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> speed_at_ane_thres, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-257" title="257"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>var, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-258" title="258"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed&quot;</span>,</a>
-<a class="sourceLine" id="cb156-259" title="259">        <span class="dt">y =</span> <span class="st">&quot;Values&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-260" title="260"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-261" title="261"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;Plot of Treadmill test&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb156-262" title="262"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),</a>
-<a class="sourceLine" id="cb156-263" title="263">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),  </a>
-<a class="sourceLine" id="cb156-264" title="264">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>),</a>
-<a class="sourceLine" id="cb156-265" title="265">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb156-227" title="227">m &lt;-<span class="st"> </span><span class="kw">loess</span> (hr <span class="op">~</span><span class="st"> </span>speed, <span class="dt">data =</span> dat_vo2_comb)</a>
+<a class="sourceLine" id="cb156-228" title="228"></a>
+<a class="sourceLine" id="cb156-229" title="229">new_hr &lt;-<span class="st"> </span><span class="kw">data.frame</span> (<span class="dt">speed =</span> <span class="kw">seq</span> (min.speed, max.speed, <span class="dt">length.out =</span> n_points))</a>
+<a class="sourceLine" id="cb156-230" title="230">new_hr<span class="op">$</span>y &lt;-<span class="st"> </span><span class="kw">predict</span> (m, <span class="dt">newdata =</span> new_hr)</a>
+<a class="sourceLine" id="cb156-231" title="231"><span class="kw">colnames</span>(new_hr)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;x&quot;</span></a>
+<a class="sourceLine" id="cb156-232" title="232"></a>
+<a class="sourceLine" id="cb156-233" title="233"></a>
+<a class="sourceLine" id="cb156-234" title="234">hr_at_lac_thres &lt;-<span class="st"> </span>new_hr[<span class="kw">which.min</span>(<span class="kw">abs</span>(new_hr<span class="op">$</span>x <span class="op">-</span>speed_at_lac_thres)), <span class="st">&quot;y&quot;</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-235" title="235"><span class="st">  </span><span class="kw">round</span> (<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb156-236" title="236">hr_at_ane_thres &lt;-<span class="st"> </span>new_hr[<span class="kw">which.min</span>(<span class="kw">abs</span>(new_hr<span class="op">$</span>x <span class="op">-</span>speed_at_ane_thres)), <span class="st">&quot;y&quot;</span>] <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-237" title="237"><span class="st">  </span>round </a>
+<a class="sourceLine" id="cb156-238" title="238"></a>
+<a class="sourceLine" id="cb156-239" title="239">pi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Variable =</span> <span class="kw">c</span>(<span class="st">&quot;Lactate Threshold&quot;</span>, <span class="st">&quot;Anaerobic Threshold&quot;</span>),</a>
+<a class="sourceLine" id="cb156-240" title="240">                 <span class="dt">Speed =</span> <span class="kw">c</span>(speed_at_lac_thres, speed_at_ane_thres ),</a>
+<a class="sourceLine" id="cb156-241" title="241">                 <span class="dt">HR =</span> <span class="kw">c</span>(hr_at_lac_thres, hr_at_ane_thres))</a>
+<a class="sourceLine" id="cb156-242" title="242"></a>
+<a class="sourceLine" id="cb156-243" title="243"><span class="kw">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at lactate threshold are:&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb156-244" title="244"><span class="kw">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at anaerobic threshold are:&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb156-245" title="245"></a>
+<a class="sourceLine" id="cb156-246" title="246">df_plot &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">speed =</span> new_lac<span class="op">$</span>x,</a>
+<a class="sourceLine" id="cb156-247" title="247">                      <span class="dt">lactate =</span> new_lac<span class="op">$</span>y,</a>
+<a class="sourceLine" id="cb156-248" title="248">                      <span class="dt">hr =</span> new_hr<span class="op">$</span>y,</a>
+<a class="sourceLine" id="cb156-249" title="249">                      <span class="dt">speed_lac =</span> speed_at_lac_thres,</a>
+<a class="sourceLine" id="cb156-250" title="250">                      <span class="dt">speed_ane =</span> speed_at_ane_thres) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb156-251" title="251"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> lactate<span class="op">:</span>hr,</a>
+<a class="sourceLine" id="cb156-252" title="252">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
+<a class="sourceLine" id="cb156-253" title="253">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>)</a>
+<a class="sourceLine" id="cb156-254" title="254"></a>
+<a class="sourceLine" id="cb156-255" title="255"><span class="kw">ggplot</span> (df_plot) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-256" title="256"><span class="st">  </span><span class="kw">geom_line</span> (<span class="kw">aes</span> (<span class="dt">x =</span> speed, <span class="dt">y =</span> val)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-257" title="257"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> speed_at_lac_thres, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-258" title="258"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> speed_at_ane_thres, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-259" title="259"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>var, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-260" title="260"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;Speed&quot;</span>,</a>
+<a class="sourceLine" id="cb156-261" title="261">        <span class="dt">y =</span> <span class="st">&quot;Values&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-262" title="262"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-263" title="263"><span class="st">  </span><span class="kw">labs</span> (<span class="dt">title =</span> <span class="st">&quot;Plot of Treadmill test&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-264" title="264"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),</a>
+<a class="sourceLine" id="cb156-265" title="265">        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>),  </a>
+<a class="sourceLine" id="cb156-266" title="266">        <span class="dt">axis.title.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>),</a>
+<a class="sourceLine" id="cb156-267" title="267">        <span class="dt">axis.title.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">16</span>))</a></code></pre></div>
 
 </div>
             </section>
