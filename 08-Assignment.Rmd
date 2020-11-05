@@ -13,27 +13,27 @@ To do your assignment, follow these steps:
 
 1. In your desktop's`se201` folder, created in learning check \@ref(NAVIGATE-PROJECTS).
 
-2. Create a project called `assignment` inside the folder. See Reciple \@ref(NAVIGATE-PROJECTS).
+2. Create a project called `assignment` inside the folder. See Recipe \@ref(NAVIGATE-PROJECTS).
 
 3. Create a new R script called `treadmill_analysis.R`, paste the codes you see below, and save it. 
 
 4. Inside `assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. 
 
-5. **Task 1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Reciple \@ref(INPUT-IMPORT).
+5. **Task 1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Recipe \@ref(INPUT-IMPORT).
 
-6. **Task 2:** Rename columns. Rename all columns to lower cases, without white spaces. See Reciple \@ref(WRANGLE-RENAME-VARIABLES).
+6. **Task 2:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
-7. **Task 3:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Reciple \@ref(WRANGLE-CHARACTER-2-NUMERIC).
+7. **Task 3:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Recipe \@ref(WRANGLE-CHARACTER-2-NUMERIC).
 
-8. **Task 4:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+8. **Task 4:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-9. **Task 5:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Reciple \@ref(WRANGLE-INNER-JOIN).
+9. **Task 5:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-INNER-JOIN).
 
-10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Reciples \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot.
+11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-12. **Task 8:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Reciple \@ref(INPUT-EXPORT). 
+12. **Task 8:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe \@ref(INPUT-EXPORT). 
 
 ```{r, eval = FALSE}
 

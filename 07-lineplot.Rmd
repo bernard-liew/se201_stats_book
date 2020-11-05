@@ -370,13 +370,13 @@ hw_plot +
 
 6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 sec windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-7. For each stage, remove the data between 3 to 3:30min. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
+7. For each stage, remove the data between 3 to 3:30min. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
 
-8. For each stage, keep the last six rows of data. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
+8. For each stage, keep the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
 
-9. For each stage, calculate for all variables for the mean of the last six rows of data. See Reciple \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL). Assign this table to an object called `dat_summ`.
+9. For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL). Assign this table to an object called `dat_summ`.
 
-10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Reciple \@ref(WRANGLE-INNER-JOIN). Assign this table to an object called `df_plot`.
+10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Recipe \@ref(WRANGLE-INNER-JOIN). Assign this table to an object called `df_plot`.
 
 11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis, and assign it to an object called `f`. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -3036,10 +3036,10 @@ lactate
 <li><p>Convert the variable <code>time</code> of <code>dat</code> into numeric seconds, and all other variables to numeric. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME">6.5</a> and <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.4</a>, respectively.</p></li>
 <li><p>Create a variable called <code>stage</code>, where each stage represents 3:30 min worth of VO2 data. See Recipe <a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY">6.6</a>.</p></li>
 <li><p>For each stage, create a variable called <code>row_id</code>, which essentially represents the number of 5 sec windows in each stage. See Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p></li>
-<li><p>For each stage, remove the data between 3:00 to 3:30min. See Reciple <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC">6.12.2</a>.</p></li>
-<li><p>For each stage, keep the last six rows of data. See Reciple <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
-<li><p>For each stage, calculate for all variables for the mean of the last six rows of data. See Reciple <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL">6.13</a>.</p></li>
-<li><p>Save this cleaned data set into the <code>data/</code> folder called <code>Athlete_1_treadmill_clean.xlsx</code>. See Reciple <a href="InputOuput.html#INPUT-EXPORT">5.3</a></p></li>
+<li><p>For each stage, remove the data between 3:00 to 3:30min. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC">6.12.2</a>.</p></li>
+<li><p>For each stage, keep the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
+<li><p>For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL">6.13</a>.</p></li>
+<li><p>Save this cleaned data set into the <code>data/</code> folder called <code>Athlete_1_treadmill_clean.xlsx</code>. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a></p></li>
 </ol>
 
 <pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.6.2</code></pre>
