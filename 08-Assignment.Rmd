@@ -3,7 +3,7 @@
 
 This assignment is designed to create a graph of lactate and heart rate against speed in the Incremental Treadmill Test. There are two things to note:
 
-1. With the graphs createed, export it and paste into your word assignment document. 
+1. With the graphs created, export it and paste into your word assignment document. 
 
 2. Copy the entire code below as an appendix in the word assignment document. 
 
