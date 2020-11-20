@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-05" />
+<meta name="date" content="2020-11-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -975,7 +975,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># 4 in 1 processing</span></a>
 <a class="sourceLine" id="cb99-2" title="2"></a>
-<a class="sourceLine" id="cb99-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-3" title="3">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb99-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb99-5" title="5"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># function strips any whitespaces</span></a>
 <a class="sourceLine" id="cb99-6" title="6"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert to minutes and seconds</span></a>
@@ -1322,12 +1322,95 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co"># Fourth, strips the S symbol to make it a number, and assign it to object</span></a>
 <a class="sourceLine" id="cb103-2" title="2"></a>
-<a class="sourceLine" id="cb103-3" title="3">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb103-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb103-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
 <a class="sourceLine" id="cb103-6" title="6"><span class="st">                 </span><span class="kw">ms</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb103-7" title="7"><span class="st">                 </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb103-8" title="8"><span class="st">                 </span><span class="kw">as.numeric</span> ())</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">time</th>
+<th align="right">bf</th>
+<th align="right">vo2_norm</th>
+<th align="right">rer</th>
+<th align="right">vo2</th>
+<th align="right">vco2</th>
+<th align="right">ve</th>
+<th align="right">hr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>325</td>
+<td align="right">1625</td>
+<td align="right">55</td>
+<td align="right">45.31</td>
+<td align="right">1.07</td>
+<td align="right">2900</td>
+<td align="right">3100</td>
+<td align="right">112</td>
+<td align="right">194</td>
+</tr>
+<tr class="even">
+<td>326</td>
+<td align="right">1630</td>
+<td align="right">57</td>
+<td align="right">45.33</td>
+<td align="right">1.03</td>
+<td align="right">2901</td>
+<td align="right">3000</td>
+<td align="right">111</td>
+<td align="right">195</td>
+</tr>
+<tr class="odd">
+<td>327</td>
+<td align="right">1635</td>
+<td align="right">52</td>
+<td align="right">44.61</td>
+<td align="right">1.06</td>
+<td align="right">2855</td>
+<td align="right">3035</td>
+<td align="right">111</td>
+<td align="right">194</td>
+</tr>
+<tr class="even">
+<td>328</td>
+<td align="right">1640</td>
+<td align="right">59</td>
+<td align="right">46.50</td>
+<td align="right">1.04</td>
+<td align="right">2976</td>
+<td align="right">3100</td>
+<td align="right">112</td>
+<td align="right">197</td>
+</tr>
+<tr class="odd">
+<td>329</td>
+<td align="right">1645</td>
+<td align="right">60</td>
+<td align="right">45.14</td>
+<td align="right">1.07</td>
+<td align="right">2889</td>
+<td align="right">3085</td>
+<td align="right">113</td>
+<td align="right">196</td>
+</tr>
+<tr class="even">
+<td>330</td>
+<td align="right">1650</td>
+<td align="right">61</td>
+<td align="right">46.00</td>
+<td align="right">1.05</td>
+<td align="right">2944</td>
+<td align="right">3093</td>
+<td align="right">114</td>
+<td align="right">195</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="WRANGLE-NUMERIC-CATEGORY" class="section level2">
@@ -2244,7 +2327,7 @@ left
 <h3><span class="header-section-number">6.12.2</span> Keep rows based on a numerical range</h3>
 <p>You want to keep the data when a variable is within a certain window range. Let us use the <code>dat_vo2</code> dataset. Let us see the range of values of the variable <code>ve</code>.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <div id="problem-11" class="section level4">
 <h4><span class="header-section-number">6.12.2.1</span> Problem</h4>
 <p>Say I want to keep rows where 1) <code>ve</code> is less than 80, 2) <code>ve</code> more than 40, and 3) <code>ve</code> is between 40 to 80.</p>
@@ -2258,21 +2341,21 @@ left
 <a class="sourceLine" id="cb116-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb116-5" title="5"></a>
 <a class="sourceLine" id="cb116-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="co"># Keep ve lmore than 40</span></a>
 <a class="sourceLine" id="cb117-2" title="2"></a>
 <a class="sourceLine" id="cb117-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb117-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
 <a class="sourceLine" id="cb117-5" title="5"></a>
 <a class="sourceLine" id="cb117-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-2.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-104-2.png" width="672" /></p>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="co"># Keep ve between 40 to 80</span></a>
 <a class="sourceLine" id="cb118-2" title="2"></a>
 <a class="sourceLine" id="cb118-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb118-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
 <a class="sourceLine" id="cb118-5" title="5"></a>
 <a class="sourceLine" id="cb118-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-101-3.png" width="672" /></p>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-104-3.png" width="672" /></p>
 </div>
 </div>
 <div id="discussion-4" class="section level3">
@@ -2446,7 +2529,7 @@ squat
 <a class="sourceLine" id="cb124-6" title="6"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-108">Table 6.1: </span>Stage by stage VO2 analysis
+<span id="tab:unnamed-chunk-111">Table 6.1: </span>Stage by stage VO2 analysis
 </caption>
 <thead>
 <tr>

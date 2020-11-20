@@ -280,7 +280,7 @@ Use the `mutate()` function and the `as.numeric` function. You will learn the `m
 
 # 4 in 1 processing
 
-time_mutate <- dat_vo2 %>%
+dat_vo2 <- dat_vo2 %>%
   mutate (time = time %>% 
             str_squish() %>% # function strips any whitespaces
             ms() %>% # convert to minutes and seconds
@@ -290,7 +290,7 @@ time_mutate <- dat_vo2 %>%
 ```
 
 ```{r, echo = FALSE}
-time_mutate %>%
+dat_vo2 %>%
   head()%>%
   knitr::kable (digits = 2)
 ```
@@ -298,6 +298,25 @@ time_mutate %>%
 ### Discussion
 
 Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the `time` variable.  
+
+```{r, echo = FALSE}
+dat_vo2 <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
+                   sheet = "raw")
+
+new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
+
+colnames (dat_vo2)  <- new_names
+
+dat_vo2 <- dat_vo2 %>% 
+  slice (-(1)) %>%
+  mutate (bf = as.numeric(bf),
+          vo2_norm = as.numeric(vo2_norm),
+          rer = as.numeric(rer),
+          vo2 = as.numeric(vo2),
+          vco2 = as.numeric(vco2),
+          ve = as.numeric(ve),
+          hr = as.numeric(hr))
+```
 
 ```{r }
 # First, removes whitespaces around the time variable
@@ -347,7 +366,7 @@ time_mutate %>%
 ```{r }
 # Fourth, strips the S symbol to make it a number, and assign it to object
 
-dat_vo2 <- dat_vo2 %>%
+time_mutate <- dat_vo2 %>%
   mutate (time = time %>% 
                  str_squish()%>%  
                  ms() %>%
@@ -356,8 +375,22 @@ dat_vo2 <- dat_vo2 %>%
 
 ```
 
+```{r, echo = FALSE}
+time_mutate %>%
+  tail () %>%
+  knitr::kable (digits = 2)
+```
 
+```{r, echo = FALSE}
 
+dat_vo2 <- dat_vo2 %>%
+  mutate (time = time %>% 
+            str_squish() %>% # function strips any whitespaces
+            ms() %>% # convert to minutes and seconds
+            as.period(unit = "sec") %>% # converts entirely to seconds
+            as.numeric ()) # strips the S symbol to make it a number
+
+```
 ## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
 
 ### Problem
