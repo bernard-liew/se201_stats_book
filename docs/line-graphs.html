@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-20" />
+<meta name="date" content="2020-11-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -362,16 +362,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the <em>x</em> variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.</p>
 <p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small”, “medium”, “large”), but not when the variable is unordered (e.g., “cow”, “goose”, “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
 <p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb140-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
-<a class="sourceLine" id="cb140-3" title="3"></a>
-<a class="sourceLine" id="cb140-4" title="4">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-5" title="5"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-8" title="8"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span><span class="dv">37</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-9" title="9"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb140-10" title="10"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</a>
+<a class="sourceLine" id="cb141-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
+<a class="sourceLine" id="cb141-3" title="3"></a>
+<a class="sourceLine" id="cb141-4" title="4">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-5" title="5"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-8" title="8"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span><span class="dv">37</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-9" title="9"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb141-10" title="10"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
 <div id="LINE-GRAPH-BASIC-LINE" class="section level2">
 <h2><span class="header-section-number">8.1</span> Making a Basic Line Graph</h2>
 <div id="problem" class="section level3">
@@ -381,9 +381,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="solution" class="section level3">
 <h3><span class="header-section-number">8.1.2</span> Solution</h3>
 <p>Use <code>ggplot()</code> with <code>geom_line()</code>, and specify which variables you mapped to x and y (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE">8.1</a>):</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"></a>
-<a class="sourceLine" id="cb141-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb141-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  </a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"></a>
+<a class="sourceLine" id="cb142-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  </a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-1.png" alt="Basic line graph" width="50%" />
 <p class="caption">
@@ -635,14 +635,14 @@ hr
 </tbody>
 </table>
 <p>With ggplot2, the default <em>y</em> range of a line graph is just enough to include the <em>y</em> values in the data. For some kinds of data, it’s better to have the <em>y</em> range start from zero. You can use <code>ylim()</code> to set the range, or you can use <code>expand_limits()</code> to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in <code>BOD</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM">8.2</a>):</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="co"># These have the same result</span></a>
-<a class="sourceLine" id="cb142-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-4" title="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="kw">max</span>(dat<span class="op">$</span>vo2))</a>
-<a class="sourceLine" id="cb142-5" title="5"></a>
-<a class="sourceLine" id="cb142-6" title="6"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-8" title="8"><span class="st">  </span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># These have the same result</span></a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-4" title="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="kw">max</span>(dat<span class="op">$</span>vo2))</a>
+<a class="sourceLine" id="cb143-5" title="5"></a>
+<a class="sourceLine" id="cb143-6" title="6"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-8" title="8"><span class="st">  </span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-YLIM-1.png" alt="Line graph with manually set y range" width="50%" />
 <p class="caption">
@@ -660,9 +660,9 @@ Figure 8.2: Line graph with manually set y range
 <div id="solution-1" class="section level3">
 <h3><span class="header-section-number">8.2.2</span> Solution</h3>
 <p>Add <code>geom_point()</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT">8.3</a>):</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
+<a class="sourceLine" id="cb144-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-1.png" alt="Line graph with points" width="50%" />
 <p class="caption">
@@ -680,23 +680,23 @@ Figure 8.3: Line graph with points
 <div id="solution-2" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Solution</h3>
 <p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">8.4</a>:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"></a>
-<a class="sourceLine" id="cb144-2" title="2"><span class="co"># Bring all variables into one column</span></a>
-<a class="sourceLine" id="cb144-3" title="3"></a>
-<a class="sourceLine" id="cb144-4" title="4">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span> (stage, vo2, vco2) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb144-6" title="6"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(vo2<span class="op">:</span>vco2),</a>
-<a class="sourceLine" id="cb144-7" title="7">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
-<a class="sourceLine" id="cb144-8" title="8">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb144-9" title="9"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">var =</span> <span class="kw">factor</span> (var))</a>
-<a class="sourceLine" id="cb144-10" title="10"></a>
-<a class="sourceLine" id="cb144-11" title="11"><span class="co"># Map supp to colour</span></a>
-<a class="sourceLine" id="cb144-12" title="12"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-13" title="13"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
-<a class="sourceLine" id="cb144-14" title="14"></a>
-<a class="sourceLine" id="cb144-15" title="15"><span class="co"># Map supp to linetype</span></a>
-<a class="sourceLine" id="cb144-16" title="16"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-17" title="17"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">linetype =</span> var))</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"></a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="co"># Bring all variables into one column</span></a>
+<a class="sourceLine" id="cb145-3" title="3"></a>
+<a class="sourceLine" id="cb145-4" title="4">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span> (stage, vo2, vco2) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb145-6" title="6"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(vo2<span class="op">:</span>vco2),</a>
+<a class="sourceLine" id="cb145-7" title="7">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
+<a class="sourceLine" id="cb145-8" title="8">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb145-9" title="9"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">var =</span> <span class="kw">factor</span> (var))</a>
+<a class="sourceLine" id="cb145-10" title="10"></a>
+<a class="sourceLine" id="cb145-11" title="11"><span class="co"># Map supp to colour</span></a>
+<a class="sourceLine" id="cb145-12" title="12"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-13" title="13"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
+<a class="sourceLine" id="cb145-14" title="14"></a>
+<a class="sourceLine" id="cb145-15" title="15"><span class="co"># Map supp to linetype</span></a>
+<a class="sourceLine" id="cb145-16" title="16"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb145-17" title="17"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">linetype =</span> var))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-1.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-2.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" />
 <p class="caption">
@@ -905,9 +905,9 @@ vco2
 <p>If the <em>x</em> variable is a factor, you must also tell ggplot to group by that same variable, as described below.</p>
 </blockquote>
 <p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">8.5</a>):</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"></a>
-<a class="sourceLine" id="cb145-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var, <span class="dt">group =</span> var))</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"></a>
+<a class="sourceLine" id="cb146-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb146-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var, <span class="dt">group =</span> var))</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-FACTOR-1.png" alt="Line graph with continuous x variable converted to a factor" width="50%" />
 <p class="caption">
@@ -916,17 +916,17 @@ Figure 8.5: Line graph with continuous x variable converted to a factor
 </div>
 <p>To convert a variable to a factor , see also Recipe <a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS">6.10</a>.</p>
 <p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will give an error:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"></a>
-<a class="sourceLine" id="cb146-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
-<a class="sourceLine" id="cb146-4" title="4"></a>
-<a class="sourceLine" id="cb146-5" title="5"><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to</span></a>
-<a class="sourceLine" id="cb146-6" title="6"><span class="co">#&gt; adjust the group aesthetic?</span></a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"></a>
+<a class="sourceLine" id="cb147-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb147-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
+<a class="sourceLine" id="cb147-4" title="4"></a>
+<a class="sourceLine" id="cb147-5" title="5"><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to</span></a>
+<a class="sourceLine" id="cb147-6" title="6"><span class="co">#&gt; adjust the group aesthetic?</span></a></code></pre></div>
 <p>Another common problem when the incorrect grouping is used is that you will see a jagged sawtooth pattern, as in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH">8.6</a>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb147-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb147-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb147-4" title="4">             <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb148-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
+<a class="sourceLine" id="cb148-4" title="4">             <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH-1.png" alt="A sawtooth pattern indicates improper grouping" width="50%" />
 <p class="caption">
@@ -939,19 +939,19 @@ Figure 8.6: A sawtooth pattern indicates improper grouping
 <p>When in doubt, if your line graph looks wrong, try explicitly specifying the grouping variable with group. It’s common for problems to occur with line graphs because ggplot is unsure of how the variables should be grouped.</p>
 </blockquote>
 <p>If your plot has points along with the lines, you can also map variables to properties of the points, such as shape and fill (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL">8.7</a>):</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"></a>
-<a class="sourceLine" id="cb148-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb148-5" title="5">             <span class="dt">size =</span> <span class="dv">4</span>)  <span class="co"># Make the points a little larger</span></a>
-<a class="sourceLine" id="cb148-6" title="6"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a>
-<a class="sourceLine" id="cb148-7" title="7"></a>
-<a class="sourceLine" id="cb148-8" title="8"></a>
-<a class="sourceLine" id="cb148-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
-<a class="sourceLine" id="cb148-12" title="12">             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>)  <span class="co"># Also use a point with a color fill</span></a>
-<a class="sourceLine" id="cb148-13" title="13"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: fill</span></a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb149-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
+<a class="sourceLine" id="cb149-5" title="5">             <span class="dt">size =</span> <span class="dv">4</span>)  <span class="co"># Make the points a little larger</span></a>
+<a class="sourceLine" id="cb149-6" title="6"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a>
+<a class="sourceLine" id="cb149-7" title="7"></a>
+<a class="sourceLine" id="cb149-8" title="8"></a>
+<a class="sourceLine" id="cb149-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb149-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb149-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
+<a class="sourceLine" id="cb149-12" title="12">             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>)  <span class="co"># Also use a point with a color fill</span></a>
+<a class="sourceLine" id="cb149-13" title="13"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: fill</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL-1.png" alt="Line graph with different shapes (left); With different colors (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL-2.png" alt="Line graph with different shapes (left); With different colors (right)" width="50%" />
 <p class="caption">
@@ -959,13 +959,13 @@ Figure 8.7: Line graph with different shapes (left); With different colors (righ
 </p>
 </div>
 <p>Sometimes points will overlap. In these cases, you may want to <em>dodge</em> them, which means their positions will be adjusted left and right (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE">8.8</a>). When doing so, you must also dodge the lines, or else only the points will move and they will be misaligned. You must also specify how far they should move when dodged:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"></a>
-<a class="sourceLine" id="cb149-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb149-4" title="4">            <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>)) <span class="op">+</span><span class="st">          </span><span class="co"># Dodge lines by 0.2</span></a>
-<a class="sourceLine" id="cb149-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
-<a class="sourceLine" id="cb149-6" title="6">             <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>), <span class="dt">size =</span> <span class="dv">4</span>) <span class="co"># Dodge points by 0.2</span></a>
-<a class="sourceLine" id="cb149-7" title="7"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"></a>
+<a class="sourceLine" id="cb150-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb150-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
+<a class="sourceLine" id="cb150-4" title="4">            <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>)) <span class="op">+</span><span class="st">          </span><span class="co"># Dodge lines by 0.2</span></a>
+<a class="sourceLine" id="cb150-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
+<a class="sourceLine" id="cb150-6" title="6">             <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>), <span class="dt">size =</span> <span class="dv">4</span>) <span class="co"># Dodge points by 0.2</span></a>
+<a class="sourceLine" id="cb150-7" title="7"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-DODGE-1.png" alt="Dodging to avoid overlapping points" width="50%" />
 <p class="caption">
@@ -984,9 +984,9 @@ Figure 8.8: Dodging to avoid overlapping points
 <h3><span class="header-section-number">8.4.2</span> Solution</h3>
 <p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>size</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
 <p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">8.9</a>) by passing them values in the call to <code>geom_line()</code>:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb150-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), </a>
-<a class="sourceLine" id="cb150-3" title="3">            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), </a>
+<a class="sourceLine" id="cb151-3" title="3">            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED-1.png" alt="Line graph with custom linetype, size, and colour" width="50%" />
 <p class="caption">
@@ -994,10 +994,10 @@ Figure 8.9: Line graph with custom linetype, size, and colour
 </p>
 </div>
 <p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">8.3</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">8.10</a>, by using <code>scale_colour_brewer()</code> or <code>scale_colour_manual()</code>:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"></a>
-<a class="sourceLine" id="cb151-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb151-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb151-4" title="4"><span class="st">  </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"></a>
+<a class="sourceLine" id="cb152-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb152-4" title="4"><span class="st">  </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-PALETTE-1.png" alt="Using a palette from RColorBrewer" width="50%" />
 <p class="caption">
@@ -1009,17 +1009,17 @@ Figure 8.10: Using a palette from RColorBrewer
 <h3><span class="header-section-number">8.4.3</span> Discussion</h3>
 <p>To set a single constant color for all the lines, specify colour outside of <code>aes()</code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">8.11</a>). You may also have to specify the grouping variable:</p>
 
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"><span class="co"># If both lines have the same properties, you need to specify a variable to</span></a>
-<a class="sourceLine" id="cb152-2" title="2"><span class="co"># use for grouping</span></a>
-<a class="sourceLine" id="cb152-3" title="3"></a>
-<a class="sourceLine" id="cb152-4" title="4"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb152-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">group =</span> var),</a>
-<a class="sourceLine" id="cb152-6" title="6">            <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) </a>
-<a class="sourceLine" id="cb152-7" title="7"></a>
-<a class="sourceLine" id="cb152-8" title="8"><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></a>
-<a class="sourceLine" id="cb152-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb152-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb152-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var),<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># If both lines have the same properties, you need to specify a variable to</span></a>
+<a class="sourceLine" id="cb153-2" title="2"><span class="co"># use for grouping</span></a>
+<a class="sourceLine" id="cb153-3" title="3"></a>
+<a class="sourceLine" id="cb153-4" title="4"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">group =</span> var),</a>
+<a class="sourceLine" id="cb153-6" title="6">            <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) </a>
+<a class="sourceLine" id="cb153-7" title="7"></a>
+<a class="sourceLine" id="cb153-8" title="8"><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></a>
+<a class="sourceLine" id="cb153-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
+<a class="sourceLine" id="cb153-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb153-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var),<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-1.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-2.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" />
 <p class="caption">
@@ -1044,9 +1044,9 @@ Figure 8.12: The different types of linetype you can use.
 <div id="solution-4" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> Solution</h3>
 <p>In <code>geom_point()</code>, set the <code>size</code>, <code>shape</code>, <code>colour</code>, and/or <code>fill</code> outside of <code>aes()</code> (the result is shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT-PROPERTIES">8.13</a>):</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">colour =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb154-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">colour =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT-PROPERTIES"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-PROPERTIES-1.png" alt="Points with custom size, shape, color, and fill" width="50%" />
 <p class="caption">
@@ -1057,9 +1057,9 @@ Figure 8.13: Points with custom size, shape, color, and fill
 <div id="discussion-3" class="section level3">
 <h3><span class="header-section-number">8.5.3</span> Discussion</h3>
 <p>The default shape for points is a solid circle, the default size is 2, and the default colour is black. The fill color is relevant only for some point shapes (numbered 21–25), which have separate outline and fill colors . The fill color is typically <code>NA</code>, or empty; you can fill it with white to get hollow-looking circles, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT-WHITEFILL">8.14</a>:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT-WHITEFILL"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-WHITEFILL-1.png" alt="Points with a white fill" width="50%" />
 <p class="caption">
@@ -1087,30 +1087,30 @@ Figure 8.15: Point types available in R.
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code>theme_grey()</code>, but the examples below also showcase <code>theme_bw()</code>, <code>theme_minimal()</code>, and <code>theme_classic()</code>.</p>
 <p>To use a premade theme, add <code>theme_bw()</code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.16</a>):</p>
 
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="co"># Create the base plot</span></a>
-<a class="sourceLine" id="cb155-2" title="2"></a>
-<a class="sourceLine" id="cb155-3" title="3">hw_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) </a>
-<a class="sourceLine" id="cb155-5" title="5"></a>
-<a class="sourceLine" id="cb155-6" title="6"><span class="co"># Grey theme (the default)</span></a>
-<a class="sourceLine" id="cb155-7" title="7"></a>
-<a class="sourceLine" id="cb155-8" title="8">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-9" title="9"><span class="st">  </span><span class="kw">theme_grey</span>()</a>
-<a class="sourceLine" id="cb155-10" title="10"></a>
-<a class="sourceLine" id="cb155-11" title="11"><span class="co"># Black-and-white theme</span></a>
-<a class="sourceLine" id="cb155-12" title="12"></a>
-<a class="sourceLine" id="cb155-13" title="13">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-14" title="14"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
-<a class="sourceLine" id="cb155-15" title="15"></a>
-<a class="sourceLine" id="cb155-16" title="16"><span class="co"># Minimal theme without background annotations</span></a>
-<a class="sourceLine" id="cb155-17" title="17"></a>
-<a class="sourceLine" id="cb155-18" title="18">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-19" title="19"><span class="st">  </span><span class="kw">theme_minimal</span>()</a>
-<a class="sourceLine" id="cb155-20" title="20"></a>
-<a class="sourceLine" id="cb155-21" title="21"><span class="co"># Classic theme, with axis lines but no gridlines</span></a>
-<a class="sourceLine" id="cb155-22" title="22"></a>
-<a class="sourceLine" id="cb155-23" title="23">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-24" title="24"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="co"># Create the base plot</span></a>
+<a class="sourceLine" id="cb156-2" title="2"></a>
+<a class="sourceLine" id="cb156-3" title="3">hw_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) </a>
+<a class="sourceLine" id="cb156-5" title="5"></a>
+<a class="sourceLine" id="cb156-6" title="6"><span class="co"># Grey theme (the default)</span></a>
+<a class="sourceLine" id="cb156-7" title="7"></a>
+<a class="sourceLine" id="cb156-8" title="8">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-9" title="9"><span class="st">  </span><span class="kw">theme_grey</span>()</a>
+<a class="sourceLine" id="cb156-10" title="10"></a>
+<a class="sourceLine" id="cb156-11" title="11"><span class="co"># Black-and-white theme</span></a>
+<a class="sourceLine" id="cb156-12" title="12"></a>
+<a class="sourceLine" id="cb156-13" title="13">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-14" title="14"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb156-15" title="15"></a>
+<a class="sourceLine" id="cb156-16" title="16"><span class="co"># Minimal theme without background annotations</span></a>
+<a class="sourceLine" id="cb156-17" title="17"></a>
+<a class="sourceLine" id="cb156-18" title="18">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-19" title="19"><span class="st">  </span><span class="kw">theme_minimal</span>()</a>
+<a class="sourceLine" id="cb156-20" title="20"></a>
+<a class="sourceLine" id="cb156-21" title="21"><span class="co"># Classic theme, with axis lines but no gridlines</span></a>
+<a class="sourceLine" id="cb156-22" title="22"></a>
+<a class="sourceLine" id="cb156-23" title="23">hw_plot <span class="op">+</span></a>
+<a class="sourceLine" id="cb156-24" title="24"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-APPEARANCE-THEME"></span>
 <img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-1.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-2.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-3.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-4.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" />
 <p class="caption">
