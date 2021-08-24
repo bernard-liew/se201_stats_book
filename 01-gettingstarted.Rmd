@@ -3,11 +3,11 @@
 
 ## Installing Base-R and RStudio {#INSTALL-GET-STARTED}
 
-To use R, we'll need to download two software packages: **Base-R**, and **RStudio**. Base-R is the basic software which contains the R programming language. RStudio is software that makes R programming easier. In everyday parlance, R is the engine and RStudio is the car's frame. Just like you can transfer an engine to different car frames, you can use R using other platforms. But I will use RStudio. Of course, they are totally free and open source.
+To use R, we'll need to download **2** software: **Base-R**, and **RStudio**. Base-R is the basic software which contains the R programming language. RStudio is a software that makes programming easier. In everyday parlance, R is the engine and RStudio is the car's frame. Just like you can transfer an engine to different car frames, you can use R using other platforms. But I will use RStudio. Of course, they are totally free and open source.
 
 ### Check for version updates
 
-R and RStudio have been around for several years -- however, they are *constantly* being updated with new features and bug-fixes. At the time that I am writing this sentence ("`r Sys.Date()`"), the latest version of Base-R is 4.0.2, and the latest version of RStudio is 1.3.1056 .
+R and RStudio have been around for several years -- however, they are *constantly* being updated with new features and bug-fixes. At the time that I am writing this sentence ("`r Sys.Date()`"), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.
 
 ```{r rlogo, fig.cap= "R logo", fig.margin = TRUE, echo = FALSE, out.width = "40%", fig.align="center"}
 knitr::include_graphics(c("images/chapter-1/Rlogo.png"))
@@ -32,14 +32,14 @@ knitr::include_graphics(c("images/chapter-1/RScreenshot.png"))
 knitr::include_graphics(c("images/chapter-1/RStudio.png"))
 ```
 
-While you can do pretty much everything you want within base-R, you'll find that most people these days do their R programming in an application called RStudio. RStudio is a graphical user interface (GUI)-like interface for R that makes programming in R a bit easier. In fact, once you've installed RStudio, you'll likely never need to open the base R application again. To download and install RStudio (around 40mb), go to [https://rstudio.com/products/rstudio/download/#download/](https://rstudio.com/products/rstudio/download/#download)| and follow the instructions.
+While you can do pretty much everything you want within base-R, you'll find that most people these days do their R programming in an application called RStudio. RStudio is a graphical user interface (GUI)-like interface for R that makes programming in R a bit easier. In fact, once you've installed RStudio, you'll likely never need to open the base R application again. 
 
+To download and install RStudio (around 40mb), click on the link below: [https://rstudio.com/products/rstudio/download/#download/](https://rstudio.com/products/rstudio/download/#download)
 
-Let's go ahead and boot up RStudio and see how she looks!
 
 ## The four RStudio Windows {#INSTALL-GET-FAMILIAR}
 
-When you open RStudio, you'll see the following four windows (also called panes) shown in in Figure \@ref(fig:rstudiowindows). However, your windows might be in a different order that those in Figure \@ref(fig:rstudiowindows). Ignore for a fact that my screen shows black and yours shows up as white. This is like the wall paper on your computer, it is what makes my eyes at ease.
+Let's go ahead and boot up RStudio and see how she looks! When you open RStudio, you'll see the following four windows (also called panes) shown in in Figure \@ref(fig:rstudiowindows). However, your windows might be in a different order that those in Figure \@ref(fig:rstudiowindows). Ignore for a fact that my screen shows black and yours shows up as white. This is like the wall paper on your computer, it is what makes my eyes at ease.
 
 
 ```{r rstudiowindows, fig.cap= "The four panes of RStudio.", fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.align="center"}

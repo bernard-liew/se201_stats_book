@@ -32,14 +32,14 @@ This book does not cover any one topic in extensive detail. If you are intereste
 
 2. R is incredibly versatile. You can use R to do everything from calculating simple summary statistics, to performing complex simulations to creating gorgeous plots. If you can imagine an analytical task, you can almost certainly implement it in R.
 
-3. Analyses conducted in R are transparent, easily shareable, and reproducible. If you ask an SPSS user how they conducted a specific analyses, they will either A) Not remember,  B) Try (nervously) to construct an analysis procedure on the spot that makes sense - which may or may not correspond to what they actually did months or years ago, or C) Ask you what you are doing in their house. I used to primarily use SPSS, so I speak from experience on this. If you ask an R user (who uses good programming techniques!) how they conducted an analysis, they should always be able to show you the exact code they used. Of course, this doesn't mean that they used the appropriate analysis or interpreted it correctly, but with all the original code, any problems should be completely transparent!
+3. Analyses conducted in R are transparent, easily shareable, and reproducible. If you ask an SPSS user how they conducted a specific analyses, they will either A) Not remember, B) Try (nervously) to construct an analysis procedure on the spot that makes sense - which may or may not correspond to what they actually did months or years ago, or C) Ask you what you are doing in their house. I used to primarily use SPSS, so I speak from experience on this. If you ask an R user (who uses good programming techniques!) how they conducted an analysis, they should always be able to show you the exact code they used. Of course, this doesn't mean that they used the appropriate analysis or interpreted it correctly, but with all the original code, any problems should be completely transparent!
 
 
 ## Why R is like a relationship... {#rrelationship}
 
 Yes, R is very much like a relationship. Like relationships, there are two major truths to R programming:
 
-```{r relationship, echo=FALSE, fig.height=10, fig.width=8, fig.cap = "R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.", fig.align='left'}
+```{r relationship, echo=FALSE, fig.height=15, fig.width=10, fig.cap = "R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.", fig.align='center'}
 knitr::include_graphics("images/index/rrelationship.png")
 ```
 
@@ -51,12 +51,38 @@ knitr::include_graphics("images/index/rrelationship.png")
 Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a *lot* of headaches when you get started. You will run into error after error and pound your fists against the table screaming: "WHY ISN'T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!" You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You'll then wonder why you ever decided to learn R when (::sigh::) SPSS was so "nice and easy."
 
 
-```{r gosling, echo = FALSE, fig.cap = "When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.", fig.align='center'}
+```{r gosling, echo = FALSE, fig.height=15, fig.width=10, fig.cap = "When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.", fig.align='center'}
 knitr::include_graphics("images/index/gosling.png")
 ```
 
 
 Trust me, as you gain more programming experience, you'll experience fewer and fewer bugs (though they'll never go away completely). Once you get over the initial barriers, you'll find yourself conducting analyses much, much faster than you ever did before.
+
+## 3 things students get wrong
+
+Based on teaching the previous cohort, there are 3 common errors students make, which will result in errors, leaving many scratching their head, feeling frustrated. Be aware of these errors, and do not fall into the trap.
+
+### Wrong method of launching software
+
+This is the biggest source of frustration.Once you have created a project folder for your work, ONLY launch the software by clicking on the blue cube symbol as seen in Figure \@ref(fig:launching). In chapter \@ref(NavigatingTheSoftware), I will explain why you should launch the software in this manner.  
+
+```{r launching, echo=FALSE, fig.height=8, fig.width=5, fig.cap = "This is the symbol to press to launch the software in your asssignment.", fig.align='left'}
+knitr::include_graphics("images/index/rstudio_projects.png")
+```
+
+### Not running code from START
+
+Looking at the figure \@ref(fig:codeStart) below, say you ran the code from line 3 to line 20, when you close the software - maybe leaving the work partially done for the day, the next time you launch the software, it has no recollection of where you stopped. You need to run the software from the first line of the code to where you stopped, and then continue with your work.
+
+```{r codeStart, echo=FALSE, fig.height=15, fig.width=12, fig.cap = "If you restart your analysis, the software does not have a memory of where you stopped previously .", fig.align='center'}
+knitr::include_graphics("images/index/runCodeStart.png")
+```
+
+
+
+### Typographical errors
+
+More than 50\%  of the student queries in the past, centered around the issue of typographical errors. Given that humans can (and do) communicate without perfect grammar, punctuation, and spelling, you WILL naturally assume (wrongly) that computers can ignore mistakes as we can. Computers cannot distinguish what is or is not supposed to be there. For example, if you create a table and call it `mytable`, but then tried to do some calculations on `my table`, and error will appear, such as `Error: unexpected symbol in "my table"`. This error means the computer cannot find `my table`, only because it does not EXIST. 
 
 
 ## R resources
