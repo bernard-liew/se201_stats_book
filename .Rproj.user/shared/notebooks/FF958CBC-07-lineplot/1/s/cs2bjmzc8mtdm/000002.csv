@@ -1,0 +1,4 @@
+"0",""
+"0","ggplot(dat_long) +"
+"0","  geom_line(aes(x = factor (stage), y = val, colour = var, group = var))"
+"0",""

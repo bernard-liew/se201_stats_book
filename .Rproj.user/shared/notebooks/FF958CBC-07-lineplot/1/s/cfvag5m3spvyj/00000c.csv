@@ -1,0 +1,5 @@
+"0",""
+"0","# Classic theme, with axis lines but no gridlines"
+"0",""
+"0","hw_plot +"
+"0","  theme_classic()"

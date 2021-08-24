@@ -1,0 +1,6 @@
+"0","dat_long <- dat_wide %>% # original data"
+"0","  pivot_longer(cols = c(""l"", ""r""),"
+"0","              names_to = ""side"","
+"0","              values_to = ""score"")"
+"0","dat_long %>%"
+"0","  knitr::kable (digits = 2)"

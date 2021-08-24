@@ -1,0 +1,5 @@
+"0",""
+"0","# Black-and-white theme"
+"0",""
+"0","hw_plot +"
+"0","  theme_bw()"

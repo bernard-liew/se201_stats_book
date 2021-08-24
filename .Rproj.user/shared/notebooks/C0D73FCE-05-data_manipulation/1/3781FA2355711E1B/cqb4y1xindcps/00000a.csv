@@ -1,0 +1,7 @@
+"0",""
+"0","# This keeps the bottom six rows"
+"0",""
+"0","dat_vo2 %>% "
+"0","  slice_tail (n = 6) %>%"
+"0","  head()%>%"
+"0","  knitr::kable (digits = 2)"

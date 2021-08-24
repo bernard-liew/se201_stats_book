@@ -1,0 +1,425 @@
+```{r, message=FALSE, warning=FALSE}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, # All purpose wrangling for dataframes
+               lubridate, # Time
+               openxlsx) # writing excel documents
+
+```
+
+```{r echo = FALSE, cache = FALSE}
+# This block needs cache=FALSE to set fig.width and fig.height, and have those
+# persist across cached builds.
+
+source("utils.R", local = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=3.5, out.width="50%")
+```
+
+# Line Graphs
+
+Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the *x* variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.
+
+As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., "small", "medium", "large"), but not when the variable is unordered (e.g., "cow", "goose", "pig"). Most of the examples in this chapter use a continuous *x* variable, but we'll see one example where the variable is converted to a factor and thus treated as a discrete variable.
+
+Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY). The Excel sheet is called `"treadmill_pt4_clean.xlsx"`. 
+
+```{r}
+dat <-  read.xlsx (xlsxFile = "data/treadmill_pt4_clean.xlsx",
+                   sheet = "Sheet1")
+
+dat <- dat %>%
+  mutate (stage = cut_interval(time, length = 210, labels = FALSE)) %>%
+  group_by(stage) %>%
+  group_by(stage) %>%
+  slice(-c(37:42)) %>%
+  slice(tail(row_number(), 6)) %>%
+  summarise_at (vars(bf:hr), mean)
+
+```
+
+
+## Making a Basic Line Graph {#LINE-GRAPH-BASIC-LINE}
+
+### Problem
+
+You want to make a basic line graph.
+
+### Solution
+
+Use `ggplot()` with `geom_line()`, and specify which variables you mapped to x and y (Figure \@ref(fig:FIG-LINE-GRAPH-BASIC-LINE)):
+
+```{r FIG-LINE-GRAPH-BASIC-LINE, fig.cap="Basic line graph"}
+
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2))  
+
+```
+
+### Discussion
+
+In this sample data set, the *x* variable, `time`, is in one column and the *y* variable, `vo2`, is in another:
+
+```{r}
+dat
+```
+
+
+With ggplot2, the default *y* range of a line graph is just enough to include the *y* values in the data. For some kinds of data, it's better to have the *y* range start from zero. You can use `ylim()` to set the range, or you can use `expand_limits()` to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in `BOD` (Figure \@ref(fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM)):
+
+```{r eval=F}
+# These have the same result
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2))  +
+  ylim(0, max(dat$vo2))
+
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2)) +
+  expand_limits(y = 0)
+```
+
+```{r FIG-LINE-GRAPH-BASIC-LINE-YLIM, echo=FALSE, fig.cap="Line graph with manually set y range"}
+# This code block is so that it generates just one of the plots from above
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2)) +
+  expand_limits(y = 0)
+```
+
+
+## Adding Points to a Line Graph {#LINE-GRAPH-POINTS}
+
+### Problem
+
+You want to add points to a line graph.
+
+### Solution
+
+Add `geom_point()` (Figure \@ref(fig:FIG-LINE-GRAPH-POINT)):
+
+```{r FIG-LINE-GRAPH-POINT, fig.cap="Line graph with points"}
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2))  +
+  geom_point(aes(x = stage, y = vo2))
+```
+
+### Discussion
+
+Sometimes it is useful to indicate each data point on a line graph. This is helpful when the density of observations is low, or when the observations do not happen at regular intervals. 
+
+In an external `worldpop` data set that comes with the installed packages, the intervals between each data point are not consistent. In the far past, the estimates were not as frequent as they are in the more recent past. Displaying points on the graph illustrates when each estimate was made (Figure \@ref(fig:FIG-LINE-GRAPH-POINTS-INTERVAL)):
+
+```{r FIG-LINE-GRAPH-POINTS-INTERVAL, fig.show="hold", fig.cap='Top: points indicate where each data point is; bottom: the same data with a log y-axis', fig.height=2}
+
+library(gcookbook) # Load gcookbook for the worldpop data set
+
+ggplot(worldpop) +
+  geom_line(aes(x = Year, y = Population)) +
+  geom_point(aes(x = Year, y = Population))
+
+# Same with a log y-axis
+ggplot(worldpop) +
+  geom_line(aes(x = Year, y = Population)) +
+  geom_point(aes(x = Year, y = Population)) +
+  scale_y_log10()
+
+```
+
+With the log y-axis, you can see that the rate of proportional change has increased in the last thousand years. The estimates for the years before 0 have a roughly constant rate of change of 10 times per 5,000 years. In the most recent 1,000 years, the population has increased at a much faster rate. We can also see that the population estimates are much more frequent in recent times--and probably more accurate!
+
+
+## Making a Line Graph with Multiple Lines {#LINE-GRAPH-MULTIPLE-LINE}
+
+### Problem
+
+You want to make a line graph with more than one line.
+
+### Solution
+
+In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE):
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE, fig.show="hold", fig.cap="A variable mapped to colour (left); A variable mapped to linetype (right)"}
+
+# Bring all variables into one column
+
+dat_long <- dat %>%
+  pivot_longer(cols = c(bf:hr),
+               names_to = "var",
+               values_to = "val") %>%
+  filter (var %in% c("vco2", "vo2")) %>%
+  mutate (var = factor (var))
+
+# Map supp to colour
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, colour = var))
+
+# Map supp to linetype
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, linetype = var))
+```
+
+### Discussion
+
+The `dat_long` data has three columns, including the factor `var`, which we mapped to `colour` and `linetype`:
+
+```{r}
+dat_long
+```
+
+> **Note**
+>
+> If the *x* variable is a factor, you must also tell ggplot to group by that same variable, as described below.
+
+Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is *conceived* of as being categorical, even when it's stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert `stage` to a factor (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR)):
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-FACTOR, fig.cap="Line graph with continuous x variable converted to a factor"}
+
+ggplot(dat_long) +
+  geom_line(aes(x = factor (stage), y = val, colour = var, group = var))
+
+```
+
+To convert a variable to a factor , see also Recipe \@ref(WRANGLE-CHARACTERS-2-FACTORS).
+
+Notice the use of `group = ar`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will give an error:
+
+```{r eval=FALSE}
+
+ggplot(dat_long) +
+  geom_line(aes(x = factor (stage), y = val, colour = var))
+
+#> geom_path: Each group consists of only one observation. Do you need to
+#> adjust the group aesthetic?
+```
+
+Another common problem when the incorrect grouping is used is that you will see a jagged sawtooth pattern, as in Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH):
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH, fig.cap="A sawtooth pattern indicates improper grouping"}
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val)) +
+  geom_point(aes(x = stage, y = val, shape = var),
+             size = 4)
+```
+
+This happens because there are multiple data points at each *y* location, and ggplot thinks they're all in one group. The data points for each group are connected with a single line, leading to the sawtooth pattern. If any *discrete* variables are mapped to aesthetics like colour or linetype, they are automatically used as grouping variables. But if you want to use other variables for grouping (that aren't mapped to an aesthetic), they should be used with group.
+
+> **Note**
+>
+> When in doubt, if your line graph looks wrong, try explicitly specifying the grouping variable with group. It's common for problems to occur with line graphs because ggplot is unsure of how the variables should be grouped.
+
+If your plot has points along with the lines, you can also map variables to properties of the points, such as shape and fill (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL)):
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL, fig.show="hold", fig.cap="Line graph with different shapes (left); With different colors (right)"}
+
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, shape = var)) +
+  geom_point(aes(x = stage, y = val, shape = var),
+             size = 4)  # Make the points a little larger
+
+
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, fill = var)) +
+  geom_point(aes(x = stage, y = val, fill = var),
+             size = 4, shape = 21)  # Also use a point with a color fill
+```
+
+Sometimes points will overlap. In these cases, you may want to *dodge* them, which means their positions will be adjusted left and right (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE)). When doing so, you must also dodge the lines, or else only the points will move and they will be misaligned. You must also specify how far they should move when dodged:
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-DODGE, fig.cap="Dodging to avoid overlapping points"}
+
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, shape = var),
+            position = position_dodge(0.2)) +          # Dodge lines by 0.2
+  geom_point(aes(x = stage, y = val, fill = var),
+             position = position_dodge(0.2), size = 4) # Dodge points by 0.2
+
+```
+
+
+
+
+## Changing the Appearance of Lines {#LINE-GRAPH-LINE-APPEARANCE}
+
+### Problem
+
+You want to change the appearance of the lines in a line graph.
+
+### Solution
+
+The type of line (solid, dashed, dotted, etc.) is set with `linetype`, the thickness (in mm) with `size`, and the color of the line with `colour` (or `color`).
+
+These properties can be set (as shown in Figure \@ref(fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED)) by passing them values in the call to `geom_line()`:
+
+```{r FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED, fig.cap="Line graph with custom linetype, size, and colour"}
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2), 
+            linetype = "dashed", size = 1, colour = "blue")
+```
+
+If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, *mapping* variables to the properties, as we saw in Recipe \@ref(LINE-GRAPH-MULTIPLE-LINE), will result in each line looking different. The default colors aren't the most appealing, so you may want to use a different palette, as shown in Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE), by using `scale_colour_brewer()` or `scale_colour_manual()`:
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-PALETTE, fig.cap="Using a palette from RColorBrewer"}
+
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, colour = var)) +
+  scale_colour_brewer(palette = "Set1")
+
+
+```
+
+### Discussion
+
+To set a single constant color for all the lines, specify colour outside of `aes()`. The same works for size, linetype, and point shape (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES)). You may also have to specify the grouping variable:
+
+
+(ref:cap-FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES) Line graph with constant size and color (left); With `supp` mapped to `colour`, and with points added (right)
+
+```{r FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES, fig.show="hold", fig.cap="(ref:cap-FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES)"}
+# If both lines have the same properties, you need to specify a variable to
+# use for grouping
+
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, group = var),
+            colour = "darkgreen", size = 1.5) 
+
+# Since supp is mapped to colour, it will automatically be used for grouping
+ggplot(dat_long) +
+  geom_line(aes(x = stage, y = val, colour = var), linetype = "dashed") +  
+  geom_point(aes(x = stage, y = val, colour = var),shape = 22, size = 3, fill = "white")
+
+```
+
+The range of different linetypes that is available can be seen in (Figure \@ref(fig:FIG-LINETYPE-AES))
+
+```{r FIG-LINETYPE-AES, fig.cap= "The different types of linetype you can use.", fig.show="hold",  echo = FALSE}
+
+knitr::include_graphics(c("images/chapter-7/linetype.png"))
+
+
+```
+
+
+## Changing the Appearance of Points {#LINE-GRAPH-POINT-APPEARANCE}
+
+### Problem
+
+You want to change the appearance of the points in a line graph.
+
+### Solution
+
+In `geom_point()`, set the `size`, `shape`, `colour`, and/or `fill` outside of `aes()` (the result is shown in Figure \@ref(fig:FIG-LINE-GRAPH-POINT-PROPERTIES)):
+
+```{r FIG-LINE-GRAPH-POINT-PROPERTIES, fig.cap="Points with custom size, shape, color, and fill"}
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2)) +
+  geom_point(aes(x = stage, y = vo2), size = 4, shape = 22, colour = "darkred", fill = "pink")
+```
+
+### Discussion
+
+The default shape for points is a solid circle, the default size is 2, and the default colour is black. The fill color is relevant only for some point shapes (numbered 21–25), which have separate outline and fill colors . The fill color is typically `NA`, or empty; you can fill it with white to get hollow-looking circles, as shown in Figure \@ref(fig:FIG-LINE-GRAPH-POINT-WHITEFILL):
+
+```{r FIG-LINE-GRAPH-POINT-WHITEFILL, fig.cap="Points with a white fill"}
+ggplot(dat) +
+  geom_line(aes(x = stage, y = vo2)) +
+  geom_point(aes(x = stage, y = vo2),size = 4, shape = 21, fill = "white")
+```
+
+There are plethora of point types that is availabe in R, which you can see below (Figure \@ref(fig:FIG-POINT-TYPES)).
+
+```{r FIG-POINT-TYPES, echo=FALSE, fig.align='center', fig.cap="Point types available in R.", fig.height=15}
+knitr::include_graphics(c("images/chapter-7/pointtype.png"))
+```
+
+If the points and lines have different colors, you should specify the points after the lines, so that they are drawn on top. Otherwise, the lines will be drawn on top of the points.
+
+
+## Using Themes to Change Overall Appearance of Plot {#LINE-GRAPH-APPEARANCE-THEME}
+
+### Problem
+
+You want to use premade themes to control the overall plot appearance.
+
+### Solution
+
+There are many premade themes that are already included in ggplot2. The default ggplot2 theme is `theme_grey()`, but the examples below also showcase `theme_bw()`, `theme_minimal()`, and `theme_classic()`.
+
+To use a premade theme, add `theme_bw()` or another theme to your plot (Figure \@ref(fig:FIG-APPEARANCE-THEME)):
+
+
+(ref:cap-FIG-APPEARANCE-THEME) Scatter plot with `theme_grey()` (the default, top left); with `theme_bw()` (top right); with `theme_minimal()` (bottom left); with `theme_classic()` (bottom right)
+
+```{r FIG-APPEARANCE-THEME, fig.show="hold", fig.cap="(ref:cap-FIG-APPEARANCE-THEME)"}
+library(gcookbook)  # Load gcookbook for the heightweight data set
+
+# Create the base plot
+hw_plot <- ggplot(heightweight, aes(x = ageYear, y = heightIn)) +
+  geom_point()
+
+# Grey theme (the default)
+hw_plot +
+  theme_grey()
+
+# Black-and-white theme
+hw_plot +
+  theme_bw()
+
+# Minimal theme without background annotations
+hw_plot +
+  theme_minimal()
+
+# Classic theme, with axis lines but no gridlines
+hw_plot +
+  theme_classic()
+```
+
+Another theme included in ggplot2 is `theme_void()`, which makes all plot elements blank and only shows your data (Figure \@ref(fig:FIG-APPEARANCE-THEME-VOID). This is especially useful if you don't want any default theme settings, and instead want a blank slate on which to choose your own theme elements.
+
+(ref:cap-FIG-APPEARANCE-THEME-VOID) Scatter plot with `theme_void()`
+
+```{r FIG-APPEARANCE-THEME-VOID, fig.show="hold", fig.cap="(ref:cap-FIG-APPEARANCE-THEME-VOID)"}
+hw_plot +
+  theme_void()
+```
+
+### Discussion
+
+Some commonly used properties of theme elements in ggplot2 are those things that are controlled by `theme()`. Most of these things, like the title, legend, and axes, are outside the plot area, but some of them are inside the plot area, such as grid lines and the background coloring.
+
+Besides the themes included in ggplot2, it is also possible to create your own.
+
+You can set the base font family and size with either of the included themes (the default base font family is Helvetica, and the default size is 12):
+
+```{r, eval=FALSE}
+hw_plot +
+  theme_grey(base_size = 16, base_family = "Times")
+```
+
+You can set the default theme for the current R session with `theme_set()`, although it's generally not a good idea to set options globally because it may affect other plots that are unrelated to your current project:
+
+```{r, eval=FALSE}
+# Set default theme for current session
+theme_set(theme_bw())
+
+# This will use theme_bw()
+hw_plot
+
+# Reset the default theme back to theme_grey()
+theme_set(theme_grey())
+```
+
+## Learning check {#LINE-GRAPH-LEARNING-CHECK}
+
+
+1. From your learning check in \@ref(BAR-LEARNING-CHECK), open up your `practice_script.R`. 
+
+2. Import the Excel file `data/treadmill_pt4_clean.xlsx`, and the sheet `Sheet1`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
+
+3. Create another dataset, `dat_summ`, and create another variable called `stage`, where you create intervals of stage each of 3:30min intervals. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
+
+4. Using the data `dat_summ`, remove the last 30s of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+5. From step 4, keep the last 30s of data at each stage of VO2 testing. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+6. From step 5, find the mean of each 30s of data of each stage, across all variables. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+7. Make a line plot with with `vo2` as the *x* axis, and `vo2` as the *y* axis. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
+

@@ -1,0 +1,5 @@
+"0","dat_vo2 <-  dat_vo2 %>%"
+"0","  mutate (ratio = vo2/vco2) "
+"0",""
+"0","head(dat_vo2)%>%"
+"0","  knitr::kable (digits = 2)"

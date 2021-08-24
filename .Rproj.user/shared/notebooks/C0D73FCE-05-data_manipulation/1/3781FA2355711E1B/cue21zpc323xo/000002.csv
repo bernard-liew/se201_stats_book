@@ -1,0 +1,6 @@
+"0","if (!require(""pacman"")) install.packages(""pacman"")"
+"0","pacman::p_load(tidyverse, # All purpose wrangling for dataframes"
+"0","               openxlsx,# writing excel documents"
+"0","               lubridate,# date-time "
+"0","               tibbletime) # moving average for vo2"
+"0",""

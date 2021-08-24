@@ -1,0 +1,4 @@
+"0",""
+"0","# Map supp to linetype"
+"0","ggplot(dat_long) +"
+"0","  geom_line(aes(x = stage, y = val, linetype = var))"

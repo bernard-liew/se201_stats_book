@@ -1,0 +1,6 @@
+"0",""
+"0","# With factor new levels"
+"0",""
+"0","ggplot(dat_fms_relvl) +"
+"0","  geom_col(aes(x = task, y = score, fill = side), position = ""dodge"", color = ""black"") "
+"0",""

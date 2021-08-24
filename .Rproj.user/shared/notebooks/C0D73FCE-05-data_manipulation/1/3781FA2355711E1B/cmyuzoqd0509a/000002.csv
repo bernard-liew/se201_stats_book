@@ -1,0 +1,6 @@
+"0","dat_vo2 <- dat_vo2 %>%"
+"0","  mutate (stage = cut_interval(time, length = 210, labels = FALSE))"
+"0",""
+"0","dat_vo2 %>%"
+"0","  head()%>%"
+"0","  knitr::kable (digits = 2)"

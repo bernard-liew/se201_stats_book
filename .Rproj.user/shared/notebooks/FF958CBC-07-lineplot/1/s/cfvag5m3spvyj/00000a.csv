@@ -1,0 +1,5 @@
+"0",""
+"0","# Minimal theme without background annotations"
+"0",""
+"0","hw_plot +"
+"0","  theme_minimal()"

@@ -1,0 +1,7 @@
+"0",""
+"0",""
+"0","# This removes the first row, and replaces the old data in object dat_vo2"
+"0",""
+"0","dat_vo2 <- dat_vo2 %>% "
+"0","  slice (-(1))"
+"0",""
