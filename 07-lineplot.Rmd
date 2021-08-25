@@ -86,23 +86,6 @@ ggplot(dat) +
 ```
 
 
-## Adding Points to a Line Graph {#LINE-GRAPH-POINTS}
-
-### Problem
-
-You want to add points to a line graph.
-
-### Solution
-
-Add `geom_point()` (Figure \@ref(fig:FIG-LINE-GRAPH-POINT)):
-
-```{r FIG-LINE-GRAPH-POINT, fig.cap="Line graph with points"}
-ggplot(dat) +
-  geom_line(aes(x = stage, y = vo2))  +
-  geom_point(aes(x = stage, y = vo2))
-```
-
-
 ## Making a Line Graph with Multiple Lines {#LINE-GRAPH-MULTIPLE-LINE}
 
 ### Problem
@@ -157,62 +140,14 @@ ggplot(dat_long) +
 
 To convert a variable to a factor , see also Recipe \@ref(WRANGLE-CHARACTERS-2-FACTORS).
 
-Notice the use of `group = var`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will give an error:
+Notice the use of `group = var`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will not plot anything:
 
-```{r eval=FALSE}
+```{r}
 
 ggplot(dat_long) +
   geom_line(aes(x = factor (stage), y = val, colour = var))
 
-#> geom_path: Each group consists of only one observation. Do you need to
-#> adjust the group aesthetic?
 ```
-
-Another common problem when the incorrect grouping is used is that you will see a jagged sawtooth pattern, as in Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH):
-
-```{r FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH, fig.cap="A sawtooth pattern indicates improper grouping"}
-ggplot(dat_long) +
-  geom_line(aes(x = stage, y = val)) +
-  geom_point(aes(x = stage, y = val, shape = var),
-             size = 4)
-```
-
-This happens because there are multiple data points at each *y* location, and ggplot thinks they're all in one group. The data points for each group are connected with a single line, leading to the sawtooth pattern. If any *discrete* variables are mapped to aesthetics like colour or linetype, they are automatically used as grouping variables. But if you want to use other variables for grouping (that aren't mapped to an aesthetic), they should be used with group.
-
-> **Note**
->
-> When in doubt, if your line graph looks wrong, try explicitly specifying the grouping variable with group. It's common for problems to occur with line graphs because ggplot is unsure of how the variables should be grouped.
-
-If your plot has points along with the lines, you can also map variables to properties of the points, such as shape and fill (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL)):
-
-```{r FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL, fig.show="hold", fig.cap="Line graph with different shapes (left); With different colors (right)"}
-
-ggplot(dat_long) +
-  geom_line(aes(x = stage, y = val, shape = var)) +
-  geom_point(aes(x = stage, y = val, shape = var),
-             size = 4)  # Make the points a little larger
-
-
-ggplot(dat_long) +
-  geom_line(aes(x = stage, y = val, fill = var)) +
-  geom_point(aes(x = stage, y = val, fill = var),
-             size = 4, shape = 21)  # Also use a point with a color fill
-```
-
-Sometimes points will overlap. In these cases, you may want to *dodge* them, which means their positions will be adjusted left and right (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE)). When doing so, you must also dodge the lines, or else only the points will move and they will be misaligned. You must also specify how far they should move when dodged:
-
-```{r FIG-LINE-GRAPH-MULTI-LINE-DODGE, fig.cap="Dodging to avoid overlapping points"}
-
-ggplot(dat_long) +
-  geom_line(aes(x = stage, y = val, shape = var),
-            position = position_dodge(0.2)) +          # Dodge lines by 0.2
-  geom_point(aes(x = stage, y = val, fill = var),
-             position = position_dodge(0.2), size = 4) # Dodge points by 0.2
-
-```
-
-
-
 
 ## Changing the Appearance of Lines {#LINE-GRAPH-LINE-APPEARANCE}
 
@@ -273,41 +208,6 @@ knitr::include_graphics(c("images/chapter-7/linetype.png"))
 
 
 ```
-
-
-## Changing the Appearance of Points {#LINE-GRAPH-POINT-APPEARANCE}
-
-### Problem
-
-You want to change the appearance of the points in a line graph.
-
-### Solution
-
-In `geom_point()`, set the `size`, `shape`, `colour`, and/or `fill` outside of `aes()` (the result is shown in Figure \@ref(fig:FIG-LINE-GRAPH-POINT-PROPERTIES)):
-
-```{r FIG-LINE-GRAPH-POINT-PROPERTIES, fig.cap="Points with custom size, shape, color, and fill"}
-ggplot(dat) +
-  geom_line(aes(x = stage, y = vo2)) +
-  geom_point(aes(x = stage, y = vo2), size = 4, shape = 22, colour = "darkred", fill = "pink")
-```
-
-### Discussion
-
-The default shape for points is a solid circle, the default size is 2, and the default colour is black. The fill color is relevant only for some point shapes (numbered 21–25), which have separate outline and fill colors . The fill color is typically `NA`, or empty; you can fill it with white to get hollow-looking circles, as shown in Figure \@ref(fig:FIG-LINE-GRAPH-POINT-WHITEFILL):
-
-```{r FIG-LINE-GRAPH-POINT-WHITEFILL, fig.cap="Points with a white fill"}
-ggplot(dat) +
-  geom_line(aes(x = stage, y = vo2)) +
-  geom_point(aes(x = stage, y = vo2), size = 4, shape = 21, fill = "white")
-```
-
-There are plethora of point types that is availabe in R, which you can see below (Figure \@ref(fig:FIG-POINT-TYPES)).
-
-```{r FIG-POINT-TYPES, echo=FALSE, fig.align='center', fig.cap="Point types available in R.", fig.height=15}
-knitr::include_graphics(c("images/chapter-7/pointtype.png"))
-```
-
-If the points and lines have different colors, you should specify the points after the lines, so that they are drawn on top. Otherwise, the lines will be drawn on top of the points.
 
 
 ## Using Themes to Change Overall Appearance of Plot {#LINE-GRAPH-APPEARANCE-THEME}

@@ -205,7 +205,7 @@ vo2_slice %>%
 # This selects the first, second, and fourth column, and discards the rest
 
 vo2_slice <- dat_vo2 %>%
-  select (time, bf, rer) 
+  dplyr::select (time, bf, rer) 
 
 ```
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Line Graphs | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 8 Line Graphs | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Line Graphs | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="CHAPTER-BAR-GRAPH.html"/>
 <link rel="next" href="your-assignment.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,210 +134,250 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.3.1</b> R books</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#things-students-get-wrong"><i class="fa fa-check"></i><b>1.3</b> 3 things students get wrong</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#wrong-method-of-launching-software"><i class="fa fa-check"></i><b>1.3.1</b> Wrong method of launching software</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#not-running-code-from-start"><i class="fa fa-check"></i><b>1.3.2</b> Not running code from START</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#typographical-errors"><i class="fa fa-check"></i><b>1.3.3</b> Typographical errors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.4</b> R resources</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.4.1</b> R books</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
-<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="get-started.html"><a href="get-started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="get-started.html"><a href="get-started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
 <li class="chapter" data-level="2.2.2" data-path="get-started.html"><a href="get-started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
 <li class="chapter" data-level="2.2.3" data-path="get-started.html"><a href="get-started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
 <li class="chapter" data-level="2.2.4" data-path="get-started.html"><a href="get-started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="get-started.html"><a href="get-started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
 <li class="chapter" data-level="2.3.2" data-path="get-started.html"><a href="get-started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
 <li class="chapter" data-level="2.3.3" data-path="get-started.html"><a href="get-started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="get-started.html"><a href="get-started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
 <li class="chapter" data-level="2.4.2" data-path="get-started.html"><a href="get-started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
 <li class="chapter" data-level="2.4.3" data-path="get-started.html"><a href="get-started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="get-started.html"><a href="get-started.html#INSTALL-LEARNING-CHECK"><i class="fa fa-check"></i><b>2.5</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a>
+<ul>
 <li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#BASICS-CONSOLE"><i class="fa fa-check"></i><b>3.1</b> The command-line (Console)</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.2.1</b> Send code from a source to the console</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.3.1</b> Commenting code with the # (pound) sign</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.3.2</b> Spacing</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#BASIC-TYPES"><i class="fa fa-check"></i><b>3.4.1</b> Numbers versus characters</a></li>
 <li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.4.2</b> Creating new objects with &lt;-</a></li>
 <li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.4.3</b> How to name objects</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a>
+<ul>
 <li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#download-and-load-packages-1"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
 <li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
-<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.3.1</b> Installing a new package</a></li>
 <li class="chapter" data-level="4.3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.3.2</b> Loading a package</a></li>
 <li class="chapter" data-level="4.3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#a-simple-approach-to-package"><i class="fa fa-check"></i><b>4.3.3</b> A simple approach to package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK"><i class="fa fa-check"></i><b>4.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputOuput.html"><a href="InputOuput.html#download-and-load-packages-2"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="5.1" data-path="InputOuput.html"><a href="InputOuput.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
 <li class="chapter" data-level="5.2" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-IMPORT"><i class="fa fa-check"></i><b>5.2</b> Reading in Excel “.xlsx” data</a></li>
 <li class="chapter" data-level="5.3" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-EXPORT"><i class="fa fa-check"></i><b>5.3</b> Writing a Data Frame to Excel</a></li>
 <li class="chapter" data-level="5.4" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-LEARNING-CHECK"><i class="fa fa-check"></i><b>5.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#download-and-load-packages-3"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
 <li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
-<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a><ul>
+<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>6.2.1</b> Problem</a></li>
 <li class="chapter" data-level="6.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>6.2.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a><ul>
+<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>6.3.1</b> Problem</a></li>
 <li class="chapter" data-level="6.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>6.3.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a><ul>
+<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>6.4.1</b> Problem</a></li>
 <li class="chapter" data-level="6.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>6.4.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a><ul>
+<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>6.5.1</b> Problem</a></li>
 <li class="chapter" data-level="6.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>6.5.2</b> Solution</a></li>
 <li class="chapter" data-level="6.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>6.5.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a><ul>
+<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>6.6.1</b> Problem</a></li>
 <li class="chapter" data-level="6.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.6.2</b> Solution</a></li>
 <li class="chapter" data-level="6.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.6.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a><ul>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
 <li class="chapter" data-level="6.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a><ul>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
 <li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a><ul>
+<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a>
+<ul>
 <li class="chapter" data-level="6.9.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-7"><i class="fa fa-check"></i><b>6.9.1</b> Problem</a></li>
 <li class="chapter" data-level="6.9.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-7"><i class="fa fa-check"></i><b>6.9.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a><ul>
+<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a>
+<ul>
 <li class="chapter" data-level="6.10.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-8"><i class="fa fa-check"></i><b>6.10.1</b> Problem</a></li>
 <li class="chapter" data-level="6.10.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-8"><i class="fa fa-check"></i><b>6.10.2</b> Solution</a></li>
 <li class="chapter" data-level="6.10.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>6.10.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a><ul>
+<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a>
+<ul>
 <li class="chapter" data-level="6.11.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-9"><i class="fa fa-check"></i><b>6.11.1</b> Problem</a></li>
 <li class="chapter" data-level="6.11.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-9"><i class="fa fa-check"></i><b>6.11.2</b> Solution</a></li>
 <li class="chapter" data-level="6.11.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>6.11.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a><ul>
+<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a>
+<ul>
 <li class="chapter" data-level="6.12.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER"><i class="fa fa-check"></i><b>6.12.1</b> Keep rows you want based on condition</a></li>
 <li class="chapter" data-level="6.12.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC"><i class="fa fa-check"></i><b>6.12.2</b> Keep rows based on a numerical range</a></li>
 <li class="chapter" data-level="6.12.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>6.12.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a><ul>
+<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a>
+<ul>
 <li class="chapter" data-level="6.13.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-12"><i class="fa fa-check"></i><b>6.13.1</b> Problem</a></li>
 <li class="chapter" data-level="6.13.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-12"><i class="fa fa-check"></i><b>6.13.2</b> Solution</a></li>
 <li class="chapter" data-level="6.13.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>6.13.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a><ul>
+<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a>
+<ul>
 <li class="chapter" data-level="6.14.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-13"><i class="fa fa-check"></i><b>6.14.1</b> Problem</a></li>
 <li class="chapter" data-level="6.14.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-13"><i class="fa fa-check"></i><b>6.14.2</b> Solution</a></li>
 <li class="chapter" data-level="6.14.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-6"><i class="fa fa-check"></i><b>6.14.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a><ul>
+<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a>
+<ul>
 <li class="chapter" data-level="6.15.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-14"><i class="fa fa-check"></i><b>6.15.1</b> Problem</a></li>
 <li class="chapter" data-level="6.15.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-14"><i class="fa fa-check"></i><b>6.15.2</b> Solution</a></li>
 <li class="chapter" data-level="6.15.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-7"><i class="fa fa-check"></i><b>6.15.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="6.16" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK"><i class="fa fa-check"></i><b>6.16</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a><ul>
-<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
-<li class="chapter" data-level="7.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
-<li class="chapter" data-level="7.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-15"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-15"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-8"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a><ul>
+<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND"><i class="fa fa-check"></i><b>7.2.1</b> Plot Background</a></li>
 <li class="chapter" data-level="7.2.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES"><i class="fa fa-check"></i><b>7.2.2</b> Aesthetics aes()</a></li>
 <li class="chapter" data-level="7.2.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS"><i class="fa fa-check"></i><b>7.2.3</b> Geometric representations geom()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
-<li class="chapter" data-level="7.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
-<li class="chapter" data-level="7.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-16"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-16"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-9"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
-<li class="chapter" data-level="7.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
-<li class="chapter" data-level="7.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-17"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-17"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-10"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
-<li class="chapter" data-level="7.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
+<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-18"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
+<li class="chapter" data-level="7.5.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-18"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
-<li class="chapter" data-level="7.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
+<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-19"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-19"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a><ul>
-<li class="chapter" data-level="7.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
-<li class="chapter" data-level="7.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
+<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-20"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
+<li class="chapter" data-level="7.7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-20"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
-<li class="chapter" data-level="7.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
-<li class="chapter" data-level="7.8.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-21"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
+<li class="chapter" data-level="7.8.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-21"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
+<li class="chapter" data-level="7.8.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-11"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK"><i class="fa fa-check"></i><b>7.9</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
-<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
-<li class="chapter" data-level="8.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
-<li class="chapter" data-level="8.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-22"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
+<li class="chapter" data-level="8.1.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-22"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-12"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
-<li class="chapter" data-level="8.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.2</b> Making a Line Graph with Multiple Lines</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-23"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
+<li class="chapter" data-level="8.2.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-23"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-13"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
-<li class="chapter" data-level="8.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.3</b> Changing the Appearance of Lines</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-24"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
+<li class="chapter" data-level="8.3.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-24"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-14"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
-<li class="chapter" data-level="8.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
-<li class="chapter" data-level="8.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.4</b> Using Themes to Change Overall Appearance of Plot</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-25"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
+<li class="chapter" data-level="8.4.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-25"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
-<li class="chapter" data-level="8.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
-<li class="chapter" data-level="8.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
-</ul></li>
-<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
-<li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
+<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.5</b> Learning check</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="your-assignment.html"><a href="your-assignment.html"><i class="fa fa-check"></i><b>9</b> Your Assignment</a></li>
 <li class="divider"></li>
@@ -357,33 +400,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="line-graphs" class="section level1">
+<div id="line-graphs" class="section level1" number="8">
 <h1><span class="header-section-number">Chapter 8</span> Line Graphs</h1>
 <p>Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the <em>x</em> variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.</p>
-<p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small”, “medium”, “large”), but not when the variable is unordered (e.g., “cow”, “goose”, “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
+<p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small,” “medium,” “large”), but not when the variable is unordered (e.g., “cow,” “goose,” “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
 <p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">dat &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb141-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
-<a class="sourceLine" id="cb141-3" title="3"></a>
-<a class="sourceLine" id="cb141-4" title="4">dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-5" title="5"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-7" title="7"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-8" title="8"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span><span class="dv">37</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-9" title="9"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb141-10" title="10"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
-<div id="LINE-GRAPH-BASIC-LINE" class="section level2">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="line-graphs.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</span>
+<span id="cb3-2"><a href="line-graphs.html#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</span>
+<span id="cb3-3"><a href="line-graphs.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="line-graphs.html#cb3-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="line-graphs.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">stage =</span> <span class="fu">cut_interval</span>(time, <span class="at">length =</span> <span class="dv">210</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="line-graphs.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stage) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="line-graphs.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="line-graphs.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (row_id <span class="sc">&lt;</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="line-graphs.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> <span class="dv">6</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="line-graphs.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span> (<span class="fu">vars</span>(bf<span class="sc">:</span>hr), mean)</span></code></pre></div>
+<div id="LINE-GRAPH-BASIC-LINE" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Making a Basic Line Graph</h2>
-<div id="problem" class="section level3">
+<div id="problem-22" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Problem</h3>
 <p>You want to make a basic line graph.</p>
 </div>
-<div id="solution" class="section level3">
+<div id="solution-22" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Solution</h3>
 <p>Use <code>ggplot()</code> with <code>geom_line()</code>, and specify which variables you mapped to x and y (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE">8.1</a>):</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"></a>
-<a class="sourceLine" id="cb142-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  </a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="line-graphs.html#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="line-graphs.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="line-graphs.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  </span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-1.png" alt="Basic line graph" width="50%" />
 <p class="caption">
@@ -391,258 +434,114 @@ Figure 8.1: Basic line graph
 </p>
 </div>
 </div>
-<div id="discussion" class="section level3">
+<div id="discussion-12" class="section level3" number="8.1.3">
 <h3><span class="header-section-number">8.1.3</span> Discussion</h3>
 <p>In this sample data set, the <em>x</em> variable, <code>time</code>, is in one column and the <em>y</em> variable, <code>vo2</code>, is in another:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:right;">
-stage
-</th>
-<th style="text-align:right;">
-bf
-</th>
-<th style="text-align:right;">
-vo2_norm
-</th>
-<th style="text-align:right;">
-rer
-</th>
-<th style="text-align:right;">
-vo2
-</th>
-<th style="text-align:right;">
-vco2
-</th>
-<th style="text-align:right;">
-ve
-</th>
-<th style="text-align:right;">
-hr
-</th>
+<tr class="header">
+<th align="right">stage</th>
+<th align="right">bf</th>
+<th align="right">vo2_norm</th>
+<th align="right">rer</th>
+<th align="right">vo2</th>
+<th align="right">vco2</th>
+<th align="right">ve</th>
+<th align="right">hr</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-30.67
-</td>
-<td style="text-align:right;">
-31.97
-</td>
-<td style="text-align:right;">
-0.87
-</td>
-<td style="text-align:right;">
-2052.83
-</td>
-<td style="text-align:right;">
-1777.83
-</td>
-<td style="text-align:right;">
-55.17
-</td>
-<td style="text-align:right;">
-136.50
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">30.67</td>
+<td align="right">31.97</td>
+<td align="right">0.87</td>
+<td align="right">2052.83</td>
+<td align="right">1777.83</td>
+<td align="right">55.17</td>
+<td align="right">136.50</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-34.67
-</td>
-<td style="text-align:right;">
-34.60
-</td>
-<td style="text-align:right;">
-0.88
-</td>
-<td style="text-align:right;">
-2222.17
-</td>
-<td style="text-align:right;">
-1957.50
-</td>
-<td style="text-align:right;">
-59.33
-</td>
-<td style="text-align:right;">
-147.00
-</td>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">34.67</td>
+<td align="right">34.60</td>
+<td align="right">0.88</td>
+<td align="right">2222.17</td>
+<td align="right">1957.50</td>
+<td align="right">59.33</td>
+<td align="right">147.00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-34.67
-</td>
-<td style="text-align:right;">
-37.42
-</td>
-<td style="text-align:right;">
-0.91
-</td>
-<td style="text-align:right;">
-2401.83
-</td>
-<td style="text-align:right;">
-2191.33
-</td>
-<td style="text-align:right;">
-66.67
-</td>
-<td style="text-align:right;">
-161.33
-</td>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">34.67</td>
+<td align="right">37.42</td>
+<td align="right">0.91</td>
+<td align="right">2401.83</td>
+<td align="right">2191.33</td>
+<td align="right">66.67</td>
+<td align="right">161.33</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-38.00
-</td>
-<td style="text-align:right;">
-37.83
-</td>
-<td style="text-align:right;">
-0.95
-</td>
-<td style="text-align:right;">
-2429.00
-</td>
-<td style="text-align:right;">
-2312.50
-</td>
-<td style="text-align:right;">
-71.17
-</td>
-<td style="text-align:right;">
-172.17
-</td>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">38.00</td>
+<td align="right">37.83</td>
+<td align="right">0.95</td>
+<td align="right">2429.00</td>
+<td align="right">2312.50</td>
+<td align="right">71.17</td>
+<td align="right">172.17</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-44.00
-</td>
-<td style="text-align:right;">
-41.67
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:right;">
-2675.00
-</td>
-<td style="text-align:right;">
-2686.00
-</td>
-<td style="text-align:right;">
-85.67
-</td>
-<td style="text-align:right;">
-178.50
-</td>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">44.00</td>
+<td align="right">41.67</td>
+<td align="right">1.00</td>
+<td align="right">2675.00</td>
+<td align="right">2686.00</td>
+<td align="right">85.67</td>
+<td align="right">178.50</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-45.67
-</td>
-<td style="text-align:right;">
-43.85
-</td>
-<td style="text-align:right;">
-1.06
-</td>
-<td style="text-align:right;">
-2813.67
-</td>
-<td style="text-align:right;">
-2981.17
-</td>
-<td style="text-align:right;">
-99.83
-</td>
-<td style="text-align:right;">
-185.83
-</td>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">45.67</td>
+<td align="right">43.85</td>
+<td align="right">1.06</td>
+<td align="right">2813.67</td>
+<td align="right">2981.17</td>
+<td align="right">99.83</td>
+<td align="right">185.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-54.50
-</td>
-<td style="text-align:right;">
-45.50
-</td>
-<td style="text-align:right;">
-1.09
-</td>
-<td style="text-align:right;">
-2920.17
-</td>
-<td style="text-align:right;">
-3195.83
-</td>
-<td style="text-align:right;">
-110.33
-</td>
-<td style="text-align:right;">
-192.33
-</td>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">54.50</td>
+<td align="right">45.50</td>
+<td align="right">1.09</td>
+<td align="right">2920.17</td>
+<td align="right">3195.83</td>
+<td align="right">110.33</td>
+<td align="right">192.33</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-57.33
-</td>
-<td style="text-align:right;">
-45.48
-</td>
-<td style="text-align:right;">
-1.05
-</td>
-<td style="text-align:right;">
-2910.83
-</td>
-<td style="text-align:right;">
-3068.83
-</td>
-<td style="text-align:right;">
-112.17
-</td>
-<td style="text-align:right;">
-195.17
-</td>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">57.33</td>
+<td align="right">45.48</td>
+<td align="right">1.05</td>
+<td align="right">2910.83</td>
+<td align="right">3068.83</td>
+<td align="right">112.17</td>
+<td align="right">195.17</td>
 </tr>
 </tbody>
 </table>
 <p>With ggplot2, the default <em>y</em> range of a line graph is just enough to include the <em>y</em> values in the data. For some kinds of data, it’s better to have the <em>y</em> range start from zero. You can use <code>ylim()</code> to set the range, or you can use <code>expand_limits()</code> to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in <code>BOD</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM">8.2</a>):</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># These have the same result</span></a>
-<a class="sourceLine" id="cb143-2" title="2"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-4" title="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="kw">max</span>(dat<span class="op">$</span>vo2))</a>
-<a class="sourceLine" id="cb143-5" title="5"></a>
-<a class="sourceLine" id="cb143-6" title="6"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-7" title="7"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb143-8" title="8"><span class="st">  </span><span class="kw">expand_limits</span>(<span class="dt">y =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="line-graphs.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These have the same result</span></span>
+<span id="cb5-2"><a href="line-graphs.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="line-graphs.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  <span class="sc">+</span></span>
+<span id="cb5-4"><a href="line-graphs.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(dat<span class="sc">$</span>vo2))</span>
+<span id="cb5-5"><a href="line-graphs.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="line-graphs.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="line-graphs.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="line-graphs.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-YLIM-1.png" alt="Line graph with manually set y range" width="50%" />
 <p class="caption">
@@ -651,252 +550,130 @@ Figure 8.2: Line graph with manually set y range
 </div>
 </div>
 </div>
-<div id="LINE-GRAPH-POINTS" class="section level2">
-<h2><span class="header-section-number">8.2</span> Adding Points to a Line Graph</h2>
-<div id="problem-1" class="section level3">
+<div id="LINE-GRAPH-MULTIPLE-LINE" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Making a Line Graph with Multiple Lines</h2>
+<div id="problem-23" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Problem</h3>
-<p>You want to add points to a line graph.</p>
-</div>
-<div id="solution-1" class="section level3">
-<h3><span class="header-section-number">8.2.2</span> Solution</h3>
-<p>Add <code>geom_point()</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT">8.3</a>):</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))  <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2))</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-1.png" alt="Line graph with points" width="50%" />
-<p class="caption">
-Figure 8.3: Line graph with points
-</p>
-</div>
-</div>
-</div>
-<div id="LINE-GRAPH-MULTIPLE-LINE" class="section level2">
-<h2><span class="header-section-number">8.3</span> Making a Line Graph with Multiple Lines</h2>
-<div id="problem-2" class="section level3">
-<h3><span class="header-section-number">8.3.1</span> Problem</h3>
 <p>You want to make a line graph with more than one line.</p>
 </div>
-<div id="solution-2" class="section level3">
-<h3><span class="header-section-number">8.3.2</span> Solution</h3>
-<p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">8.4</a>:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"></a>
-<a class="sourceLine" id="cb145-2" title="2"><span class="co"># Bring all variables into one column</span></a>
-<a class="sourceLine" id="cb145-3" title="3"></a>
-<a class="sourceLine" id="cb145-4" title="4">dat_long &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb145-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span> (stage, vo2, vco2) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb145-6" title="6"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(vo2<span class="op">:</span>vco2),</a>
-<a class="sourceLine" id="cb145-7" title="7">               <span class="dt">names_to =</span> <span class="st">&quot;var&quot;</span>,</a>
-<a class="sourceLine" id="cb145-8" title="8">               <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb145-9" title="9"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">var =</span> <span class="kw">factor</span> (var))</a>
-<a class="sourceLine" id="cb145-10" title="10"></a>
-<a class="sourceLine" id="cb145-11" title="11"><span class="co"># Map supp to colour</span></a>
-<a class="sourceLine" id="cb145-12" title="12"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-13" title="13"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
-<a class="sourceLine" id="cb145-14" title="14"></a>
-<a class="sourceLine" id="cb145-15" title="15"><span class="co"># Map supp to linetype</span></a>
-<a class="sourceLine" id="cb145-16" title="16"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb145-17" title="17"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">linetype =</span> var))</a></code></pre></div>
+<div id="solution-23" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Solution</h3>
+<p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">8.3</a>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="line-graphs.html#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="line-graphs.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring all variables into one column</span></span>
+<span id="cb6-3"><a href="line-graphs.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="line-graphs.html#cb6-4" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="line-graphs.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span> (stage, vo2, vco2) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="line-graphs.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(vo2<span class="sc">:</span>vco2),</span>
+<span id="cb6-7"><a href="line-graphs.html#cb6-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>,</span>
+<span id="cb6-8"><a href="line-graphs.html#cb6-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="line-graphs.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">var =</span> <span class="fu">factor</span> (var))</span>
+<span id="cb6-10"><a href="line-graphs.html#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="line-graphs.html#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to colour</span></span>
+<span id="cb6-12"><a href="line-graphs.html#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="line-graphs.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
+<span id="cb6-14"><a href="line-graphs.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="line-graphs.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to linetype</span></span>
+<span id="cb6-16"><a href="line-graphs.html#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="line-graphs.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">linetype =</span> var))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-1.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-2.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" />
 <p class="caption">
-Figure 8.4: A variable mapped to colour (left); A variable mapped to linetype (right)
+Figure 8.3: A variable mapped to colour (left); A variable mapped to linetype (right)
 </p>
 </div>
 </div>
-<div id="discussion-1" class="section level3">
-<h3><span class="header-section-number">8.3.3</span> Discussion</h3>
+<div id="discussion-13" class="section level3" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Discussion</h3>
 <p>The <code>dat_long</code> data has three columns, including the factor <code>var</code>, which we mapped to <code>colour</code> and <code>linetype</code>:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:right;">
-stage
-</th>
-<th style="text-align:left;">
-var
-</th>
-<th style="text-align:right;">
-val
-</th>
+<tr class="header">
+<th align="right">stage</th>
+<th align="left">var</th>
+<th align="right">val</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2052.83
-</td>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">vo2</td>
+<td align="right">2052.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-1777.83
-</td>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">vco2</td>
+<td align="right">1777.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2222.17
-</td>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">vo2</td>
+<td align="right">2222.17</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-1957.50
-</td>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">vco2</td>
+<td align="right">1957.50</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2401.83
-</td>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">vo2</td>
+<td align="right">2401.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-2191.33
-</td>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">vco2</td>
+<td align="right">2191.33</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2429.00
-</td>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">vo2</td>
+<td align="right">2429.00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-2312.50
-</td>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">vco2</td>
+<td align="right">2312.50</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2675.00
-</td>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">vo2</td>
+<td align="right">2675.00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-2686.00
-</td>
+<tr class="even">
+<td align="right">5</td>
+<td align="left">vco2</td>
+<td align="right">2686.00</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2813.67
-</td>
+<tr class="odd">
+<td align="right">6</td>
+<td align="left">vo2</td>
+<td align="right">2813.67</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-2981.17
-</td>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">vco2</td>
+<td align="right">2981.17</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2920.17
-</td>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">vo2</td>
+<td align="right">2920.17</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-3195.83
-</td>
+<tr class="even">
+<td align="right">7</td>
+<td align="left">vco2</td>
+<td align="right">3195.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:left;">
-vo2
-</td>
-<td style="text-align:right;">
-2910.83
-</td>
+<tr class="odd">
+<td align="right">8</td>
+<td align="left">vo2</td>
+<td align="right">2910.83</td>
 </tr>
-<tr>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:left;">
-vco2
-</td>
-<td style="text-align:right;">
-3068.83
-</td>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">vco2</td>
+<td align="right">3068.83</td>
 </tr>
 </tbody>
 </table>
@@ -904,223 +681,132 @@ vco2
 <p><strong>Note</strong></p>
 <p>If the <em>x</em> variable is a factor, you must also tell ggplot to group by that same variable, as described below.</p>
 </blockquote>
-<p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">8.5</a>):</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"></a>
-<a class="sourceLine" id="cb146-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb146-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var, <span class="dt">group =</span> var))</a></code></pre></div>
+<p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">8.4</a>):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="line-graphs.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="line-graphs.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="line-graphs.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var, <span class="at">group =</span> var))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-FACTOR-1.png" alt="Line graph with continuous x variable converted to a factor" width="50%" />
 <p class="caption">
-Figure 8.5: Line graph with continuous x variable converted to a factor
+Figure 8.4: Line graph with continuous x variable converted to a factor
 </p>
 </div>
 <p>To convert a variable to a factor , see also Recipe <a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS">6.10</a>.</p>
-<p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will give an error:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1"></a>
-<a class="sourceLine" id="cb147-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb147-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span> (stage), <span class="dt">y =</span> val, <span class="dt">colour =</span> var))</a>
-<a class="sourceLine" id="cb147-4" title="4"></a>
-<a class="sourceLine" id="cb147-5" title="5"><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to</span></a>
-<a class="sourceLine" id="cb147-6" title="6"><span class="co">#&gt; adjust the group aesthetic?</span></a></code></pre></div>
-<p>Another common problem when the incorrect grouping is used is that you will see a jagged sawtooth pattern, as in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH">8.6</a>:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb148-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb148-4" title="4">             <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SAWTOOTH-1.png" alt="A sawtooth pattern indicates improper grouping" width="50%" />
-<p class="caption">
-Figure 8.6: A sawtooth pattern indicates improper grouping
-</p>
-</div>
-<p>This happens because there are multiple data points at each <em>y</em> location, and ggplot thinks they’re all in one group. The data points for each group are connected with a single line, leading to the sawtooth pattern. If any <em>discrete</em> variables are mapped to aesthetics like colour or linetype, they are automatically used as grouping variables. But if you want to use other variables for grouping (that aren’t mapped to an aesthetic), they should be used with group.</p>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>When in doubt, if your line graph looks wrong, try explicitly specifying the grouping variable with group. It’s common for problems to occur with line graphs because ggplot is unsure of how the variables should be grouped.</p>
-</blockquote>
-<p>If your plot has points along with the lines, you can also map variables to properties of the points, such as shape and fill (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL">8.7</a>):</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1"></a>
-<a class="sourceLine" id="cb149-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-4" title="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb149-5" title="5">             <span class="dt">size =</span> <span class="dv">4</span>)  <span class="co"># Make the points a little larger</span></a>
-<a class="sourceLine" id="cb149-6" title="6"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a>
-<a class="sourceLine" id="cb149-7" title="7"></a>
-<a class="sourceLine" id="cb149-8" title="8"></a>
-<a class="sourceLine" id="cb149-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb149-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
-<a class="sourceLine" id="cb149-12" title="12">             <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>)  <span class="co"># Also use a point with a color fill</span></a>
-<a class="sourceLine" id="cb149-13" title="13"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: fill</span></a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL-1.png" alt="Line graph with different shapes (left); With different colors (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-SHAPE-FILL-2.png" alt="Line graph with different shapes (left); With different colors (right)" width="50%" />
-<p class="caption">
-Figure 8.7: Line graph with different shapes (left); With different colors (right)
-</p>
-</div>
-<p>Sometimes points will overlap. In these cases, you may want to <em>dodge</em> them, which means their positions will be adjusted left and right (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE">8.8</a>). When doing so, you must also dodge the lines, or else only the points will move and they will be misaligned. You must also specify how far they should move when dodged:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1"></a>
-<a class="sourceLine" id="cb150-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb150-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">shape =</span> var),</a>
-<a class="sourceLine" id="cb150-4" title="4">            <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>)) <span class="op">+</span><span class="st">          </span><span class="co"># Dodge lines by 0.2</span></a>
-<a class="sourceLine" id="cb150-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">fill =</span> var),</a>
-<a class="sourceLine" id="cb150-6" title="6">             <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="fl">0.2</span>), <span class="dt">size =</span> <span class="dv">4</span>) <span class="co"># Dodge points by 0.2</span></a>
-<a class="sourceLine" id="cb150-7" title="7"><span class="co">#&gt; Warning: Ignoring unknown aesthetics: shape</span></a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-DODGE"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-DODGE-1.png" alt="Dodging to avoid overlapping points" width="50%" />
-<p class="caption">
-Figure 8.8: Dodging to avoid overlapping points
-</p>
+<p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will not plot anything:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="line-graphs.html#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="line-graphs.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="line-graphs.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
+<span id="cb8-4"><a href="line-graphs.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
+<span id="cb8-5"><a href="line-graphs.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-</div>
-<div id="LINE-GRAPH-LINE-APPEARANCE" class="section level2">
-<h2><span class="header-section-number">8.4</span> Changing the Appearance of Lines</h2>
-<div id="problem-3" class="section level3">
-<h3><span class="header-section-number">8.4.1</span> Problem</h3>
+<div id="LINE-GRAPH-LINE-APPEARANCE" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Changing the Appearance of Lines</h2>
+<div id="problem-24" class="section level3" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Problem</h3>
 <p>You want to change the appearance of the lines in a line graph.</p>
 </div>
-<div id="solution-3" class="section level3">
-<h3><span class="header-section-number">8.4.2</span> Solution</h3>
+<div id="solution-24" class="section level3" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Solution</h3>
 <p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>size</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
-<p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">8.9</a>) by passing them values in the call to <code>geom_line()</code>:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb151-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), </a>
-<a class="sourceLine" id="cb151-3" title="3">            <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">8.5</a>) by passing them values in the call to <code>geom_line()</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="line-graphs.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="line-graphs.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2), </span>
+<span id="cb9-3"><a href="line-graphs.html#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED-1.png" alt="Line graph with custom linetype, size, and colour" width="50%" />
 <p class="caption">
-Figure 8.9: Line graph with custom linetype, size, and colour
+Figure 8.5: Line graph with custom linetype, size, and colour
 </p>
 </div>
-<p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">8.3</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">8.10</a>, by using <code>scale_colour_brewer()</code> or <code>scale_colour_manual()</code>:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1"></a>
-<a class="sourceLine" id="cb152-2" title="2"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb152-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb152-4" title="4"><span class="st">  </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
+<p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">8.2</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">8.6</a>, by using <code>scale_colour_brewer()</code> or <code>scale_colour_manual()</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="line-graphs.html#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-2"><a href="line-graphs.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="line-graphs.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="line-graphs.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-PALETTE-1.png" alt="Using a palette from RColorBrewer" width="50%" />
 <p class="caption">
-Figure 8.10: Using a palette from RColorBrewer
+Figure 8.6: Using a palette from RColorBrewer
 </p>
 </div>
 </div>
-<div id="discussion-2" class="section level3">
-<h3><span class="header-section-number">8.4.3</span> Discussion</h3>
-<p>To set a single constant color for all the lines, specify colour outside of <code>aes()</code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">8.11</a>). You may also have to specify the grouping variable:</p>
+<div id="discussion-14" class="section level3" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Discussion</h3>
+<p>To set a single constant color for all the lines, specify colour outside of <code>aes()</code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">8.7</a>). You may also have to specify the grouping variable:</p>
 
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="co"># If both lines have the same properties, you need to specify a variable to</span></a>
-<a class="sourceLine" id="cb153-2" title="2"><span class="co"># use for grouping</span></a>
-<a class="sourceLine" id="cb153-3" title="3"></a>
-<a class="sourceLine" id="cb153-4" title="4"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-5" title="5"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">group =</span> var),</a>
-<a class="sourceLine" id="cb153-6" title="6">            <span class="dt">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) </a>
-<a class="sourceLine" id="cb153-7" title="7"></a>
-<a class="sourceLine" id="cb153-8" title="8"><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></a>
-<a class="sourceLine" id="cb153-9" title="9"><span class="kw">ggplot</span>(dat_long) <span class="op">+</span></a>
-<a class="sourceLine" id="cb153-10" title="10"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var), <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb153-11" title="11"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> val, <span class="dt">colour =</span> var),<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="line-graphs.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If both lines have the same properties, you need to specify a variable to</span></span>
+<span id="cb11-2"><a href="line-graphs.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use for grouping</span></span>
+<span id="cb11-3"><a href="line-graphs.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="line-graphs.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="line-graphs.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">group =</span> var),</span>
+<span id="cb11-6"><a href="line-graphs.html#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) </span>
+<span id="cb11-7"><a href="line-graphs.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="line-graphs.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></span>
+<span id="cb11-9"><a href="line-graphs.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="line-graphs.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb11-11"><a href="line-graphs.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var),<span class="at">shape =</span> <span class="dv">22</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-1.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-2.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" />
 <p class="caption">
-Figure 8.11: Line graph with constant size and color (left); With <code>supp</code> mapped to <code>colour</code>, and with points added (right)
+Figure 8.7: Line graph with constant size and color (left); With <code>supp</code> mapped to <code>colour</code>, and with points added (right)
 </p>
 </div>
-<p>The range of different linetypes that is available can be seen in (Figure <a href="line-graphs.html#fig:FIG-LINETYPE-AES">8.12</a>)</p>
+<p>The range of different linetypes that is available can be seen in (Figure <a href="line-graphs.html#fig:FIG-LINETYPE-AES">8.8</a>)</p>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINETYPE-AES"></span>
 <img src="images/chapter-7/linetype.png" alt="The different types of linetype you can use." width="50%" />
 <p class="caption">
-Figure 8.12: The different types of linetype you can use.
+Figure 8.8: The different types of linetype you can use.
 </p>
 </div>
 </div>
 </div>
-<div id="LINE-GRAPH-POINT-APPEARANCE" class="section level2">
-<h2><span class="header-section-number">8.5</span> Changing the Appearance of Points</h2>
-<div id="problem-4" class="section level3">
-<h3><span class="header-section-number">8.5.1</span> Problem</h3>
-<p>You want to change the appearance of the points in a line graph.</p>
-</div>
-<div id="solution-4" class="section level3">
-<h3><span class="header-section-number">8.5.2</span> Solution</h3>
-<p>In <code>geom_point()</code>, set the <code>size</code>, <code>shape</code>, <code>colour</code>, and/or <code>fill</code> outside of <code>aes()</code> (the result is shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT-PROPERTIES">8.13</a>):</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb154-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">colour =</span> <span class="st">&quot;darkred&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;pink&quot;</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT-PROPERTIES"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-PROPERTIES-1.png" alt="Points with custom size, shape, color, and fill" width="50%" />
-<p class="caption">
-Figure 8.13: Points with custom size, shape, color, and fill
-</p>
-</div>
-</div>
-<div id="discussion-3" class="section level3">
-<h3><span class="header-section-number">8.5.3</span> Discussion</h3>
-<p>The default shape for points is a solid circle, the default size is 2, and the default colour is black. The fill color is relevant only for some point shapes (numbered 21–25), which have separate outline and fill colors . The fill color is typically <code>NA</code>, or empty; you can fill it with white to get hollow-looking circles, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-POINT-WHITEFILL">8.14</a>:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1"><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb155-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-POINT-WHITEFILL"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-POINT-WHITEFILL-1.png" alt="Points with a white fill" width="50%" />
-<p class="caption">
-Figure 8.14: Points with a white fill
-</p>
-</div>
-<p>There are plethora of point types that is availabe in R, which you can see below (Figure <a href="line-graphs.html#fig:FIG-POINT-TYPES">8.15</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:FIG-POINT-TYPES"></span>
-<img src="images/chapter-7/pointtype.png" alt="Point types available in R." width="50%" />
-<p class="caption">
-Figure 8.15: Point types available in R.
-</p>
-</div>
-<p>If the points and lines have different colors, you should specify the points after the lines, so that they are drawn on top. Otherwise, the lines will be drawn on top of the points.</p>
-</div>
-</div>
-<div id="LINE-GRAPH-APPEARANCE-THEME" class="section level2">
-<h2><span class="header-section-number">8.6</span> Using Themes to Change Overall Appearance of Plot</h2>
-<div id="problem-5" class="section level3">
-<h3><span class="header-section-number">8.6.1</span> Problem</h3>
+<div id="LINE-GRAPH-APPEARANCE-THEME" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Using Themes to Change Overall Appearance of Plot</h2>
+<div id="problem-25" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Problem</h3>
 <p>You want to use premade themes to control the overall plot appearance.</p>
 </div>
-<div id="solution-5" class="section level3">
-<h3><span class="header-section-number">8.6.2</span> Solution</h3>
+<div id="solution-25" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Solution</h3>
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code>theme_grey()</code>, but the examples below also showcase <code>theme_bw()</code>, <code>theme_minimal()</code>, and <code>theme_classic()</code>.</p>
-<p>To use a premade theme, add <code>theme_bw()</code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.16</a>):</p>
+<p>To use a premade theme, add <code>theme_bw()</code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.9</a>):</p>
 
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="co"># Create the base plot</span></a>
-<a class="sourceLine" id="cb156-2" title="2"></a>
-<a class="sourceLine" id="cb156-3" title="3">hw_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat) <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-4" title="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stage, <span class="dt">y =</span> vo2)) </a>
-<a class="sourceLine" id="cb156-5" title="5"></a>
-<a class="sourceLine" id="cb156-6" title="6"><span class="co"># Grey theme (the default)</span></a>
-<a class="sourceLine" id="cb156-7" title="7"></a>
-<a class="sourceLine" id="cb156-8" title="8">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-9" title="9"><span class="st">  </span><span class="kw">theme_grey</span>()</a>
-<a class="sourceLine" id="cb156-10" title="10"></a>
-<a class="sourceLine" id="cb156-11" title="11"><span class="co"># Black-and-white theme</span></a>
-<a class="sourceLine" id="cb156-12" title="12"></a>
-<a class="sourceLine" id="cb156-13" title="13">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-14" title="14"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
-<a class="sourceLine" id="cb156-15" title="15"></a>
-<a class="sourceLine" id="cb156-16" title="16"><span class="co"># Minimal theme without background annotations</span></a>
-<a class="sourceLine" id="cb156-17" title="17"></a>
-<a class="sourceLine" id="cb156-18" title="18">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-19" title="19"><span class="st">  </span><span class="kw">theme_minimal</span>()</a>
-<a class="sourceLine" id="cb156-20" title="20"></a>
-<a class="sourceLine" id="cb156-21" title="21"><span class="co"># Classic theme, with axis lines but no gridlines</span></a>
-<a class="sourceLine" id="cb156-22" title="22"></a>
-<a class="sourceLine" id="cb156-23" title="23">hw_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb156-24" title="24"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="line-graphs.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the base plot</span></span>
+<span id="cb12-2"><a href="line-graphs.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="line-graphs.html#cb12-3" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="line-graphs.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) </span>
+<span id="cb12-5"><a href="line-graphs.html#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="line-graphs.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Grey theme (the default)</span></span>
+<span id="cb12-7"><a href="line-graphs.html#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="line-graphs.html#cb12-8" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb12-9"><a href="line-graphs.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_grey</span>()</span>
+<span id="cb12-10"><a href="line-graphs.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="line-graphs.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Black-and-white theme</span></span>
+<span id="cb12-12"><a href="line-graphs.html#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="line-graphs.html#cb12-13" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb12-14"><a href="line-graphs.html#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb12-15"><a href="line-graphs.html#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="line-graphs.html#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal theme without background annotations</span></span>
+<span id="cb12-17"><a href="line-graphs.html#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="line-graphs.html#cb12-18" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb12-19"><a href="line-graphs.html#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb12-20"><a href="line-graphs.html#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="line-graphs.html#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic theme, with axis lines but no gridlines</span></span>
+<span id="cb12-22"><a href="line-graphs.html#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="line-graphs.html#cb12-23" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb12-24"><a href="line-graphs.html#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-APPEARANCE-THEME"></span>
 <img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-1.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-2.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-3.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-4.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" />
 <p class="caption">
-Figure 8.16: Scatter plot with <code>theme_grey()</code> (the default, top left); with <code>theme_bw()</code> (top right); with <code>theme_minimal()</code> (bottom left); with <code>theme_classic()</code> (bottom right)
+Figure 8.9: Scatter plot with <code>theme_grey()</code> (the default, top left); with <code>theme_bw()</code> (top right); with <code>theme_minimal()</code> (bottom left); with <code>theme_classic()</code> (bottom right)
 </p>
 </div>
 </div>
 </div>
-<div id="LINE-GRAPH-LEARNING-CHECK" class="section level2">
-<h2><span class="header-section-number">8.7</span> Learning check</h2>
+<div id="LINE-GRAPH-LEARNING-CHECK" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Learning check</h2>
 <ol style="list-style-type: decimal">
 <li><p>From your learning check in <a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK">7.9</a>, open up your <code>practice_script.R</code>.</p></li>
 <li><p>Import the Excel file <code>data/Athlete_1_treadmill.xlsx</code>, and the sheet <code>raw</code>, and assign it to an object <code>dat</code>. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>. Also import the the sheet <code>stage</code> from the same file, and assign it to an object <code>dat_stage</code>.</p></li>
