@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="InputOuput.html"/>
 <link rel="next" href="CHAPTER-BAR-GRAPH.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,28 +51,34 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +87,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,208 +138,259 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.3.1</b> R books</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#things-students-get-wrong"><i class="fa fa-check"></i><b>1.3</b> 3 things students get wrong</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#wrong-method-of-launching-software"><i class="fa fa-check"></i><b>1.3.1</b> Wrong method of launching software</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#not-running-code-from-start"><i class="fa fa-check"></i><b>1.3.2</b> Not running code from START</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#typographical-errors"><i class="fa fa-check"></i><b>1.3.3</b> Typographical errors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.4</b> R resources</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.4.1</b> R books</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
-<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="get-started.html"><a href="get-started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="get-started.html"><a href="get-started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
 <li class="chapter" data-level="2.2.2" data-path="get-started.html"><a href="get-started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
 <li class="chapter" data-level="2.2.3" data-path="get-started.html"><a href="get-started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
 <li class="chapter" data-level="2.2.4" data-path="get-started.html"><a href="get-started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="get-started.html"><a href="get-started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
 <li class="chapter" data-level="2.3.2" data-path="get-started.html"><a href="get-started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
 <li class="chapter" data-level="2.3.3" data-path="get-started.html"><a href="get-started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="get-started.html"><a href="get-started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
 <li class="chapter" data-level="2.4.2" data-path="get-started.html"><a href="get-started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
 <li class="chapter" data-level="2.4.3" data-path="get-started.html"><a href="get-started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="get-started.html"><a href="get-started.html#INSTALL-LEARNING-CHECK"><i class="fa fa-check"></i><b>2.5</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a>
+<ul>
 <li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#BASICS-CONSOLE"><i class="fa fa-check"></i><b>3.1</b> The command-line (Console)</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.2.1</b> Send code from a source to the console</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.3.1</b> Commenting code with the # (pound) sign</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.3.2</b> Spacing</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#BASIC-TYPES"><i class="fa fa-check"></i><b>3.4.1</b> Numbers versus characters</a></li>
 <li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.4.2</b> Creating new objects with &lt;-</a></li>
 <li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.4.3</b> How to name objects</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a>
+<ul>
 <li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#download-and-load-packages-1"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
 <li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
-<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.3.1</b> Installing a new package</a></li>
 <li class="chapter" data-level="4.3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.3.2</b> Loading a package</a></li>
 <li class="chapter" data-level="4.3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#a-simple-approach-to-package"><i class="fa fa-check"></i><b>4.3.3</b> A simple approach to package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK"><i class="fa fa-check"></i><b>4.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputOuput.html"><a href="InputOuput.html#download-and-load-packages-2"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="5.1" data-path="InputOuput.html"><a href="InputOuput.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
 <li class="chapter" data-level="5.2" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-IMPORT"><i class="fa fa-check"></i><b>5.2</b> Reading in Excel “.xlsx” data</a></li>
 <li class="chapter" data-level="5.3" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-EXPORT"><i class="fa fa-check"></i><b>5.3</b> Writing a Data Frame to Excel</a></li>
 <li class="chapter" data-level="5.4" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-LEARNING-CHECK"><i class="fa fa-check"></i><b>5.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#download-and-load-packages-3"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
 <li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
-<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a><ul>
+<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>6.2.1</b> Problem</a></li>
 <li class="chapter" data-level="6.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>6.2.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a><ul>
+<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>6.3.1</b> Problem</a></li>
 <li class="chapter" data-level="6.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>6.3.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a><ul>
+<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>6.4.1</b> Problem</a></li>
 <li class="chapter" data-level="6.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>6.4.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a><ul>
+<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>6.5.1</b> Problem</a></li>
 <li class="chapter" data-level="6.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>6.5.2</b> Solution</a></li>
 <li class="chapter" data-level="6.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>6.5.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a><ul>
+<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>6.6.1</b> Problem</a></li>
 <li class="chapter" data-level="6.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.6.2</b> Solution</a></li>
 <li class="chapter" data-level="6.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.6.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a><ul>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
 <li class="chapter" data-level="6.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a><ul>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
 <li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a><ul>
+<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a>
+<ul>
 <li class="chapter" data-level="6.9.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-7"><i class="fa fa-check"></i><b>6.9.1</b> Problem</a></li>
 <li class="chapter" data-level="6.9.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-7"><i class="fa fa-check"></i><b>6.9.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a><ul>
+<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a>
+<ul>
 <li class="chapter" data-level="6.10.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-8"><i class="fa fa-check"></i><b>6.10.1</b> Problem</a></li>
 <li class="chapter" data-level="6.10.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-8"><i class="fa fa-check"></i><b>6.10.2</b> Solution</a></li>
 <li class="chapter" data-level="6.10.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>6.10.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a><ul>
+<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a>
+<ul>
 <li class="chapter" data-level="6.11.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-9"><i class="fa fa-check"></i><b>6.11.1</b> Problem</a></li>
 <li class="chapter" data-level="6.11.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-9"><i class="fa fa-check"></i><b>6.11.2</b> Solution</a></li>
 <li class="chapter" data-level="6.11.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>6.11.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a><ul>
+<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a>
+<ul>
 <li class="chapter" data-level="6.12.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER"><i class="fa fa-check"></i><b>6.12.1</b> Keep rows you want based on condition</a></li>
 <li class="chapter" data-level="6.12.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC"><i class="fa fa-check"></i><b>6.12.2</b> Keep rows based on a numerical range</a></li>
 <li class="chapter" data-level="6.12.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>6.12.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a><ul>
+<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a>
+<ul>
 <li class="chapter" data-level="6.13.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-12"><i class="fa fa-check"></i><b>6.13.1</b> Problem</a></li>
 <li class="chapter" data-level="6.13.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-12"><i class="fa fa-check"></i><b>6.13.2</b> Solution</a></li>
 <li class="chapter" data-level="6.13.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>6.13.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a><ul>
+<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a>
+<ul>
 <li class="chapter" data-level="6.14.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-13"><i class="fa fa-check"></i><b>6.14.1</b> Problem</a></li>
 <li class="chapter" data-level="6.14.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-13"><i class="fa fa-check"></i><b>6.14.2</b> Solution</a></li>
 <li class="chapter" data-level="6.14.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-6"><i class="fa fa-check"></i><b>6.14.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a><ul>
+<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a>
+<ul>
 <li class="chapter" data-level="6.15.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-14"><i class="fa fa-check"></i><b>6.15.1</b> Problem</a></li>
 <li class="chapter" data-level="6.15.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-14"><i class="fa fa-check"></i><b>6.15.2</b> Solution</a></li>
 <li class="chapter" data-level="6.15.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-7"><i class="fa fa-check"></i><b>6.15.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="6.16" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK"><i class="fa fa-check"></i><b>6.16</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a><ul>
-<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
-<li class="chapter" data-level="7.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
-<li class="chapter" data-level="7.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-15"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-15"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-8"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a><ul>
+<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND"><i class="fa fa-check"></i><b>7.2.1</b> Plot Background</a></li>
 <li class="chapter" data-level="7.2.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES"><i class="fa fa-check"></i><b>7.2.2</b> Aesthetics aes()</a></li>
 <li class="chapter" data-level="7.2.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS"><i class="fa fa-check"></i><b>7.2.3</b> Geometric representations geom()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
-<li class="chapter" data-level="7.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
-<li class="chapter" data-level="7.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-16"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-16"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-9"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
-<li class="chapter" data-level="7.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
-<li class="chapter" data-level="7.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-17"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-17"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-10"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
-<li class="chapter" data-level="7.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
+<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-18"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
+<li class="chapter" data-level="7.5.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-18"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
-<li class="chapter" data-level="7.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
+<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-19"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-19"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a><ul>
-<li class="chapter" data-level="7.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
-<li class="chapter" data-level="7.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
+<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-20"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
+<li class="chapter" data-level="7.7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-20"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
-<li class="chapter" data-level="7.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
-<li class="chapter" data-level="7.8.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-21"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
+<li class="chapter" data-level="7.8.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-21"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
+<li class="chapter" data-level="7.8.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-11"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK"><i class="fa fa-check"></i><b>7.9</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
-<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
-<li class="chapter" data-level="8.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
-<li class="chapter" data-level="8.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-22"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
+<li class="chapter" data-level="8.1.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-22"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-12"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
-<li class="chapter" data-level="8.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-23"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
+<li class="chapter" data-level="8.2.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-23"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
-<li class="chapter" data-level="8.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-24"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
+<li class="chapter" data-level="8.3.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-24"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-13"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
-<li class="chapter" data-level="8.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
-<li class="chapter" data-level="8.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-25"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
+<li class="chapter" data-level="8.4.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-25"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
+<li class="chapter" data-level="8.4.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-14"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
-<li class="chapter" data-level="8.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
-<li class="chapter" data-level="8.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-26"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
+<li class="chapter" data-level="8.5.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-26"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
+<li class="chapter" data-level="8.5.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-15"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
-<li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
+<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-27"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
+<li class="chapter" data-level="8.6.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-27"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
 </ul></li>
@@ -357,32 +415,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="WRANGLE" class="section level1">
+<div id="WRANGLE" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Data manipulation</h1>
-<div id="download-and-load-packages" class="section level2 unnumbered">
+<div id="download-and-load-packages-3" class="section level2 unnumbered">
 <h2>Download and load packages</h2>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb70-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
-<a class="sourceLine" id="cb70-3" title="3">               openxlsx,<span class="co"># writing excel documents</span></a>
-<a class="sourceLine" id="cb70-4" title="4">               lubridate,<span class="co"># date-time </span></a>
-<a class="sourceLine" id="cb70-5" title="5">               tibbletime) <span class="co"># moving average for vo2</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="WRANGLE.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1-2"><a href="WRANGLE.html#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></span>
+<span id="cb1-3"><a href="WRANGLE.html#cb1-3" aria-hidden="true" tabindex="-1"></a>               openxlsx,<span class="co"># writing excel documents</span></span>
+<span id="cb1-4"><a href="WRANGLE.html#cb1-4" aria-hidden="true" tabindex="-1"></a>               lubridate,<span class="co"># date-time </span></span>
+<span id="cb1-5"><a href="WRANGLE.html#cb1-5" aria-hidden="true" tabindex="-1"></a>               tibbletime) <span class="co"># moving average for vo2</span></span></code></pre></div>
 </div>
 <div id="import-data" class="section level2 unnumbered">
 <h2>Import data</h2>
 <p>Let’s load the 3 files from <code>data</code> folder into the workspace again. File one contains the FMS data, another the VO2 raw data from the treadmill test, and lastly the lactate data from the treadmill test.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">dat_fms &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb71-2" title="2">                   <span class="dt">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</a>
-<a class="sourceLine" id="cb71-3" title="3"></a>
-<a class="sourceLine" id="cb71-4" title="4">dat_vo2 &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb71-5" title="5">                   <span class="dt">sheet =</span> <span class="st">&quot;raw&quot;</span>)</a>
-<a class="sourceLine" id="cb71-6" title="6"></a>
-<a class="sourceLine" id="cb71-7" title="7">dat_vo2_stage &lt;-<span class="st">  </span><span class="kw">read.xlsx</span> (<span class="dt">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</a>
-<a class="sourceLine" id="cb71-8" title="8">                   <span class="dt">sheet =</span> <span class="st">&quot;stage&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="WRANGLE.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dat_fms <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/fms_pt3.xlsx&quot;</span>,</span>
+<span id="cb2-2"><a href="WRANGLE.html#cb2-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</span>
+<span id="cb2-3"><a href="WRANGLE.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="WRANGLE.html#cb2-4" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</span>
+<span id="cb2-5"><a href="WRANGLE.html#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;raw&quot;</span>)</span>
+<span id="cb2-6"><a href="WRANGLE.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="WRANGLE.html#cb2-7" aria-hidden="true" tabindex="-1"></a>dat_vo2_stage <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4.xlsx&quot;</span>,</span>
+<span id="cb2-8"><a href="WRANGLE.html#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;stage&quot;</span>)</span></code></pre></div>
 </div>
-<div id="WRANGLE-TIDY-DATA" class="section level2">
+<div id="WRANGLE-TIDY-DATA" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Tidy data</h2>
 <p>You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is <strong>not the data you loaded</strong>, but rather came with the <code>tidyverse</code> package. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organises the values in a different way.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">table1</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="WRANGLE.html#cb3-1" aria-hidden="true" tabindex="-1"></a>table1</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
@@ -392,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Brazil       2000  80488  174504898
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">table2</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="WRANGLE.html#cb5-1" aria-hidden="true" tabindex="-1"></a>table2</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
 ##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
@@ -408,7 +466,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 China        1999 population 1272915272
 ## 11 China        2000 cases          213766
 ## 12 China        2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">table3</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="WRANGLE.html#cb7-1" aria-hidden="true" tabindex="-1"></a>table3</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country      year rate             
 ## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
@@ -418,15 +476,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Brazil       2000 80488/174504898  
 ## 5 China        1999 212258/1272915272
 ## 6 China        2000 213766/1280428583</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># Spread across two tables</span></a>
-<a class="sourceLine" id="cb78-2" title="2">table4a  <span class="co"># cases</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="WRANGLE.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spread across two tables</span></span>
+<span id="cb9-2"><a href="WRANGLE.html#cb9-2" aria-hidden="true" tabindex="-1"></a>table4a  <span class="co"># cases</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country     `1999` `2000`
 ## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
 ## 1 Afghanistan    745   2666
 ## 2 Brazil       37737  80488
 ## 3 China       212258 213766</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">table4b  <span class="co"># population</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="WRANGLE.html#cb11-1" aria-hidden="true" tabindex="-1"></a>table4b  <span class="co"># population</span></span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   country         `1999`     `2000`
 ## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
@@ -473,48 +531,48 @@ The second step is to resolve one of two common problems:</p>
 </ol>
 <p>Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: <code>pivot_wider()</code> in Recipe <a href="WRANGLE.html#WRANGLE-SPREAD">6.7</a> and <code>pivot_longer()</code> in Recipe <a href="WRANGLE.html#WRANGLE-GATHER">6.8</a> below.</p>
 </div>
-<div id="WRANGLE-RENAME-VARIABLES" class="section level2">
+<div id="WRANGLE-RENAME-VARIABLES" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Renaming variables</h2>
-<div id="problem" class="section level3">
+<div id="problem" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Problem</h3>
-<p>The current column names in the <code>dat_vo2</code> dataset is ugly, and you like to abbreviate it. I dislike excessively using capitals in naming stuff. It is alot of effort to type.</p>
+<p>The current column names in the <code>dat_vo2</code> dataset is ugly, and you like to abbreviate it. I dislike excessive usage of capitalisations. It is a lot of effort to type.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="WRANGLE.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints the current column names</span></span>
+<span id="cb13-2"><a href="WRANGLE.html#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="WRANGLE.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span> (dat_vo2) </span></code></pre></div>
+<pre><code>## [1] &quot;Time&quot;   &quot;BF&quot;     &quot;VO2/kg&quot; &quot;RER&quot;    &quot;V&#39;O2&quot;   &quot;V&#39;CO2&quot;  &quot;V&#39;E&quot;    &quot;HR&quot;</code></pre>
 </div>
-<div id="solution" class="section level3">
+<div id="solution" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Solution</h3>
 <p>Create a vector of 8 new names that you can give to the data. The order of new names must be identical to the order of the old names from left to right.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co"># This prints the current column names</span></a>
-<a class="sourceLine" id="cb82-2" title="2"></a>
-<a class="sourceLine" id="cb82-3" title="3"><span class="kw">colnames</span> (dat_vo2)  </a></code></pre></div>
-<pre><code>## [1] &quot;Time&quot;   &quot;BF&quot;     &quot;VO2/kg&quot; &quot;RER&quot;    &quot;V&#39;O2&quot;   &quot;V&#39;CO2&quot;  &quot;V&#39;E&quot;    &quot;HR&quot;</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># New names. Notice the commas and be pedantic about spacing</span></a>
-<a class="sourceLine" id="cb84-2" title="2"></a>
-<a class="sourceLine" id="cb84-3" title="3">new_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;bf&quot;</span>, <span class="st">&quot;vo2_norm&quot;</span>, <span class="st">&quot;rer&quot;</span>, <span class="st">&quot;vo2&quot;</span>, <span class="st">&quot;vco2&quot;</span>, <span class="st">&quot;ve&quot;</span>, <span class="st">&quot;hr&quot;</span>)</a>
-<a class="sourceLine" id="cb84-4" title="4"></a>
-<a class="sourceLine" id="cb84-5" title="5"><span class="co"># Give the new names to the old names</span></a>
-<a class="sourceLine" id="cb84-6" title="6"></a>
-<a class="sourceLine" id="cb84-7" title="7"><span class="kw">colnames</span> (dat_vo2)  &lt;-<span class="st"> </span>new_names</a>
-<a class="sourceLine" id="cb84-8" title="8"></a>
-<a class="sourceLine" id="cb84-9" title="9"><span class="co"># This prints the new column names</span></a>
-<a class="sourceLine" id="cb84-10" title="10"></a>
-<a class="sourceLine" id="cb84-11" title="11"><span class="kw">colnames</span> (dat_vo2)  </a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="WRANGLE.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New names. Notice the commas and be pedantic about spacing</span></span>
+<span id="cb15-2"><a href="WRANGLE.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="WRANGLE.html#cb15-3" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;bf&quot;</span>, <span class="st">&quot;vo2_norm&quot;</span>, <span class="st">&quot;rer&quot;</span>, <span class="st">&quot;vo2&quot;</span>, <span class="st">&quot;vco2&quot;</span>, <span class="st">&quot;ve&quot;</span>, <span class="st">&quot;hr&quot;</span>)</span>
+<span id="cb15-4"><a href="WRANGLE.html#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="WRANGLE.html#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Give the new names to the old names</span></span>
+<span id="cb15-6"><a href="WRANGLE.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="WRANGLE.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span> (dat_vo2)  <span class="ot">&lt;-</span> new_names</span>
+<span id="cb15-8"><a href="WRANGLE.html#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="WRANGLE.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># This prints the new column names</span></span>
+<span id="cb15-10"><a href="WRANGLE.html#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="WRANGLE.html#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span> (dat_vo2)  </span></code></pre></div>
 <pre><code>## [1] &quot;time&quot;     &quot;bf&quot;       &quot;vo2_norm&quot; &quot;rer&quot;      &quot;vo2&quot;      &quot;vco2&quot;     &quot;ve&quot;      
 ## [8] &quot;hr&quot;</code></pre>
 </div>
 </div>
-<div id="WRANGLE-SLICE" class="section level2">
+<div id="WRANGLE-SLICE" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Selecting rows and columns</h2>
-<div id="problem-1" class="section level3">
+<div id="problem-1" class="section level3" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> Problem</h3>
 <p>You want to remove a specific row or a range of rows, and remove a specific column or a range of columns. See also Recipe <a href="WRANGLE.html#WRANGLE-FILTER">6.12</a>.</p>
 </div>
-<div id="solution-1" class="section level3">
+<div id="solution-1" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Solution</h3>
 <p>To keep or remove rows based on the row numbers, use <code>slice ()</code>, <code>slice_head()</code>, or <code>slice_tail()</code>. In <code>slice ()</code>, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, <code>-</code>, before the number. If you want to keep or remove a range of numbers, add <code>start:end</code> inside <code>slice()</code>. In <code>slice_tail ()</code> and <code>slice_head()</code>, you can keep the bottom, and top, <em>n</em> number of rows, respectively, by adding <code>n = 3</code> for example inside <code>slice_tail()</code> or <code>slice_head()</code>.</p>
 <p>To keep based on the column names, use the <code>select ()</code> function.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># This keeps only the second row</span></a>
-<a class="sourceLine" id="cb86-2" title="2"></a>
-<a class="sourceLine" id="cb86-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb86-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="dv">2</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="WRANGLE.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This keeps only the second row</span></span>
+<span id="cb17-2"><a href="WRANGLE.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="WRANGLE.html#cb17-3" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="WRANGLE.html#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span> (<span class="dv">2</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -541,9 +599,9 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># This removes the second row</span></a>
-<a class="sourceLine" id="cb87-2" title="2">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb87-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span><span class="dv">2</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="WRANGLE.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This removes the second row</span></span>
+<span id="cb18-2"><a href="WRANGLE.html#cb18-2" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="WRANGLE.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span> (<span class="sc">-</span><span class="dv">2</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -620,9 +678,9 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># This removes the second and third rows</span></a>
-<a class="sourceLine" id="cb88-2" title="2">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb88-3" title="3"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="WRANGLE.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This removes the second and third rows</span></span>
+<span id="cb19-2"><a href="WRANGLE.html#cb19-2" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="WRANGLE.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span> (<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -699,10 +757,10 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># This keeps the top six rows</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb89-4" title="4"><span class="st">  </span><span class="kw">slice_head</span> (<span class="dt">n =</span> <span class="dv">6</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="WRANGLE.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This keeps the top six rows</span></span>
+<span id="cb20-2"><a href="WRANGLE.html#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="WRANGLE.html#cb20-3" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="WRANGLE.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span> (<span class="at">n =</span> <span class="dv">6</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -779,10 +837,10 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># This keeps the bottom six rows</span></a>
-<a class="sourceLine" id="cb90-2" title="2"></a>
-<a class="sourceLine" id="cb90-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb90-4" title="4"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="WRANGLE.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This keeps the bottom six rows</span></span>
+<span id="cb21-2"><a href="WRANGLE.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="WRANGLE.html#cb21-3" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="WRANGLE.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> <span class="dv">6</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -859,10 +917,10 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># This selects the first, second, and fourth column, and discards the rest</span></a>
-<a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3">vo2_slice &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-4" title="4"><span class="st">  </span><span class="kw">select</span> (time, bf, rer) </a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="WRANGLE.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This selects the first, second, and fourth column, and discards the rest</span></span>
+<span id="cb22-2"><a href="WRANGLE.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="WRANGLE.html#cb22-3" aria-hidden="true" tabindex="-1"></a>vo2_slice <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="WRANGLE.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (time, bf, rer) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -904,19 +962,19 @@ The second step is to resolve one of two common problems:</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># This removes the first row, and replaces the old data in object dat_vo2</span></a>
-<a class="sourceLine" id="cb92-2" title="2"></a>
-<a class="sourceLine" id="cb92-3" title="3">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb92-4" title="4"><span class="st">  </span><span class="kw">slice</span> (<span class="op">-</span>(<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="WRANGLE.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This removes the first row, and replaces the old data in object dat_vo2</span></span>
+<span id="cb23-2"><a href="WRANGLE.html#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="WRANGLE.html#cb23-3" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4"><a href="WRANGLE.html#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span> (<span class="sc">-</span>(<span class="dv">1</span>))</span></code></pre></div>
 </div>
 </div>
-<div id="WRANGLE-CHARACTER-2-NUMERIC" class="section level2">
+<div id="WRANGLE-CHARACTER-2-NUMERIC" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> Convert characters to numeric</h2>
-<div id="problem-2" class="section level3">
+<div id="problem-2" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Problem</h3>
 <p>The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. See also Section <a href="basics.html#BASIC-TYPES">3.4.1</a>. But let us see the type of data that was imported. The <code>str()</code> function provides us with some summary information about the dataframe.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">str</span>(dat_vo2)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	330 obs. of  8 variables:
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="WRANGLE.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dat_vo2)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    330 obs. of  8 variables:
 ##  $ time    : chr  &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; ...
 ##  $ bf      : chr  &quot;37&quot; &quot;58&quot; &quot;30&quot; &quot;34&quot; ...
 ##  $ vo2_norm: chr  &quot;21.4&quot; &quot;2.5&quot; &quot;23.5&quot; &quot;22.4&quot; ...
@@ -925,8 +983,10 @@ The second step is to resolve one of two common problems:</p>
 ##  $ vco2    : chr  &quot;1272&quot; &quot;133&quot; &quot;1110&quot; &quot;1229&quot; ...
 ##  $ ve      : chr  &quot;46&quot; &quot;12&quot; &quot;35&quot; &quot;43&quot; ...
 ##  $ hr      : chr  &quot;119&quot; &quot;120&quot; &quot;121&quot; &quot;123&quot; ...</code></pre>
-<p>What you will see is something like this. For the variable <code>bf</code>, you will see <code>$ bf      : chr  "37" "58" "30" "34" ...</code>. <code>chr</code> after the colon indicates that this variable is a character (<code>chr</code>). In R language, a character is anything from a letter, e.g. <code>a</code>, to a word, e.g. <code>word</code>, to even a phrase of sentence, e.g. <code>i hate biomechanics</code>. A character is always enclosed inside a <code>""</code>. Why is R so “stupid”, that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure <a href="WRANGLE.html#fig:col-class">6.2</a>).</p>
-<p>This was touched on in in Section <a href="WRANGLE.html#WRANGLE-TIDY-DATA">6.1</a>, about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add <code>apples</code> and <code>orange</code> can you?</p>
+<p>What you will see is something like this. For the variable <code>bf</code>, you will see <code>$ bf      : chr  "37" "58" "30" "34" ...</code>. <code>chr</code> after the colon. This indicates that this variable is a character (<code>chr</code>). In R language, a character is anything from a letter, e.g. <code>a</code>, to a word, e.g. <code>word</code>, to even a phrase of sentence, e.g. <code>i hate biomechanics</code>. A character is always enclosed inside a <code>""</code>.</p>
+<p>Why is R so “stupid,” that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, each column have both words and numbers (Figure <a href="WRANGLE.html#fig:col-class">6.2</a>). It is our fault that the data was untidy.</p>
+<p>This was touched on in in Section <a href="WRANGLE.html#WRANGLE-TIDY-DATA">6.1</a>, about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters.</p>
+<p>The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add <code>apples</code> and <code>orange</code> can you?</p>
 <div class="figure"><span id="fig:col-class"></span>
 <img src="images/chapter-5/dat_vo2_column_class.png" alt="The type of data for each class as it was imported." width="100%" />
 <p class="caption">
@@ -934,24 +994,24 @@ Figure 6.2: The type of data for each class as it was imported.
 </p>
 </div>
 </div>
-<div id="solution-2" class="section level3">
+<div id="solution-2" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Solution</h3>
 <p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co"># Make all variables from bf to hr numeric, and replace the current data</span></a>
-<a class="sourceLine" id="cb95-2" title="2"></a>
-<a class="sourceLine" id="cb95-3" title="3">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">bf =</span> <span class="kw">as.numeric</span>(bf),</a>
-<a class="sourceLine" id="cb95-5" title="5">          <span class="dt">vo2_norm =</span> <span class="kw">as.numeric</span>(vo2_norm),</a>
-<a class="sourceLine" id="cb95-6" title="6">          <span class="dt">rer =</span> <span class="kw">as.numeric</span>(rer),</a>
-<a class="sourceLine" id="cb95-7" title="7">          <span class="dt">vo2 =</span> <span class="kw">as.numeric</span>(vo2),</a>
-<a class="sourceLine" id="cb95-8" title="8">          <span class="dt">vco2 =</span> <span class="kw">as.numeric</span>(vco2),</a>
-<a class="sourceLine" id="cb95-9" title="9">          <span class="dt">ve =</span> <span class="kw">as.numeric</span>(ve),</a>
-<a class="sourceLine" id="cb95-10" title="10">          <span class="dt">hr =</span> <span class="kw">as.numeric</span>(hr))</a>
-<a class="sourceLine" id="cb95-11" title="11"></a>
-<a class="sourceLine" id="cb95-12" title="12"><span class="co"># Recheck the type of each column </span></a>
-<a class="sourceLine" id="cb95-13" title="13"></a>
-<a class="sourceLine" id="cb95-14" title="14"><span class="kw">str</span>(dat_vo2)</a></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:	330 obs. of  8 variables:
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="WRANGLE.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make all variables from bf to hr numeric, and replace the current data</span></span>
+<span id="cb26-2"><a href="WRANGLE.html#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="WRANGLE.html#cb26-3" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span>  dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="WRANGLE.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">bf =</span> <span class="fu">as.numeric</span>(bf),</span>
+<span id="cb26-5"><a href="WRANGLE.html#cb26-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">vo2_norm =</span> <span class="fu">as.numeric</span>(vo2_norm),</span>
+<span id="cb26-6"><a href="WRANGLE.html#cb26-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">rer =</span> <span class="fu">as.numeric</span>(rer),</span>
+<span id="cb26-7"><a href="WRANGLE.html#cb26-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">vo2 =</span> <span class="fu">as.numeric</span>(vo2),</span>
+<span id="cb26-8"><a href="WRANGLE.html#cb26-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">vco2 =</span> <span class="fu">as.numeric</span>(vco2),</span>
+<span id="cb26-9"><a href="WRANGLE.html#cb26-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">ve =</span> <span class="fu">as.numeric</span>(ve),</span>
+<span id="cb26-10"><a href="WRANGLE.html#cb26-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">hr =</span> <span class="fu">as.numeric</span>(hr))</span>
+<span id="cb26-11"><a href="WRANGLE.html#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="WRANGLE.html#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Recheck the type of each column </span></span>
+<span id="cb26-13"><a href="WRANGLE.html#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="WRANGLE.html#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dat_vo2)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    330 obs. of  8 variables:
 ##  $ time    : chr  &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; ...
 ##  $ bf      : num  37 58 30 34 23 27 39 34 26 27 ...
 ##  $ vo2_norm: num  21.4 2.5 23.5 22.4 15.6 30.5 23.3 29.6 31.9 29.4 ...
@@ -962,27 +1022,27 @@ Figure 6.2: The type of data for each class as it was imported.
 ##  $ hr      : num  119 120 121 123 124 124 124 124 124 125 ...</code></pre>
 </div>
 </div>
-<div id="WRANGLE-CHARACTER-2-TIME" class="section level2">
+<div id="WRANGLE-CHARACTER-2-TIME" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Convert characters to date and time</h2>
-<div id="problem-3" class="section level3">
+<div id="problem-3" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Problem</h3>
 <p>The raw <code>dat_vo2</code> data <code>time</code> variable is a character with ugly white spaces. When you use the <code>str()</code> function on the time column using the <code>$</code> symbol, you can see that each value looks like <code>"  00:05 "</code>. It means that is a blank before and after the <code>00:05</code>.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">str</span>(dat_vo2<span class="op">$</span>time)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="WRANGLE.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dat_vo2<span class="sc">$</span>time)</span></code></pre></div>
 <pre><code>##  chr [1:330] &quot;  00:05 &quot; &quot;  00:10 &quot; &quot;  00:15 &quot; &quot;  00:20 &quot; &quot;  00:25 &quot; ...</code></pre>
 </div>
-<div id="solution-3" class="section level3">
+<div id="solution-3" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Solution</h3>
 <p>First, let me create a carbon copy of the data <code>dat_vo2</code>, so that I can modify the original data, and keep the carbon copy for explanation and illustration.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1">dat_vo2_copy &lt;-<span class="st"> </span>dat_vo2 </a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="WRANGLE.html#cb30-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_copy <span class="ot">&lt;-</span> dat_vo2 </span></code></pre></div>
 <p>Use the <code>mutate()</code> function and the <code>as.numeric</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># 4 in 1 processing</span></a>
-<a class="sourceLine" id="cb100-2" title="2"></a>
-<a class="sourceLine" id="cb100-3" title="3">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb100-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb100-5" title="5"><span class="st">            </span><span class="kw">str_squish</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># function strips any whitespaces</span></a>
-<a class="sourceLine" id="cb100-6" title="6"><span class="st">            </span><span class="kw">ms</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># convert to minutes and seconds</span></a>
-<a class="sourceLine" id="cb100-7" title="7"><span class="st">            </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># converts entirely to seconds</span></a>
-<a class="sourceLine" id="cb100-8" title="8"><span class="st">            </span><span class="kw">as.numeric</span> ()) <span class="co"># strips the S symbol to make it a number</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="WRANGLE.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 in 1 processing</span></span>
+<span id="cb31-2"><a href="WRANGLE.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="WRANGLE.html#cb31-3" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="WRANGLE.html#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
+<span id="cb31-5"><a href="WRANGLE.html#cb31-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">str_squish</span>() <span class="sc">%&gt;%</span> <span class="co"># function strips any whitespaces</span></span>
+<span id="cb31-6"><a href="WRANGLE.html#cb31-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ms</span>() <span class="sc">%&gt;%</span> <span class="co"># convert to minutes and seconds</span></span>
+<span id="cb31-7"><a href="WRANGLE.html#cb31-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.period</span>(<span class="at">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="sc">%&gt;%</span> <span class="co"># converts entirely to seconds</span></span>
+<span id="cb31-8"><a href="WRANGLE.html#cb31-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.numeric</span> ()) <span class="co"># strips the S symbol to make it a number</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1060,13 +1120,13 @@ Figure 6.2: The type of data for each class as it was imported.
 </tbody>
 </table>
 </div>
-<div id="discussion" class="section level3">
+<div id="discussion" class="section level3" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Discussion</h3>
 <p>Notice in the function above, I chained a series of steps together, using the pipe, <code>%&gt;%</code>, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the <code>time</code> variable. Let me illustrate each step using the carbon copy data <code>dat_vo2_copy</code>.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># First, removes whitespaces around the time variable</span></a>
-<a class="sourceLine" id="cb101-2" title="2">time_mutate &lt;-<span class="st"> </span>dat_vo2_copy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-4" title="4"><span class="st">                 </span><span class="kw">str_squish</span>()) </a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="WRANGLE.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, removes whitespaces around the time variable</span></span>
+<span id="cb32-2"><a href="WRANGLE.html#cb32-2" aria-hidden="true" tabindex="-1"></a>time_mutate <span class="ot">&lt;-</span> dat_vo2_copy <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="WRANGLE.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="WRANGLE.html#cb32-4" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">str_squish</span>()) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1143,16 +1203,16 @@ Figure 6.2: The type of data for each class as it was imported.
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># Second, convert to minutes and seconds</span></a>
-<a class="sourceLine" id="cb102-2" title="2"></a>
-<a class="sourceLine" id="cb102-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2_copy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb102-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb102-6" title="6"><span class="st">                 </span><span class="kw">ms</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="WRANGLE.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Second, convert to minutes and seconds</span></span>
+<span id="cb33-2"><a href="WRANGLE.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="WRANGLE.html#cb33-3" aria-hidden="true" tabindex="-1"></a>time_mutate <span class="ot">&lt;-</span> dat_vo2_copy <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="WRANGLE.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="WRANGLE.html#cb33-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">str_squish</span>()<span class="sc">%&gt;%</span>  </span>
+<span id="cb33-6"><a href="WRANGLE.html#cb33-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">ms</span>())</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">time</th>
 <th align="right">bf</th>
 <th align="right">vo2_norm</th>
@@ -1165,7 +1225,7 @@ Figure 6.2: The type of data for each class as it was imported.
 </thead>
 <tbody>
 <tr class="odd">
-<td>325</td>
+<td align="left">325</td>
 <td align="right">27M 5S</td>
 <td align="right">55</td>
 <td align="right">45.31</td>
@@ -1176,7 +1236,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>326</td>
+<td align="left">326</td>
 <td align="right">27M 10S</td>
 <td align="right">57</td>
 <td align="right">45.33</td>
@@ -1187,7 +1247,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">195</td>
 </tr>
 <tr class="odd">
-<td>327</td>
+<td align="left">327</td>
 <td align="right">27M 15S</td>
 <td align="right">52</td>
 <td align="right">44.61</td>
@@ -1198,7 +1258,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>328</td>
+<td align="left">328</td>
 <td align="right">27M 20S</td>
 <td align="right">59</td>
 <td align="right">46.50</td>
@@ -1209,7 +1269,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">197</td>
 </tr>
 <tr class="odd">
-<td>329</td>
+<td align="left">329</td>
 <td align="right">27M 25S</td>
 <td align="right">60</td>
 <td align="right">45.14</td>
@@ -1220,7 +1280,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">196</td>
 </tr>
 <tr class="even">
-<td>330</td>
+<td align="left">330</td>
 <td align="right">27M 30S</td>
 <td align="right">61</td>
 <td align="right">46.00</td>
@@ -1232,17 +1292,17 @@ Figure 6.2: The type of data for each class as it was imported.
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co"># Third, converts entirely to seconds</span></a>
-<a class="sourceLine" id="cb103-2" title="2"></a>
-<a class="sourceLine" id="cb103-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2_copy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb103-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb103-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb103-6" title="6"><span class="st">                 </span><span class="kw">ms</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb103-7" title="7"><span class="st">                 </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="WRANGLE.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Third, converts entirely to seconds</span></span>
+<span id="cb34-2"><a href="WRANGLE.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="WRANGLE.html#cb34-3" aria-hidden="true" tabindex="-1"></a>time_mutate <span class="ot">&lt;-</span> dat_vo2_copy <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="WRANGLE.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a href="WRANGLE.html#cb34-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">str_squish</span>()<span class="sc">%&gt;%</span>  </span>
+<span id="cb34-6"><a href="WRANGLE.html#cb34-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">ms</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb34-7"><a href="WRANGLE.html#cb34-7" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">as.period</span>(<span class="at">unit =</span> <span class="st">&quot;sec&quot;</span>)) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">time</th>
 <th align="right">bf</th>
 <th align="right">vo2_norm</th>
@@ -1255,7 +1315,7 @@ Figure 6.2: The type of data for each class as it was imported.
 </thead>
 <tbody>
 <tr class="odd">
-<td>325</td>
+<td align="left">325</td>
 <td align="right">1625S</td>
 <td align="right">55</td>
 <td align="right">45.31</td>
@@ -1266,7 +1326,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>326</td>
+<td align="left">326</td>
 <td align="right">1630S</td>
 <td align="right">57</td>
 <td align="right">45.33</td>
@@ -1277,7 +1337,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">195</td>
 </tr>
 <tr class="odd">
-<td>327</td>
+<td align="left">327</td>
 <td align="right">1635S</td>
 <td align="right">52</td>
 <td align="right">44.61</td>
@@ -1288,7 +1348,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>328</td>
+<td align="left">328</td>
 <td align="right">1640S</td>
 <td align="right">59</td>
 <td align="right">46.50</td>
@@ -1299,7 +1359,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">197</td>
 </tr>
 <tr class="odd">
-<td>329</td>
+<td align="left">329</td>
 <td align="right">1645S</td>
 <td align="right">60</td>
 <td align="right">45.14</td>
@@ -1310,7 +1370,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">196</td>
 </tr>
 <tr class="even">
-<td>330</td>
+<td align="left">330</td>
 <td align="right">1650S</td>
 <td align="right">61</td>
 <td align="right">46.00</td>
@@ -1322,18 +1382,18 @@ Figure 6.2: The type of data for each class as it was imported.
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="co"># Fourth, strips the S symbol to make it a number, and assign it to object</span></a>
-<a class="sourceLine" id="cb104-2" title="2"></a>
-<a class="sourceLine" id="cb104-3" title="3">time_mutate &lt;-<span class="st"> </span>dat_vo2_copy <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-4" title="4"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">time =</span> time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-5" title="5"><span class="st">                 </span><span class="kw">str_squish</span>()<span class="op">%&gt;%</span><span class="st">  </span></a>
-<a class="sourceLine" id="cb104-6" title="6"><span class="st">                 </span><span class="kw">ms</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-7" title="7"><span class="st">                 </span><span class="kw">as.period</span>(<span class="dt">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-8" title="8"><span class="st">                 </span><span class="kw">as.numeric</span> ())</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="WRANGLE.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fourth, strips the S symbol to make it a number, and assign it to object</span></span>
+<span id="cb35-2"><a href="WRANGLE.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="WRANGLE.html#cb35-3" aria-hidden="true" tabindex="-1"></a>time_mutate <span class="ot">&lt;-</span> dat_vo2_copy <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="WRANGLE.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
+<span id="cb35-5"><a href="WRANGLE.html#cb35-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">str_squish</span>()<span class="sc">%&gt;%</span>  </span>
+<span id="cb35-6"><a href="WRANGLE.html#cb35-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">ms</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-7"><a href="WRANGLE.html#cb35-7" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">as.period</span>(<span class="at">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-8"><a href="WRANGLE.html#cb35-8" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">as.numeric</span> ())</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">time</th>
 <th align="right">bf</th>
 <th align="right">vo2_norm</th>
@@ -1346,7 +1406,7 @@ Figure 6.2: The type of data for each class as it was imported.
 </thead>
 <tbody>
 <tr class="odd">
-<td>325</td>
+<td align="left">325</td>
 <td align="right">1625</td>
 <td align="right">55</td>
 <td align="right">45.31</td>
@@ -1357,7 +1417,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>326</td>
+<td align="left">326</td>
 <td align="right">1630</td>
 <td align="right">57</td>
 <td align="right">45.33</td>
@@ -1368,7 +1428,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">195</td>
 </tr>
 <tr class="odd">
-<td>327</td>
+<td align="left">327</td>
 <td align="right">1635</td>
 <td align="right">52</td>
 <td align="right">44.61</td>
@@ -1379,7 +1439,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">194</td>
 </tr>
 <tr class="even">
-<td>328</td>
+<td align="left">328</td>
 <td align="right">1640</td>
 <td align="right">59</td>
 <td align="right">46.50</td>
@@ -1390,7 +1450,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">197</td>
 </tr>
 <tr class="odd">
-<td>329</td>
+<td align="left">329</td>
 <td align="right">1645</td>
 <td align="right">60</td>
 <td align="right">45.14</td>
@@ -1401,7 +1461,7 @@ Figure 6.2: The type of data for each class as it was imported.
 <td align="right">196</td>
 </tr>
 <tr class="even">
-<td>330</td>
+<td align="left">330</td>
 <td align="right">1650</td>
 <td align="right">61</td>
 <td align="right">46.00</td>
@@ -1415,16 +1475,16 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 </div>
 </div>
-<div id="WRANGLE-NUMERIC-CATEGORY" class="section level2">
+<div id="WRANGLE-NUMERIC-CATEGORY" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Split Numeric Variable into Categories</h2>
-<div id="problem-4" class="section level3">
+<div id="problem-4" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Problem</h3>
-<p>Remember, each stage in VO2 testing is 3:30min long, and you collect data in intervals of 5 sec. You want to split the <code>time</code> variable of the <code>dat_vo2</code> dataset into chunks of 210 sec, and create a new variable called <code>stage</code>. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>. I will not explain the <code>cut_interval</code> function, other than to say that the <code>length</code> argument is used to specify the range of evenly spaced values to categorize over.</p>
+<p>Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the <code>time</code> variable of the <code>dat_vo2</code> dataset into chunks of 210 sec, and create a new variable called <code>stage</code>. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>. I will not explain the <code>cut_interval</code> function, other than to say that the <code>length</code> argument is used to specify the range of evenly spaced values to categorize over.</p>
 </div>
-<div id="solution-4" class="section level3">
+<div id="solution-4" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Solution</h3>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb105-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">stage =</span> <span class="kw">cut_interval</span>(time, <span class="dt">length =</span> <span class="dv">210</span>, <span class="dt">labels =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="WRANGLE.html#cb36-1" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="WRANGLE.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">stage =</span> <span class="fu">cut_interval</span>(time, <span class="at">length =</span> <span class="dv">210</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1509,24 +1569,24 @@ Figure 6.2: The type of data for each class as it was imported.
 </tbody>
 </table>
 </div>
-<div id="discussion-1" class="section level3">
+<div id="discussion-1" class="section level3" number="6.6.3">
 <h3><span class="header-section-number">6.6.3</span> Discussion</h3>
 <p>Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.</p>
 </div>
 </div>
-<div id="WRANGLE-SPREAD" class="section level2">
+<div id="WRANGLE-SPREAD" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> Spreading</h2>
-<div id="problem-5" class="section level3">
+<div id="problem-5" class="section level3" number="6.7.1">
 <h3><span class="header-section-number">6.7.1</span> Problem</h3>
 <p>You want to make your data wider, in this instance let us look at the <code>dat_fms</code> dataset. You want to have one column indicating the left FMS score, and one indicating the right FMS score. The caveat is that because some tasks in the FMS do not have left and right, we need to remove the tasks in the FMS without a left and right. In this case, we will use the <code>filter()</code> function, which will be discussed in Recipe <a href="WRANGLE.html#WRANGLE-FILTER">6.12</a>.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">dat_fms_sub &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">!=</span><span class="st"> &quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="WRANGLE.html#cb37-1" aria-hidden="true" tabindex="-1"></a>dat_fms_sub <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="WRANGLE.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (side <span class="sc">!=</span> <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
 </div>
-<div id="solution-5" class="section level3">
+<div id="solution-5" class="section level3" number="6.7.2">
 <h3><span class="header-section-number">6.7.2</span> Solution</h3>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">dat_wide &lt;-<span class="st"> </span>dat_fms_sub <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
-<a class="sourceLine" id="cb107-2" title="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb107-3" title="3">              <span class="dt">values_from =</span> <span class="st">&quot;score&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="WRANGLE.html#cb38-1" aria-hidden="true" tabindex="-1"></a>dat_wide <span class="ot">&lt;-</span> dat_fms_sub <span class="sc">%&gt;%</span> <span class="co"># original data</span></span>
+<span id="cb38-2"><a href="WRANGLE.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">&quot;side&quot;</span>,</span>
+<span id="cb38-3"><a href="WRANGLE.html#cb38-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="st">&quot;score&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1565,18 +1625,18 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 </div>
 </div>
-<div id="WRANGLE-GATHER" class="section level2">
+<div id="WRANGLE-GATHER" class="section level2" number="6.8">
 <h2><span class="header-section-number">6.8</span> Gathering</h2>
-<div id="problem-6" class="section level3">
+<div id="problem-6" class="section level3" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Problem</h3>
 <p>You want to make your data longer. In this instance, if you have for example a left and right FMS column and you want to bring all into one column, you use the <code>pivot_longer()</code> function.</p>
 </div>
-<div id="solution-6" class="section level3">
+<div id="solution-6" class="section level3" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> Solution</h3>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">dat_long &lt;-<span class="st"> </span>dat_wide <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># original data</span></a>
-<a class="sourceLine" id="cb108-2" title="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</a>
-<a class="sourceLine" id="cb108-3" title="3">              <span class="dt">names_to =</span> <span class="st">&quot;side&quot;</span>,</a>
-<a class="sourceLine" id="cb108-4" title="4">              <span class="dt">values_to =</span> <span class="st">&quot;score&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="WRANGLE.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> dat_wide <span class="sc">%&gt;%</span> <span class="co"># original data</span></span>
+<span id="cb39-2"><a href="WRANGLE.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;l&quot;</span>, <span class="st">&quot;r&quot;</span>),</span>
+<span id="cb39-3"><a href="WRANGLE.html#cb39-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_to =</span> <span class="st">&quot;side&quot;</span>,</span>
+<span id="cb39-4"><a href="WRANGLE.html#cb39-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">&quot;score&quot;</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1640,19 +1700,19 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 </div>
 </div>
-<div id="WRANGLE-RENAME-VALUES" class="section level2">
+<div id="WRANGLE-RENAME-VALUES" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> Rename values of a variable</h2>
-<div id="problem-7" class="section level3">
+<div id="problem-7" class="section level3" number="6.9.1">
 <h3><span class="header-section-number">6.9.1</span> Problem</h3>
 <p>You want to rename some values, either because it is too long, too short, or for other reasons. In this instance, in the <code>dat_fms</code> dataset, you want to call <code>l</code>, <code>left</code>, and <code>r</code>, <code>right</code>.</p>
 </div>
-<div id="solution-7" class="section level3">
+<div id="solution-7" class="section level3" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Solution</h3>
 <p>Use the <code>mutate()</code> function and the <code>recode()</code> function. You will learn the <code>mutate ()</code> function more in Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.11</a>.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">dat_fms &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb109-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">side =</span> <span class="kw">recode</span> (side, <span class="co"># the variable name</span></a>
-<a class="sourceLine" id="cb109-3" title="3">                          <span class="st">&quot;l&quot;</span> =<span class="st"> &quot;left&quot;</span>, <span class="co"># old label = new label</span></a>
-<a class="sourceLine" id="cb109-4" title="4">                          <span class="st">&quot;r&quot;</span> =<span class="st"> &quot;right&quot;</span>)) <span class="co"># old label = new label</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="WRANGLE.html#cb40-1" aria-hidden="true" tabindex="-1"></a>dat_fms <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="WRANGLE.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">side =</span> <span class="fu">recode</span> (side, <span class="co"># the variable name</span></span>
+<span id="cb40-3"><a href="WRANGLE.html#cb40-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;l&quot;</span> <span class="ot">=</span> <span class="st">&quot;left&quot;</span>, <span class="co"># old label = new label</span></span>
+<span id="cb40-4"><a href="WRANGLE.html#cb40-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">&quot;r&quot;</span> <span class="ot">=</span> <span class="st">&quot;right&quot;</span>)) <span class="co"># old label = new label</span></span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1726,34 +1786,34 @@ Figure 6.2: The type of data for each class as it was imported.
 </table>
 </div>
 </div>
-<div id="WRANGLE-CHARACTERS-2-FACTORS" class="section level2">
+<div id="WRANGLE-CHARACTERS-2-FACTORS" class="section level2" number="6.10">
 <h2><span class="header-section-number">6.10</span> Creating factors</h2>
-<div id="problem-8" class="section level3">
+<div id="problem-8" class="section level3" number="6.10.1">
 <h3><span class="header-section-number">6.10.1</span> Problem</h3>
 <p>You want to create an order in the values of a variable - like small, medium, large.</p>
 </div>
-<div id="solution-8" class="section level3">
+<div id="solution-8" class="section level3" number="6.10.2">
 <h3><span class="header-section-number">6.10.2</span> Solution</h3>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="co"># Order of values I desire</span></a>
-<a class="sourceLine" id="cb110-2" title="2"></a>
-<a class="sourceLine" id="cb110-3" title="3">new_lvls &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="st">&quot;push_up&quot;</span>,<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>,  <span class="st">&quot;shd_mob&quot;</span>)</a>
-<a class="sourceLine" id="cb110-4" title="4"></a>
-<a class="sourceLine" id="cb110-5" title="5">dat_fms_relvl &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-6" title="6"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">task =</span> <span class="kw">factor</span> (task, <span class="dt">levels =</span> new_lvls))</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="WRANGLE.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Order of values I desire</span></span>
+<span id="cb41-2"><a href="WRANGLE.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="WRANGLE.html#cb41-3" aria-hidden="true" tabindex="-1"></a>new_lvls <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&quot;push_up&quot;</span>,<span class="st">&quot;squat&quot;</span>, <span class="st">&quot;rot_stab&quot;</span>, <span class="st">&quot;hurdle&quot;</span>, <span class="st">&quot;lunge&quot;</span>, <span class="st">&quot;leg_raise&quot;</span>,  <span class="st">&quot;shd_mob&quot;</span>)</span>
+<span id="cb41-4"><a href="WRANGLE.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="WRANGLE.html#cb41-5" aria-hidden="true" tabindex="-1"></a>dat_fms_relvl <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="WRANGLE.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">task =</span> <span class="fu">factor</span> (task, <span class="at">levels =</span> new_lvls))</span></code></pre></div>
 </div>
-<div id="discussion-2" class="section level3">
+<div id="discussion-2" class="section level3" number="6.10.3">
 <h3><span class="header-section-number">6.10.3</span> Discussion</h3>
 <p>Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.</p>
 
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="co"># Without factor </span></a>
-<a class="sourceLine" id="cb111-2" title="2"></a>
-<a class="sourceLine" id="cb111-3" title="3"><span class="kw">ggplot</span>(dat_fms) <span class="op">+</span></a>
-<a class="sourceLine" id="cb111-4" title="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a>
-<a class="sourceLine" id="cb111-5" title="5"></a>
-<a class="sourceLine" id="cb111-6" title="6"><span class="co"># With factor new levels</span></a>
-<a class="sourceLine" id="cb111-7" title="7"></a>
-<a class="sourceLine" id="cb111-8" title="8"><span class="kw">ggplot</span>(dat_fms_relvl) <span class="op">+</span></a>
-<a class="sourceLine" id="cb111-9" title="9"><span class="st">  </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">x =</span> task, <span class="dt">y =</span> score, <span class="dt">fill =</span> side), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="WRANGLE.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Without factor </span></span>
+<span id="cb42-2"><a href="WRANGLE.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="WRANGLE.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_fms) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="WRANGLE.html#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> task, <span class="at">y =</span> score, <span class="at">fill =</span> side), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span>
+<span id="cb42-5"><a href="WRANGLE.html#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="WRANGLE.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co"># With factor new levels</span></span>
+<span id="cb42-7"><a href="WRANGLE.html#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="WRANGLE.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_fms_relvl) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="WRANGLE.html#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> task, <span class="at">y =</span> score, <span class="at">fill =</span> side), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
 <div class="figure"><span id="fig:FIG-BAR-GRAPH-FACTOR-EFFECTS"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-1.png" alt="Barplots of FMS score on original dat_fms (top); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (bottom)." width="672" /><img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.png" alt="Barplots of FMS score on original dat_fms (top); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (bottom)." width="672" />
 <p class="caption">
@@ -1762,17 +1822,17 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and ne
 </div>
 </div>
 </div>
-<div id="WRANGLE-NEW-VARIABLES" class="section level2">
+<div id="WRANGLE-NEW-VARIABLES" class="section level2" number="6.11">
 <h2><span class="header-section-number">6.11</span> Making a new variable</h2>
-<div id="problem-9" class="section level3">
+<div id="problem-9" class="section level3" number="6.11.1">
 <h3><span class="header-section-number">6.11.1</span> Problem</h3>
 <p>You want to create a new column which involves some math between columns</p>
 </div>
-<div id="solution-9" class="section level3">
+<div id="solution-9" class="section level3" number="6.11.2">
 <h3><span class="header-section-number">6.11.2</span> Solution</h3>
 <p>Example, you want to create a column called <code>ratio</code> in the <code>dat_vo2</code> dataset, by dividing <code>vo2</code> by <code>vco2</code>.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">dat_vo2 &lt;-<span class="st">  </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">ratio =</span> vo2<span class="op">/</span>vco2) </a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="WRANGLE.html#cb43-1" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span>  dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="WRANGLE.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">ratio =</span> vo2<span class="sc">/</span>vco2) </span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1864,127 +1924,311 @@ Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and ne
 </tbody>
 </table>
 </div>
-<div id="discussion-3" class="section level3">
+<div id="discussion-3" class="section level3" number="6.11.3">
 <h3><span class="header-section-number">6.11.3</span> Discussion</h3>
 <p>There are many math operations you can do including subtraction (<code>-</code>), multiplication (<code>*</code>), addition (<code>+</code>), exponentiation/power to the power of 2 (<code>^2</code>). Let us go crazy and try some random creation of new variables.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">dat_vo2_crazy &lt;-<span class="st">  </span>dat_vo2  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb113-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">vo2_power =</span> vo2<span class="op">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></a>
-<a class="sourceLine" id="cb113-3" title="3">          <span class="dt">vco2_mod =</span> vco2<span class="op">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></a>
-<a class="sourceLine" id="cb113-4" title="4">          <span class="dt">junk =</span> (vo2<span class="op">+</span><span class="st"> </span>vco2)<span class="op">/</span><span class="st"> </span>(hr <span class="op">+</span><span class="st"> </span>bf))<span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="WRANGLE.html#cb44-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_crazy <span class="ot">&lt;-</span>  dat_vo2  <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="WRANGLE.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">vo2_power =</span> vo2<span class="sc">^</span><span class="dv">3</span>,<span class="co"># vo2 powered to 3 </span></span>
+<span id="cb44-3"><a href="WRANGLE.html#cb44-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">vco2_mod =</span> vco2<span class="sc">/</span><span class="dv">3</span>, <span class="co"># vco2 divied by 3</span></span>
+<span id="cb44-4"><a href="WRANGLE.html#cb44-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">junk =</span> (vo2<span class="sc">+</span> vco2)<span class="sc">/</span> (hr <span class="sc">+</span> bf))<span class="co"># divided the sum of vo2 and vco2, and sum of hr and bf</span></span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:100px; overflow-x: scroll; width:100%; ">
 <table>
 <thead>
-<tr class="header">
-<th align="right">time</th>
-<th align="right">bf</th>
-<th align="right">vo2_norm</th>
-<th align="right">rer</th>
-<th align="right">vo2</th>
-<th align="right">vco2</th>
-<th align="right">ve</th>
-<th align="right">hr</th>
-<th align="right">stage</th>
-<th align="right">ratio</th>
-<th align="right">vo2_power</th>
-<th align="right">vco2_mod</th>
-<th align="right">junk</th>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+time
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+bf
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+vo2_norm
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+rer
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+vo2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+vco2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ve
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+hr
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+stage
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ratio
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+vo2_power
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+vco2_mod
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+junk
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">37</td>
-<td align="right">21.4</td>
-<td align="right">0.93</td>
-<td align="right">1371</td>
-<td align="right">1272</td>
-<td align="right">46</td>
-<td align="right">119</td>
-<td align="right">1</td>
-<td align="right">1.08</td>
-<td align="right">2576987811</td>
-<td align="right">424.00</td>
-<td align="right">16.94</td>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+1371
+</td>
+<td style="text-align:right;">
+1272
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.08
+</td>
+<td style="text-align:right;">
+2576987811
+</td>
+<td style="text-align:right;">
+424.00
+</td>
+<td style="text-align:right;">
+16.94
+</td>
 </tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="right">58</td>
-<td align="right">2.5</td>
-<td align="right">0.84</td>
-<td align="right">159</td>
-<td align="right">133</td>
-<td align="right">12</td>
-<td align="right">120</td>
-<td align="right">1</td>
-<td align="right">1.20</td>
-<td align="right">4019679</td>
-<td align="right">44.33</td>
-<td align="right">1.64</td>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+133
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.20
+</td>
+<td style="text-align:right;">
+4019679
+</td>
+<td style="text-align:right;">
+44.33
+</td>
+<td style="text-align:right;">
+1.64
+</td>
 </tr>
-<tr class="odd">
-<td align="right">15</td>
-<td align="right">30</td>
-<td align="right">23.5</td>
-<td align="right">0.74</td>
-<td align="right">1506</td>
-<td align="right">1110</td>
-<td align="right">35</td>
-<td align="right">121</td>
-<td align="right">1</td>
-<td align="right">1.36</td>
-<td align="right">3415662216</td>
-<td align="right">370.00</td>
-<td align="right">17.32</td>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+23.5
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+<td style="text-align:right;">
+1506
+</td>
+<td style="text-align:right;">
+1110
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+121
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+3415662216
+</td>
+<td style="text-align:right;">
+370.00
+</td>
+<td style="text-align:right;">
+17.32
+</td>
 </tr>
-<tr class="even">
-<td align="right">20</td>
-<td align="right">34</td>
-<td align="right">22.4</td>
-<td align="right">0.86</td>
-<td align="right">1437</td>
-<td align="right">1229</td>
-<td align="right">43</td>
-<td align="right">123</td>
-<td align="right">1</td>
-<td align="right">1.17</td>
-<td align="right">2967360453</td>
-<td align="right">409.67</td>
-<td align="right">16.98</td>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+22.4
+</td>
+<td style="text-align:right;">
+0.86
+</td>
+<td style="text-align:right;">
+1437
+</td>
+<td style="text-align:right;">
+1229
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+<td style="text-align:right;">
+2967360453
+</td>
+<td style="text-align:right;">
+409.67
+</td>
+<td style="text-align:right;">
+16.98
+</td>
 </tr>
-<tr class="odd">
-<td align="right">25</td>
-<td align="right">23</td>
-<td align="right">15.6</td>
-<td align="right">0.73</td>
-<td align="right">1004</td>
-<td align="right">735</td>
-<td align="right">22</td>
-<td align="right">124</td>
-<td align="right">1</td>
-<td align="right">1.37</td>
-<td align="right">1012048064</td>
-<td align="right">245.00</td>
-<td align="right">11.83</td>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+15.6
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+1004
+</td>
+<td style="text-align:right;">
+735
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+124
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+<td style="text-align:right;">
+1012048064
+</td>
+<td style="text-align:right;">
+245.00
+</td>
+<td style="text-align:right;">
+11.83
+</td>
 </tr>
-<tr class="even">
-<td align="right">30</td>
-<td align="right">27</td>
-<td align="right">30.5</td>
-<td align="right">0.76</td>
-<td align="right">1960</td>
-<td align="right">1489</td>
-<td align="right">48</td>
-<td align="right">124</td>
-<td align="right">1</td>
-<td align="right">1.32</td>
-<td align="right">7529536000</td>
-<td align="right">496.33</td>
-<td align="right">22.84</td>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+30.5
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+1960
+</td>
+<td style="text-align:right;">
+1489
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+124
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1.32
+</td>
+<td style="text-align:right;">
+7529536000
+</td>
+<td style="text-align:right;">
+496.33
+</td>
+<td style="text-align:right;">
+22.84
+</td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>You can even create a new variable, which reflects the present row number (<code>row_id</code>). This row number reflects the number of 5 sec VO2 windows. If there is 10 sec of data collected, there will be two row numbers, Really quite useful for VO2 analysis and cleaning. Here, inside the <code>mutate()</code> function, I will be using the function <code>row_number()</code> to get the respective number for each row.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1">dat_vo2 &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-2" title="2"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="WRANGLE.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="WRANGLE.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>())</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2238,19 +2482,19 @@ row_id
 </table>
 </div>
 </div>
-<div id="WRANGLE-FILTER" class="section level2">
+<div id="WRANGLE-FILTER" class="section level2" number="6.12">
 <h2><span class="header-section-number">6.12</span> Filtering</h2>
 <p>Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>, you learnt the <code>slice()</code> function. That is for really simple filtering. The <code>filter()</code> function you will learn here gives you more flexibility. Filtering deals with keeping or throwing out <strong>rows</strong> of data. Keeping or throwing out columns of data requires the <code>select()</code> function, which you learnt in Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p>
-<div id="WRANGLE-FILTER-KEEP-CHARACTER" class="section level3">
+<div id="WRANGLE-FILTER-KEEP-CHARACTER" class="section level3" number="6.12.1">
 <h3><span class="header-section-number">6.12.1</span> Keep rows you want based on condition</h3>
-<div id="problem-10" class="section level4">
+<div id="problem-10" class="section level4" number="6.12.1.1">
 <h4><span class="header-section-number">6.12.1.1</span> Problem</h4>
 <p>In the <code>dat_fms</code> dataset, you want to keep rows that have <code>side == "left"</code> (i.e. only rows where the <code>side</code> value equals <code>left</code>). Note the <code>==</code>, double equal sign, instead of the usual <code>=</code>. In this short book, I will not go at length to explain why R is so difficult, only that I ask you to obey the rules of the language.</p>
 </div>
-<div id="solution-10" class="section level4">
+<div id="solution-10" class="section level4" number="6.12.1.2">
 <h4><span class="header-section-number">6.12.1.2</span> Solution</h4>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">fms_left &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb115-2" title="2"><span class="st">  </span><span class="kw">filter</span> (side <span class="op">==</span><span class="st"> &quot;left&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="WRANGLE.html#cb46-1" aria-hidden="true" tabindex="-1"></a>fms_left <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="WRANGLE.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (side <span class="sc">==</span> <span class="st">&quot;left&quot;</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2325,70 +2569,70 @@ left
 </table>
 </div>
 </div>
-<div id="WRANGLE-FILTER-KEEP-NUMERIC" class="section level3">
+<div id="WRANGLE-FILTER-KEEP-NUMERIC" class="section level3" number="6.12.2">
 <h3><span class="header-section-number">6.12.2</span> Keep rows based on a numerical range</h3>
 <p>You want to keep the data when a variable is within a certain window range. Let us use the <code>dat_vo2</code> dataset. Let us see the range of values of the variable <code>ve</code>.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="kw">hist</span> (dat_vo2<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
-<div id="problem-11" class="section level4">
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="WRANGLE.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (dat_vo2<span class="sc">$</span>ve)</span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div id="problem-11" class="section level4" number="6.12.2.1">
 <h4><span class="header-section-number">6.12.2.1</span> Problem</h4>
 <p>Say I want to keep rows where 1) <code>ve</code> is less than 80, 2) <code>ve</code> more than 40, and 3) <code>ve</code> is between 40 to 80.</p>
 </div>
-<div id="solution-11" class="section level4">
+<div id="solution-11" class="section level4" number="6.12.2.2">
 <h4><span class="header-section-number">6.12.2.2</span> Solution</h4>
 <p>Notice for each graph, how the minimum and maximum values have been clipped off.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="co"># Keep ve less than 80</span></a>
-<a class="sourceLine" id="cb117-2" title="2"></a>
-<a class="sourceLine" id="cb117-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb117-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb117-5" title="5"></a>
-<a class="sourceLine" id="cb117-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="co"># Keep ve lmore than 40</span></a>
-<a class="sourceLine" id="cb118-2" title="2"></a>
-<a class="sourceLine" id="cb118-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb118-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb118-5" title="5"></a>
-<a class="sourceLine" id="cb118-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-103-2.png" width="672" /></p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="co"># Keep ve between 40 to 80</span></a>
-<a class="sourceLine" id="cb119-2" title="2"></a>
-<a class="sourceLine" id="cb119-3" title="3">dat_vo2_filt &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb119-4" title="4"><span class="st">  </span><span class="kw">filter</span> (ve <span class="op">&gt;</span><span class="st"> </span><span class="dv">40</span> <span class="op">&amp;</span><span class="st"> </span>ve <span class="op">&lt;</span><span class="st"> </span><span class="dv">80</span>)</a>
-<a class="sourceLine" id="cb119-5" title="5"></a>
-<a class="sourceLine" id="cb119-6" title="6"><span class="kw">hist</span> (dat_vo2_filt<span class="op">$</span>ve)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-103-3.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="WRANGLE.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep ve less than 80</span></span>
+<span id="cb48-2"><a href="WRANGLE.html#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="WRANGLE.html#cb48-3" aria-hidden="true" tabindex="-1"></a>dat_vo2_filt <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb48-4"><a href="WRANGLE.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (ve <span class="sc">&lt;</span> <span class="dv">80</span>)</span>
+<span id="cb48-5"><a href="WRANGLE.html#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="WRANGLE.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (dat_vo2_filt<span class="sc">$</span>ve)</span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="WRANGLE.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep ve lmore than 40</span></span>
+<span id="cb49-2"><a href="WRANGLE.html#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="WRANGLE.html#cb49-3" aria-hidden="true" tabindex="-1"></a>dat_vo2_filt <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb49-4"><a href="WRANGLE.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (ve <span class="sc">&gt;</span> <span class="dv">40</span>)</span>
+<span id="cb49-5"><a href="WRANGLE.html#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="WRANGLE.html#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (dat_vo2_filt<span class="sc">$</span>ve)</span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="WRANGLE.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep ve between 40 to 80</span></span>
+<span id="cb50-2"><a href="WRANGLE.html#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="WRANGLE.html#cb50-3" aria-hidden="true" tabindex="-1"></a>dat_vo2_filt <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="WRANGLE.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (ve <span class="sc">&gt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> ve <span class="sc">&lt;</span> <span class="dv">80</span>)</span>
+<span id="cb50-5"><a href="WRANGLE.html#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="WRANGLE.html#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (dat_vo2_filt<span class="sc">$</span>ve)</span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-52-3.png" width="672" /></p>
 </div>
 </div>
-<div id="discussion-4" class="section level3">
+<div id="discussion-4" class="section level3" number="6.12.3">
 <h3><span class="header-section-number">6.12.3</span> Discussion</h3>
 <p><code>filter()</code> works really when you want to throw out or keep rows of data based on some ranges or criteria of the variables you have. When you want to keep rows of data based on the row number, use <code>slice ()</code>. See also Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p>
 </div>
 </div>
-<div id="WRANGLE-SUMMARIZE-GLOBAL" class="section level2">
+<div id="WRANGLE-SUMMARIZE-GLOBAL" class="section level2" number="6.13">
 <h2><span class="header-section-number">6.13</span> Global summary</h2>
-<div id="problem-12" class="section level3">
+<div id="problem-12" class="section level3" number="6.13.1">
 <h3><span class="header-section-number">6.13.1</span> Problem</h3>
 <p>You want to find the total FMS score across all sides and tasks</p>
 </div>
-<div id="solution-12" class="section level3">
+<div id="solution-12" class="section level3" number="6.13.2">
 <h3><span class="header-section-number">6.13.2</span> Solution</h3>
 <p>In the <code>dat_fms</code> dataset, we want to use the <code>summarize ()</code> function.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb120-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score)) </a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="WRANGLE.html#cb51-1" aria-hidden="true" tabindex="-1"></a>dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="WRANGLE.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span> (<span class="at">total_score =</span> <span class="fu">sum</span> (score)) </span></code></pre></div>
 <pre><code>##   total_score
 ## 1          24</code></pre>
 <p>I dare you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!</p>
 </div>
-<div id="discussion-5" class="section level3">
+<div id="discussion-5" class="section level3" number="6.13.3">
 <h3><span class="header-section-number">6.13.3</span> Discussion</h3>
 <p>We can also go berserk by trying out different summary functions, like <code>mean ()</code>, <code>median ()</code>, <code>min()</code> (minimum value), <code>max</code> (maximum value).</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">fms_summ &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb122-2" title="2"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">total_score =</span> <span class="kw">sum</span> (score),</a>
-<a class="sourceLine" id="cb122-3" title="3">             <span class="dt">mean_score =</span> <span class="kw">mean</span> (score),</a>
-<a class="sourceLine" id="cb122-4" title="4">             <span class="dt">median_score =</span> <span class="kw">median</span> (score),</a>
-<a class="sourceLine" id="cb122-5" title="5">             <span class="dt">min_score =</span> <span class="kw">min</span> (score),</a>
-<a class="sourceLine" id="cb122-6" title="6">             <span class="dt">max_score =</span> <span class="kw">max</span>(score)) </a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="WRANGLE.html#cb53-1" aria-hidden="true" tabindex="-1"></a>fms_summ <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="WRANGLE.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span> (<span class="at">total_score =</span> <span class="fu">sum</span> (score),</span>
+<span id="cb53-3"><a href="WRANGLE.html#cb53-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">mean_score =</span> <span class="fu">mean</span> (score),</span>
+<span id="cb53-4"><a href="WRANGLE.html#cb53-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">median_score =</span> <span class="fu">median</span> (score),</span>
+<span id="cb53-5"><a href="WRANGLE.html#cb53-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">min_score =</span> <span class="fu">min</span> (score),</span>
+<span id="cb53-6"><a href="WRANGLE.html#cb53-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">max_score =</span> <span class="fu">max</span>(score)) </span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -2431,18 +2675,18 @@ max_score
 </table>
 </div>
 </div>
-<div id="WRANGLE-SUMMARIZE-GROUPBY" class="section level2">
+<div id="WRANGLE-SUMMARIZE-GROUPBY" class="section level2" number="6.14">
 <h2><span class="header-section-number">6.14</span> Group-by summary</h2>
-<div id="problem-13" class="section level3">
+<div id="problem-13" class="section level3" number="6.14.1">
 <h3><span class="header-section-number">6.14.1</span> Problem</h3>
 <p>You want to perform the same summary function for each chunk of group. For example, the FMS is typically scored by taking the lower of the two values of left and right for each task. In <code>side</code>, we have three values, <code>c</code>, <code>left</code> and <code>right</code>. The minimum of <code>c</code> is the same value itself.</p>
 </div>
-<div id="solution-13" class="section level3">
+<div id="solution-13" class="section level3" number="6.14.2">
 <h3><span class="header-section-number">6.14.2</span> Solution</h3>
 <p>In the <code>dat_fms</code> dataset, we want to use the <code>group_by()</code> and <code>summarize ()</code> function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1">fms_summ &lt;-<span class="st"> </span>dat_fms <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb123-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(task) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb123-3" title="3"><span class="st">  </span><span class="kw">summarize</span> (<span class="dt">lower_score =</span> <span class="kw">min</span> (score)) </a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="WRANGLE.html#cb54-1" aria-hidden="true" tabindex="-1"></a>fms_summ <span class="ot">&lt;-</span> dat_fms <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="WRANGLE.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(task) <span class="sc">%&gt;%</span></span>
+<span id="cb54-3"><a href="WRANGLE.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span> (<span class="at">lower_score =</span> <span class="fu">min</span> (score)) </span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <table>
 <thead>
@@ -2515,23 +2759,30 @@ squat
 </tbody>
 </table>
 </div>
-<div id="discussion-6" class="section level3">
+<div id="discussion-6" class="section level3" number="6.14.3">
 <h3><span class="header-section-number">6.14.3</span> Discussion</h3>
-<p>Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the <code>dat_vo2</code> dataset.</p>
+<p>Why do you need to learn to create summaries? It is the basis for generating plots easily. Let us look at the <code>dat_vo2</code> dataset.</p>
 <p>Remember in your lessons, the last 30 sec of each 3 min 30 sec <strong>complete</strong> stage is discarded. That means that I want to throw away the data interval between 3:00 to 3:30 min for every stage.</p>
-<p>Thereafter, for the <strong>complete</strong> stage, the last 30 sec of each 3 min interval is than averaged for further analysis. This means keeping data between 2:30 to 3:00 min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers!</p>
-<p>For the last stage, there may be the chance that it is <strong>incomplete</strong>. Based on Kelly’s lesson, you will need to extract the last 30 sec (i.e. last six rows) of that stage.</p>
-<p>I than want to average all my variables over these 6 rows per stage.</p>
-<p>I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the <code>summarize_at()</code> function? Because I want to average so many variables, I become lazy. So I specify all variable names without <code>""</code> inside the <code>vars()</code>. Note I did not type out <code>bf</code>, <code>vo2_norm</code>, <code>rer</code>, <code>vo2</code>, <code>vco2</code>, <code>ve</code>, <code>hr</code>. I used a short cut called <code>:</code>, which reads as from start to end. So <code>bf:hr</code>, means all columns from <code>bf</code> to <code>hr</code>, inclusive.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">dat_vo2_summ &lt;-<span class="st"> </span>dat_vo2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(stage) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># for each group</span></a>
-<a class="sourceLine" id="cb125-3" title="3"><span class="st">  </span><span class="kw">mutate</span> (<span class="dt">row_id =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-4" title="4"><span class="st">  </span><span class="kw">filter</span> (row_id <span class="op">&lt;</span><span class="st"> </span><span class="dv">37</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-5" title="5"><span class="st">  </span><span class="kw">slice_tail</span> (<span class="dt">n =</span> <span class="dv">6</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb125-6" title="6"><span class="st">  </span><span class="kw">summarise_at</span> (<span class="kw">vars</span>(bf<span class="op">:</span>hr), mean)</a></code></pre></div>
+<p>Thereafter, for the <strong>complete</strong> stage, the last 30 sec of each 3 min interval is then averaged for further analysis. This means keeping data between 2:30 to 3:00 min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers!</p>
+<p>For the last stage, there may be the chance that it is <strong>incomplete</strong>. Based on Kelly’s lesson, you will need to extract the last 30 sec (i.e. last six rows) of this last incomplete stage.</p>
+<p>I then want to average all my variables over these 6 rows per stage.</p>
+<p>I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="WRANGLE.html#cb56-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_summ <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="WRANGLE.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stage) <span class="sc">%&gt;%</span> <span class="co"># for each group</span></span>
+<span id="cb56-3"><a href="WRANGLE.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb56-4"><a href="WRANGLE.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (row_id <span class="sc">&lt;</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-5"><a href="WRANGLE.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb56-6"><a href="WRANGLE.html#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">bf =</span> <span class="fu">mean</span> (bf),</span>
+<span id="cb56-7"><a href="WRANGLE.html#cb56-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">vo2_norm =</span> <span class="fu">mean</span> (vo2_norm),</span>
+<span id="cb56-8"><a href="WRANGLE.html#cb56-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">rer =</span> <span class="fu">mean</span> (rer),</span>
+<span id="cb56-9"><a href="WRANGLE.html#cb56-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">vo2 =</span> <span class="fu">mean</span> (vo2),</span>
+<span id="cb56-10"><a href="WRANGLE.html#cb56-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">vco2 =</span> <span class="fu">mean</span> (vco2),</span>
+<span id="cb56-11"><a href="WRANGLE.html#cb56-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">ve =</span> <span class="fu">mean</span> (ve),</span>
+<span id="cb56-12"><a href="WRANGLE.html#cb56-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">hr =</span> <span class="fu">mean</span> (hr))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-110">Table 6.1: </span>Stage by stage VO2 analysis
+<span id="tab:unnamed-chunk-59">Table 6.1: </span>Stage by stage VO2 analysis
 </caption>
 <thead>
 <tr>
@@ -2774,17 +3025,17 @@ hr
 </table>
 </div>
 </div>
-<div id="WRANGLE-INNER-JOIN" class="section level2">
+<div id="WRANGLE-INNER-JOIN" class="section level2" number="6.15">
 <h2><span class="header-section-number">6.15</span> Merge two tables together</h2>
-<div id="problem-14" class="section level3">
+<div id="problem-14" class="section level3" number="6.15.1">
 <h3><span class="header-section-number">6.15.1</span> Problem</h3>
 <p>You want to combine two tables together, ensuring that each row is linked appropriately. For example, you want to combine your <code>dat_vo2_summ</code> summary data with the <code>dat_vo2_stage</code> table which contains the RPE and blood lactate values.</p>
 </div>
-<div id="solution-14" class="section level3">
+<div id="solution-14" class="section level3" number="6.15.2">
 <h3><span class="header-section-number">6.15.2</span> Solution</h3>
 <p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">dat_vo2_comb &lt;-<span class="st"> </span>dat_vo2_summ <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb126-2" title="2"><span class="st">  </span><span class="kw">inner_join</span>(dat_vo2_stage, <span class="dt">by =</span> <span class="st">&quot;stage&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="WRANGLE.html#cb58-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_comb <span class="ot">&lt;-</span> dat_vo2_summ <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="WRANGLE.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(dat_vo2_stage, <span class="at">by =</span> <span class="st">&quot;stage&quot;</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -3107,12 +3358,12 @@ lactate
 </tbody>
 </table>
 </div>
-<div id="discussion-7" class="section level3">
+<div id="discussion-7" class="section level3" number="6.15.3">
 <h3><span class="header-section-number">6.15.3</span> Discussion</h3>
 <p>It is common sense, that if we want to join two tables, there must be some rules. First, if we want to join two tables side by side left-right, the number of rows must match. Second, there must be a way the computer knows how to join, much like a key and a keyhole. The key is the column to join by, in this example, <code>stage</code>. In the <code>dat_vo2_summ</code> there is the <code>stage</code> variable with identical number of levels <code>1-8</code>, and the same variable appears in <code>dat_vo2_stage</code>. You don’t have to worry if after merging, the data is sorted correctly, if you follow these rules.</p>
 </div>
 </div>
-<div id="WRANGLE-LEARNING-CHECK" class="section level2">
+<div id="WRANGLE-LEARNING-CHECK" class="section level2" number="6.16">
 <h2><span class="header-section-number">6.16</span> Learning check</h2>
 <ol style="list-style-type: decimal">
 <li><p>From your learning check in <a href="InputOuput.html#INPUT-LEARNING-CHECK">5.4</a>, open up your <code>practice_script.R</code>. You should already have the codes to import the <code>data/Athlete_1_treadmill.xlsx</code> file, and label the data called <code>dat</code>.</p></li>
@@ -3124,10 +3375,9 @@ lactate
 <li><p>For each stage, remove the data between 3:00 to 3:30min. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC">6.12.2</a>.</p></li>
 <li><p>For each stage, keep the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
 <li><p>For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL">6.13</a>.</p></li>
-<li><p>Save this cleaned data set into the <code>data/</code> folder called <code>Athlete_1_treadmill_clean.xlsx</code>. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a></p></li>
+<li><p>Save this cleaned data set into the <code>data/</code> folder called <code>Athlete_1_treadmill_clean.xlsx</code>. Go into this folder physically, and see this new excel file is there and open it. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a></p></li>
 </ol>
 
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 3.6.2</code></pre>
 </div>
 </div>
             </section>

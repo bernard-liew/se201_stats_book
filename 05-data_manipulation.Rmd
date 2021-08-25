@@ -97,18 +97,21 @@ Typically a dataset will only suffer from one of these problems; it'll only suff
 
 ### Problem
 
-The current column names in the `dat_vo2` dataset is ugly, and you like to abbreviate it. I dislike excessively using capitals in naming stuff. It is alot of effort to type.
+The current column names in the `dat_vo2` dataset is ugly, and you like to abbreviate it. I dislike excessive usage of capitalisations. It is a lot of effort to type.
+
+```{r}
+# This prints the current column names
+
+colnames (dat_vo2) 
+
+```
+
 
 ### Solution
 
 Create a vector of 8 new names that you can give to the data. The order of new names must be identical to the order of the old names from left to right.
 
 ```{r }
-
-# This prints the current column names
-
-colnames (dat_vo2)  
-
 # New names. Notice the commas and be pedantic about spacing
 
 new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
@@ -230,9 +233,13 @@ The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is nume
 str(dat_vo2)
 ```
 
-What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, characters were mixed with numbers (Figure \@ref(fig:col-class)). 
+What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon. This indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. 
 
-This was touched on in in Section \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
+Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, each column have both words and numbers (Figure \@ref(fig:col-class)). It is our fault that the data was untidy.
+
+This was touched on in in Section \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. 
+
+The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
 
 
 ```{r col-class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
@@ -375,7 +382,7 @@ time_mutate %>%
 
 ### Problem
 
-Remember, each stage in VO2 testing is 3:30min long, and you collect data in intervals of 5 sec. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
+Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
 
 ### Solution
 
@@ -688,25 +695,31 @@ fms_summ %>%
 
 ### Discussion
 
-Why do you need to learn to create summaries? It is the basis for genering plots easily. Let us look at the `dat_vo2` dataset. 
+Why do you need to learn to create summaries? It is the basis for generating plots easily. Let us look at the `dat_vo2` dataset. 
 
 Remember in your lessons, the last 30 sec of each 3 min 30 sec **complete** stage is discarded. That means that I want to throw away the data interval between 3:00 to 3:30 min for every stage. 
 
-Thereafter, for the **complete** stage, the last 30 sec of each 3 min interval is than averaged for further analysis. This means keeping data between 2:30 to 3:00 min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers! 
+Thereafter, for the **complete** stage, the last 30 sec of each 3 min interval is then averaged for further analysis. This means keeping data between 2:30 to 3:00 min of each stage. That corresponds to the last six rows of each stage (i.e. rows 31 to 36 of each stage). Try to think why i selected these row numbers! 
 
-For the last stage, there may be the chance that it is **incomplete**. Based on Kelly's lesson, you will need to extract the last 30 sec (i.e. last six rows) of that stage.
+For the last stage, there may be the chance that it is **incomplete**. Based on Kelly's lesson, you will need to extract the last 30 sec (i.e. last six rows) of this last incomplete stage.
 
-I than want to average all my variables over these 6 rows per stage. 
+I then want to average all my variables over these 6 rows per stage. 
 
-I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. Notice how I use the `summarize_at()` function? Because I want to average so many variables, I become lazy. So I specify all variable names without `""` inside the `vars()`. Note I did not type out `bf`, `vo2_norm`, `rer`, `vo2`, `vco2`, `ve`, `hr`. I used a short cut called `:`, which reads as from start to end. So `bf:hr`, means all columns from `bf` to `hr`, inclusive.
+I should end up with a dataframe that has 8 rows given 8 stages, one for each stage in this example. 
 
 ```{r, results = "asis"}
 dat_vo2_summ <- dat_vo2 %>%
   group_by(stage) %>% # for each group
   mutate (row_id = row_number()) %>%
   filter (row_id < 37) %>%
-  slice_tail (n = 6)%>%
-  summarise_at (vars(bf:hr), mean)
+  slice_tail (n = 6) %>%
+  summarise (bf = mean (bf),
+             vo2_norm = mean (vo2_norm),
+             rer = mean (rer),
+             vo2 = mean (vo2),
+             vco2 = mean (vco2),
+             ve = mean (ve),
+             hr = mean (hr))
 
 ```
 
@@ -762,4 +775,4 @@ It is common sense, that if we want to join two tables, there must be some rules
 
 9. For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL).
 
-10. Save this cleaned data set into the `data/` folder called `Athlete_1_treadmill_clean.xlsx`. See Recipe \@ref(INPUT-EXPORT)
+10. Save this cleaned data set into the `data/` folder called `Athlete_1_treadmill_clean.xlsx`. Go into this folder physically, and see this new excel file is there and open it. See Recipe \@ref(INPUT-EXPORT)

@@ -176,3 +176,13 @@ fig:consolewindow
 fig:environwindow
 fig:plotpanel
 fig:rstate
+fig:workspace
+fig:filenew-drop
+fig:filenewmenu
+fig:package
+fig:cran
+fig:installingpackages
+fig:tidy-structure
+fig:col-class
+fig:FIG-BAR-GRAPH-FACTOR-EFFECTS
+tab:unnamed-chunk-59

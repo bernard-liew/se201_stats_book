@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2020-11-23" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="basics.html"/>
 <link rel="next" href="InputOuput.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,25 +54,27 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,208 +134,259 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#why-is-r-so-great"><i class="fa fa-check"></i><b>1.1</b> Why is R so great?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#rrelationship"><i class="fa fa-check"></i><b>1.2</b> Why R is like a relationship…</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.3</b> R resources</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.3.1</b> R books</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#things-students-get-wrong"><i class="fa fa-check"></i><b>1.3</b> 3 things students get wrong</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#wrong-method-of-launching-software"><i class="fa fa-check"></i><b>1.3.1</b> Wrong method of launching software</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#not-running-code-from-start"><i class="fa fa-check"></i><b>1.3.2</b> Not running code from START</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#typographical-errors"><i class="fa fa-check"></i><b>1.3.3</b> Typographical errors</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#r-resources"><i class="fa fa-check"></i><b>1.4</b> R resources</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#r-books"><i class="fa fa-check"></i><b>1.4.1</b> R books</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a><ul>
-<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a><ul>
+<li class="chapter" data-level="2" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-STARTED"><i class="fa fa-check"></i><b>2.1</b> Installing Base-R and RStudio</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="get-started.html"><a href="get-started.html#check-for-version-updates"><i class="fa fa-check"></i><b>2.1.1</b> Check for version updates</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a><ul>
+<li class="chapter" data-level="2.2" data-path="get-started.html"><a href="get-started.html#INSTALL-GET-FAMILIAR"><i class="fa fa-check"></i><b>2.2</b> The four RStudio Windows</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="get-started.html"><a href="get-started.html#source---your-notepad-for-code"><i class="fa fa-check"></i><b>2.2.1</b> Source - Your notepad for code</a></li>
 <li class="chapter" data-level="2.2.2" data-path="get-started.html"><a href="get-started.html#console-rs-heart"><i class="fa fa-check"></i><b>2.2.2</b> Console: R’s Heart</a></li>
 <li class="chapter" data-level="2.2.3" data-path="get-started.html"><a href="get-started.html#environment-history"><i class="fa fa-check"></i><b>2.2.3</b> Environment / History</a></li>
 <li class="chapter" data-level="2.2.4" data-path="get-started.html"><a href="get-started.html#files-plots-packages-help"><i class="fa fa-check"></i><b>2.2.4</b> Files / Plots / Packages / Help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a><ul>
+<li class="chapter" data-level="2.3" data-path="get-started.html"><a href="get-started.html#INSTALL-READ-WRITE-CODE"><i class="fa fa-check"></i><b>2.3</b> Reading and writing Code</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="get-started.html"><a href="get-started.html#code-chunks"><i class="fa fa-check"></i><b>2.3.1</b> Code Chunks</a></li>
 <li class="chapter" data-level="2.3.2" data-path="get-started.html"><a href="get-started.html#comments-with"><i class="fa fa-check"></i><b>2.3.2</b> Comments with #</a></li>
 <li class="chapter" data-level="2.3.3" data-path="get-started.html"><a href="get-started.html#element-numbers-in-output-1"><i class="fa fa-check"></i><b>2.3.3</b> Element numbers in output [1]</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a><ul>
+<li class="chapter" data-level="2.4" data-path="get-started.html"><a href="get-started.html#INSTALL-DEBUG"><i class="fa fa-check"></i><b>2.4</b> Debugging</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="get-started.html"><a href="get-started.html#r-is-not-ready"><i class="fa fa-check"></i><b>2.4.1</b> R is not ready (&gt;)</a></li>
 <li class="chapter" data-level="2.4.2" data-path="get-started.html"><a href="get-started.html#misspelled-object-or-function"><i class="fa fa-check"></i><b>2.4.2</b> Misspelled object or function</a></li>
 <li class="chapter" data-level="2.4.3" data-path="get-started.html"><a href="get-started.html#punctuation-problems"><i class="fa fa-check"></i><b>2.4.3</b> Punctuation problems</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="get-started.html"><a href="get-started.html#INSTALL-LEARNING-CHECK"><i class="fa fa-check"></i><b>2.5</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a><ul>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> The Basics</a>
+<ul>
 <li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#BASICS-CONSOLE"><i class="fa fa-check"></i><b>3.1</b> The command-line (Console)</a></li>
-<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a><ul>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#writing-r-scripts-in-an-editor"><i class="fa fa-check"></i><b>3.2</b> Writing R scripts in an editor</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#send-code-from-a-source-to-the-console"><i class="fa fa-check"></i><b>3.2.1</b> Send code from a source to the console</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a><ul>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#a-brief-style-guide-commenting-and-spacing"><i class="fa fa-check"></i><b>3.3</b> A brief style guide: Commenting and spacing</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="basics.html"><a href="basics.html#commenting-code-with-the-pound-sign"><i class="fa fa-check"></i><b>3.3.1</b> Commenting code with the # (pound) sign</a></li>
 <li class="chapter" data-level="3.3.2" data-path="basics.html"><a href="basics.html#spacing"><i class="fa fa-check"></i><b>3.3.2</b> Spacing</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#objects-and-functions"><i class="fa fa-check"></i><b>3.4</b> Objects and functions</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="basics.html"><a href="basics.html#BASIC-TYPES"><i class="fa fa-check"></i><b>3.4.1</b> Numbers versus characters</a></li>
 <li class="chapter" data-level="3.4.2" data-path="basics.html"><a href="basics.html#creating-new-objects-with--"><i class="fa fa-check"></i><b>3.4.2</b> Creating new objects with &lt;-</a></li>
 <li class="chapter" data-level="3.4.3" data-path="basics.html"><a href="basics.html#how-to-name-objects"><i class="fa fa-check"></i><b>3.4.3</b> How to name objects</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a><ul>
+<li class="chapter" data-level="4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html"><i class="fa fa-check"></i><b>4</b> Navigating the Software</a>
+<ul>
 <li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#introduction"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#download-and-load-packages-1"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="4.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY"><i class="fa fa-check"></i><b>4.1</b> Getting and Setting the Working Directory</a></li>
 <li class="chapter" data-level="4.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS"><i class="fa fa-check"></i><b>4.2</b> Creating a new Rstudio project</a></li>
-<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a><ul>
+<li class="chapter" data-level="4.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE"><i class="fa fa-check"></i><b>4.3</b> Installing Packages</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#installing-a-new-package"><i class="fa fa-check"></i><b>4.3.1</b> Installing a new package</a></li>
 <li class="chapter" data-level="4.3.2" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#loading-a-package"><i class="fa fa-check"></i><b>4.3.2</b> Loading a package</a></li>
 <li class="chapter" data-level="4.3.3" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#a-simple-approach-to-package"><i class="fa fa-check"></i><b>4.3.3</b> A simple approach to package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="NavigatingTheSoftware.html"><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK"><i class="fa fa-check"></i><b>4.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="5" data-path="InputOuput.html"><a href="InputOuput.html"><i class="fa fa-check"></i><b>5</b> Input and Output</a>
+<ul>
+<li class="chapter" data-level="" data-path="InputOuput.html"><a href="InputOuput.html#download-and-load-packages-2"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="5.1" data-path="InputOuput.html"><a href="InputOuput.html#dealing-with-cannot-open-file-in-windows"><i class="fa fa-check"></i><b>5.1</b> Dealing with “Cannot Open File” in Windows</a></li>
 <li class="chapter" data-level="5.2" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-IMPORT"><i class="fa fa-check"></i><b>5.2</b> Reading in Excel “.xlsx” data</a></li>
 <li class="chapter" data-level="5.3" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-EXPORT"><i class="fa fa-check"></i><b>5.3</b> Writing a Data Frame to Excel</a></li>
 <li class="chapter" data-level="5.4" data-path="InputOuput.html"><a href="InputOuput.html#INPUT-LEARNING-CHECK"><i class="fa fa-check"></i><b>5.4</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
-<li class="chapter" data-level="" data-path="basics.html"><a href="basics.html#download-and-load-packages"><i class="fa fa-check"></i>Download and load packages</a></li>
+<li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#download-and-load-packages-3"><i class="fa fa-check"></i>Download and load packages</a></li>
 <li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
 <li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
-<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a><ul>
+<li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>6.2.1</b> Problem</a></li>
 <li class="chapter" data-level="6.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>6.2.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a><ul>
+<li class="chapter" data-level="6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SLICE"><i class="fa fa-check"></i><b>6.3</b> Selecting rows and columns</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>6.3.1</b> Problem</a></li>
 <li class="chapter" data-level="6.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>6.3.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a><ul>
+<li class="chapter" data-level="6.4" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC"><i class="fa fa-check"></i><b>6.4</b> Convert characters to numeric</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>6.4.1</b> Problem</a></li>
 <li class="chapter" data-level="6.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>6.4.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a><ul>
+<li class="chapter" data-level="6.5" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME"><i class="fa fa-check"></i><b>6.5</b> Convert characters to date and time</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>6.5.1</b> Problem</a></li>
 <li class="chapter" data-level="6.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>6.5.2</b> Solution</a></li>
 <li class="chapter" data-level="6.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>6.5.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a><ul>
+<li class="chapter" data-level="6.6" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY"><i class="fa fa-check"></i><b>6.6</b> Split Numeric Variable into Categories</a>
+<ul>
 <li class="chapter" data-level="6.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>6.6.1</b> Problem</a></li>
 <li class="chapter" data-level="6.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.6.2</b> Solution</a></li>
 <li class="chapter" data-level="6.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.6.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a><ul>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
 <li class="chapter" data-level="6.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a><ul>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
 <li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a><ul>
+<li class="chapter" data-level="6.9" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VALUES"><i class="fa fa-check"></i><b>6.9</b> Rename values of a variable</a>
+<ul>
 <li class="chapter" data-level="6.9.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-7"><i class="fa fa-check"></i><b>6.9.1</b> Problem</a></li>
 <li class="chapter" data-level="6.9.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-7"><i class="fa fa-check"></i><b>6.9.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a><ul>
+<li class="chapter" data-level="6.10" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS"><i class="fa fa-check"></i><b>6.10</b> Creating factors</a>
+<ul>
 <li class="chapter" data-level="6.10.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-8"><i class="fa fa-check"></i><b>6.10.1</b> Problem</a></li>
 <li class="chapter" data-level="6.10.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-8"><i class="fa fa-check"></i><b>6.10.2</b> Solution</a></li>
 <li class="chapter" data-level="6.10.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>6.10.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a><ul>
+<li class="chapter" data-level="6.11" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES"><i class="fa fa-check"></i><b>6.11</b> Making a new variable</a>
+<ul>
 <li class="chapter" data-level="6.11.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-9"><i class="fa fa-check"></i><b>6.11.1</b> Problem</a></li>
 <li class="chapter" data-level="6.11.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-9"><i class="fa fa-check"></i><b>6.11.2</b> Solution</a></li>
 <li class="chapter" data-level="6.11.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>6.11.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a><ul>
+<li class="chapter" data-level="6.12" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER"><i class="fa fa-check"></i><b>6.12</b> Filtering</a>
+<ul>
 <li class="chapter" data-level="6.12.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER"><i class="fa fa-check"></i><b>6.12.1</b> Keep rows you want based on condition</a></li>
 <li class="chapter" data-level="6.12.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC"><i class="fa fa-check"></i><b>6.12.2</b> Keep rows based on a numerical range</a></li>
 <li class="chapter" data-level="6.12.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-4"><i class="fa fa-check"></i><b>6.12.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a><ul>
+<li class="chapter" data-level="6.13" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL"><i class="fa fa-check"></i><b>6.13</b> Global summary</a>
+<ul>
 <li class="chapter" data-level="6.13.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-12"><i class="fa fa-check"></i><b>6.13.1</b> Problem</a></li>
 <li class="chapter" data-level="6.13.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-12"><i class="fa fa-check"></i><b>6.13.2</b> Solution</a></li>
 <li class="chapter" data-level="6.13.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-5"><i class="fa fa-check"></i><b>6.13.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a><ul>
+<li class="chapter" data-level="6.14" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY"><i class="fa fa-check"></i><b>6.14</b> Group-by summary</a>
+<ul>
 <li class="chapter" data-level="6.14.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-13"><i class="fa fa-check"></i><b>6.14.1</b> Problem</a></li>
 <li class="chapter" data-level="6.14.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-13"><i class="fa fa-check"></i><b>6.14.2</b> Solution</a></li>
 <li class="chapter" data-level="6.14.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-6"><i class="fa fa-check"></i><b>6.14.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a><ul>
+<li class="chapter" data-level="6.15" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-INNER-JOIN"><i class="fa fa-check"></i><b>6.15</b> Merge two tables together</a>
+<ul>
 <li class="chapter" data-level="6.15.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-14"><i class="fa fa-check"></i><b>6.15.1</b> Problem</a></li>
 <li class="chapter" data-level="6.15.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-14"><i class="fa fa-check"></i><b>6.15.2</b> Solution</a></li>
 <li class="chapter" data-level="6.15.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-7"><i class="fa fa-check"></i><b>6.15.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="6.16" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK"><i class="fa fa-check"></i><b>6.16</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a><ul>
-<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
-<li class="chapter" data-level="7.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
-<li class="chapter" data-level="7.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html"><i class="fa fa-check"></i><b>7</b> Bar Graphs</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR"><i class="fa fa-check"></i><b>7.1</b> Making a Basic Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-15"><i class="fa fa-check"></i><b>7.1.1</b> Problem</a></li>
+<li class="chapter" data-level="7.1.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-15"><i class="fa fa-check"></i><b>7.1.2</b> Solution</a></li>
+<li class="chapter" data-level="7.1.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-8"><i class="fa fa-check"></i><b>7.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a><ul>
+<li class="chapter" data-level="7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY"><i class="fa fa-check"></i><b>7.2</b> Anatomy of a Graph</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND"><i class="fa fa-check"></i><b>7.2.1</b> Plot Background</a></li>
 <li class="chapter" data-level="7.2.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES"><i class="fa fa-check"></i><b>7.2.2</b> Aesthetics aes()</a></li>
 <li class="chapter" data-level="7.2.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS"><i class="fa fa-check"></i><b>7.2.3</b> Geometric representations geom()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
-<li class="chapter" data-level="7.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
-<li class="chapter" data-level="7.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR"><i class="fa fa-check"></i><b>7.3</b> Grouping Bars Together</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-16"><i class="fa fa-check"></i><b>7.3.1</b> Problem</a></li>
+<li class="chapter" data-level="7.3.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-16"><i class="fa fa-check"></i><b>7.3.2</b> Solution</a></li>
+<li class="chapter" data-level="7.3.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-9"><i class="fa fa-check"></i><b>7.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
-<li class="chapter" data-level="7.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
-<li class="chapter" data-level="7.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS"><i class="fa fa-check"></i><b>7.4</b> Using Colors in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-17"><i class="fa fa-check"></i><b>7.4.1</b> Problem</a></li>
+<li class="chapter" data-level="7.4.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-17"><i class="fa fa-check"></i><b>7.4.2</b> Solution</a></li>
+<li class="chapter" data-level="7.4.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-10"><i class="fa fa-check"></i><b>7.4.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
-<li class="chapter" data-level="7.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
+<li class="chapter" data-level="7.5" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES"><i class="fa fa-check"></i><b>7.5</b> Changing Axes titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-18"><i class="fa fa-check"></i><b>7.5.1</b> Problem</a></li>
+<li class="chapter" data-level="7.5.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-18"><i class="fa fa-check"></i><b>7.5.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
-<li class="chapter" data-level="7.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
+<li class="chapter" data-level="7.6" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND"><i class="fa fa-check"></i><b>7.6</b> Changing Legend titles in a Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-19"><i class="fa fa-check"></i><b>7.6.1</b> Problem</a></li>
+<li class="chapter" data-level="7.6.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-19"><i class="fa fa-check"></i><b>7.6.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a><ul>
-<li class="chapter" data-level="7.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
-<li class="chapter" data-level="7.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
+<li class="chapter" data-level="7.7" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE"><i class="fa fa-check"></i><b>7.7</b> Changing font size uniformly across the Bar Graph</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-20"><i class="fa fa-check"></i><b>7.7.1</b> Problem</a></li>
+<li class="chapter" data-level="7.7.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-20"><i class="fa fa-check"></i><b>7.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a><ul>
-<li class="chapter" data-level="7.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
-<li class="chapter" data-level="7.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
-<li class="chapter" data-level="7.8.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
+<li class="chapter" data-level="7.8" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP"><i class="fa fa-check"></i><b>7.8</b> Outputting to Bitmap (PNG/TIFF) Files</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#problem-21"><i class="fa fa-check"></i><b>7.8.1</b> Problem</a></li>
+<li class="chapter" data-level="7.8.2" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#solution-21"><i class="fa fa-check"></i><b>7.8.2</b> Solution</a></li>
+<li class="chapter" data-level="7.8.3" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#discussion-11"><i class="fa fa-check"></i><b>7.8.3</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="CHAPTER-BAR-GRAPH.html"><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK"><i class="fa fa-check"></i><b>7.9</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
-<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
-<li class="chapter" data-level="8.1.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
-<li class="chapter" data-level="8.1.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
+<li class="chapter" data-level="8" data-path="line-graphs.html"><a href="line-graphs.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE"><i class="fa fa-check"></i><b>8.1</b> Making a Basic Line Graph</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-22"><i class="fa fa-check"></i><b>8.1.1</b> Problem</a></li>
+<li class="chapter" data-level="8.1.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-22"><i class="fa fa-check"></i><b>8.1.2</b> Solution</a></li>
+<li class="chapter" data-level="8.1.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-12"><i class="fa fa-check"></i><b>8.1.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-1"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
-<li class="chapter" data-level="8.2.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-1"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
+<li class="chapter" data-level="8.2" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINTS"><i class="fa fa-check"></i><b>8.2</b> Adding Points to a Line Graph</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-23"><i class="fa fa-check"></i><b>8.2.1</b> Problem</a></li>
+<li class="chapter" data-level="8.2.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-23"><i class="fa fa-check"></i><b>8.2.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-2"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
-<li class="chapter" data-level="8.3.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-2"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
-<li class="chapter" data-level="8.3.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.3" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE"><i class="fa fa-check"></i><b>8.3</b> Making a Line Graph with Multiple Lines</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-24"><i class="fa fa-check"></i><b>8.3.1</b> Problem</a></li>
+<li class="chapter" data-level="8.3.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-24"><i class="fa fa-check"></i><b>8.3.2</b> Solution</a></li>
+<li class="chapter" data-level="8.3.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-13"><i class="fa fa-check"></i><b>8.3.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-3"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
-<li class="chapter" data-level="8.4.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-3"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
-<li class="chapter" data-level="8.4.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-2"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.4" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE"><i class="fa fa-check"></i><b>8.4</b> Changing the Appearance of Lines</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-25"><i class="fa fa-check"></i><b>8.4.1</b> Problem</a></li>
+<li class="chapter" data-level="8.4.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-25"><i class="fa fa-check"></i><b>8.4.2</b> Solution</a></li>
+<li class="chapter" data-level="8.4.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-14"><i class="fa fa-check"></i><b>8.4.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a><ul>
-<li class="chapter" data-level="8.5.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-4"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
-<li class="chapter" data-level="8.5.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
-<li class="chapter" data-level="8.5.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-3"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
+<li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-POINT-APPEARANCE"><i class="fa fa-check"></i><b>8.5</b> Changing the Appearance of Points</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-26"><i class="fa fa-check"></i><b>8.5.1</b> Problem</a></li>
+<li class="chapter" data-level="8.5.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-26"><i class="fa fa-check"></i><b>8.5.2</b> Solution</a></li>
+<li class="chapter" data-level="8.5.3" data-path="line-graphs.html"><a href="line-graphs.html#discussion-15"><i class="fa fa-check"></i><b>8.5.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
-<li class="chapter" data-level="8.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
+<li class="chapter" data-level="8.6" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME"><i class="fa fa-check"></i><b>8.6</b> Using Themes to Change Overall Appearance of Plot</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="line-graphs.html"><a href="line-graphs.html#problem-27"><i class="fa fa-check"></i><b>8.6.1</b> Problem</a></li>
+<li class="chapter" data-level="8.6.2" data-path="line-graphs.html"><a href="line-graphs.html#solution-27"><i class="fa fa-check"></i><b>8.6.2</b> Solution</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.7</b> Learning check</a></li>
 </ul></li>
@@ -357,16 +411,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="NavigatingTheSoftware" class="section level1">
+<div id="NavigatingTheSoftware" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Navigating the Software</h1>
 <div id="introduction" class="section level2 unnumbered">
 <h2>Introduction</h2>
 <p>Both R and RStudio are big chunks of software, first and foremost. You will inevitably spend time doing what one does with any big piece of software: configuring it, customizing it, updating it, and fitting it into your computing environment. This chapter will help you perform those tasks. There is nothing here about numerics, statistics, or graphics. This is all about dealing with R and RStudio as software.</p>
 </div>
-<div id="download-and-load-packages" class="section level2 unnumbered">
+<div id="download-and-load-packages-1" class="section level2 unnumbered">
 <h2>Download and load packages</h2>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb56-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="NavigatingTheSoftware.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb1-2"><a href="NavigatingTheSoftware.html#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:workspace"></span>
 <img src="images/chapter-3/workspace.jpg" alt="Your workspace -- all the objects, functions, and delicious glue you've defined in your current session." width="75%" />
 <p class="caption">
@@ -375,13 +429,13 @@ Figure 4.1: Your workspace – all the objects, functions, and delicious glue yo
 </div>
 <p>Remember way back in Chapter 3 when I said everything in R is an object? Well, that’s still true. In this chapter, we’ll cover the basics of R object management. We’ll cover how to load new objects like external datasets into R, how to manage the objects that you already have, and how to export objects from R into external files that you can share with other people or store for your own future use.</p>
 </div>
-<div id="NAVIGATE-WORKING-DIRECTORY" class="section level2">
+<div id="NAVIGATE-WORKING-DIRECTORY" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Getting and Setting the Working Directory</h2>
-<p>Your computer is a maze of folders, files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to <em>visually</em> scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify <em>all</em> steps in your analyses in a way that can be easily replicated by others and your future self. This means you can’t just say: “Find this one file I emailed to myself a week ago” or “Look for a file that looks something like <code>experimentAversion3.txt</code>.” Instead, you need to be able to write R code that tells R <em>exactly</em> where to find critical files – either on your computer or on the web.</p>
+<p>Your computer is a maze of folders and files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to <em>visually</em> scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify <em>all</em> steps in your analyses in a way that can be easily replicated by others and your future self. This means you can’t just say: “Find this one file I emailed to myself a week ago” or “Look for a file that looks something like <code>experimentAversion3.txt</code>.” Instead, you need to be able to write R code that tells R <em>exactly</em> where to find critical files – either on your computer or on the web.</p>
 <p>To make this job easier, R uses <strong>working directories</strong>. A working directory is where everything starts and ends. Your working directory is important because it is the default location for all file input and output—including reading and writing data files, opening and saving script files, and saving your workspace image. Many of you who previously worked with SPSS using the point-click interface, would often wonder 1) where did my saved SPSS file went? or 2) where did my exported image go to? This confusion arises because often you do not know what was the default working directory. Rather than relying on the default, we specify it explicitly so we know where to store our files, and where this software goes looking for files.</p>
 <p>The easiest and recommended way to set your working directory is using RStudio projects. For every piece of work/assessment, you create a project. The project is a folder that can live anywhere on your computer - your desktop, downloads folder, documents folder, etc. In this folder, it contains everything from your files to be analyzed, codes, and exported files and images. Everything is self-contained, there is no confusion.</p>
 </div>
-<div id="NAVIGATE-PROJECTS" class="section level2">
+<div id="NAVIGATE-PROJECTS" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Creating a new Rstudio project</h2>
 <p>You want to create a new RStudio project to keep all your files related to a specific project.
 Click File → New Project as in Figure <a href="NavigatingTheSoftware.html#fig:filenew-drop">4.2</a>. ** I ALWAYS use this approach, please use it too**</p>
@@ -407,7 +461,7 @@ Figure 4.3: New Project dialog
 <p>To hold your project settings, RStudio creates a project file with an <em>.Rproj</em> extension in the project directory. If you open the project file in RStudio, it works like a shortcut for opening the project. In addition, RStudio creates a hidden directory named <em>.Rproj.user</em> to house temporary files related to your project.</p>
 <p>Any time you’re working on something nontrivial in R we recommend creating an RStudio project. Projects help you stay organized and make your project workflow easier.</p>
 </div>
-<div id="NAVIGATE-INSTALL-PACKAGE" class="section level2">
+<div id="NAVIGATE-INSTALL-PACKAGE" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Installing Packages</h2>
 <p>When you download and install R for the first time, you are installing the Base R software. Base R will contain most of the functions you’ll use on a daily basis like <code>mean()</code> and <code>hist()</code>. However, only functions written by the original authors of the R language will appear here. If you want to access data and code written by other people, you’ll need to install it as a <em>package</em>. An R package is simply a bunch of data, from functions, to help menus, to vignettes (examples), stored in one neat package.</p>
 <div class="figure" style="text-align: center"><span id="fig:package"></span>
@@ -417,7 +471,7 @@ Figure 4.4: An R package is like a lightbulb. First you need to order it with in
 </p>
 </div>
 <p>A package is like a light bulb. In order to use it, you first need to order it to your house (i.e.; your computer) by <em>installing</em> it. Once you’ve installed a package, you never need to install it again. However, every time you want to actually use the package, you need to turn it on by <em>loading</em> it. Here’s how to do it.</p>
-<div id="installing-a-new-package" class="section level3">
+<div id="installing-a-new-package" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Installing a new package</h3>
 <p>Installing a package simply means downloading the package code onto your personal computer. There are two main ways to install new packages. The first, and most common, method is to download them from the Comprehensive R Archive Network (CRAN). CRAN is the central repository for R packages. To install a new R package from CRAN, you can simply run the code <code>install.packages("name")</code>, where “name” is the name of the package. For example, to download the <code>tidyverse</code> package, which contains several functions we will use in this book, you should run the following:</p>
 <div class="figure" style="text-align: center"><span id="fig:cran"></span>
@@ -426,9 +480,9 @@ Figure 4.4: An R package is like a lightbulb. First you need to order it with in
 Figure 4.5: CRAN (Comprehensive R Archive Network) is the main source of R packages
 </p>
 </div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Install the tidyverse package from CRAN</span></a>
-<a class="sourceLine" id="cb57-2" title="2"><span class="co">#   You only need to install a package once!</span></a>
-<a class="sourceLine" id="cb57-3" title="3"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="NavigatingTheSoftware.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the tidyverse package from CRAN</span></span>
+<span id="cb2-2"><a href="NavigatingTheSoftware.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   You only need to install a package once!</span></span>
+<span id="cb2-3"><a href="NavigatingTheSoftware.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>When you run <code>install.packages("name")</code> R will download the package from CRAN. If everything works, you should see some information about where the package is being downloaded from, in addition to a progress bar.</p>
 <div class="figure" style="text-align: center"><span id="fig:installingpackages"></span>
 <img src="images/chapter-3/installingpackages.png" alt="When you install a new package, you'll see some random text like this you the download progress. You don't need to memorize this." width="75%" />
@@ -438,29 +492,29 @@ Figure 4.6: When you install a new package, you’ll see some random text like t
 </div>
 <p>Like ordering a light bulb, once you’ve installed a package on your computer you never need to install it again (unless you want to try to install a new version of the package). However, every time you want to use it, you need to turn it on by loading it.</p>
 </div>
-<div id="loading-a-package" class="section level3">
+<div id="loading-a-package" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Loading a package</h3>
 <p>Once you’ve installed a package, it’s on your computer. However, just because it’s on your computer doesn’t mean R is ready to use it. If you want to use something, like a function or dataset, from a package you <em>always</em> need to <em>load</em> the package in your R session first. Just like a light bulb, you need to turn it on to use it!</p>
 <p>To load a package, you use the <code>library()</code> function. For example, now that we’ve installed the <code>tidyverse</code> package, we can load it with <code>library("tidyverse")</code>:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Load the tidyverse package so I can use it!</span></a>
-<a class="sourceLine" id="cb58-2" title="2"><span class="co">#   You have to load a package in every new R session!</span></a>
-<a class="sourceLine" id="cb58-3" title="3"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="NavigatingTheSoftware.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the tidyverse package so I can use it!</span></span>
+<span id="cb3-2"><a href="NavigatingTheSoftware.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   You have to load a package in every new R session!</span></span>
+<span id="cb3-3"><a href="NavigatingTheSoftware.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Now that you’ve loaded the <code>tidyverse</code> package, you can use any of its functions! Let us create a very simple histogram plot using a default dataset found within R. Don’t worry about the specifics of the code below, you’ll learn more about how all this works later. For now, just run the code and marvel at your plot in TWO LINES.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Make a pirateplot using the pirateplot() function</span></a>
-<a class="sourceLine" id="cb59-2" title="2"><span class="co">#  from the yarrr package!</span></a>
-<a class="sourceLine" id="cb59-3" title="3"></a>
-<a class="sourceLine" id="cb59-4" title="4"><span class="kw">ggplot</span>(mtcars,<span class="kw">aes</span>(<span class="dt">x=</span>mpg)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-5" title="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="dv">5</span>)</a></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="NavigatingTheSoftware.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a pirateplot using the pirateplot() function</span></span>
+<span id="cb4-2"><a href="NavigatingTheSoftware.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  from the yarrr package!</span></span>
+<span id="cb4-3"><a href="NavigatingTheSoftware.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="NavigatingTheSoftware.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars,<span class="fu">aes</span>(<span class="at">x=</span>mpg)) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="NavigatingTheSoftware.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div id="a-simple-approach-to-package" class="section level3">
+<div id="a-simple-approach-to-package" class="section level3" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> A simple approach to package</h3>
 <p>For novices, the <code>pacman</code> package can be used. All you need to do is to type in the name of the package in the function <code>pacman::p_load()</code>. In the example below, I want <code>pacman</code> to load the package <code>tidverse</code> – notice how <code>""</code> are not used. If <code>tidverse</code> is not found in your computer, <code>pacman</code> will download it first, than automatically load it. I will use this command from now on when loading packages.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb60-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="NavigatingTheSoftware.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb5-2"><a href="NavigatingTheSoftware.html#cb5-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></span></code></pre></div>
 </div>
 </div>
-<div id="NAVIGATE-LEARNING-CHECK" class="section level2">
+<div id="NAVIGATE-LEARNING-CHECK" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Learning check</h2>
 <ol style="list-style-type: decimal">
 <li><p>Create a folder called <code>se201</code> on your computer desktop.</p></li>
@@ -469,20 +523,20 @@ Figure 4.6: When you install a new package, you’ll see some random text like t
 <li><p>Save the new R script, click File – Save As. Use the file name <code>practice_script</code>. It will have the extension <code>.R</code> assigned to it automatically</p></li>
 <li><p>Enter the code below into your new script, and save it.</p></li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># This is my first lines of codes</span></a>
-<a class="sourceLine" id="cb61-2" title="2">a &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb61-3" title="3">a <span class="op">+</span><span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb61-4" title="4">a</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="NavigatingTheSoftware.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is my first lines of codes</span></span>
+<span id="cb6-2"><a href="NavigatingTheSoftware.html#cb6-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-3"><a href="NavigatingTheSoftware.html#cb6-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb6-4"><a href="NavigatingTheSoftware.html#cb6-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <ol start="6" style="list-style-type: decimal">
 <li>Enter the code below to install and load the packages.</li>
 </ol>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</a>
-<a class="sourceLine" id="cb62-2" title="2">pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></a>
-<a class="sourceLine" id="cb62-3" title="3">               openxlsx,<span class="co"># writing excel documents</span></a>
-<a class="sourceLine" id="cb62-4" title="4">               lubridate,<span class="co"># date-time </span></a>
-<a class="sourceLine" id="cb62-5" title="5">               tibbletime) <span class="co"># moving average for vo2</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="NavigatingTheSoftware.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb7-2"><a href="NavigatingTheSoftware.html#cb7-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></span>
+<span id="cb7-3"><a href="NavigatingTheSoftware.html#cb7-3" aria-hidden="true" tabindex="-1"></a>               openxlsx,<span class="co"># writing excel documents</span></span>
+<span id="cb7-4"><a href="NavigatingTheSoftware.html#cb7-4" aria-hidden="true" tabindex="-1"></a>               lubridate,<span class="co"># date-time </span></span>
+<span id="cb7-5"><a href="NavigatingTheSoftware.html#cb7-5" aria-hidden="true" tabindex="-1"></a>               tibbletime) <span class="co"># moving average for vo2</span></span></code></pre></div>
 <ol start="7" style="list-style-type: decimal">
-<li>Close RStudio, reopen RStudio via the <code>.Rproj</code> symbol. In the Files tab on the bottom right, you should see the script you created <code>practice_script.R</code>. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?</li>
+<li>Close RStudio, reopen RStudio via the <code>.Rproj</code> symbol Figure <a href="#fig:launching"><strong>??</strong></a>. In the Files tab on the bottom right, you should see the script you created <code>practice_script.R</code>. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?</li>
 </ol>
 
 </div>

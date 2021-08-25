@@ -25,7 +25,7 @@ knitr::include_graphics(c("images/chapter-6/ggplot2_geoms.png"))
 
 Bar graphs are perhaps the most commonly used kind of data visualization. They're typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn't be as good for showing prices over time, where time is a continuous variable -- though it can be done.
 
-There's an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent *counts* of cases in the data set, and sometimes they represent *values* in the data set. Keep this distinction in mind -- it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I'll discuss always use bar graphs with *values*. 
+There's an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent **counts** of cases in the data set, and sometimes they represent **values** in the data set. Keep this distinction in mind -- it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I'll discuss always use bar graphs with **values**. 
 
 Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called `"fms_pt3.xlsx"`.
 
@@ -86,7 +86,7 @@ By default, bar graphs use a dark grey for the bars. To use a color fill, use `f
 ggplot(dat_summ) + 
   geom_col(aes(x = task, y = total), fill = "lightblue", colour = "black") 
 ```
-**Note** In ggplot2, the default is to use the British spelling, colour, instead of the American spelling, color. Internally, American spellings are remapped to the British ones, so if you use the American spelling it will still work.
+**Note** In ggplot2, which is the package used for plotting, the default is to use the British spelling, colour, instead of the American spelling, color. Internally, American spellings are remapped to the British ones, so if you use the American spelling it will still work.
 
 ## Anatomy of a Graph {#BAR-GRAPH-ANATOMY}
 
@@ -97,9 +97,9 @@ To start building the plot, we first specify the data frame that contains the re
 
 ```{r FIG-BAR-GRAPH-BACKGROUND, fig.cap='An empty plot area waiting to be filled'}
 # render background
-ggplot(dat_summ)
+ggplot(data = dat_summ)
 ```
-Running this command will produce an empty grey panel. This is because we need to specify how different columns of the data frame should be represented in the plot.
+Running this command will produce an empty grey canvas. This is because we not yet specified what variables are to be plotted.
 
 ### Aesthetics aes(){#BAR-GRAPH-ANATOMY-AES}
 
@@ -107,14 +107,16 @@ We can call in different columns of data from `dat_summ` based on their column n
 
 Because we want a bar plot, each bar will have an x and a y coordinate. We want the x axis to represent `task` ( `x = task` ), and the y axis to represent the `total` FMS score ( y = `total` ).
 
-We give these specifications separated by a comma. Note that `" "` are not required when giving variables within aes().
+See how the x- and y-axis titles, labels, and tick-marks become populated? But still nothing plotted, and that is because you have not tell it what shapes to plot.
+
 
 ```{r FIG-BAR-GRAPH-AES, fig.cap='Setting the aesthetics'}
-ggplot(dat_summ, aes(x = task, y = total) )
+ggplot(data = dat_summ, aes(x = task, y = total) )
 ```
 
 ### Geometric representations geom() {#BAR-GRAPH-ANATOMY-GEOMS}
-Given we want a bar plot, we need to specify that the geometric representation of the data will be in point form, using `geom_col()`.
+
+Now we tell the computer what shapes to plot. Given we want a bar plot, we need to specify that the geometric representation (i.e. shape) of the data will be in the bar form, using `geom_col()`.
 
 Here we are adding a layer (hence the + sign) of points to the plot. 
 
@@ -282,7 +284,8 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 ## Learning check {#BAR-LEARNING-CHECK}
 
 
-1. From your learning check in \@ref(WRANGLE-LEARNING-CHECK), open up your `practice_script.R`. 
+1. Open up your `practice_script.R`, updated from the learning check in \@ref(WRANGLE-LEARNING-CHECK).
+
 
 2. Import the Excel file `data/Athlete_1_FMS.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
 

@@ -20,12 +20,9 @@ knitr::include_graphics(c("images/chapter-3/workspace.jpg"))
 ```
 
 
-Remember way back in Chapter 3 when I said everything in R is an object? Well, that's still true. In this chapter, we'll cover the basics of R object management. We'll cover how to load new objects like external datasets into R, how to manage the objects that you already have, and how to export objects from R into external files that you can share with other people or store for your own future use.
-
-
 ## Getting and Setting the Working Directory {#NAVIGATE-WORKING-DIRECTORY}
 
-Your computer is a maze of folders, files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to *visually* scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify *all* steps in your analyses in a way that can be easily replicated by others and your future self. This means you can't just say: "Find this one file I emailed to myself a week ago" or "Look for a file that looks something like `experimentAversion3.txt`." Instead, you need to be able to write R code that tells R *exactly* where to find critical files -- either on your computer or on the web.
+Your computer is a maze of folders and files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to *visually* scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify *all* steps in your analyses in a way that can be easily replicated by others and your future self. This means you can't just say: "Find this one file I emailed to myself a week ago" or "Look for a file that looks something like `experimentAversion3.txt`." Instead, you need to be able to write R code that tells R *exactly* where to find critical files -- either on your computer or on the web.
 
 To make this job easier, R uses **working directories**. A working directory is where everything starts and ends. Your working directory is important because it is the default location for all file input and output—including reading and writing data files, opening and saving script files, and saving your workspace image. Many of you who previously worked with SPSS using the point-click interface, would often wonder 1) where did my saved SPSS file went? or 2) where did my exported image go to? This confusion arises because often you do not know what was the default working directory. Rather than relying on the default, we specify it explicitly so we know where to store our files, and where this software goes looking for files.
 
@@ -167,6 +164,6 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ```
 
-7. Close RStudio, reopen RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?
+7. Close RStudio, reopen RStudio via the `.Rproj` symbol Figure \@ref(fig:launching). In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?
 
 
