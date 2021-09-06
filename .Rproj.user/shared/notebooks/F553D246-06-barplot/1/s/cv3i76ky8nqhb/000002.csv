@@ -1,8 +1,0 @@
-"0","dat <-  read.xlsx (xlsxFile = ""data/fms_pt3.xlsx"","
-"0","                   sheet = ""Sheet1"")"
-"0",""
-"0","fct_lvls <- c(""squat"", ""push_up"", ""hurdle"", ""lunge"", ""leg_raise"", ""rot_stab"", ""shd_mob"")"
-"0",""
-"0","dat <- dat %>%"
-"0","  mutate (task = factor (task, levels = fct_lvls))"
-"0",""

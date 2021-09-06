@@ -27,17 +27,32 @@ Bar graphs are perhaps the most commonly used kind of data visualization. They'r
 
 There's an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent **counts** of cases in the data set, and sometimes they represent **values** in the data set. Keep this distinction in mind -- it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I'll discuss always use bar graphs with **values**. 
 
-Let us prepare for this chapter by first importing a FMS test data that we have cleaned, and placed in the data folder. The Excel sheet is called `"fms_pt3.xlsx"`.
+Let us prepare for this chapter by importing two FMS tests data. The Excel sheet is called `"fms_pt3.xlsx"` and `"simFMS.xlsx"`.
 
 ```{r}
+# Define factor levels
+fct_lvls <- c("squat", "push_up", "hurdle", "lunge", "leg_raise", "rot_stab", "shd_mob")
+
+# Import data
 dat <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
                    sheet = "Sheet1")
 
-fct_lvls <- c("squat", "push_up", "hurdle", "lunge", "leg_raise", "rot_stab", "shd_mob")
+dat_grp <-  read.xlsx (xlsxFile = "data/simFMS.xlsx",
+                   sheet = "FMS")
 
+
+# Tidy the data
 dat <- dat %>%
   mutate (task = factor (task, levels = fct_lvls))
 
+dat_grp <-  dat_grp %>%
+  pivot_longer(cols = -id,
+               names_to = "task",
+               values_to = "score") %>%
+  group_by(task, score) %>%
+  mutate (task = factor (task, levels = fct_lvls),
+          score = factor (score, levels = c("0", "1", "2", "3")))
+  
 ```
 
 ```{r, echo = FALSE}
@@ -45,13 +60,24 @@ dat %>%
   knitr::kable (digits = 2)
 ```
 
-Let us also create another dataset where  we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+```{r, echo = FALSE}
+dat_grp %>%
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+Let us also create two more datasets where 1) we take the lower of the two scores for tasks which are assessed bilaterally and 2) count the number of subjects who attain a specific score for each task. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
 ```{r}
 dat_summ <- dat %>%
   group_by(task) %>%
   summarize (total = min (score)) %>%
   ungroup ()
+
+dat_grp_summ <-  dat_grp %>%
+  group_by(task, score) %>%
+  summarize (count = n())  
 
 ```
 
@@ -139,13 +165,23 @@ Map a variable to fill, and use `geom_col(position = "dodge")`.
 
 In this example we'll use the `dat` data set, in which we have an FMS score one for each `side`. 
 
-
 We'll map `task` to the *x* position and map `side` to the fill color (Figure \@ref(fig:FIG-BAR-GRAPH-GROUPED-BAR)):
 
 ```{r FIG-BAR-GRAPH-GROUPED-BAR, fig.cap="Graph with grouped bars"}
 ggplot(dat) +
   geom_col(aes(x = task, y = score, fill = side), position = "dodge")
 ```
+Let's try this example on another dataset `dat_grp_summ`, in which we have the number of subjects who attain a specific FMS `score` for each `task`.  
+
+We'll map `task` to the *x* position, `count` to the *y* position, and map `score` to the fill color (Figure \@ref(fig:FIG-BAR-GRAPH-GROUPED-BAR2)):
+
+```{r FIG-BAR-GRAPH-GROUPED-BAR2, fig.cap="Graph with grouped bars"}
+ggplot(dat_grp_summ) +
+  geom_col(aes(x = task, y = count, fill = score), position = "dodge") +
+  scale_fill_discrete(drop=FALSE) +
+  scale_x_discrete(drop=FALSE)
+```
+
 
 ### Discussion
 
@@ -287,10 +323,20 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 1. Open up your `practice_script.R`, updated from the learning check in \@ref(WRANGLE-LEARNING-CHECK).
 
 
-2. Import the Excel file `data/Athlete_1_FMS.xlsx`, and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). 
+2. Import the Excel file `data/Athlete_1_FMS.xlsx`, and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). 
 
 3. Create another dataset, `dat_summ` where we take the lower of the two scores for tasks which are assessed bilaterally. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
 4. Using the data `dat_summ`, create a barplot of `task` as the *x* axis, and the `total` FMS score as the *y* axis. See Recipe \@ref(BAR-GRAPH-BASIC-BAR).
 
 5. Make the line `colour` `"red"`, and `fill` the barplot with the colour `"blue"`. See \@ref(fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL).
+
+6. Remember to save your file.
+
+
+7. Download the solution to this learning check below.
+
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/practice_bar.R', text = "Click to download the solution")
+```

@@ -1,11 +1,11 @@
 
 # Your Assignment 
 
-This assignment is designed to create a graph of lactate and heart rate against speed in the Incremental Treadmill Test. There are two things to note:
+This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treamdill Test analyses. There are two things to note:
 
 1. With the graphs created, export it and paste into your word assignment document. 
 
-2. Copy the entire code below as an appendix in the word assignment document. 
+2. Submit the code together with your assignments onto FASER.
 
 The assignment is **EASY**!!! I am only asking you to copy and paste relevant recipes which you have learned, and edit relevant values in the function's arguments. For example, when you see the value `XXX`, I am asking you to replace it with the relevant value. I am NOT going to ask you to create codes from scratch. I am not cruel. 
 
@@ -15,25 +15,32 @@ To do your assignment, follow these steps:
 
 2. Create a project called `assignment` inside the folder. See Recipe \@ref(NAVIGATE-PROJECTS).
 
-3. Create a new R script called `treadmill_analysis.R`, paste the codes you see below, and save it. 
+3. Create a new R script called `analysis.R`, paste the codes you see below, and save it. 
 
 4. Inside `assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. 
 
 5. **Task 1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Recipe \@ref(INPUT-IMPORT).
 
-6. **Task 2:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
+6. **Task 2:** Group FMS summary. Find the number of athletes who scored each level in each FMS tasks. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-7. **Task 3:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Recipe \@ref(WRANGLE-CHARACTER-2-NUMERIC).
+7. **Task 3:** Group FMS barplot. Plot a bar graph of `task` as the *x* axis, and `count` as the *y* axis, *fill* colour set to the different  FMS `task`s. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR2). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-8. **Task 4:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+8. **Task 4:** Individual FMS barplot. Plot a bar graph of `task` as the *x* axis, and `score` as the *y* axis, *fill* colour set to the different tested `side`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-9. **Task 5:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-INNER-JOIN).
 
-10. **Task 6:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
+9. **Task 5:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
-11. **Task 7:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
+10. **Task 6:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Recipe \@ref(WRANGLE-CHARACTER-2-NUMERIC).
 
-12. **Task 8:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe \@ref(INPUT-EXPORT). 
+11. **Task 7:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+
+12. **Task 8:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-INNER-JOIN).
+
+13. **Task 9:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
+
+14. **Task 10:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
+
+15. **Task 11:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe \@ref(INPUT-EXPORT). 
 
 ```{r, eval = FALSE}
 
@@ -100,9 +107,59 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 dat_stage <-  read.xlsx (xlsxFile = "data/XX.xlsx",
                        sheet = "XXX")
 
-## Analyze VO2 data ----------------------------------------------------------------------
+### Import group FMS data
+dat_fms_grp <-  read.xlsx (xlsxFile = "data/Group FMS raw data.xlsx",
+                       sheet = "XXX")
 
-### Rename column names of Vo2 data (Task 2)
+### Import individual FMS data
+dat_fms_indv <-  read.xlsx (xlsxFile = "data/Individual FMS raw data.xlsx",
+                       sheet = "XXX")
+
+## Analyze FMS data ------------------------------------------------------------
+
+################################ Group FMS #####################################
+
+### Number of athletes scoring a level in FMS (Task 2)
+
+dat_fms_grp <- dat_fms_grp %>% # original data
+  pivot_longer(cols = -id,
+              names_to = "task",
+              values_to = "score") %>%
+  group_by(XXX, XXX) %>%
+  summarize (count = n()) 
+
+### Plot group FMS (Task 3)
+
+plot_fms_grp <- ggplot (XXX) +
+  geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge") +
+  scale_fill_discrete(drop=FALSE) +
+  scale_x_discrete(drop=FALSE)
+
+ggsave(filename = "grp_fms.png", 
+       plot = plot_fms_grp , # the name of the image object you created above.
+       width = 8, 
+       height = 8, 
+       unit = "cm", 
+       dpi = 300)
+
+############################# Individual FMS ###################################
+
+### Plot group FMS (Task 4)
+
+plot_fms_indv <- ggplot(XXX) +
+  geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")
+
+ggsave(filename = "ind_fms.png", 
+       plot = plot_fms_indv, # the name of the image object you created above.
+       width = 8, 
+       height = 8, 
+       unit = "cm", 
+       dpi = 300)
+
+
+## Analyze VO2 data ------------------------------------------------------------
+
+### Rename column names of Vo2 data (Task 5)
 
 new_names <- c()
 
@@ -113,7 +170,7 @@ colnames (dat_vo2)  <- new_names
 dat_vo2 <- dat_vo2 %>% 
   slice (-c(1))
 
-### Convert column type of Vo2 data (Task 3)
+### Convert column type of Vo2 data (Task 6)
 
 dat_vo2 <-  dat_vo2 %>%
   mutate (bf = XXX (bf),
@@ -135,7 +192,7 @@ dat_vo2 <-  dat_vo2 %>%
 dat_vo2 <- dat_vo2 %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE))
 
-### Calculate average 30s data per stage of Vo2 data (Task 4)
+### Calculate average 30s data per stage of Vo2 data (Task 7)
 
 dat_vo2_summ <- dat_vo2 %>%
   group_by(XXX) %>% # for each group
@@ -144,14 +201,14 @@ dat_vo2_summ <- dat_vo2 %>%
   slice_tail (n = XXX)%>% # keep last 30 sec per stage
   summarise_at (vars(bf:hr), mean)
 
-### Combine Vo2 staged data with lactate data (Task 5)
+### Combine Vo2 staged data with lactate data (Task 8)
 
 dat_vo2_comb <- dat_vo2_summ %>%
   inner_join(dat_stage, by = "XXX")
 
 ### Plot
 
-#### Lactate (Task 6)
+#### Lactate (Task 9)
 
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
@@ -171,7 +228,7 @@ ggsave(filename = "lactate.png",
        unit = "cm", 
        dpi = 300)
 
-#### Heart rate (Task 7)
+#### Heart rate (Task 10)
 
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 

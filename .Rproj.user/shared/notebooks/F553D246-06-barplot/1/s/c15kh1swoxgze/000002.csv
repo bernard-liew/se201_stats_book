@@ -1,6 +1,0 @@
-"0","dat_summ <- dat %>%"
-"0","  group_by(task) %>%"
-"0","  summarize (total = min (score)) %>%"
-"0","  ungroup ()"
-"2","`summarise()` ungrouping output (override with `.groups` argument)
-"

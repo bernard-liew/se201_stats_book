@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-09-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,10 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -221,7 +225,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="WRANGLE.html"><a href="WRANGLE.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a>
 <ul>
 <li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#download-and-load-packages-3"><i class="fa fa-check"></i>Download and load packages</a></li>
-<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a></li>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#import-data"><i class="fa fa-check"></i>Import data</a>
+<ul>
+<li class="chapter" data-level="" data-path="WRANGLE.html"><a href="WRANGLE.html#let-us-see-the-data"><i class="fa fa-check"></i>Let us see the data</a></li>
+</ul></li>
 <li class="chapter" data-level="6.1" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-TIDY-DATA"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
 <li class="chapter" data-level="6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES"><i class="fa fa-check"></i><b>6.2</b> Renaming variables</a>
 <ul>
@@ -250,12 +257,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-4"><i class="fa fa-check"></i><b>6.6.2</b> Solution</a></li>
 <li class="chapter" data-level="6.6.3" data-path="WRANGLE.html"><a href="WRANGLE.html#discussion-1"><i class="fa fa-check"></i><b>6.6.3</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.7</b> Spreading</a>
+<li class="chapter" data-level="6.7" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.7</b> Gathering</a>
 <ul>
 <li class="chapter" data-level="6.7.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-5"><i class="fa fa-check"></i><b>6.7.1</b> Problem</a></li>
 <li class="chapter" data-level="6.7.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-5"><i class="fa fa-check"></i><b>6.7.2</b> Solution</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-GATHER"><i class="fa fa-check"></i><b>6.8</b> Gathering</a>
+<li class="chapter" data-level="6.8" data-path="WRANGLE.html"><a href="WRANGLE.html#WRANGLE-SPREAD"><i class="fa fa-check"></i><b>6.8</b> Spreading</a>
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="WRANGLE.html"><a href="WRANGLE.html#problem-6"><i class="fa fa-check"></i><b>6.8.1</b> Problem</a></li>
 <li class="chapter" data-level="6.8.2" data-path="WRANGLE.html"><a href="WRANGLE.html#solution-6"><i class="fa fa-check"></i><b>6.8.2</b> Solution</a></li>
@@ -405,16 +412,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the <em>x</em> variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.</p>
 <p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small,” “medium,” “large”), but not when the variable is unordered (e.g., “cow,” “goose,” “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
 <p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="line-graphs.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</span>
-<span id="cb3-2"><a href="line-graphs.html#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</span>
-<span id="cb3-3"><a href="line-graphs.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="line-graphs.html#cb3-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="line-graphs.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">stage =</span> <span class="fu">cut_interval</span>(time, <span class="at">length =</span> <span class="dv">210</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="line-graphs.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stage) <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a href="line-graphs.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="line-graphs.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (row_id <span class="sc">&lt;</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-9"><a href="line-graphs.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> <span class="dv">6</span>)<span class="sc">%&gt;%</span></span>
-<span id="cb3-10"><a href="line-graphs.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span> (<span class="fu">vars</span>(bf<span class="sc">:</span>hr), mean)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="line-graphs.html#cb143-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/treadmill_pt4_clean.xlsx&quot;</span>,</span>
+<span id="cb143-2"><a href="line-graphs.html#cb143-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sheet =</span> <span class="st">&quot;Sheet1&quot;</span>)</span>
+<span id="cb143-3"><a href="line-graphs.html#cb143-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-4"><a href="line-graphs.html#cb143-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb143-5"><a href="line-graphs.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">stage =</span> <span class="fu">cut_interval</span>(time, <span class="at">length =</span> <span class="dv">210</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb143-6"><a href="line-graphs.html#cb143-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stage) <span class="sc">%&gt;%</span></span>
+<span id="cb143-7"><a href="line-graphs.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb143-8"><a href="line-graphs.html#cb143-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (row_id <span class="sc">&lt;</span> <span class="dv">37</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb143-9"><a href="line-graphs.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> <span class="dv">6</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb143-10"><a href="line-graphs.html#cb143-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span> (<span class="fu">vars</span>(bf<span class="sc">:</span>hr), mean)</span></code></pre></div>
 <div id="LINE-GRAPH-BASIC-LINE" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Making a Basic Line Graph</h2>
 <div id="problem-22" class="section level3" number="8.1.1">
@@ -424,9 +431,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="solution-22" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Solution</h3>
 <p>Use <code>ggplot()</code> with <code>geom_line()</code>, and specify which variables you mapped to x and y (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE">8.1</a>):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="line-graphs.html#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="line-graphs.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="line-graphs.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  </span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="line-graphs.html#cb144-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-2"><a href="line-graphs.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb144-3"><a href="line-graphs.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  </span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-1.png" alt="Basic line graph" width="50%" />
 <p class="caption">
@@ -439,109 +446,253 @@ Figure 8.1: Basic line graph
 <p>In this sample data set, the <em>x</em> variable, <code>time</code>, is in one column and the <em>y</em> variable, <code>vo2</code>, is in another:</p>
 <table>
 <thead>
-<tr class="header">
-<th align="right">stage</th>
-<th align="right">bf</th>
-<th align="right">vo2_norm</th>
-<th align="right">rer</th>
-<th align="right">vo2</th>
-<th align="right">vco2</th>
-<th align="right">ve</th>
-<th align="right">hr</th>
+<tr>
+<th style="text-align:right;">
+stage
+</th>
+<th style="text-align:right;">
+bf
+</th>
+<th style="text-align:right;">
+vo2_norm
+</th>
+<th style="text-align:right;">
+rer
+</th>
+<th style="text-align:right;">
+vo2
+</th>
+<th style="text-align:right;">
+vco2
+</th>
+<th style="text-align:right;">
+ve
+</th>
+<th style="text-align:right;">
+hr
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">30.67</td>
-<td align="right">31.97</td>
-<td align="right">0.87</td>
-<td align="right">2052.83</td>
-<td align="right">1777.83</td>
-<td align="right">55.17</td>
-<td align="right">136.50</td>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+30.67
+</td>
+<td style="text-align:right;">
+31.97
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+<td style="text-align:right;">
+2052.83
+</td>
+<td style="text-align:right;">
+1777.83
+</td>
+<td style="text-align:right;">
+55.17
+</td>
+<td style="text-align:right;">
+136.50
+</td>
 </tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">34.67</td>
-<td align="right">34.60</td>
-<td align="right">0.88</td>
-<td align="right">2222.17</td>
-<td align="right">1957.50</td>
-<td align="right">59.33</td>
-<td align="right">147.00</td>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+34.67
+</td>
+<td style="text-align:right;">
+34.60
+</td>
+<td style="text-align:right;">
+0.88
+</td>
+<td style="text-align:right;">
+2222.17
+</td>
+<td style="text-align:right;">
+1957.50
+</td>
+<td style="text-align:right;">
+59.33
+</td>
+<td style="text-align:right;">
+147.00
+</td>
 </tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">34.67</td>
-<td align="right">37.42</td>
-<td align="right">0.91</td>
-<td align="right">2401.83</td>
-<td align="right">2191.33</td>
-<td align="right">66.67</td>
-<td align="right">161.33</td>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+34.67
+</td>
+<td style="text-align:right;">
+37.42
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+2401.83
+</td>
+<td style="text-align:right;">
+2191.33
+</td>
+<td style="text-align:right;">
+66.67
+</td>
+<td style="text-align:right;">
+161.33
+</td>
 </tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">38.00</td>
-<td align="right">37.83</td>
-<td align="right">0.95</td>
-<td align="right">2429.00</td>
-<td align="right">2312.50</td>
-<td align="right">71.17</td>
-<td align="right">172.17</td>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+38.00
+</td>
+<td style="text-align:right;">
+37.83
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+2429.00
+</td>
+<td style="text-align:right;">
+2312.50
+</td>
+<td style="text-align:right;">
+71.17
+</td>
+<td style="text-align:right;">
+172.17
+</td>
 </tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">44.00</td>
-<td align="right">41.67</td>
-<td align="right">1.00</td>
-<td align="right">2675.00</td>
-<td align="right">2686.00</td>
-<td align="right">85.67</td>
-<td align="right">178.50</td>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+44.00
+</td>
+<td style="text-align:right;">
+41.67
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+2675.00
+</td>
+<td style="text-align:right;">
+2686.00
+</td>
+<td style="text-align:right;">
+85.67
+</td>
+<td style="text-align:right;">
+178.50
+</td>
 </tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">45.67</td>
-<td align="right">43.85</td>
-<td align="right">1.06</td>
-<td align="right">2813.67</td>
-<td align="right">2981.17</td>
-<td align="right">99.83</td>
-<td align="right">185.83</td>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+45.67
+</td>
+<td style="text-align:right;">
+43.85
+</td>
+<td style="text-align:right;">
+1.06
+</td>
+<td style="text-align:right;">
+2813.67
+</td>
+<td style="text-align:right;">
+2981.17
+</td>
+<td style="text-align:right;">
+99.83
+</td>
+<td style="text-align:right;">
+185.83
+</td>
 </tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">54.50</td>
-<td align="right">45.50</td>
-<td align="right">1.09</td>
-<td align="right">2920.17</td>
-<td align="right">3195.83</td>
-<td align="right">110.33</td>
-<td align="right">192.33</td>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+54.50
+</td>
+<td style="text-align:right;">
+45.50
+</td>
+<td style="text-align:right;">
+1.09
+</td>
+<td style="text-align:right;">
+2920.17
+</td>
+<td style="text-align:right;">
+3195.83
+</td>
+<td style="text-align:right;">
+110.33
+</td>
+<td style="text-align:right;">
+192.33
+</td>
 </tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="right">57.33</td>
-<td align="right">45.48</td>
-<td align="right">1.05</td>
-<td align="right">2910.83</td>
-<td align="right">3068.83</td>
-<td align="right">112.17</td>
-<td align="right">195.17</td>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+57.33
+</td>
+<td style="text-align:right;">
+45.48
+</td>
+<td style="text-align:right;">
+1.05
+</td>
+<td style="text-align:right;">
+2910.83
+</td>
+<td style="text-align:right;">
+3068.83
+</td>
+<td style="text-align:right;">
+112.17
+</td>
+<td style="text-align:right;">
+195.17
+</td>
 </tr>
 </tbody>
 </table>
 <p>With ggplot2, the default <em>y</em> range of a line graph is just enough to include the <em>y</em> values in the data. For some kinds of data, it’s better to have the <em>y</em> range start from zero. You can use <code>ylim()</code> to set the range, or you can use <code>expand_limits()</code> to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in <code>BOD</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM">8.2</a>):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="line-graphs.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These have the same result</span></span>
-<span id="cb5-2"><a href="line-graphs.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="line-graphs.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  <span class="sc">+</span></span>
-<span id="cb5-4"><a href="line-graphs.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(dat<span class="sc">$</span>vo2))</span>
-<span id="cb5-5"><a href="line-graphs.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="line-graphs.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="line-graphs.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="line-graphs.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="line-graphs.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These have the same result</span></span>
+<span id="cb145-2"><a href="line-graphs.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb145-3"><a href="line-graphs.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2))  <span class="sc">+</span></span>
+<span id="cb145-4"><a href="line-graphs.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(dat<span class="sc">$</span>vo2))</span>
+<span id="cb145-5"><a href="line-graphs.html#cb145-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-6"><a href="line-graphs.html#cb145-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb145-7"><a href="line-graphs.html#cb145-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) <span class="sc">+</span></span>
+<span id="cb145-8"><a href="line-graphs.html#cb145-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-BASIC-LINE-YLIM-1.png" alt="Line graph with manually set y range" width="50%" />
 <p class="caption">
@@ -559,23 +710,23 @@ Figure 8.2: Line graph with manually set y range
 <div id="solution-23" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Solution</h3>
 <p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">8.3</a>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="line-graphs.html#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="line-graphs.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring all variables into one column</span></span>
-<span id="cb6-3"><a href="line-graphs.html#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="line-graphs.html#cb6-4" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="line-graphs.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span> (stage, vo2, vco2) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-6"><a href="line-graphs.html#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(vo2<span class="sc">:</span>vco2),</span>
-<span id="cb6-7"><a href="line-graphs.html#cb6-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>,</span>
-<span id="cb6-8"><a href="line-graphs.html#cb6-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-9"><a href="line-graphs.html#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">var =</span> <span class="fu">factor</span> (var))</span>
-<span id="cb6-10"><a href="line-graphs.html#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="line-graphs.html#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to colour</span></span>
-<span id="cb6-12"><a href="line-graphs.html#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="line-graphs.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
-<span id="cb6-14"><a href="line-graphs.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="line-graphs.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to linetype</span></span>
-<span id="cb6-16"><a href="line-graphs.html#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="line-graphs.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">linetype =</span> var))</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="line-graphs.html#cb146-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-2"><a href="line-graphs.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring all variables into one column</span></span>
+<span id="cb146-3"><a href="line-graphs.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="line-graphs.html#cb146-4" aria-hidden="true" tabindex="-1"></a>dat_long <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb146-5"><a href="line-graphs.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span> (stage, vo2, vco2) <span class="sc">%&gt;%</span> </span>
+<span id="cb146-6"><a href="line-graphs.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(vo2<span class="sc">:</span>vco2),</span>
+<span id="cb146-7"><a href="line-graphs.html#cb146-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>,</span>
+<span id="cb146-8"><a href="line-graphs.html#cb146-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb146-9"><a href="line-graphs.html#cb146-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">var =</span> <span class="fu">factor</span> (var))</span>
+<span id="cb146-10"><a href="line-graphs.html#cb146-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-11"><a href="line-graphs.html#cb146-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to colour</span></span>
+<span id="cb146-12"><a href="line-graphs.html#cb146-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb146-13"><a href="line-graphs.html#cb146-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
+<span id="cb146-14"><a href="line-graphs.html#cb146-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-15"><a href="line-graphs.html#cb146-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Map supp to linetype</span></span>
+<span id="cb146-16"><a href="line-graphs.html#cb146-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb146-17"><a href="line-graphs.html#cb146-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">linetype =</span> var))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-1.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE-2.png" alt="A variable mapped to colour (left); A variable mapped to linetype (right)" width="50%" />
 <p class="caption">
@@ -588,92 +739,194 @@ Figure 8.3: A variable mapped to colour (left); A variable mapped to linetype (r
 <p>The <code>dat_long</code> data has three columns, including the factor <code>var</code>, which we mapped to <code>colour</code> and <code>linetype</code>:</p>
 <table>
 <thead>
-<tr class="header">
-<th align="right">stage</th>
-<th align="left">var</th>
-<th align="right">val</th>
+<tr>
+<th style="text-align:right;">
+stage
+</th>
+<th style="text-align:left;">
+var
+</th>
+<th style="text-align:right;">
+val
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">vo2</td>
-<td align="right">2052.83</td>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2052.83
+</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">vco2</td>
-<td align="right">1777.83</td>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+1777.83
+</td>
 </tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="left">vo2</td>
-<td align="right">2222.17</td>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2222.17
+</td>
 </tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">vco2</td>
-<td align="right">1957.50</td>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+1957.50
+</td>
 </tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">vo2</td>
-<td align="right">2401.83</td>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2401.83
+</td>
 </tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="left">vco2</td>
-<td align="right">2191.33</td>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+2191.33
+</td>
 </tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="left">vo2</td>
-<td align="right">2429.00</td>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2429.00
+</td>
 </tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">vco2</td>
-<td align="right">2312.50</td>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+2312.50
+</td>
 </tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="left">vo2</td>
-<td align="right">2675.00</td>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2675.00
+</td>
 </tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="left">vco2</td>
-<td align="right">2686.00</td>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+2686.00
+</td>
 </tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="left">vo2</td>
-<td align="right">2813.67</td>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2813.67
+</td>
 </tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="left">vco2</td>
-<td align="right">2981.17</td>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+2981.17
+</td>
 </tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="left">vo2</td>
-<td align="right">2920.17</td>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2920.17
+</td>
 </tr>
-<tr class="even">
-<td align="right">7</td>
-<td align="left">vco2</td>
-<td align="right">3195.83</td>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+3195.83
+</td>
 </tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="left">vo2</td>
-<td align="right">2910.83</td>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+vo2
+</td>
+<td style="text-align:right;">
+2910.83
+</td>
 </tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">vco2</td>
-<td align="right">3068.83</td>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+vco2
+</td>
+<td style="text-align:right;">
+3068.83
+</td>
 </tr>
 </tbody>
 </table>
@@ -682,9 +935,9 @@ Figure 8.3: A variable mapped to colour (left); A variable mapped to linetype (r
 <p>If the <em>x</em> variable is a factor, you must also tell ggplot to group by that same variable, as described below.</p>
 </blockquote>
 <p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">8.4</a>):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="line-graphs.html#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="line-graphs.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="line-graphs.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var, <span class="at">group =</span> var))</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="line-graphs.html#cb147-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-2"><a href="line-graphs.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb147-3"><a href="line-graphs.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var, <span class="at">group =</span> var))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-FACTOR-1.png" alt="Line graph with continuous x variable converted to a factor" width="50%" />
 <p class="caption">
@@ -693,12 +946,12 @@ Figure 8.4: Line graph with continuous x variable converted to a factor
 </div>
 <p>To convert a variable to a factor , see also Recipe <a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS">6.10</a>.</p>
 <p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will not plot anything:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="line-graphs.html#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="line-graphs.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="line-graphs.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
-<span id="cb8-4"><a href="line-graphs.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
-<span id="cb8-5"><a href="line-graphs.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
-<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="line-graphs.html#cb148-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-2"><a href="line-graphs.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb148-3"><a href="line-graphs.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span> (stage), <span class="at">y =</span> val, <span class="at">colour =</span> var))</span>
+<span id="cb148-4"><a href="line-graphs.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
+<span id="cb148-5"><a href="line-graphs.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
+<p><img src="se201_stats_book_files/figure-html/unnamed-chunk-138-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="LINE-GRAPH-LINE-APPEARANCE" class="section level2" number="8.3">
@@ -711,9 +964,9 @@ Figure 8.4: Line graph with continuous x variable converted to a factor
 <h3><span class="header-section-number">8.3.2</span> Solution</h3>
 <p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>size</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
 <p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">8.5</a>) by passing them values in the call to <code>geom_line()</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="line-graphs.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="line-graphs.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2), </span>
-<span id="cb9-3"><a href="line-graphs.html#cb9-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="line-graphs.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb149-2"><a href="line-graphs.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2), </span>
+<span id="cb149-3"><a href="line-graphs.html#cb149-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED-1.png" alt="Line graph with custom linetype, size, and colour" width="50%" />
 <p class="caption">
@@ -721,10 +974,10 @@ Figure 8.5: Line graph with custom linetype, size, and colour
 </p>
 </div>
 <p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">8.2</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">8.6</a>, by using <code>scale_colour_brewer()</code> or <code>scale_colour_manual()</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="line-graphs.html#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="line-graphs.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="line-graphs.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="line-graphs.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="line-graphs.html#cb150-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-2"><a href="line-graphs.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb150-3"><a href="line-graphs.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var)) <span class="sc">+</span></span>
+<span id="cb150-4"><a href="line-graphs.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-PALETTE-1.png" alt="Using a palette from RColorBrewer" width="50%" />
 <p class="caption">
@@ -736,17 +989,17 @@ Figure 8.6: Using a palette from RColorBrewer
 <h3><span class="header-section-number">8.3.3</span> Discussion</h3>
 <p>To set a single constant color for all the lines, specify colour outside of <code>aes()</code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">8.7</a>). You may also have to specify the grouping variable:</p>
 
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="line-graphs.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If both lines have the same properties, you need to specify a variable to</span></span>
-<span id="cb11-2"><a href="line-graphs.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use for grouping</span></span>
-<span id="cb11-3"><a href="line-graphs.html#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="line-graphs.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="line-graphs.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">group =</span> var),</span>
-<span id="cb11-6"><a href="line-graphs.html#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) </span>
-<span id="cb11-7"><a href="line-graphs.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="line-graphs.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></span>
-<span id="cb11-9"><a href="line-graphs.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="line-graphs.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span>  </span>
-<span id="cb11-11"><a href="line-graphs.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var),<span class="at">shape =</span> <span class="dv">22</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="line-graphs.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If both lines have the same properties, you need to specify a variable to</span></span>
+<span id="cb151-2"><a href="line-graphs.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use for grouping</span></span>
+<span id="cb151-3"><a href="line-graphs.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="line-graphs.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb151-5"><a href="line-graphs.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">group =</span> var),</span>
+<span id="cb151-6"><a href="line-graphs.html#cb151-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) </span>
+<span id="cb151-7"><a href="line-graphs.html#cb151-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-8"><a href="line-graphs.html#cb151-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></span>
+<span id="cb151-9"><a href="line-graphs.html#cb151-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_long) <span class="sc">+</span></span>
+<span id="cb151-10"><a href="line-graphs.html#cb151-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var), <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb151-11"><a href="line-graphs.html#cb151-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> val, <span class="at">colour =</span> var),<span class="at">shape =</span> <span class="dv">22</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">fill =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES"></span>
 <img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-1.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-2.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%" />
 <p class="caption">
@@ -773,30 +1026,30 @@ Figure 8.8: The different types of linetype you can use.
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code>theme_grey()</code>, but the examples below also showcase <code>theme_bw()</code>, <code>theme_minimal()</code>, and <code>theme_classic()</code>.</p>
 <p>To use a premade theme, add <code>theme_bw()</code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.9</a>):</p>
 
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="line-graphs.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the base plot</span></span>
-<span id="cb12-2"><a href="line-graphs.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="line-graphs.html#cb12-3" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="line-graphs.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) </span>
-<span id="cb12-5"><a href="line-graphs.html#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="line-graphs.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Grey theme (the default)</span></span>
-<span id="cb12-7"><a href="line-graphs.html#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="line-graphs.html#cb12-8" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
-<span id="cb12-9"><a href="line-graphs.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_grey</span>()</span>
-<span id="cb12-10"><a href="line-graphs.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="line-graphs.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Black-and-white theme</span></span>
-<span id="cb12-12"><a href="line-graphs.html#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="line-graphs.html#cb12-13" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
-<span id="cb12-14"><a href="line-graphs.html#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb12-15"><a href="line-graphs.html#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="line-graphs.html#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal theme without background annotations</span></span>
-<span id="cb12-17"><a href="line-graphs.html#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="line-graphs.html#cb12-18" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
-<span id="cb12-19"><a href="line-graphs.html#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb12-20"><a href="line-graphs.html#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-21"><a href="line-graphs.html#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic theme, with axis lines but no gridlines</span></span>
-<span id="cb12-22"><a href="line-graphs.html#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="line-graphs.html#cb12-23" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
-<span id="cb12-24"><a href="line-graphs.html#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="line-graphs.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the base plot</span></span>
+<span id="cb152-2"><a href="line-graphs.html#cb152-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-3"><a href="line-graphs.html#cb152-3" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb152-4"><a href="line-graphs.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> stage, <span class="at">y =</span> vo2)) </span>
+<span id="cb152-5"><a href="line-graphs.html#cb152-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-6"><a href="line-graphs.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Grey theme (the default)</span></span>
+<span id="cb152-7"><a href="line-graphs.html#cb152-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-8"><a href="line-graphs.html#cb152-8" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb152-9"><a href="line-graphs.html#cb152-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_grey</span>()</span>
+<span id="cb152-10"><a href="line-graphs.html#cb152-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-11"><a href="line-graphs.html#cb152-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Black-and-white theme</span></span>
+<span id="cb152-12"><a href="line-graphs.html#cb152-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-13"><a href="line-graphs.html#cb152-13" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb152-14"><a href="line-graphs.html#cb152-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb152-15"><a href="line-graphs.html#cb152-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-16"><a href="line-graphs.html#cb152-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimal theme without background annotations</span></span>
+<span id="cb152-17"><a href="line-graphs.html#cb152-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-18"><a href="line-graphs.html#cb152-18" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb152-19"><a href="line-graphs.html#cb152-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb152-20"><a href="line-graphs.html#cb152-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-21"><a href="line-graphs.html#cb152-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Classic theme, with axis lines but no gridlines</span></span>
+<span id="cb152-22"><a href="line-graphs.html#cb152-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb152-23"><a href="line-graphs.html#cb152-23" aria-hidden="true" tabindex="-1"></a>hw_plot <span class="sc">+</span></span>
+<span id="cb152-24"><a href="line-graphs.html#cb152-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:FIG-APPEARANCE-THEME"></span>
 <img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-1.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-2.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-3.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" /><img src="se201_stats_book_files/figure-html/FIG-APPEARANCE-THEME-4.png" alt="Scatter plot with theme_grey() (the default, top left); with theme_bw() (top right); with theme_minimal() (bottom left); with theme_classic() (bottom right)" width="50%" />
 <p class="caption">
@@ -821,7 +1074,10 @@ Figure 8.9: Scatter plot with <code>theme_grey()</code> (the default, top left);
 <li><p>Merge the two tables <code>dat_summ</code> and <code>dat_stage</code>, by the common variable called <code>stage</code>. See Recipe <a href="WRANGLE.html#WRANGLE-INNER-JOIN">6.15</a>. Assign this table to an object called <code>df_plot</code>.</p></li>
 <li><p>Using <code>df_plot</code>, make a line plot with with <code>speed</code> as the <em>x</em> axis, and <code>vo2</code> as the <em>y</em> axis, and assign it to an object called <code>f</code>. See Recipe <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>.</p></li>
 <li><p>Save image <code>f</code> to a file called <code>myfig.png</code>. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p></li>
+<li><p>You must be wondering, why can’t I see the figure. What must you do to print the picture? See Recipe <a href="get-started.html#INSTALL-READ-WRITE-CODE">2.3</a>.</p></li>
+<li><p>Download the solution to this learning check below.</p></li>
 </ol>
+<a href="data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzINCg0KIyBJbXBvcnQgZXhjZWwgZGF0YQ0KDQpkYXQgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJyYXciKQ0KDQpkYXRfc3RhZ2UgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gInN0YWdlIikNCg0KZGF0X2ZtcyA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL0F0aGxldGVfMV9GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiU2hlZXQxIikNCg0KZGF0X2Ztc19ncnAgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9zaW1GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiRk1TIikNCg0KIyBUaWR5IGRhdGENCg0KIyMgUmVuYW1lIGNvbHVtbnMNCm5hbWVzIChkYXQpIDwtIGMoInRpbWUiLCAiYmYiLCAidm8yX25vcm0iLCAicmVyIiwgInZvMiIsICJ2Y28yIiwgInZlIiwgImhyIikNCg0KIyMgU2xpY2Ugb2ZmIGZpcnN0IHJvdw0KDQpkYXQgPC0gZGF0JT4lIA0KICBzbGljZSAoLTEpIA0KDQojIyBNYWtlIG51bWVyaWMgYW5kIHRpbWUNCg0KZGF0IDwtIGRhdCAlPiUNCiAgbXV0YXRlIChiZiA9IGFzLm51bWVyaWMoYmYpLA0KICAgICAgICAgIHZvMl9ub3JtID0gYXMubnVtZXJpYyh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gYXMubnVtZXJpYyhyZXIpLA0KICAgICAgICAgIHZvMiA9IGFzLm51bWVyaWModm8yKSwNCiAgICAgICAgICB2Y28yID0gYXMubnVtZXJpYyh2Y28yKSwNCiAgICAgICAgICB2ZSA9IGFzLm51bWVyaWModmUpLA0KICAgICAgICAgIGhyID0gYXMubnVtZXJpYyhocikpICU+JQ0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgIyBmdW5jdGlvbiBzdHJpcHMgYW55IHdoaXRlc3BhY2VzDQogICAgICAgICAgICBtcygpICU+JSAjIGNvbnZlcnQgdG8gbWludXRlcyBhbmQgc2Vjb25kcw0KICAgICAgICAgICAgYXMucGVyaW9kKHVuaXQgPSAic2VjIikgJT4lICMgY29udmVydHMgZW50aXJlbHkgdG8gc2Vjb25kcw0KICAgICAgICAgICAgYXMubnVtZXJpYyAoKSkgIyBzdHJpcHMgdGhlIFMgc3ltYm9sIHRvIG1ha2UgaXQgYSBudW1iZXINCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIHN0YWdlDQoNCmRhdCA8LSBkYXQlPiUNCiAgbXV0YXRlIChzdGFnZSA9IGN1dF9pbnRlcnZhbCh0aW1lLCBsZW5ndGggPSAyMTAsIGxhYmVscyA9IEZBTFNFKSkNCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIG9mIHJvdyBudW1iZXJzDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUNCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpDQoNCiMjIFJlbW92ZSBsYXN0IDMwcyBkYXRhIHBlciBzdGFnZQ0KDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgZmlsdGVyIChyb3dfaWQgPCAzNykgDQoNCiMjIGtlZXAgbGFzdCAzMHMgcGVyIHN0YWdlDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzbGljZV90YWlsIChuID0gNikNCg0KIyMgU3VtbWFyaXplIGVhY2ggY29sdW1uDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgc3VtbWFyaXNlX2F0ICh2YXJzKGJmOmhyKSwgbWVhbikNCg0KIyMgRXhwb3J0IGNsZWFuIHZvMiBkYXRhDQoNCndyaXRlLnhsc3goeCA9IGRhdCwNCiAgICAgICAgICAgZmlsZSA9ICJkYXRhL0F0aGxldGVfMV90cmVhZG1pbGxfY2xlYW4ueGxzeCIpDQoNCiMgQ3JlYXRlIGJhcnBsb3QNCg0KIyMgSW1wb3J0IEZNUyBkYXRhDQoNCmRhdF9mbXMgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfRk1TLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJTaGVldDEiKQ0KDQojIyBGTVMgbWluaW11bSBzY29yZQ0KDQpkYXRfc3VtbSA8LSBkYXRfZm1zICU+JQ0KICBncm91cF9ieSh0YXNrKSAlPiUNCiAgc3VtbWFyaXplICh0b3RhbCA9IG1pbiAoc2NvcmUpKSANCg0KIyMgQmFycGxvdA0KDQpnZ3Bsb3QoZGF0X3N1bW0pICsgDQogIGdlb21fY29sKGFlcyh4ID0gdGFzaywgeSA9IHRvdGFsKSkNCg0KIyMgQ2hhbmdlIGJhcnBsb3QgY29sb3VyDQoNCmdncGxvdChkYXRfc3VtbSkgKyANCiAgZ2VvbV9jb2woYWVzKHggPSB0YXNrLCB5ID0gdG90YWwpLCBmaWxsID0gImJsdWUiLCBjb2xvdXIgPSAicmVkIikgDQoNCiMgQ3JlYXRlIGxpbmVwbG90DQoNCiMjIEltcG9ydCBkYXRhDQoNCmRhdCA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL0F0aGxldGVfMV90cmVhZG1pbGwueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAicmF3IikNCg0KZGF0X3N0YWdlIDwtICByZWFkLnhsc3ggKHhsc3hGaWxlID0gImRhdGEvQXRobGV0ZV8xX3RyZWFkbWlsbC54bHN4IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJzdGFnZSIpDQoNCg0KIyMgUmVuYW1lIGNvbHVtbnMNCm5hbWVzIChkYXQpIDwtIGMoInRpbWUiLCAiYmYiLCAidm8yX25vcm0iLCAicmVyIiwgInZvMiIsICJ2Y28yIiwgInZlIiwgImhyIikNCg0KIyMgU2xpY2Ugb2ZmIGZpcnN0IHJvdw0KDQpkYXQgPC0gZGF0JT4lIA0KICBzbGljZSAoLTEpIA0KDQojIyBNYWtlIG51bWVyaWMgYW5kIHRpbWUNCg0KZGF0IDwtIGRhdCAlPiUNCiAgbXV0YXRlIChiZiA9IGFzLm51bWVyaWMoYmYpLA0KICAgICAgICAgIHZvMl9ub3JtID0gYXMubnVtZXJpYyh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gYXMubnVtZXJpYyhyZXIpLA0KICAgICAgICAgIHZvMiA9IGFzLm51bWVyaWModm8yKSwNCiAgICAgICAgICB2Y28yID0gYXMubnVtZXJpYyh2Y28yKSwNCiAgICAgICAgICB2ZSA9IGFzLm51bWVyaWModmUpLA0KICAgICAgICAgIGhyID0gYXMubnVtZXJpYyhocikpICU+JQ0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgIyBmdW5jdGlvbiBzdHJpcHMgYW55IHdoaXRlc3BhY2VzDQogICAgICAgICAgICBtcygpICU+JSAjIGNvbnZlcnQgdG8gbWludXRlcyBhbmQgc2Vjb25kcw0KICAgICAgICAgICAgYXMucGVyaW9kKHVuaXQgPSAic2VjIikgJT4lICMgY29udmVydHMgZW50aXJlbHkgdG8gc2Vjb25kcw0KICAgICAgICAgICAgYXMubnVtZXJpYyAoKSkgIyBzdHJpcHMgdGhlIFMgc3ltYm9sIHRvIG1ha2UgaXQgYSBudW1iZXINCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIHN0YWdlDQoNCmRhdCA8LSBkYXQlPiUNCiAgbXV0YXRlIChzdGFnZSA9IGN1dF9pbnRlcnZhbCh0aW1lLCBsZW5ndGggPSAyMTAsIGxhYmVscyA9IEZBTFNFKSkNCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIG9mIHJvdyBudW1iZXJzDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUNCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpDQoNCiMjIFJlbW92ZSBsYXN0IDMwcyBkYXRhIHBlciBzdGFnZQ0KDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgZmlsdGVyIChyb3dfaWQgPCAzNykgDQoNCiMjIGtlZXAgbGFzdCAzMHMgcGVyIHN0YWdlDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzbGljZV90YWlsIChuID0gNikNCg0KIyMgU3VtbWFyaXplIGVhY2ggY29sdW1uDQpkYXRfc3VtbSA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzdW1tYXJpc2VfYXQgKHZhcnMoYmY6aHIpLCBtZWFuKQ0KDQojIyBNZXJnZSBkYXRhcw0KDQpkZl9wbG90IDwtIGRhdF9zdW1tICU+JQ0KICBpbm5lcl9qb2luKGRhdF9zdGFnZSwgYnkgPSAic3RhZ2UiKQ0KDQojIyBQbG90DQoNCmYgPC0gZ2dwbG90KGRmX3Bsb3QgKSArDQogICAgIGdlb21fbGluZShhZXMoeCA9IHN0YWdlLCB5ID0gdm8yKSkNCg0KIyMgU2F2ZQ0KDQpnZ3NhdmUoZmlsZW5hbWUgPSAibXlmaWcucG5nIiwgDQogICAgICAgcGxvdCA9IGYsICMgdGhlIG5hbWUgb2YgdGhlIGltYWdlIG9iamVjdCB5b3UgY3JlYXRlZCBhYm92ZS4NCiAgICAgICB3aWR0aCA9IDgsIA0KICAgICAgIGhlaWdodCA9IDgsIA0KICAgICAgIHVuaXQgPSAiY20iLCANCiAgICAgICBkcGkgPSAzMDAp" download="practice_line.R">Click to download the solution</a>
 
 </div>
 </div>

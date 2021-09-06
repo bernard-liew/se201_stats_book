@@ -281,3 +281,12 @@ hw_plot +
 11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis, and assign it to an object called `f`. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 
 12. Save image `f` to a file called `myfig.png`. See Recipe \@ref(BAR-OUTPUT-BITMAP).
+
+13. You must be wondering, why can't I see the figure. What must you do to print the picture? See Recipe \@ref(INSTALL-READ-WRITE-CODE).
+
+14. Download the solution to this learning check below.
+
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/practice_line.R', text = "Click to download the solution")
+```

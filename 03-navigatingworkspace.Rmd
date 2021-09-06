@@ -139,20 +139,9 @@ pacman::p_load(tidyverse) # All purpose wrangling for dataframes
 
 3. Create a new R script, click File -- New File -- R Script.
 
-4. Save the new R script, click File -- Save As. Use the file name `practice_script`. It will have the extension `.R` assigned to it automatically
+4. Save the new R script, click File -- Save As. Save it inside the se201/practice folder. Use the file name `practice_script`. It will have the extension `.R` assigned to it automatically.
 
-5. Enter the code below into your new script, and save it. 
-
-```{r, eval = FALSE}
-
-# This is my first lines of codes
-a <- 10
-a + 10
-a
-
-```
-
-6. Enter the code below to install and load the packages.
+5. Enter the code below, run it, to install and load the packages.
 
 ```{r, eval = FALSE}
 
@@ -164,6 +153,11 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ```
 
-7. Close RStudio, reopen RStudio via the `.Rproj` symbol Figure \@ref(fig:launching). In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Try to run the codes you typed, what answer did you get?
+6. Close RStudio, reopen RStudio via the `.Rproj` symbol Figure \@ref(fig:launching). In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open and you should see the code you typed. Run the codes you typed above again.
 
+7. Download the solution to this learning check below.
 
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/practice_navig.R', text = "Click to download the solution")
+```

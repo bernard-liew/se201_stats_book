@@ -23,6 +23,9 @@ Let's load the 3 files from `data` folder into the workspace again. File one con
 dat_fms <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
                    sheet = "Sheet1")
 
+dat_fms_grp <- read.xlsx (xlsxFile = "data/simFMS.xlsx",
+                   sheet = "FMS")
+
 dat_vo2 <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
                    sheet = "raw")
 
@@ -31,7 +34,46 @@ dat_vo2_stage <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
 
 ```
 
+### Let us see the data {-}
 
+#### dat_fms table 
+
+This is a table representing a single subject's FMS test scores
+
+```{r, echo = FALSE}
+dat_fms %>%
+  knitr::kable ()
+```
+
+#### dat_fms_grp
+
+This is a table representing a team's total FMS test score for each task
+
+```{r, echo = FALSE}
+dat_fms_grp %>%
+  knitr::kable ()%>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+
+#### dat_vo2
+
+This is a table representing a single subject's raw VO2 results during incremental treadmill running
+
+```{r, echo = FALSE}
+dat_vo2 %>%
+  knitr::kable () %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+#### dat_vo2_stage
+
+This is a table representing a single subject's lactate values during incremental treadmill running
+
+```{r, echo = FALSE}
+dat_vo2_stage %>%
+  knitr::kable () %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
 
 ## Tidy data {#WRANGLE-TIDY-DATA}
 
@@ -402,6 +444,26 @@ dat_vo2 %>%
 
 Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.
 
+## Gathering {#WRANGLE-GATHER}
+
+### Problem
+
+You want to make your data longer. In the data `dat_fms_grp` (go to the start of this chapter to see this data's original shape), you want to merge the 7 columns indicating the 7 FMS tasks into a single column. For this, you can use the `pivot_longer()` function. 
+
+### Solution
+
+```{r }
+dat_long <- dat_fms_grp %>% # original data
+  pivot_longer(cols = -id,
+              names_to = "task",
+              values_to = "score")
+```
+```{r, echo = FALSE}
+dat_long %>%
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
 ## Spreading {#WRANGLE-SPREAD}
 
 ### Problem
@@ -421,31 +483,10 @@ dat_wide <- dat_fms_sub %>% # original data
               values_from = "score")
 
 ```
-
 ```{r, echo = FALSE}
 dat_wide%>%
   knitr::kable (digits = 2)
 ```
-
-## Gathering {#WRANGLE-GATHER}
-
-### Problem
-
-You want to make your data longer. In this instance, if you have for example a left and right FMS column and you want to bring all into one column, you use the `pivot_longer()` function. 
-
-### Solution
-
-```{r }
-dat_long <- dat_wide %>% # original data
-  pivot_longer(cols = c("l", "r"),
-              names_to = "side",
-              values_to = "score")
-```
-```{r, echo = FALSE}
-dat_long %>%
-  knitr::kable (digits = 2)
-```
-
 
 ## Rename values of a variable {#WRANGLE-RENAME-VALUES}
 
@@ -547,8 +588,7 @@ dat_vo2_crazy <-  dat_vo2  %>%
 
 ```{r, echo = FALSE}
 head(dat_vo2_crazy)%>%
-  knitr::kable (digits = 2) %>%
-  kableExtra::scroll_box(width = "100%", height = "100px")
+  knitr::kable (digits = 2) 
 ```
 
 You can even create a new variable, which reflects the present row number (`row_id`). This row number reflects the number of 5 sec VO2 windows. If there is 10 sec of data collected, there will be two row numbers, Really quite useful for VO2 analysis and cleaning. Here, inside the `mutate()` function, I will be using the function  `row_number()` to get the respective number for each row.
@@ -653,7 +693,7 @@ I dare you to find an easier way to calculate such scores in one line of code. T
 
 ### Discussion
 
-We can also go berserk by trying out different summary functions, like `mean ()`, `median ()`, `min()` (minimum value), `max` (maximum value).
+We can also go berserk by trying out different summary functions, like `mean ()`, `median ()`, `min()` (minimum value), `max` (maximum value). The function `n()` is a really useful one to count the number of rows. If your rows indicate the number of subjects, `n()` essentially counts the number of subjects.
 
 ```{r }
 
@@ -662,7 +702,8 @@ fms_summ <- dat_fms %>%
              mean_score = mean (score),
              median_score = median (score),
              min_score = min (score),
-             max_score = max(score)) 
+             max_score = max(score),
+             count = n()) 
 ```
 
 ```{r, echo = FALSE}
@@ -678,18 +719,21 @@ You want to perform the same summary function for each chunk of group. For examp
 
 ### Solution
 
-In the `dat_fms` dataset, we want to use the `group_by()` and `summarize ()` function.The code below reads as: for each task, tell me the lowest value. For the task of leg raise, the lower of the two values is 1. And you will indeed see that has been created.
+In the `dat_fms_grp` dataset, we want to use the `group_by()` and `summarize ()` function. The code below reads as: collapse all tasks into a single column, for each task and each score, count the number of rows (subjects) who has that score. 
 
 ```{r }
 
-fms_summ <- dat_fms %>%
-  group_by(task) %>%
-  summarize (lower_score = min (score)) 
+fms_grp_summ <- dat_fms_grp %>%
+  pivot_longer(cols = -id,
+               names_to = "task",
+               values_to = "score") %>%
+  group_by(task, score) %>%
+  summarize (count = n()) 
 
 ```
 
 ```{r, echo = FALSE}
-fms_summ %>%
+fms_grp_summ  %>%
   knitr::kable (digits = 2)
 ```
 
@@ -776,3 +820,10 @@ It is common sense, that if we want to join two tables, there must be some rules
 9. For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL).
 
 10. Save this cleaned data set into the `data/` folder called `Athlete_1_treadmill_clean.xlsx`. Go into this folder physically, and see this new excel file is there and open it. See Recipe \@ref(INPUT-EXPORT)
+
+11. Download the solution to this learning check below.
+
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/practice_manip.R', text = "Click to download the solution")
+```

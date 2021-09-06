@@ -84,7 +84,7 @@ write.xlsx(x = strn,
 
 ## Learning check {#INPUT-LEARNING-CHECK}
 
-You can download the 2 files for this learning check below:
+You can download the 3 files for this learning check below:
 
 ```{r echo=FALSE}
 # a single file
@@ -94,7 +94,12 @@ xfun::embed_file('data/Athlete_1_treadmill.xlsx', text = "Click to download trea
 
 ```{r echo=FALSE}
 # a single file
-xfun::embed_file('data/Athlete_1_FMS.xlsx', text = "Click to download FMS data")
+xfun::embed_file('data/Athlete_1_FMS.xlsx', text = "Click to download the individual FMS data")
+```
+
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/simFMS.xlsx', text = "Click to download the group FMS data")
 ```
 
 
@@ -109,3 +114,12 @@ xfun::embed_file('data/Athlete_1_FMS.xlsx', text = "Click to download FMS data")
 5. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet named `stage` and assign it to an object `dat_stage`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
 
 6. Import the Excel file `data/Athlete_1_FMS.xlsx`, and the sheet named `Sheet1` and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
+
+7. Import the Excel file `data/simFMS.xlsx`, and the sheet named `FMS` and assign it to an object `dat_fms_grp`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
+
+8. Download the solution to this learning check below.
+
+```{r echo=FALSE}
+# a single file
+xfun::embed_file('data/practice_input.R', text = "Click to download the solution")
+```
