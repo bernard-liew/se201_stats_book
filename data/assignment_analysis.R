@@ -1,65 +1,9 @@
-
-# Your Assignment 
-
-This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treamdill Test analyses. There are two things to note:
-
-1. With the graphs created, export it and paste into your word assignment document. 
-
-2. Submit the code together with your assignments onto FASER.
-
-The assignment is **EASY**!!! I am only asking you to copy and paste relevant recipes which you have learned, and edit relevant values in the function's arguments. For example, when you see the value `XXX`, I am asking you to replace it with the relevant value. I am NOT going to ask you to create codes from scratch. I am not cruel. 
-
-To do your assignment, follow these steps:
-
-1. In your desktop's`se201` folder, created in learning check \@ref(NAVIGATE-PROJECTS).
-
-2. Create a project called `assignment` inside the folder. See Recipe \@ref(NAVIGATE-PROJECTS).
-
-3. Download the R script in this link `assignment_analysis.R`. Save this script into the `se201/assignment` folder. When you open it, you should see the codes below.
-
-```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/assignment_analysis.R', text = "Click to download the script for assignment")
-```
-
-4. Inside `se201/assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. 
-
-## Tasks to complete
-
-**1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Recipe \@ref(INPUT-IMPORT).
-
-**2:** Group FMS summary. Find the number of athletes who scored each level in each FMS tasks. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
-
-**3:** Group FMS barplot. Plot a bar graph of `task` as the *x* axis, and `count` as the *y* axis, *fill* colour set to the different  FMS `task`s. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR2). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
-
-**4:** Individual FMS barplot. Plot a bar graph of `task` as the *x* axis, and `score` as the *y* axis, *fill* colour set to the different tested `side`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
-
-**5:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
-
-**6:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Recipe \@ref(WRANGLE-CHARACTER-2-NUMERIC).
-
-**7:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
-
-**8:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-INNER-JOIN).
-
-**9:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
-
-**10:** Make a heart rate graph. Plot a line graph of `speed` as the *x* axis, and `hr` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
-
-**11:** Export the `dat_vo2_comb` dataframe to an excel table. This result can be used to fill in the "stage by stage results" in your assignment under incremental treadmill test. Replace `XXX` with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe \@ref(INPUT-EXPORT).
-
-## Codes
-
-This is the codes you will see in the script downloaded.
-
-```{r, eval = FALSE}
-
 ## ---------------------------
 ##
 ##
-## Author: Bernard Liew
+## Author: Put your name year
 ##
-## Date Created: 2020-09-02
+## Date Created: Put your date
 ##
 ##
 ## ---------------------------
@@ -115,15 +59,15 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 
 ### Import the sheet with the lactate data
 dat_stage <-  read.xlsx (xlsxFile = "data/XX.xlsx",
-                       sheet = "XXX")
+                         sheet = "XXX")
 
 ### Import group FMS data
 dat_fms_grp <-  read.xlsx (xlsxFile = "data/Group FMS raw data.xlsx",
-                       sheet = "XXX")
+                           sheet = "XXX")
 
 ### Import individual FMS data
 dat_fms_indv <-  read.xlsx (xlsxFile = "data/Individual FMS raw data.xlsx",
-                       sheet = "XXX")
+                            sheet = "XXX")
 
 ## Analyze FMS data ------------------------------------------------------------
 
@@ -133,8 +77,8 @@ dat_fms_indv <-  read.xlsx (xlsxFile = "data/Individual FMS raw data.xlsx",
 
 dat_fms_grp <- dat_fms_grp %>% # original data
   pivot_longer(cols = -id,
-              names_to = "task",
-              values_to = "score") %>%
+               names_to = "task",
+               values_to = "score") %>%
   group_by(XXX, XXX) %>%
   summarize (count = n()) 
 
@@ -370,7 +314,3 @@ ggplot (df_plot) +
         axis.text.y = element_text(size = 12),  
         axis.title.x = element_text(size = 16),
         axis.title.y = element_text(size = 16))
-
-```
-
-

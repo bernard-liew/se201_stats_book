@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Simple Cookbook for Wrangling and Visualization</title>
-  <meta name="description" content="A Simple Cookbook for Wrangling and Visualization" />
+  <title>Chapter 10 Tasks to complete | A Simple Cookbook for Wrangling and Visualization</title>
+  <meta name="description" content="Chapter 10 Tasks to complete | A Simple Cookbook for Wrangling and Visualization" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Simple Cookbook for Wrangling and Visualization" />
+  <meta property="og:title" content="Chapter 10 Tasks to complete | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Simple Cookbook for Wrangling and Visualization" />
+  <meta name="twitter:title" content="Chapter 10 Tasks to complete | A Simple Cookbook for Wrangling and Visualization" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="get-started.html"/>
+<link rel="prev" href="your-assignment.html"/>
+<link rel="next" href="codes.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -386,11 +386,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="line-graphs.html"><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK"><i class="fa fa-check"></i><b>8.5</b> Learning check</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="your-assignment.html"><a href="your-assignment.html"><i class="fa fa-check"></i><b>9</b> Your Assignment</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="your-assignment.html"><a href="your-assignment.html#tasks-to-complete"><i class="fa fa-check"></i><b>9.1</b> Tasks to complete</a></li>
-<li class="chapter" data-level="9.2" data-path="your-assignment.html"><a href="your-assignment.html#codes"><i class="fa fa-check"></i><b>9.2</b> Codes</a></li>
-</ul></li>
+<li class="chapter" data-level="9" data-path="your-assignment.html"><a href="your-assignment.html"><i class="fa fa-check"></i><b>9</b> Your Assignment</a></li>
+<li class="chapter" data-level="10" data-path="tasks-to-complete.html"><a href="tasks-to-complete.html"><i class="fa fa-check"></i><b>10</b> Tasks to complete</a></li>
+<li class="chapter" data-level="11" data-path="codes.html"><a href="codes.html"><i class="fa fa-check"></i><b>11</b> Codes</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -411,118 +409,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">A Simple Cookbook for Wrangling and Visualization</h1>
-<p class="author"><em>Bernard Liew</em></p>
-<p class="date"><em>2021-09-07</em></p>
-</div>
-<div id="intro" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Preface</h1>
-<p>The purpose of this book is to help you CLEAN your data and produce AMAZING graphics <strong>EASILY</strong> but not fast at first.</p>
-<p><strong>What this book is</strong></p>
-<p>This books is intended to be a cookbook based approach. It has problems and it has solutions. Recipes are provided from which you can edit the necessary portions for your needs.</p>
-<p><strong>What this book is not</strong></p>
-<p>This book does not cover any one topic in extensive detail. If you are interested in conducting analyses or creating plots not covered in the book, I’m sure you’ll find the answer with a quick Google search!</p>
-<div id="why-is-r-so-great" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Why is R so great?</h2>
-<ol style="list-style-type: decimal">
-<li><p>R is 100% free and as a result, has a huge support community. Unlike SPSS and even Excel, R is, and always will be completely free. This doesn’t just help your wallet - it means that a huge community of R programmers who will constantly develop and distribute new R functionality and packages at a speed that leaves all those other packages in the dust! If you ever have a question about how to implement something in R, a quick Google search will lead you to your answer virtually every single time.</p></li>
-<li><p>R is incredibly versatile. You can use R to do everything from calculating simple summary statistics, to performing complex simulations to creating gorgeous plots. If you can imagine an analytical task, you can almost certainly implement it in R.</p></li>
-<li><p>Analyses conducted in R are transparent, easily shareable, and reproducible. If you ask an SPSS user how they conducted a specific analyses, they will either A) Not remember, B) Try (nervously) to construct an analysis procedure on the spot that makes sense - which may or may not correspond to what they actually did months or years ago, or C) Ask you what you are doing in their house. I used to primarily use SPSS, so I speak from experience on this. If you ask an R user (who uses good programming techniques!) how they conducted an analysis, they should always be able to show you the exact code they used. Of course, this doesn’t mean that they used the appropriate analysis or interpreted it correctly, but with all the original code, any problems should be completely transparent!</p></li>
-</ol>
-</div>
-<div id="rrelationship" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Why R is like a relationship…</h2>
-<p>Yes, R is very much like a relationship. Like relationships, there are two major truths to R programming:</p>
-<div class="figure" style="text-align: center"><span id="fig:relationship"></span>
-<img src="images/index/rrelationship.png" alt="R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter." width="315" />
-<p class="caption">
-Figure 1.1: R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.
-</p>
-</div>
-<ol style="list-style-type: decimal">
-<li><p>There is nothing more <em>frustrating</em> than when your code does <em>not</em> work</p></li>
-<li><p>There is nothing more <em>satisfying</em> than when your code <em>does</em> work!</p></li>
-</ol>
-<p>Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a <em>lot</em> of headaches when you get started. You will run into error after error and pound your fists against the table screaming: “WHY ISN’T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!” You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You’ll then wonder why you ever decided to learn R when (::sigh::) SPSS was so “nice and easy.”</p>
-<div class="figure" style="text-align: center"><span id="fig:gosling"></span>
-<img src="images/index/gosling.png" alt="When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous." width="216" />
-<p class="caption">
-Figure 1.2: When you first meet R, it will look so fugly that you’ll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.
-</p>
-</div>
-<p>Trust me, as you gain more programming experience, you’ll experience fewer and fewer bugs (though they’ll never go away completely). Once you get over the initial barriers, you’ll find yourself conducting analyses much, much faster than you ever did before.</p>
-</div>
-<div id="things-students-get-wrong" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> 3 things students get wrong</h2>
-<p>Based on teaching the previous cohort, there are 3 common errors students make, which will result in errors, leaving many scratching their head, feeling frustrated. Be aware of these errors, and do not fall into the trap.</p>
-<div id="wrong-method-of-launching-software" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Wrong method of launching software</h3>
-<p>This is the biggest source of frustration.Once you have created a project folder for your work, ONLY launch the software by clicking on the blue cube symbol as seen in Figure <a href="index.html#fig:launching">1.3</a>. In chapter <a href="NavigatingTheSoftware.html#NavigatingTheSoftware">4</a>, I will explain why you should launch the software in this manner.</p>
-<div class="figure" style="text-align: left"><span id="fig:launching"></span>
-<img src="images/index/rstudio_projects.png" alt="This is the symbol to press to launch the software in your asssignment." width="82" />
-<p class="caption">
-Figure 1.3: This is the symbol to press to launch the software in your asssignment.
-</p>
-</div>
-</div>
-<div id="not-running-code-from-start" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Not running code from START</h3>
-<p>Looking at the figure <a href="index.html#fig:codeStart">1.4</a> below, say you ran the code from line 3 to line 20, when you close the software - maybe leaving the work partially done for the day, the next time you launch the software, it has no recollection of where you stopped. You need to run the software from the first line of the code to where you stopped, and then continue with your work.</p>
-<div class="figure" style="text-align: center"><span id="fig:codeStart"></span>
-<img src="images/index/runCodeStart.png" alt="If you restart your analysis, the software does not have a memory of where you stopped previously ." width="522" />
-<p class="caption">
-Figure 1.4: If you restart your analysis, the software does not have a memory of where you stopped previously .
-</p>
-</div>
-</div>
-<div id="typographical-errors" class="section level3" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Typographical errors</h3>
-<p>More than 50% of the student queries in the past, centered around the issue of typographical errors. Given that humans can (and do) communicate without perfect grammar, punctuation, and spelling, you WILL naturally assume (wrongly) that computers can ignore mistakes as we can. Computers cannot distinguish what is or is not supposed to be there. For example, if you create a table and call it <code>mytable</code>, but then tried to do some calculations on <code>my table</code>, and error will appear, such as <code>Error: unexpected symbol in "my table"</code>. This error means the computer cannot find <code>my table</code>, only because it does not EXIST.</p>
-</div>
-</div>
-<div id="r-resources" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> R resources</h2>
-<div id="r-books" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> R books</h3>
-<p>There are many, many excellent (non-pirate) books on R, some of which are available online for free. Here are some that I highly recommend:</p>
-<table>
-<colgroup>
-<col width="44%" />
-<col width="55%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Book</th>
-<th align="left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="http://r4ds.had.co.nz/">R for Data Science by Garrett Grolemund and Hadley Wickham</a></td>
-<td align="left">The best book to learn the latest tools for elegantly doing data science.</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook by Winston Chang</a></td>
-<td align="left">Is indispensible for creating graphics.</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="https://rc2e.com/index.html">R Cookbook by James (JD) Long and Paul Teetor</a></td>
-<td align="left">Is a useful bag of tips and tricks to get started with R .</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
+<div id="tasks-to-complete" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Tasks to complete</h1>
+<p><strong>1:</strong> Import data. Replace <code>XXX</code> with your Excel file’s name and appropriate sheet name. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>.</p>
+<p><strong>2:</strong> Group FMS summary. Find the number of athletes who scored each level in each FMS tasks. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p>
+<p><strong>3:</strong> Group FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>count</code> as the <em>y</em> axis, <em>fill</em> colour set to the different FMS <code>task</code>s. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="#BAR-GRAPH-GROUPED-BAR2"><strong>??</strong></a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>4:</strong> Individual FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>score</code> as the <em>y</em> axis, <em>fill</em> colour set to the different tested <code>side</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR">7.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>5:</strong> Rename columns. Rename all columns to lower cases, without white spaces. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.2</a>.</p>
+<p><strong>6:</strong> Maker characters to numeric. Replace <code>XXX</code> with the appropriate function to convert all columns apart from time from character to numbers. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.4</a>.</p>
+<p><strong>7:</strong> Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.14</a>.</p>
+<p><strong>8:</strong> Combine two tables. Merge the average data from <em>Task 4</em> with the object called <code>dat_stage</code> along the common header. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-INNER-JOIN">6.15</a>.</p>
+<p><strong>9:</strong> Make a lactate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>lactacte</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>10:</strong> Make a heart rate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>hr</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>11:</strong> Export the <code>dat_vo2_comb</code> dataframe to an excel table. This result can be used to fill in the “stage by stage results” in your assignment under incremental treadmill test. Replace <code>XXX</code> with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="get-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="your-assignment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="codes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
