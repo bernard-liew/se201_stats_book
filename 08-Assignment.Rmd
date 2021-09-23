@@ -22,7 +22,7 @@ To do your assignment, follow these steps:
 xfun::embed_file('data/assignment_analysis.R', text = "Click to download the script for assignment")
 ```
 
-4. Inside `se201/assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. 
+4. Inside `se201/assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. **All raw Excel data for this assignment will be on SE201 Moodle>Assessment Information**.
 
 ## Tasks to complete
 
@@ -30,7 +30,7 @@ xfun::embed_file('data/assignment_analysis.R', text = "Click to download the scr
 
 **2:** Group FMS summary. Find the number of athletes who scored each level in each FMS tasks. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
 
-**3:** Group FMS barplot. Plot a bar graph of `task` as the *x* axis, and `count` as the *y* axis, *fill* colour set to the different  FMS `task`s. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR2). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
+**3:** Group FMS barplot. Plot a bar graph of `task` as the *x* axis, and `count` as the *y* axis, *fill* colour set to the different  FMS `task`s. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
 **4:** Individual FMS barplot. Plot a bar graph of `task` as the *x* axis, and `score` as the *y* axis, *fill* colour set to the different tested `side`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
@@ -114,7 +114,7 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ### Import the sheet with the lactate data
-dat_stage <-  read.xlsx (xlsxFile = "data/XX.xlsx",
+dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ### Import group FMS data
@@ -258,7 +258,7 @@ ggsave(filename = "heartrate.png",
        unit = "cm", 
        dpi = 300)
 
-#### Export table (Task 8)
+#### Export table (Task 11)
 
 write.xlsx(x = XXX,
            sheetName = "vo2",

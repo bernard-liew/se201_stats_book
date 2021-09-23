@@ -202,7 +202,7 @@ ggsave(filename = "heartrate.png",
        unit = "cm", 
        dpi = 300)
 
-#### Export table (Task 8)
+#### Export table (Task 11)
 
 write.xlsx(x = XXX,
            sheetName = "vo2",
