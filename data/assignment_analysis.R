@@ -1,9 +1,10 @@
+
 ## ---------------------------
 ##
 ##
-## Author: Put your name year
+## Author: Put your name
 ##
-## Date Created: Put your date
+## Date Created: Put the date
 ##
 ##
 ## ---------------------------
@@ -58,15 +59,15 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ### Import the sheet with the lactate data
-dat_stage <-  read.xlsx (xlsxFile = "data/XX.xlsx",
+dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                          sheet = "XXX")
 
 ### Import group FMS data
-dat_fms_grp <-  read.xlsx (xlsxFile = "data/Group FMS raw data.xlsx",
+dat_fms_grp <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                            sheet = "XXX")
 
 ### Import individual FMS data
-dat_fms_indv <-  read.xlsx (xlsxFile = "data/Individual FMS raw data.xlsx",
+dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                             sheet = "XXX")
 
 ## Analyze FMS data ------------------------------------------------------------
@@ -80,7 +81,9 @@ dat_fms_grp <- dat_fms_grp %>% # original data
                names_to = "task",
                values_to = "score") %>%
   group_by(XXX, XXX) %>%
-  summarize (count = n()) 
+  summarize (count = n()) %>%
+  mutate (count = factor (count),
+          score = factor (score, levels = c("0", "1", "2", "3")))
 
 ### Plot group FMS (Task 3)
 
@@ -153,7 +156,14 @@ dat_vo2_summ <- dat_vo2 %>%
   mutate (row_id = row_number()) %>%
   filter (row_id < XXX) %>% # throw away all data between 3 to 3:30 min
   slice_tail (n = XXX)%>% # keep last 30 sec per stage
-  summarise_at (vars(bf:hr), mean)
+  summarise (bf = mean (bf),
+             vo2_norm = mean (vo2_norm),
+             rer = mean (rer),
+             vo2 = mean (vo2),
+             vco2 = mean (vco2),
+             ve = mean (ve),
+             hr = mean (hr))
+
 
 ### Combine Vo2 staged data with lactate data (Task 8)
 
@@ -187,7 +197,7 @@ ggsave(filename = "lactate.png",
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
   labs (x = "Speed (km/h)",
-        y = "Lactate (mmol)") +
+        y = "Heart Rate (bpm)") +
   theme_bw() + 
   labs (title = "XXX") + 
   theme(axis.text.x = element_text(size = XXX),

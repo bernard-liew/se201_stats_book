@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.12)  23 SEP 2021 10:26
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.12)  11 OCT 2021 16:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1812,51 +1812,51 @@ Underfull \vbox (badness 1264) has occurred while \output is active []
 LaTeX Font Info:    Font shape `TU/CourierNew(0)/b/it' will be
 (Font)              scaled to size 6.99997pt on input line 5324.
 
-Overfull \vbox (0.3278pt too high) detected at line 5641
+Overfull \vbox (0.3278pt too high) detected at line 5650
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 [126]
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 [127]
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 [128]
-Overfull \vbox (0.88866pt too high) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 [129]
-Underfull \vbox (badness 10000) detected at line 5641
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5641
+Overfull \vbox (1.91745pt too high) detected at line 5650
  []
 
 [130]
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5641
+Underfull \vbox (badness 10000) detected at line 5650
  []
 
 [131]
@@ -1865,7 +1865,7 @@ No file se201_stats_book.bbl.
 Here is how much of TeX's memory you used:
  19694 strings out of 478774
  374253 string characters out of 5862448
- 1048201 words of memory out of 5000000
+ 1049161 words of memory out of 5000000
  39284 multiletter control sequences out of 15000+600000
  410195 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

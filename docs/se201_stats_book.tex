@@ -133,7 +133,7 @@
 
 \title{A Simple Cookbook for Wrangling and Visualization}
 \author{Bernard Liew}
-\date{2021-09-23}
+\date{2021-10-11}
 
 \begin{document}
 \maketitle
@@ -271,7 +271,7 @@ To use R, we'll need to download \textbf{2} software: \textbf{Base-R}, and \text
 \hypertarget{check-for-version-updates}{%
 \subsection{Check for version updates}\label{check-for-version-updates}}
 
-R and RStudio have been around for several years -- however, they are \emph{constantly} being updated with new features and bug-fixes. At the time that I am writing this sentence (``2021-09-23''), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.
+R and RStudio have been around for several years -- however, they are \emph{constantly} being updated with new features and bug-fixes. At the time that I am writing this sentence (``2021-10-11''), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.
 
 \begin{figure}
 
@@ -5324,9 +5324,9 @@ This is the codes you will see in the script downloaded.
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#}
 \DocumentationTok{\#\#}
-\DocumentationTok{\#\# Author: Bernard Liew}
+\DocumentationTok{\#\# Author: Put your name}
 \DocumentationTok{\#\#}
-\DocumentationTok{\#\# Date Created: 2020{-}09{-}02}
+\DocumentationTok{\#\# Date Created: Put the date}
 \DocumentationTok{\#\#}
 \DocumentationTok{\#\#}
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
@@ -5385,11 +5385,11 @@ This is the codes you will see in the script downloaded.
                        \AttributeTok{sheet =} \StringTok{"XXX"}\NormalTok{)}
 
 \DocumentationTok{\#\#\# Import group FMS data}
-\NormalTok{dat\_fms\_grp }\OtherTok{\textless{}{-}}  \FunctionTok{read.xlsx}\NormalTok{ (}\AttributeTok{xlsxFile =} \StringTok{"data/Group FMS raw data.xlsx"}\NormalTok{,}
+\NormalTok{dat\_fms\_grp }\OtherTok{\textless{}{-}}  \FunctionTok{read.xlsx}\NormalTok{ (}\AttributeTok{xlsxFile =} \StringTok{"data/XXX.xlsx"}\NormalTok{,}
                        \AttributeTok{sheet =} \StringTok{"XXX"}\NormalTok{)}
 
 \DocumentationTok{\#\#\# Import individual FMS data}
-\NormalTok{dat\_fms\_indv }\OtherTok{\textless{}{-}}  \FunctionTok{read.xlsx}\NormalTok{ (}\AttributeTok{xlsxFile =} \StringTok{"data/Individual FMS raw data.xlsx"}\NormalTok{,}
+\NormalTok{dat\_fms\_indv }\OtherTok{\textless{}{-}}  \FunctionTok{read.xlsx}\NormalTok{ (}\AttributeTok{xlsxFile =} \StringTok{"data/XXX.xlsx"}\NormalTok{,}
                        \AttributeTok{sheet =} \StringTok{"XXX"}\NormalTok{)}
 
 \DocumentationTok{\#\# Analyze FMS data {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
@@ -5403,7 +5403,9 @@ This is the codes you will see in the script downloaded.
               \AttributeTok{names\_to =} \StringTok{"task"}\NormalTok{,}
               \AttributeTok{values\_to =} \StringTok{"score"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{group\_by}\NormalTok{(XXX, XXX) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarize}\NormalTok{ (}\AttributeTok{count =} \FunctionTok{n}\NormalTok{()) }
+  \FunctionTok{summarize}\NormalTok{ (}\AttributeTok{count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{ (}\AttributeTok{count =} \FunctionTok{factor}\NormalTok{ (count),}
+          \AttributeTok{score =} \FunctionTok{factor}\NormalTok{ (score, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"0"}\NormalTok{, }\StringTok{"1"}\NormalTok{, }\StringTok{"2"}\NormalTok{, }\StringTok{"3"}\NormalTok{)))}
 
 \DocumentationTok{\#\#\# Plot group FMS (Task 3)}
 
@@ -5476,7 +5478,14 @@ This is the codes you will see in the script downloaded.
   \FunctionTok{mutate}\NormalTok{ (}\AttributeTok{row\_id =} \FunctionTok{row\_number}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{filter}\NormalTok{ (row\_id }\SpecialCharTok{\textless{}}\NormalTok{ XXX) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# throw away all data between 3 to 3:30 min}
   \FunctionTok{slice\_tail}\NormalTok{ (}\AttributeTok{n =}\NormalTok{ XXX)}\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# keep last 30 sec per stage}
-  \FunctionTok{summarise\_at}\NormalTok{ (}\FunctionTok{vars}\NormalTok{(bf}\SpecialCharTok{:}\NormalTok{hr), mean)}
+  \FunctionTok{summarise}\NormalTok{ (}\AttributeTok{bf =} \FunctionTok{mean}\NormalTok{ (bf),}
+             \AttributeTok{vo2\_norm =} \FunctionTok{mean}\NormalTok{ (vo2\_norm),}
+             \AttributeTok{rer =} \FunctionTok{mean}\NormalTok{ (rer),}
+             \AttributeTok{vo2 =} \FunctionTok{mean}\NormalTok{ (vo2),}
+             \AttributeTok{vco2 =} \FunctionTok{mean}\NormalTok{ (vco2),}
+             \AttributeTok{ve =} \FunctionTok{mean}\NormalTok{ (ve),}
+             \AttributeTok{hr =} \FunctionTok{mean}\NormalTok{ (hr))}
+
 
 \DocumentationTok{\#\#\# Combine Vo2 staged data with lactate data (Task 8)}
 
@@ -5510,7 +5519,7 @@ This is the codes you will see in the script downloaded.
 \NormalTok{f }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{ (dat\_vo2\_comb) }\SpecialCharTok{+}
   \FunctionTok{geom\_line}\NormalTok{ (}\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ XXX, }\AttributeTok{y =}\NormalTok{ XXX), }\AttributeTok{colour =} \StringTok{"XXX"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{ (}\AttributeTok{x =} \StringTok{"Speed (km/h)"}\NormalTok{,}
-        \AttributeTok{y =} \StringTok{"Lactate (mmol)"}\NormalTok{) }\SpecialCharTok{+}
+        \AttributeTok{y =} \StringTok{"Heart Rate (bpm)"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
   \FunctionTok{labs}\NormalTok{ (}\AttributeTok{title =} \StringTok{"XXX"}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =}\NormalTok{ XXX),}
