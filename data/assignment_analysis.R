@@ -1,4 +1,3 @@
-
 ## ---------------------------
 ##
 ##
@@ -94,10 +93,10 @@ plot_fms_grp <- ggplot (XXX) +
 
 ggsave(filename = "grp_fms.png", 
        plot = plot_fms_grp , # the name of the image object you created above.
-       width = 8, 
+       width = 15, 
        height = 8, 
        unit = "cm", 
-       dpi = 300)
+       dpi = 200)
 
 ############################# Individual FMS ###################################
 
@@ -108,10 +107,10 @@ plot_fms_indv <- ggplot(XXX) +
 
 ggsave(filename = "ind_fms.png", 
        plot = plot_fms_indv, # the name of the image object you created above.
-       width = 8, 
+       width = 15, 
        height = 8, 
        unit = "cm", 
-       dpi = 300)
+       dpi = 200)
 
 
 ## Analyze VO2 data ------------------------------------------------------------
@@ -190,7 +189,7 @@ ggsave(filename = "lactate.png",
        width = 8, 
        height = 8, 
        unit = "cm", 
-       dpi = 300)
+       dpi = 200)
 
 #### Heart rate (Task 10)
 
@@ -210,7 +209,7 @@ ggsave(filename = "heartrate.png",
        width = 8, 
        height = 8, 
        unit = "cm", 
-       dpi = 300)
+       dpi = 200)
 
 #### Export table (Task 11)
 
