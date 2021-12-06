@@ -81,8 +81,7 @@ dat_fms_grp <- dat_fms_grp %>% # original data
                values_to = "score") %>%
   group_by(XXX, XXX) %>%
   summarize (count = n()) %>%
-  mutate (count = factor (count),
-          score = factor (score, levels = c("0", "1", "2", "3")))
+  mutate (score = factor (score, levels = c("0", "1", "2", "3")))
 
 ### Plot group FMS (Task 3)
 

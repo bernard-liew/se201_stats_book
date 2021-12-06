@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data manipulation | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2021-10-14" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="InputOuput.html"/>
 <link rel="next" href="CHAPTER-BAR-GRAPH.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -121,6 +123,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -10019,7 +10022,7 @@ lactate
 <li>Each value must have its own cell.</li>
 </ol>
 <p>Figure <a href="WRANGLE.html#fig:tidy-structure">6.1</a> shows the rules visually.</p>
-<div class="figure"><span id="fig:tidy-structure"></span>
+<div class="figure"><span style="display:block;" id="fig:tidy-structure"></span>
 <img src="images/chapter-5/tidy-1.png" alt="Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells." width="100%" />
 <p class="caption">
 Figure 6.1: Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.
@@ -11025,7 +11028,7 @@ min
 <p>Why is R so “stupid,” that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, each column have both words and numbers (Figure <a href="WRANGLE.html#fig:col-class">6.2</a>). It is our fault that the data was untidy.</p>
 <p>This was touched on in in Section <a href="WRANGLE.html#WRANGLE-TIDY-DATA">6.1</a>, about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters.</p>
 <p>The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add <code>apples</code> and <code>orange</code> can you?</p>
-<div class="figure"><span id="fig:col-class"></span>
+<div class="figure"><span style="display:block;" id="fig:col-class"></span>
 <img src="images/chapter-5/dat_vo2_column_class.png" alt="The type of data for each class as it was imported." width="100%" />
 <p class="caption">
 Figure 6.2: The type of data for each class as it was imported.
@@ -14497,7 +14500,7 @@ c
 <span id="cb110-7"><a href="WRANGLE.html#cb110-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb110-8"><a href="WRANGLE.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat_fms_relvl) <span class="sc">+</span></span>
 <span id="cb110-9"><a href="WRANGLE.html#cb110-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> task, <span class="at">y =</span> score, <span class="at">fill =</span> side), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) </span></code></pre></div>
-<div class="figure"><span id="fig:FIG-BAR-GRAPH-FACTOR-EFFECTS"></span>
+<div class="figure"><span style="display:block;" id="fig:FIG-BAR-GRAPH-FACTOR-EFFECTS"></span>
 <img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-1.png" alt="Barplots of FMS score on original dat_fms (top); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (bottom)." width="672" /><img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.png" alt="Barplots of FMS score on original dat_fms (top); and new dat_fms_relvl when with modified the task variable to be a factor, with new levels (bottom)." width="672" />
 <p class="caption">
 Figure 6.3: Barplots of FMS score on original <code>dat_fms</code> (top); and new <code>dat_fms_relvl</code> when with modified the <code>task</code> variable to be a factor, with new levels (bottom).
@@ -15518,7 +15521,7 @@ count
 <span id="cb122-4"><a href="WRANGLE.html#cb122-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;score&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb122-5"><a href="WRANGLE.html#cb122-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(task, score) <span class="sc">%&gt;%</span></span>
 <span id="cb122-6"><a href="WRANGLE.html#cb122-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span> (<span class="at">count =</span> <span class="fu">n</span>()) </span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;task&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;task&#39;. You can override using the `.groups` argument.</code></pre>
 <table>
 <thead>
 <tr>
@@ -15744,7 +15747,6 @@ squat
 <span id="cb124-10"><a href="WRANGLE.html#cb124-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">vco2 =</span> <span class="fu">mean</span> (vco2),</span>
 <span id="cb124-11"><a href="WRANGLE.html#cb124-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">ve =</span> <span class="fu">mean</span> (ve),</span>
 <span id="cb124-12"><a href="WRANGLE.html#cb124-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">hr =</span> <span class="fu">mean</span> (hr))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <table>
 <caption>
 <span id="tab:unnamed-chunk-119">Table 6.1: </span>Stage by stage VO2 analysis
@@ -15999,8 +16001,8 @@ hr
 <div id="solution-14" class="section level3" number="6.15.2">
 <h3><span class="header-section-number">6.15.2</span> Solution</h3>
 <p>Use the <code>inner_join</code> function, with the <code>by</code> key as the common identifier that must be in both dataframes.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="WRANGLE.html#cb126-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_comb <span class="ot">&lt;-</span> dat_vo2_summ <span class="sc">%&gt;%</span></span>
-<span id="cb126-2"><a href="WRANGLE.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(dat_vo2_stage, <span class="at">by =</span> <span class="st">&quot;stage&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="WRANGLE.html#cb125-1" aria-hidden="true" tabindex="-1"></a>dat_vo2_comb <span class="ot">&lt;-</span> dat_vo2_summ <span class="sc">%&gt;%</span></span>
+<span id="cb125-2"><a href="WRANGLE.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(dat_vo2_stage, <span class="at">by =</span> <span class="st">&quot;stage&quot;</span>) </span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -16343,10 +16345,8 @@ lactate
 <li><p>Save this cleaned data set into the <code>data/</code> folder called <code>Athlete_1_treadmill_clean.xlsx</code>. Go into this folder physically, and see this new excel file is there and open it. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a></p></li>
 <li><p>Download the solution to this learning check below.</p></li>
 </ol>
-<a href="data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzINCg0KIyBJbXBvcnQgZXhjZWwgZGF0YQ0KDQpkYXQgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJyYXciKQ0KDQpkYXRfc3RhZ2UgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gInN0YWdlIikNCg0KZGF0X2ZtcyA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL0F0aGxldGVfMV9GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiU2hlZXQxIikNCg0KZGF0X2Ztc19ncnAgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9zaW1GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiRk1TIikNCg0KIyBUaWR5IGRhdGENCg0KIyMgUmVuYW1lIGNvbHVtbnMNCm5hbWVzIChkYXQpIDwtIGMoInRpbWUiLCAiYmYiLCAidm8yX25vcm0iLCAicmVyIiwgInZvMiIsICJ2Y28yIiwgInZlIiwgImhyIikNCg0KIyMgU2xpY2Ugb2ZmIGZpcnN0IHJvdw0KDQpkYXQgPC0gZGF0JT4lIA0KICBzbGljZSAoLTEpIA0KDQojIyBNYWtlIG51bWVyaWMgYW5kIHRpbWUNCg0KZGF0IDwtIGRhdCAlPiUNCiAgbXV0YXRlIChiZiA9IGFzLm51bWVyaWMoYmYpLA0KICAgICAgICAgIHZvMl9ub3JtID0gYXMubnVtZXJpYyh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gYXMubnVtZXJpYyhyZXIpLA0KICAgICAgICAgIHZvMiA9IGFzLm51bWVyaWModm8yKSwNCiAgICAgICAgICB2Y28yID0gYXMubnVtZXJpYyh2Y28yKSwNCiAgICAgICAgICB2ZSA9IGFzLm51bWVyaWModmUpLA0KICAgICAgICAgIGhyID0gYXMubnVtZXJpYyhocikpICU+JQ0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgIyBmdW5jdGlvbiBzdHJpcHMgYW55IHdoaXRlc3BhY2VzDQogICAgICAgICAgICBtcygpICU+JSAjIGNvbnZlcnQgdG8gbWludXRlcyBhbmQgc2Vjb25kcw0KICAgICAgICAgICAgYXMucGVyaW9kKHVuaXQgPSAic2VjIikgJT4lICMgY29udmVydHMgZW50aXJlbHkgdG8gc2Vjb25kcw0KICAgICAgICAgICAgYXMubnVtZXJpYyAoKSkgIyBzdHJpcHMgdGhlIFMgc3ltYm9sIHRvIG1ha2UgaXQgYSBudW1iZXINCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIHN0YWdlDQoNCmRhdCA8LSBkYXQlPiUNCiAgbXV0YXRlIChzdGFnZSA9IGN1dF9pbnRlcnZhbCh0aW1lLCBsZW5ndGggPSAyMTAsIGxhYmVscyA9IEZBTFNFKSkNCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIG9mIHJvdyBudW1iZXJzDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUNCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpDQoNCiMjIFJlbW92ZSBsYXN0IDMwcyBkYXRhIHBlciBzdGFnZQ0KDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgZmlsdGVyIChyb3dfaWQgPCAzNykgDQoNCiMjIGtlZXAgbGFzdCAzMHMgcGVyIHN0YWdlDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzbGljZV90YWlsIChuID0gNikNCg0KIyMgU3VtbWFyaXplIGVhY2ggY29sdW1uDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgc3VtbWFyaXNlX2F0ICh2YXJzKGJmOmhyKSwgbWVhbikNCg0KIyMgRXhwb3J0IGNsZWFuIHZvMiBkYXRhDQoNCndyaXRlLnhsc3goeCA9IGRhdCwNCiAgICAgICAgICAgZmlsZSA9ICJkYXRhL0F0aGxldGVfMV90cmVhZG1pbGxfY2xlYW4ueGxzeCIp" download="practice_manip.R">Click to download the solution</a>
+<p><a href="data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzINCg0KIyBJbXBvcnQgZXhjZWwgZGF0YQ0KDQpkYXQgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJyYXciKQ0KDQpkYXRfc3RhZ2UgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gInN0YWdlIikNCg0KZGF0X2ZtcyA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL0F0aGxldGVfMV9GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiU2hlZXQxIikNCg0KZGF0X2Ztc19ncnAgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9zaW1GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiRk1TIikNCg0KIyBUaWR5IGRhdGENCg0KIyMgUmVuYW1lIGNvbHVtbnMNCm5hbWVzIChkYXQpIDwtIGMoInRpbWUiLCAiYmYiLCAidm8yX25vcm0iLCAicmVyIiwgInZvMiIsICJ2Y28yIiwgInZlIiwgImhyIikNCg0KIyMgU2xpY2Ugb2ZmIGZpcnN0IHJvdw0KDQpkYXQgPC0gZGF0JT4lIA0KICBzbGljZSAoLTEpIA0KDQojIyBNYWtlIG51bWVyaWMgYW5kIHRpbWUNCg0KZGF0IDwtIGRhdCAlPiUNCiAgbXV0YXRlIChiZiA9IGFzLm51bWVyaWMoYmYpLA0KICAgICAgICAgIHZvMl9ub3JtID0gYXMubnVtZXJpYyh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gYXMubnVtZXJpYyhyZXIpLA0KICAgICAgICAgIHZvMiA9IGFzLm51bWVyaWModm8yKSwNCiAgICAgICAgICB2Y28yID0gYXMubnVtZXJpYyh2Y28yKSwNCiAgICAgICAgICB2ZSA9IGFzLm51bWVyaWModmUpLA0KICAgICAgICAgIGhyID0gYXMubnVtZXJpYyhocikpICU+JQ0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgIyBmdW5jdGlvbiBzdHJpcHMgYW55IHdoaXRlc3BhY2VzDQogICAgICAgICAgICBtcygpICU+JSAjIGNvbnZlcnQgdG8gbWludXRlcyBhbmQgc2Vjb25kcw0KICAgICAgICAgICAgYXMucGVyaW9kKHVuaXQgPSAic2VjIikgJT4lICMgY29udmVydHMgZW50aXJlbHkgdG8gc2Vjb25kcw0KICAgICAgICAgICAgYXMubnVtZXJpYyAoKSkgIyBzdHJpcHMgdGhlIFMgc3ltYm9sIHRvIG1ha2UgaXQgYSBudW1iZXINCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIHN0YWdlDQoNCmRhdCA8LSBkYXQlPiUNCiAgbXV0YXRlIChzdGFnZSA9IGN1dF9pbnRlcnZhbCh0aW1lLCBsZW5ndGggPSAyMTAsIGxhYmVscyA9IEZBTFNFKSkNCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIG9mIHJvdyBudW1iZXJzDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUNCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpDQoNCiMjIFJlbW92ZSBsYXN0IDMwcyBkYXRhIHBlciBzdGFnZQ0KDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgZmlsdGVyIChyb3dfaWQgPCAzNykgDQoNCiMjIGtlZXAgbGFzdCAzMHMgcGVyIHN0YWdlDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzbGljZV90YWlsIChuID0gNikNCg0KIyMgU3VtbWFyaXplIGVhY2ggY29sdW1uDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgc3VtbWFyaXNlX2F0ICh2YXJzKGJmOmhyKSwgbWVhbikNCg0KIyMgRXhwb3J0IGNsZWFuIHZvMiBkYXRhDQoNCndyaXRlLnhsc3goeCA9IGRhdCwNCiAgICAgICAgICAgZmlsZSA9ICJkYXRhL0F0aGxldGVfMV90cmVhZG1pbGxfY2xlYW4ueGxzeCIp" download="practice_manip.R">Click to download the solution</a></p>
 
-<pre><code>## Warning: package &#39;igraph&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.0.3</code></pre>
 </div>
 </div>
             </section>
@@ -16359,7 +16359,6 @@ lactate
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -16378,6 +16377,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -16398,6 +16398,10 @@ gitbook.start({
 "text": null
 },
 "download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

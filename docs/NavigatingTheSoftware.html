@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Navigating the Software | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2021-10-14" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="basics.html"/>
 <link rel="next" href="InputOuput.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -121,6 +123,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -421,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Download and load packages</h2>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="NavigatingTheSoftware.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
 <span id="cb56-2"><a href="NavigatingTheSoftware.html#cb56-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse) <span class="co"># All purpose wrangling for dataframes</span></span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:workspace"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:workspace"></span>
 <img src="images/chapter-3/workspace.jpg" alt="Your workspace -- all the objects, functions, and delicious glue you've defined in your current session." width="75%" />
 <p class="caption">
 Figure 4.1: Your workspace – all the objects, functions, and delicious glue you’ve defined in your current session.
@@ -438,14 +441,14 @@ Figure 4.1: Your workspace – all the objects, functions, and delicious glue yo
 <h2><span class="header-section-number">4.2</span> Creating a new Rstudio project</h2>
 <p>You want to create a new RStudio project to keep all your files related to a specific project.
 Click File → New Project as in Figure <a href="NavigatingTheSoftware.html#fig:filenew-drop">4.2</a>. ** I ALWAYS use this approach, please use it too**</p>
-<div class="figure"><span id="fig:filenew-drop"></span>
+<div class="figure"><span style="display:block;" id="fig:filenew-drop"></span>
 <img src="images/chapter-3/rstudio.file.newproject.png" alt="Selecting New Project" width="261" />
 <p class="caption">
 Figure 4.2: Selecting New Project
 </p>
 </div>
 <p>This will open the New Project dialog box and allow you to choose which type of project you would like to create, as shown in Figure <a href="NavigatingTheSoftware.html#fig:filenewmenu">4.3</a>.</p>
-<div class="figure"><span id="fig:filenewmenu"></span>
+<div class="figure"><span style="display:block;" id="fig:filenewmenu"></span>
 <img src="images/chapter-3/rstudio.newproject.dialog.png" alt="New Project dialog" width="537" />
 <p class="caption">
 Figure 4.3: New Project dialog
@@ -463,7 +466,7 @@ Figure 4.3: New Project dialog
 <div id="NAVIGATE-INSTALL-PACKAGE" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Installing Packages</h2>
 <p>When you download and install R for the first time, you are installing the Base R software. Base R will contain most of the functions you’ll use on a daily basis like <code>mean()</code> and <code>hist()</code>. However, only functions written by the original authors of the R language will appear here. If you want to access data and code written by other people, you’ll need to install it as a <em>package</em>. An R package is simply a bunch of data, from functions, to help menus, to vignettes (examples), stored in one neat package.</p>
-<div class="figure" style="text-align: center"><span id="fig:package"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:package"></span>
 <img src="images/chapter-3/packagebulb.png" alt="An R package is like a lightbulb. First you need to order it with install.packages(). Then, every time you want to use it, you need to turn it on with library()" width="50%" />
 <p class="caption">
 Figure 4.4: An R package is like a lightbulb. First you need to order it with install.packages(). Then, every time you want to use it, you need to turn it on with library()
@@ -473,7 +476,7 @@ Figure 4.4: An R package is like a lightbulb. First you need to order it with in
 <div id="installing-a-new-package" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Installing a new package</h3>
 <p>Installing a package simply means downloading the package code onto your personal computer. There are two main ways to install new packages. The first, and most common, method is to download them from the Comprehensive R Archive Network (CRAN). CRAN is the central repository for R packages. To install a new R package from CRAN, you can simply run the code <code>install.packages("name")</code>, where “name” is the name of the package. For example, to download the <code>tidyverse</code> package, which contains several functions we will use in this book, you should run the following:</p>
-<div class="figure" style="text-align: center"><span id="fig:cran"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cran"></span>
 <img src="images/chapter-3/cran.png" alt="CRAN (Comprehensive R Archive Network) is the main source of R packages" width="50%" />
 <p class="caption">
 Figure 4.5: CRAN (Comprehensive R Archive Network) is the main source of R packages
@@ -483,7 +486,7 @@ Figure 4.5: CRAN (Comprehensive R Archive Network) is the main source of R packa
 <span id="cb57-2"><a href="NavigatingTheSoftware.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   You only need to install a package once!</span></span>
 <span id="cb57-3"><a href="NavigatingTheSoftware.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>When you run <code>install.packages("name")</code> R will download the package from CRAN. If everything works, you should see some information about where the package is being downloaded from, in addition to a progress bar.</p>
-<div class="figure" style="text-align: center"><span id="fig:installingpackages"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:installingpackages"></span>
 <img src="images/chapter-3/installingpackages.png" alt="When you install a new package, you'll see some random text like this you the download progress. You don't need to memorize this." width="75%" />
 <p class="caption">
 Figure 4.6: When you install a new package, you’ll see some random text like this you the download progress. You don’t need to memorize this.
@@ -531,7 +534,7 @@ Figure 4.6: When you install a new package, you’ll see some random text like t
 <li><p>Close RStudio, reopen RStudio via the <code>.Rproj</code> symbol Figure <a href="index.html#fig:launching">1.3</a>. In the Files tab on the bottom right, you should see the script you created <code>practice_script.R</code>. Click on it to open and you should see the code you typed. Run the codes you typed above again.</p></li>
 <li><p>Download the solution to this learning check below.</p></li>
 </ol>
-<a href="data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzI=" download="practice_navig.R">Click to download the solution</a>
+<p><a href="data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzI=" download="practice_navig.R">Click to download the solution</a></p>
 
 </div>
 </div>
@@ -545,7 +548,6 @@ Figure 4.6: When you install a new package, you’ll see some random text like t
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -564,6 +566,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -584,6 +587,10 @@ gitbook.start({
 "text": null
 },
 "download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.12)  14 OCT 2021 11:14
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021/W32TeX) (preloaded format=xelatex 2021.5.12)  6 DEC 2021 10:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1500,13 +1500,13 @@ de the
 ]
 Chapter 5.
 
-Underfull \hbox (badness 1259) in paragraph at lines 1348--1349
+Underfull \hbox (badness 1259) in paragraph at lines 1346--1347
 \TU/Arial(0)/m/n/10 You are running R on Windows, and you are using filenames s
 uch as
  []
 
 [53]
-Overfull \hbox (163.10716pt too wide) in paragraph at lines 1402--1403
+Overfull \hbox (163.10716pt too wide) in paragraph at lines 1400--1401
 \TU/CourierNew(0)/m/n/10 "C:/Users/bl19622/Box/myBox/Documents/teaching/se747_R
 esearchMeth/sample_book/data/SubjectData.xlsx"\TU/Arial(0)/m/n/10 ).|  
  []
@@ -1516,7 +1516,7 @@ Chapter 6.
 [57
 
 ]
-Overfull \hbox (30.66519pt too wide) in paragraph at lines 1558--1611
+Overfull \hbox (30.66519pt too wide) in paragraph at lines 1548--1601
 [][] 
  []
 
@@ -1524,7 +1524,7 @@ Overfull \hbox (30.66519pt too wide) in paragraph at lines 1558--1611
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [58]
-Overfull \hbox (100.72867pt too wide) in paragraph at lines 1617--2284
+Overfull \hbox (100.72867pt too wide) in paragraph at lines 1607--2274
 [][] 
  []
 
@@ -1538,12 +1538,12 @@ Overfull \vbox (3562.19797pt too high) has occurred while \output is active []
 File: images/chapter-5/tidy-1.png Graphic file (type bmp)
 <images/chapter-5/tidy-1.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2426--2426
+Underfull \hbox (badness 10000) in paragraph at lines 2416--2416
 [][]
  []
 
 [63] [64] [65]
-Overfull \hbox (11.66129pt too wide) in paragraph at lines 2638--2655
+Overfull \hbox (11.66129pt too wide) in paragraph at lines 2628--2645
 [][] 
  []
 
@@ -1567,7 +1567,7 @@ File: se201_stats_book_files/figure-latex/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.pdf Gr
 aphic file (type pdf)
 <use se201_stats_book_files/figure-latex/FIG-BAR-GRAPH-FACTOR-EFFECTS-2.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 3490--3491
+Underfull \hbox (badness 10000) in paragraph at lines 3480--3481
 [][]
  []
 
@@ -1575,12 +1575,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 3490--3491
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [77] [78]
-Overfull \hbox (152.74817pt too wide) in paragraph at lines 3544--3561
+Overfull \hbox (152.74817pt too wide) in paragraph at lines 3534--3551
 [][] 
  []
 
 
-Overfull \hbox (30.62885pt too wide) in paragraph at lines 3571--3588
+Overfull \hbox (30.62885pt too wide) in paragraph at lines 3561--3578
 [][] 
  []
 
@@ -1613,17 +1613,23 @@ File: se201_stats_book_files/figure-latex/unnamed-chunk-112-3.pdf Graphic file
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [83] [84]
-Overfull \hbox (15.25485pt too wide) in paragraph at lines 3739--3746
+Overfull \hbox (15.25485pt too wide) in paragraph at lines 3729--3736
 [][] 
  []
 
-[85] [86] [87]
-Overfull \hbox (108.30463pt too wide) in paragraph at lines 3898--3919
+[85]
+Overfull \hbox (27.45905pt too wide) in paragraph at lines 3763--3763
+[]\TU/CourierNew(0)/m/n/10 ## []summarise()[] has grouped output by []task[]. Y
+ou can override using the [].groups[] argument.[] 
+ []
+
+[86] [87]
+Overfull \hbox (108.30463pt too wide) in paragraph at lines 3884--3905
 [][] 
  []
 
 [88]
-Overfull \hbox (35.6773pt too wide) in paragraph at lines 3949--3951
+Overfull \hbox (35.6773pt too wide) in paragraph at lines 3935--3937
 []\TU/Arial(0)/m/n/10 Save this cleaned data set into the \TU/CourierNew(0)/m/n
 /10 data/ \TU/Arial(0)/m/n/10 folder called \TU/CourierNew(0)/m/n/10 Athlete_1_
 treadmill_clean.xlsx\TU/Arial(0)/m/n/10 .
@@ -1636,12 +1642,12 @@ Chapter 7.
 File: images/chapter-6/ggplot2_geoms.png Graphic file (type bmp)
 <images/chapter-6/ggplot2_geoms.png>
 
-Overfull \hbox (202.29549pt too wide) in paragraph at lines 3971--3972
+Overfull \hbox (202.29549pt too wide) in paragraph at lines 3947--3948
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 24.13307pt on input line 3976.
+LaTeX Warning: Float too large for page by 24.13307pt on input line 3952.
 
 [91] [92]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1682,13 +1688,13 @@ File: se201_stats_book_files/figure-latex/FIG-BAR-GRAPH-GROUPED-BAR2-1.pdf Grap
 hic file (type pdf)
 <use se201_stats_book_files/figure-latex/FIG-BAR-GRAPH-GROUPED-BAR2-1.pdf>
 [102]
-Underfull \hbox (badness 1248) in paragraph at lines 4621--4622
+Underfull \hbox (badness 1248) in paragraph at lines 4596--4597
 \TU/Arial(0)/m/n/10 You want to use different colors for the bars in your graph
 .The default
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 4621--4622
+Underfull \hbox (badness 1694) in paragraph at lines 4596--4597
 \TU/Arial(0)/m/n/10 colors aren’t the most appealing, so you may want to set th
 em using
  []
@@ -1700,12 +1706,12 @@ ic file (type pdf)
 File: images/chapter-6/color_names.png Graphic file (type bmp)
 <images/chapter-6/color_names.png>
 
-Overfull \hbox (205.00172pt too wide) in paragraph at lines 4652--4653
+Overfull \hbox (205.00172pt too wide) in paragraph at lines 4627--4628
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 24.1062pt on input line 4657.
+LaTeX Warning: Float too large for page by 24.1062pt on input line 4632.
 
 File: se201_stats_book_files/figure-latex/FIG-BAR-GRAPH-AXES-1.pdf Graphic file
  (type pdf)
@@ -1722,7 +1728,7 @@ file (type pdf)
 File: images/chapter-6/output-ppi.png Graphic file (type bmp)
 <images/chapter-6/output-ppi.png>
 
-Overfull \hbox (1.90564pt too wide) in paragraph at lines 4798--4799
+Overfull \hbox (1.90564pt too wide) in paragraph at lines 4773--4774
  [][] 
  []
 
@@ -1810,53 +1816,53 @@ Underfull \vbox (badness 1264) has occurred while \output is active []
 
 [124]
 LaTeX Font Info:    Font shape `TU/CourierNew(0)/b/it' will be
-(Font)              scaled to size 6.99997pt on input line 5324.
+(Font)              scaled to size 6.99997pt on input line 5293.
 
-Overfull \vbox (0.3278pt too high) detected at line 5650
+Overfull \vbox (0.3278pt too high) detected at line 5618
  []
 
 [125]
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 [126]
-Underfull \vbox (badness 10000) detected at line 5650
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5650
+Overfull \vbox (1.91745pt too high) detected at line 5618
  []
 
 [127]
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 [128]
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 [129]
-Overfull \vbox (1.91745pt too high) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 [130]
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 
-Underfull \vbox (badness 10000) detected at line 5650
+Underfull \vbox (badness 10000) detected at line 5618
  []
 
 [131]
@@ -1865,7 +1871,7 @@ No file se201_stats_book.bbl.
 Here is how much of TeX's memory you used:
  19694 strings out of 478774
  374253 string characters out of 5862448
- 1049161 words of memory out of 5000000
+ 1049081 words of memory out of 5000000
  39284 multiletter control sequences out of 15000+600000
  410195 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191

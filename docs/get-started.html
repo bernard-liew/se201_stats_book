@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2021-10-14" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="basics.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -121,6 +123,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -418,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To use R, we’ll need to download <strong>2</strong> software: <strong>Base-R</strong>, and <strong>RStudio</strong>. Base-R is the basic software which contains the R programming language. RStudio is a software that makes programming easier. In everyday parlance, R is the engine and RStudio is the car’s frame. Just like you can transfer an engine to different car frames, you can use R using other platforms. But I will use RStudio. Of course, they are totally free and open source.</p>
 <div id="check-for-version-updates" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Check for version updates</h3>
-<p>R and RStudio have been around for several years – however, they are <em>constantly</em> being updated with new features and bug-fixes. At the time that I am writing this sentence (“2021-10-14”), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.</p>
-<div class="figure" style="text-align: center"><span id="fig:rlogo"></span>
+<p>R and RStudio have been around for several years – however, they are <em>constantly</em> being updated with new features and bug-fixes. At the time that I am writing this sentence (“2021-12-06”), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rlogo"></span>
 <img src="images/chapter-1/Rlogo.png" alt="R logo" width="40%" />
 <p class="caption">
 Figure 2.1: R logo
@@ -445,13 +448,13 @@ Figure 2.1: R logo
 </tbody>
 </table>
 <p>Once you’ve installed base-R on your computer, try opening it. When you do you should see a screen like the one in Figure <a href="get-started.html#fig:rscreenshot">2.2</a> (this is the Windows version). As you can see, base R is very much bare-bones software. It’s kind of the equivalent of a simple text editor that comes with your computer.</p>
-<div class="figure" style="text-align: center"><span id="fig:rscreenshot"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rscreenshot"></span>
 <img src="images/chapter-1/RScreenshot.png" alt="Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio -- software that helps you to write and use R code more efficiently!" width="75%" />
 <p class="caption">
 Figure 2.2: Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio – software that helps you to write and use R code more efficiently!
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:rstudiologo"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudiologo"></span>
 <img src="images/chapter-1/RStudio.png" alt="RStudio logo" width="40%" />
 <p class="caption">
 Figure 2.3: RStudio logo
@@ -464,7 +467,7 @@ Figure 2.3: RStudio logo
 <div id="INSTALL-GET-FAMILIAR" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> The four RStudio Windows</h2>
 <p>Let’s go ahead and boot up RStudio and see how she looks! When you open RStudio, you’ll see the following four windows (also called panes) shown in in Figure <a href="get-started.html#fig:rstudiowindows">2.4</a>. However, your windows might be in a different order that those in Figure <a href="get-started.html#fig:rstudiowindows">2.4</a>. Ignore for a fact that my screen shows black and yours shows up as white. This is like the wall paper on your computer, it is what makes my eyes at ease.</p>
-<div class="figure" style="text-align: center"><span id="fig:rstudiowindows"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudiowindows"></span>
 <img src="images/chapter-1/RStudio_Screenshot_Labels.png" alt="The four panes of RStudio." width="100%" />
 <p class="caption">
 Figure 2.4: The four panes of RStudio.
@@ -473,7 +476,7 @@ Figure 2.4: The four panes of RStudio.
 <p>Now, let’s see what each window does in detail.</p>
 <div id="source---your-notepad-for-code" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Source - Your notepad for code</h3>
-<div class="figure" style="text-align: center"><span id="fig:sourcewindow"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sourcewindow"></span>
 <img src="images/chapter-1/piratesanalysisss.png" alt="The Source contains all of your individual R scripts. The code won't be evaluated until you send it to the Console." width="100%" />
 <p class="caption">
 Figure 2.5: The Source contains all of your individual R scripts. The code won’t be evaluated until you send it to the Console.
@@ -485,7 +488,7 @@ Figure 2.5: The Source contains all of your individual R scripts. The code won�
 </div>
 <div id="console-rs-heart" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Console: R’s Heart</h3>
-<div class="figure"><span id="fig:consolewindow"></span>
+<div class="figure"><span style="display:block;" id="fig:consolewindow"></span>
 <img src="images/chapter-1/consoless.png" alt="The console the calculation heart of R. All of your code will (eventually) go through here." width="75%" />
 <p class="caption">
 Figure 2.6: The console the calculation heart of R. All of your code will (eventually) go through here.
@@ -500,7 +503,7 @@ Figure 2.6: The console the calculation heart of R. All of your code will (event
 </div>
 <div id="environment-history" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Environment / History</h3>
-<div class="figure"><span id="fig:environwindow"></span>
+<div class="figure"><span style="display:block;" id="fig:environwindow"></span>
 <img src="images/chapter-1/environmentss.png" alt="The environment panel shows you all the objects you have defined in your current workspace." width="75%" />
 <p class="caption">
 Figure 2.7: The environment panel shows you all the objects you have defined in your current workspace.
@@ -523,7 +526,7 @@ Figure 2.7: The environment panel shows you all the objects you have defined in 
 <span id="cb3-3"><a href="get-started.html#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight&quot;</span>,</span>
 <span id="cb3-4"><a href="get-started.html#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
 <span id="cb3-5"><a href="get-started.html#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:plotpanel"></span>
+<div class="figure"><span style="display:block;" id="fig:plotpanel"></span>
 <img src="images/chapter-1/plotpanelss.png" alt="The plot panel contains all of your plots, like this histogram of the distribution of chicken weights." width="75%" />
 <p class="caption">
 Figure 2.8: The plot panel contains all of your plots, like this histogram of the distribution of chicken weights.
@@ -584,7 +587,7 @@ Figure 2.8: The plot panel contains all of your plots, like this histogram of th
 <p>Another very common problem occurs when R does not seem to be responding to your code. That is, you might run some code like <code>mean(x)</code> expecting some output, but instead, nothing happens. This can be very frustrating because, rather than getting an error, just nothing happens at all. The most common reason for this is because R isn’t <em>ready</em> for new code, instead, it is <em>waiting</em> for you to finish code you started earlier, but never properly finished.</p>
 <p>Think about it this way, R can be in one of two states: it is either <strong>Ready</strong> (&gt;) for new code, or it is <strong>Waiting</strong> (+) for you to finish old code. To see which state R is in, all you have to do is look at the symbol on the console. The <code>&gt;</code> symbol means that R is Ready for new code – this is usually what you want to see. The <code>+</code> symbol means that R is Waiting for you to (properly) finish code you started before. If you see the <code>+</code> symbol, then no matter how much new code you write, R won’t actually evaluate it until you finish the code you started before.</p>
 <p>Thankfully there is an easy solution to this problem (See Figure <a href="get-started.html#fig:rstate">2.9</a>): Just hit the escape key on your keyboard. This will cancel R’s waiting state and make it Ready!</p>
-<div class="figure" style="text-align: center"><span id="fig:rstate"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstate"></span>
 <img src="images/chapter-1/escapesolution.png" alt="To turn R from a Waiting (+) state to a Ready (&gt;) state, just hit Escape." width="50%" />
 <p class="caption">
 Figure 2.9: To turn R from a Waiting (+) state to a Ready (&gt;) state, just hit Escape.
@@ -668,7 +671,6 @@ Error: unexpected symbol in “head(Chick Weight”
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -687,6 +689,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -707,6 +710,10 @@ gitbook.start({
 "text": null
 },
 "download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

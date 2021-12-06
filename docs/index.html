@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A Simple Cookbook for Wrangling and Visualization</title>
   <meta name="description" content="A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A Simple Cookbook for Wrangling and Visualization" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Bernard Liew" />
 
 
-<meta name="date" content="2021-10-14" />
+<meta name="date" content="2021-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 
 <link rel="next" href="get-started.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,7 +51,8 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -121,6 +123,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -414,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">A Simple Cookbook for Wrangling and Visualization</h1>
 <p class="author"><em>Bernard Liew</em></p>
-<p class="date"><em>2021-10-14</em></p>
+<p class="date"><em>2021-12-06</em></p>
 </div>
 <div id="intro" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Preface</h1>
@@ -434,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rrelationship" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Why R is like a relationship…</h2>
 <p>Yes, R is very much like a relationship. Like relationships, there are two major truths to R programming:</p>
-<div class="figure" style="text-align: center"><span id="fig:relationship"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:relationship"></span>
 <img src="images/index/rrelationship.png" alt="R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter." width="315" />
 <p class="caption">
 Figure 1.1: R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.
@@ -445,7 +448,7 @@ Figure 1.1: R will become both your best friend and your worst nightmare. The ba
 <li><p>There is nothing more <em>satisfying</em> than when your code <em>does</em> work!</p></li>
 </ol>
 <p>Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a <em>lot</em> of headaches when you get started. You will run into error after error and pound your fists against the table screaming: “WHY ISN’T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!” You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You’ll then wonder why you ever decided to learn R when (::sigh::) SPSS was so “nice and easy.”</p>
-<div class="figure" style="text-align: center"><span id="fig:gosling"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gosling"></span>
 <img src="images/index/gosling.png" alt="When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous." width="216" />
 <p class="caption">
 Figure 1.2: When you first meet R, it will look so fugly that you’ll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.
@@ -459,7 +462,7 @@ Figure 1.2: When you first meet R, it will look so fugly that you’ll wonder if
 <div id="wrong-method-of-launching-software" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Wrong method of launching software</h3>
 <p>This is the biggest source of frustration.Once you have created a project folder for your work, ONLY launch the software by clicking on the blue cube symbol as seen in Figure <a href="index.html#fig:launching">1.3</a>. In chapter <a href="NavigatingTheSoftware.html#NavigatingTheSoftware">4</a>, I will explain why you should launch the software in this manner.</p>
-<div class="figure" style="text-align: left"><span id="fig:launching"></span>
+<div class="figure" style="text-align: left"><span style="display:block;" id="fig:launching"></span>
 <img src="images/index/rstudio_projects.png" alt="This is the symbol to press to launch the software in your asssignment." width="82" />
 <p class="caption">
 Figure 1.3: This is the symbol to press to launch the software in your asssignment.
@@ -469,7 +472,7 @@ Figure 1.3: This is the symbol to press to launch the software in your asssignme
 <div id="not-running-code-from-start" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Not running code from START</h3>
 <p>Looking at the figure <a href="index.html#fig:codeStart">1.4</a> below, say you ran the code from line 3 to line 20, when you close the software - maybe leaving the work partially done for the day, the next time you launch the software, it has no recollection of where you stopped. You need to run the software from the first line of the code to where you stopped, and then continue with your work.</p>
-<div class="figure" style="text-align: center"><span id="fig:codeStart"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:codeStart"></span>
 <img src="images/index/runCodeStart.png" alt="If you restart your analysis, the software does not have a memory of where you stopped previously ." width="522" />
 <p class="caption">
 Figure 1.4: If you restart your analysis, the software does not have a memory of where you stopped previously .
@@ -526,7 +529,6 @@ Figure 1.4: If you restart your analysis, the software does not have a memory of
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -545,6 +547,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -565,6 +568,10 @@ gitbook.start({
 "text": null
 },
 "download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
