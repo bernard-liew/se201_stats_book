@@ -10,7 +10,8 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ```
 
-## Dealing with “Cannot Open File” in Windows
+## Dealing with “Cannot Open File” in Windows {#INPUT-FILE}
+
 
 You are running R on Windows, and you are using filenames such as `C:\data\sample.xlsx`. R says it cannot open the file, but you know the file does exist.
 
@@ -43,6 +44,10 @@ samp <- read.xlsx ("data\\strength.xlsx")
 
 ## Reading in Excel ".xlsx" data  {#INPUT-IMPORT}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/ZK-oVC0-5NA")
+```
+
 If you have a .xlsx file that you want to read into R, use the `read.xlsx()` function in the `openxlsx` package.
 
 | Argument| Description| 
@@ -64,6 +69,10 @@ strn <-  read.xlsx (xlsxFile = "data/strength.xlsx",
 
 ## Writing a Data Frame to Excel {#INPUT-EXPORT}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/oZ6yoZ_86BY")
+```
+
 You want to write an R data frame to an Excel file. 
 
 | Argument| Description| 
@@ -84,23 +93,51 @@ write.xlsx(x = strn,
 
 ## Learning check {#INPUT-LEARNING-CHECK}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/cvI7LyODZ14")
+```
+
 You can download the 3 files for this learning check below:
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/Athlete_1_treadmill.xlsx', text = "Click to download treadmill data")
-
+downloadthis::download_file(
+  path = "data/Athlete_1_treadmill.xlsx",
+  output_name = "athlete_treadmill",
+  output_extension = ".xlsx",
+  button_label = "Athlete treadmill data",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/Athlete_1_FMS.xlsx', text = "Click to download the individual FMS data")
+downloadthis::download_file(
+  path = "data/Athlete_1_FMS.xlsx",
+  output_name = "athlete_fms",
+  output_extension = ".xlsx",
+  button_label = "Athlete FMS data",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/simFMS.xlsx', text = "Click to download the group FMS data")
+downloadthis::download_file(
+  path = "data/simFMS.xlsx",
+  output_name = "group_fms",
+  output_extension = ".xlsx",
+  button_label = "Group FMS data",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
+
 
 
 1. In your se201/practice folder, create another folder called `data`.
@@ -120,6 +157,15 @@ xfun::embed_file('data/simFMS.xlsx', text = "Click to download the group FMS dat
 8. Download the solution to this learning check below.
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/practice_input.R', text = "Click to download the solution")
+downloadthis::download_file(
+  path = "data/practice_input.R",
+  output_name = "Learning check 5 answers",
+  output_extension = ".R",
+  button_label = "Learning check 5 answers",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
+

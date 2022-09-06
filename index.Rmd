@@ -17,6 +17,10 @@ biblio-style: apalike
 
 The purpose of this book is to help you CLEAN your data and produce AMAZING graphics **EASILY** but not fast at first.
 
+```{r, echo = FALSE}
+vembedr::embed_url( "https://youtu.be/tRp6mPDR73k")
+```
+
 
 **What this book is**
 

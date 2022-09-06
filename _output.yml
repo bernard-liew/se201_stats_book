@@ -14,3 +14,14 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
+
+format:
+  html:
+    theme:
+      - cosmo
+      - r4ds.scss
+    code-link: true
+    include-in-header: "plausible.html"
+    callout-appearance: simple
+
+editor: visual

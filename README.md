@@ -1,1 +1,3 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/home/about/ for how to compile this example.
+# Basic introduction to R for sports science and coaching students
+
+[Bernard's guide to basic R] (https://bernard-liew.github.io/se201_stats_book/)

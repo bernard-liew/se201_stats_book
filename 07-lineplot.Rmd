@@ -40,6 +40,10 @@ dat <- dat %>%
 
 ## Making a Basic Line Graph {#LINE-GRAPH-BASIC-LINE}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/m0rdWRnWgc8")
+```
+
 ### Problem
 
 You want to make a basic line graph.
@@ -87,6 +91,11 @@ ggplot(dat) +
 
 
 ## Making a Line Graph with Multiple Lines {#LINE-GRAPH-MULTIPLE-LINE}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/VlyE4ZB0RPM")
+```
+
 
 ### Problem
 
@@ -151,6 +160,10 @@ ggplot(dat_long) +
 
 ## Changing the Appearance of Lines {#LINE-GRAPH-LINE-APPEARANCE}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/xOWAMHWUxC4")
+```
+
 ### Problem
 
 You want to change the appearance of the lines in a line graph.
@@ -212,6 +225,10 @@ knitr::include_graphics(c("images/chapter-7/linetype.png"))
 
 ## Using Themes to Change Overall Appearance of Plot {#LINE-GRAPH-APPEARANCE-THEME}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/IpmG8N8u6lw")
+```
+
 ### Problem
 
 You want to use premade themes to control the overall plot appearance.
@@ -255,6 +272,9 @@ hw_plot +
 
 ## Learning check {#LINE-GRAPH-LEARNING-CHECK}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/7M5_GRm6bYM")
+```
 
 1. From your learning check in \@ref(BAR-LEARNING-CHECK), open up your `practice_script.R`. 
 
@@ -287,6 +307,14 @@ hw_plot +
 14. Download the solution to this learning check below.
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/practice_line.R', text = "Click to download the solution")
+downloadthis::download_file(
+  path = "data/practice_line.R",
+  output_name = "Learning check 8 answers",
+  output_extension = ".R",
+  button_label = "Learning check 8 answers",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```

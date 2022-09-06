@@ -17,6 +17,11 @@ source("utils.R", local = TRUE)
 
 # Bar Graphs {#CHAPTER-BAR-GRAPH}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/2JKC9pCN9O4")
+```
+
+
 There are so many types of figures that you can create in R (Figure \@ref(fig:FIG-RICH-GRAPH)). In the next two chapters, I will only delve into two types of figures that I believe is most useful for your case. With this basic skills, you have the foundation to delve deeper into this software if you desire. 
 
 ```{r FIG-RICH-GRAPH, echo=FALSE, fig.align='center', fig.cap="The plotting capabilities are endless.", fig.height=15}
@@ -116,6 +121,11 @@ ggplot(dat_summ) +
 
 ## Anatomy of a Graph {#BAR-GRAPH-ANATOMY}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/qSe3MERG7xM")
+```
+
+
 There is alot of things that is going on behind the scene in this simple code of `ggplot(dat_summ) +  geom_col(aes(x = task, y = total))`. Let us deleve a little into it, to understand the grammar of any graph, not just the bar graph we created. Remember, for any software, this grammar or anatomy towards a graph will be similar.
 
 ### Plot Background {#BAR-GRAPH-ANATOMY-BACKGROUND}
@@ -155,6 +165,10 @@ Notice the code difference in Recipe \@ref(BAR-GRAPH-ANATOMY-GEOMS) and Recipe \
 
 ## Grouping Bars Together {#BAR-GRAPH-GROUPED-BAR}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/1AqQgJKCwps")
+```
+
 ### Problem
 
 You want to group bars together by a second variable.
@@ -193,6 +207,11 @@ Other aesthetics, such as `colour` (the color of the outlines of the bars), can 
 
 ## Using Colors in a Bar Graph {#BAR-GRAPH-COLORS}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/d6CqH8Cjwjg")
+```
+
+
 ### Problem
 
 You want to use different colors for the bars in your graph.The default colors aren't the most appealing, so you may want to set them using `scale_fill_manual()`. We'll set the outline color of the bars to black, with `colour="black"` (Figure \@ref(fig:FIG-BAR-GRAPH-FILL-MANUAL)). 
@@ -217,6 +236,9 @@ knitr::include_graphics(c("images/chapter-6/color_names.png"))
 
 ## Changing Axes titles in a Bar Graph {#BAR-GRAPH-AXES}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/x2jHR2YlIXs")
+```
 
 ### Problem
 
@@ -237,6 +259,10 @@ ggplot(dat) +
 
 ## Changing Legend titles in a Bar Graph {#BAR-GRAPH-LEGEND}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/u7adiqSuUko")
+```
+
 ### Problem
 
 You want to use a different name for the legend title. Some may simply want to use the same names with capitalizations, or  totally different names, especially if abbreviations are used in your spreadsheet. For this we will be using the `labs()` function, and within it the *fill* argument. In this example, the  visual component that separates different sides was the fill color, that is why we changed the name of the fill component.  
@@ -255,6 +281,10 @@ ggplot(dat) +
 ```
 
 ## Changing font size uniformly across the Bar Graph {#BAR-GRAPH-FONTSIZE}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/fwb0TaJVB8w")
+```
 
 ### Problem
 
@@ -276,6 +306,10 @@ ggplot(dat) +
 
 
 ## Outputting to Bitmap (PNG/TIFF) Files {#BAR-OUTPUT-BITMAP}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/AoalJBQp9og")
+```
 
 ### Problem
 
@@ -319,6 +353,9 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 
 ## Learning check {#BAR-LEARNING-CHECK}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/-01qJKm-c9I")
+```
 
 1. Open up your `practice_script.R`, updated from the learning check in \@ref(WRANGLE-LEARNING-CHECK).
 
@@ -337,6 +374,15 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 7. Download the solution to this learning check below.
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/practice_bar.R', text = "Click to download the solution")
+downloadthis::download_file(
+  path = "data/practice_bar.R",
+  output_name = "Learning check 7 answers",
+  output_extension = ".R",
+  button_label = "Learning check 7 answers",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
+

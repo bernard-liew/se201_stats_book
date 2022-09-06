@@ -1,7 +1,11 @@
 
 # Your Assignment 
 
-This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treamdill Test analyses. There are two things to note:
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/1pK88G_WHD0")
+```
+
+This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treadmill Test analyses. There are two things to note:
 
 1. With the graphs created, export it and paste into your word assignment document. 
 
@@ -18,9 +22,18 @@ To do your assignment, follow these steps:
 3. Download the R script in this link `assignment_analysis.R`. Save this script into the `se201/assignment` folder. When you open it, you should see the codes below.
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/assignment_analysis.R', text = "Click to download the script for assignment")
+downloadthis::download_file(
+  path = "data/assignment_analysis.R",
+  output_name = "analysis_scripts",
+  output_extension = ".R",
+  button_label = "Assignment template",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
+
 
 4. Inside `se201/assignment` folder, create a `data` folder. Put all your raw Excel data into the `data` folder. **All raw Excel data for this assignment will be on SE201 Moodle>Assessment Information**.
 

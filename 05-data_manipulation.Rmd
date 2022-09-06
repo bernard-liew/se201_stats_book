@@ -15,7 +15,11 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ## Import data {-}
 
-Let's load the 3 files from `data` folder into the workspace again. File one contains the FMS data, another the VO2 raw data from the treadmill test, and lastly the lactate data from the treadmill test.
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/ficAKoksgFI")
+```
+
+Let's load the files from the `data` folder into the work space again. 
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -32,6 +36,9 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
 dat_vo2_stage <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
                    sheet = "stage")
 
+bad_leg_accl <-  read.xlsx (xlsxFile = "data/rightleg_imu.xlsx")
+
+good_leg_accl <-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
 ```
 
 ### Let us see the data {-}
@@ -75,7 +82,33 @@ dat_vo2_stage %>%
   kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
+#### Drop jump imu
+
+Bad leg
+
+This is a table representing a single subject's single leg drop jump imu data.
+
+```{r, echo = FALSE}
+bad_leg_accl %>%
+  knitr::kable () %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+Good leg
+
+```{r, echo = FALSE}
+good_leg_accl %>%
+  knitr::kable () %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+
 ## Tidy data {#WRANGLE-TIDY-DATA}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/LKftcxMdqm8")
+```
+
 
 You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. This dataset is **not the data you loaded**, but rather came with the `tidyverse` package. Each dataset shows the same values of four variables *country*, *year*, *population*, and *cases*, but each dataset organises the values in a different way.
 
@@ -137,6 +170,10 @@ Typically a dataset will only suffer from one of these problems; it'll only suff
 
 ## Renaming variables {#WRANGLE-RENAME-VARIABLES}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/JB4Ex9oFZi0")
+```
+
 ### Problem
 
 The current column names in the `dat_vo2` dataset is ugly, and you like to abbreviate it. I dislike excessive usage of capitalisations. It is a lot of effort to type.
@@ -168,17 +205,19 @@ colnames (dat_vo2)
 
 ```
 
-## Selecting rows and columns {#WRANGLE-SLICE}
+## Selecting rows {#WRANGLE-SLICE}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/-VR2j-dNFY0")
+```
 
 ### Problem
 
-You want to remove a specific row  or a range of rows, and remove a specific column or a range of columns. See also Recipe \@ref(WRANGLE-FILTER).
+You want to remove a specific row  or a range of rows. See also Recipe \@ref(WRANGLE-FILTER).
 
 ### Solution
 
 To keep or remove rows based on the row numbers, use `slice ()`, `slice_head()`, or `slice_tail()`. In `slice ()`, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, add `start:end` inside `slice()`. In `slice_tail ()` and `slice_head()`, you can keep the bottom, and top, *n* number of rows, respectively, by adding `n = 3` for example inside `slice_tail()` or `slice_head()`.
-
-To keep based on the column names, use the `select ()` function. 
 
 ```{r }
 # This keeps only the second row
@@ -243,19 +282,6 @@ vo2_slice %>%
   knitr::kable (digits = 2)
 ```
 
-```{r }
-# This selects the first, second, and fourth column, and discards the rest
-
-vo2_slice <- dat_vo2 %>%
-  dplyr::select (time, bf, rer) 
-
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
 
 ```{r }
 # This removes the first row, and replaces the old data in object dat_vo2
@@ -265,7 +291,55 @@ dat_vo2 <- dat_vo2 %>%
 
 ```
 
+
+## Selecting columns {#WRANGLE-SELECT}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/-VR2j-dNFY0")
+```
+
+### Problem
+
+You want to keep or remove a specific column or a range of columns. 
+
+### Solution
+
+To keep based on the column names, use the `select ()` function. When keying in the name of the column variables you want to keep, you do not really need to use the `""`. This means, you can type the names you want like the following: `select(time_s, mx_microT)`. In the example below, I used `""` to surround the variable names. I did this because as previously mentioned in \@ref(INPUT-FILE), the symbol `/` has a special, **irritating** meaning in R. So, avoid having such symbols anyway in your files, but for now, I have shown you how to overcome this problem.
+
+```{r }
+
+# This selects the vertical acceleration signal of the IMU of the bad leg
+
+bad_vertical_accl <- bad_leg_accl %>%
+  select ("highg_az_m/s/s")
+```
+
+```{r, echo = FALSE}
+bad_vertical_accl %>%
+  head() %>%
+  knitr::kable (digits = 2)
+```
+
+
+```{r }
+
+# This selects the vertical acceleration signal of the IMU of the good leg
+
+good_vertical_accl <- good_leg_accl %>%
+  select ("highg_az_m/s/s")
+```
+
+```{r, echo = FALSE}
+good_vertical_accl %>%
+  head() %>%
+  knitr::kable (digits = 2)
+```
+
 ## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/j1J63-ePZd8")
+```
 
 ### Problem
 
@@ -313,6 +387,10 @@ str(dat_vo2)
 
 ## Convert characters to date and time {#WRANGLE-CHARACTER-2-TIME}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/rBIq-n-RZxI")
+```
+
 ### Problem
 
 The raw `dat_vo2` data `time` variable is a character with ugly white spaces. When you use the `str()` function on the time column using the `$` symbol, you can see that each value looks like `"  00:05 "`. It means that is a blank before and after the `00:05`. 
@@ -354,6 +432,11 @@ dat_vo2 %>%
 ### Discussion
 
 Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the `time` variable. Let me illustrate each step using the carbon copy data `dat_vo2_copy`.
+
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/imDxCPMgXfE")
+```
 
 
 ```{r }
@@ -422,6 +505,10 @@ time_mutate %>%
 
 ## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/TYBTXk95doo")
+```
+
 ### Problem
 
 Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
@@ -446,6 +533,10 @@ Why chunks of 210 sec? Vo2 data analysis, requires you to find the average value
 
 ## Gathering {#WRANGLE-GATHER}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/XVTX1L9iZIo")
+```
+
 ### Problem
 
 You want to make your data longer. In the data `dat_fms_grp` (go to the start of this chapter to see this data's original shape), you want to merge the 7 columns indicating the 7 FMS tasks into a single column. For this, you can use the `pivot_longer()` function. 
@@ -465,6 +556,10 @@ dat_long %>%
 ```
 
 ## Spreading {#WRANGLE-SPREAD}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/utuxfSl1umU")
+```
 
 ### Problem
 
@@ -490,6 +585,10 @@ dat_wide%>%
 
 ## Rename values of a variable {#WRANGLE-RENAME-VALUES}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/duTAu0314og")
+```
+
 ### Problem
 
 You want to rename some values, either because it is too long, too short, or for other reasons. In this instance, in the `dat_fms` dataset, you want to call `l`, `left`, and `r`, `right`.
@@ -513,6 +612,10 @@ dat_fms%>%
 ```
 
 ## Creating factors {#WRANGLE-CHARACTERS-2-FACTORS}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/B8WN5PzQRdk")
+```
 
 ### Problem
 
@@ -552,6 +655,10 @@ ggplot(dat_fms_relvl) +
 
 
 ## Making a new variable {#WRANGLE-NEW-VARIABLES}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/nyDBN0norho")
+```
 
 ### Problem
 
@@ -603,8 +710,35 @@ head(dat_vo2)%>%
   knitr::kable (digits = 2)
 ```
 
+For the IMU data, you can automatically find the maximum value of a very long data sequence, and use these values to provide an index of landing impact symmetry.
+
+```{r}
+
+# Maximal bad leg impact value
+max_bad_ampl <- max(bad_vertical_accl)
+
+# Maximal good leg impact value
+max_good_ampl <- max(good_vertical_accl)
+
+```
+```{r}
+
+# Symmetry index 
+
+symmmetry_index <- 
+  ((2* (max_bad_ampl - max_good_ampl))/(max_bad_ampl + max_good_ampl)) * 100
+
+
+symmmetry_index
+
+```
+
 
 ## Filtering {#WRANGLE-FILTER}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/-xKvvvsYAXw")
+```
 
 Filtering is removing rows you do not want and keeping rows you want based on some condition(s). In Recipe \@ref(WRANGLE-SLICE), you learnt the `slice()` function. That is for really simple filtering. The `filter()` function you will learn here gives you more flexibility. Filtering deals with keeping or throwing out **rows** of data. Keeping or throwing out columns of data requires the `select()` function, which you learnt in Recipe \@ref(WRANGLE-SLICE).
 
@@ -674,6 +808,10 @@ hist (dat_vo2_filt$ve)
 
 ## Global summary {#WRANGLE-SUMMARIZE-GLOBAL}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/997159RN4Qg")
+```
+
 ### Problem
 
 You want to find the total FMS score across all sides and tasks
@@ -712,6 +850,11 @@ fms_summ %>%
 ```
 
 ## Group-by summary {#WRANGLE-SUMMARIZE-GROUPBY}
+
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/WzWUvmZ0JQU")
+```
+
 
 ### Problem
 
@@ -775,6 +918,9 @@ knitr::kable (dat_vo2_summ,
 
 ## Merge two tables together {#WRANGLE-INNER-JOIN}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/g0Rrmur31MU")
+```
 ### Problem
 
 You want to combine two tables together, ensuring that each row is linked appropriately. For example, you want to combine your `dat_vo2_summ` summary data with the `dat_vo2_stage` table which contains the RPE and blood lactate values. 
@@ -800,6 +946,10 @@ It is common sense, that if we want to join two tables, there must be some rules
 
 ## Learning check {#WRANGLE-LEARNING-CHECK}
 
+```{r, echo = FALSE}
+vembedr::embed_url("https://youtu.be/D0a18-ge5tE")
+```
+
 
 1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import the `data/Athlete_1_treadmill.xlsx` file, and label the data called `dat`.
 
@@ -824,6 +974,15 @@ It is common sense, that if we want to join two tables, there must be some rules
 11. Download the solution to this learning check below.
 
 ```{r echo=FALSE}
-# a single file
-xfun::embed_file('data/practice_manip.R', text = "Click to download the solution")
+downloadthis::download_file(
+  path = "data/practice_manip.R",
+  output_name = "Learning check 6 answers",
+  output_extension = ".R",
+  button_label = "Learning check 6 answers",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
 ```
+
