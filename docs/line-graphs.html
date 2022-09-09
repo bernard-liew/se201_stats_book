@@ -16,8 +16,7 @@
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
 <script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
 <meta name="description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
 <meta property="og:description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
 <meta name="twitter:description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
@@ -64,8 +63,8 @@
 </h1>
 <p>Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the <em>x</em> variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.</p>
 <p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small”, “medium”, “large”), but not when the variable is unordered (e.g., “cow”, “goose”, “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
-<p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="#WRANGLE-SUMMARIZE-GROUPBY"><strong>??</strong></a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/treadmill_pt4_clean.xlsx"</span>,</span>
 <span>                   sheet <span class="op">=</span> <span class="st">"Sheet1"</span><span class="op">)</span></span>
 <span></span>
@@ -85,18 +84,18 @@
 <iframe src="https://www.youtube.com/embed/m0rdWRnWgc8" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-<div id="problem-23" class="section level3" number="8.1.1">
+<div id="problem-13" class="section level3" number="8.1.1">
 <h3>
-<span class="header-section-number">8.1.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-23"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-13"><i class="fas fa-link"></i></a>
 </h3>
 <p>You want to make a basic line graph.</p>
 </div>
-<div id="solution-23" class="section level3" number="8.1.2">
+<div id="solution-13" class="section level3" number="8.1.2">
 <h3>
-<span class="header-section-number">8.1.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-23"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-13"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>, and specify which variables you mapped to x and y (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE">8.1</a>):</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
@@ -107,9 +106,9 @@ Figure 8.1: Basic line graph
 </p>
 </div>
 </div>
-<div id="discussion-12" class="section level3" number="8.1.3">
+<div id="discussion-6" class="section level3" number="8.1.3">
 <h3>
-<span class="header-section-number">8.1.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-12"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-6"><i class="fas fa-link"></i></a>
 </h3>
 <p>In this sample data set, the <em>x</em> variable, <code>time</code>, is in one column and the <em>y</em> variable, <code>vo2</code>, is in another:</p>
 <div class="inline-table"><table class="table table-sm">
@@ -351,7 +350,7 @@ hr
 </tbody>
 </table></div>
 <p>With ggplot2, the default <em>y</em> range of a line graph is just enough to include the <em>y</em> values in the data. For some kinds of data, it’s better to have the <em>y</em> range start from zero. You can use <code><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim()</a></code> to set the range, or you can use <code><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits()</a></code> to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in <code>BOD</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM">8.2</a>):</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># These have the same result</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -377,18 +376,18 @@ Figure 8.2: Line graph with manually set y range
 <iframe src="https://www.youtube.com/embed/VlyE4ZB0RPM" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-<div id="problem-24" class="section level3" number="8.2.1">
+<div id="problem-14" class="section level3" number="8.2.1">
 <h3>
-<span class="header-section-number">8.2.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-24"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-14"><i class="fas fa-link"></i></a>
 </h3>
 <p>You want to make a line graph with more than one line.</p>
 </div>
-<div id="solution-24" class="section level3" number="8.2.2">
+<div id="solution-14" class="section level3" number="8.2.2">
 <h3>
-<span class="header-section-number">8.2.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-24"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-14"><i class="fas fa-link"></i></a>
 </h3>
 <p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">8.3</a>:</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Bring all variables into one column</span></span>
 <span></span>
@@ -413,9 +412,9 @@ Figure 8.3: A variable mapped to colour (left); A variable mapped to linetype (r
 </p>
 </div>
 </div>
-<div id="discussion-13" class="section level3" number="8.2.3">
+<div id="discussion-7" class="section level3" number="8.2.3">
 <h3>
-<span class="header-section-number">8.2.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-13"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-7"><i class="fas fa-link"></i></a>
 </h3>
 <p>The <code>dat_long</code> data has three columns, including the factor <code>var</code>, which we mapped to <code>colour</code> and <code>linetype</code>:</p>
 <div class="inline-table"><table class="table table-sm">
@@ -614,7 +613,7 @@ vco2
 <p>If the <em>x</em> variable is a factor, you must also tell ggplot to group by that same variable, as described below.</p>
 </blockquote>
 <p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">8.4</a>):</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> <span class="op">(</span><span class="va">stage</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span>, group <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -624,15 +623,15 @@ vco2
 Figure 8.4: Line graph with continuous x variable converted to a factor
 </p>
 </div>
-<p>To convert a variable to a factor , see also Recipe <a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS">6.11</a>.</p>
+<p>To convert a variable to a factor , see also Recipe <a href="#WRANGLE-CHARACTERS-2-FACTORS"><strong>??</strong></a>.</p>
 <p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will not plot anything:</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb126"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> <span class="op">(</span><span class="va">stage</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; geom_path: Each group consists of only one observation. Do you need to adjust</span></span>
 <span><span class="co">#&gt; the group aesthetic?</span></span></code></pre></div>
-<div class="inline-figure"><img src="se201_stats_book_files/figure-html/unnamed-chunk-186-1.png" width="50%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="se201_stats_book_files/figure-html/unnamed-chunk-146-1.png" width="50%" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="LINE-GRAPH-LINE-APPEARANCE" class="section level2" number="8.3">
@@ -644,19 +643,19 @@ Figure 8.4: Line graph with continuous x variable converted to a factor
 <iframe src="https://www.youtube.com/embed/xOWAMHWUxC4" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-<div id="problem-25" class="section level3" number="8.3.1">
+<div id="problem-15" class="section level3" number="8.3.1">
 <h3>
-<span class="header-section-number">8.3.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-25"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-15"><i class="fas fa-link"></i></a>
 </h3>
 <p>You want to change the appearance of the lines in a line graph.</p>
 </div>
-<div id="solution-25" class="section level3" number="8.3.2">
+<div id="solution-15" class="section level3" number="8.3.2">
 <h3>
-<span class="header-section-number">8.3.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-25"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-15"><i class="fas fa-link"></i></a>
 </h3>
 <p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>size</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
 <p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">8.5</a>) by passing them values in the call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>:</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span>, </span>
 <span>            linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
@@ -667,7 +666,7 @@ Figure 8.5: Line graph with custom linetype, size, and colour
 </p>
 </div>
 <p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">8.2</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">8.6</a>, by using <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual()</a></code>:</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -679,13 +678,13 @@ Figure 8.6: Using a palette from RColorBrewer
 </p>
 </div>
 </div>
-<div id="discussion-14" class="section level3" number="8.3.3">
+<div id="discussion-8" class="section level3" number="8.3.3">
 <h3>
-<span class="header-section-number">8.3.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-8"><i class="fas fa-link"></i></a>
 </h3>
 <p>To set a single constant color for all the lines, specify colour outside of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">8.7</a>). You may also have to specify the grouping variable:</p>
 
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If both lines have the same properties, you need to specify a variable to</span></span>
 <span><span class="co"># use for grouping</span></span>
 <span></span>
@@ -721,20 +720,20 @@ Figure 8.8: The different types of linetype you can use.
 <iframe src="https://www.youtube.com/embed/IpmG8N8u6lw" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-<div id="problem-26" class="section level3" number="8.4.1">
+<div id="problem-16" class="section level3" number="8.4.1">
 <h3>
-<span class="header-section-number">8.4.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-26"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.1</span> Problem<a class="anchor" aria-label="anchor" href="#problem-16"><i class="fas fa-link"></i></a>
 </h3>
 <p>You want to use premade themes to control the overall plot appearance.</p>
 </div>
-<div id="solution-26" class="section level3" number="8.4.2">
+<div id="solution-16" class="section level3" number="8.4.2">
 <h3>
-<span class="header-section-number">8.4.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-26"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-16"><i class="fas fa-link"></i></a>
 </h3>
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code>, but the examples below also showcase <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic()</a></code>.</p>
 <p>To use a premade theme, add <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">8.9</a>):</p>
 
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create the base plot</span></span>
 <span></span>
 <span><span class="va">hw_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
@@ -783,11 +782,11 @@ Figure 8.9: Scatter plot with <code><a href="https://ggplot2.tidyverse.org/refer
 <li><p>Remove the first row of the <code>dat</code> data, as it is useless. See Recipe <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
 <li><p>Convert the variable <code>time</code> of <code>dat</code> into numeric seconds, and all other variables to numeric. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME">6.6</a> and <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.5</a>, respectively.</p></li>
 <li><p>Create a variable called <code>stage</code>, where each stage represents 3:30 min worth of VO2 data. See Recipe <a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY">6.7</a>.</p></li>
-<li><p>For each stage, create a variable called <code>row_id</code>, which essentially represents the number of 5 sec windows in each stage. See Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.12</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a>.</p></li>
-<li><p>For each stage, remove the data between 3 to 3:30min. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a> and <a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC">6.13.2</a>.</p></li>
-<li><p>For each stage, keep the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a> and <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
-<li><p>For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a> and <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL">6.14</a>. Assign this table to an object called <code>dat_summ</code>.</p></li>
-<li><p>Merge the two tables <code>dat_summ</code> and <code>dat_stage</code>, by the common variable called <code>stage</code>. See Recipe <a href="WRANGLE.html#WRANGLE-INNER-JOIN">6.16</a>. Assign this table to an object called <code>df_plot</code>.</p></li>
+<li><p>For each stage, create a variable called <code>row_id</code>, which essentially represents the number of 5 sec windows in each stage. See Recipe <a href="#WRANGLE-NEW-VARIABLES"><strong>??</strong></a> and <a href="#WRANGLE-SUMMARIZE-GROUPBY"><strong>??</strong></a>.</p></li>
+<li><p>For each stage, remove the data between 3 to 3:30min. See Recipe <a href="#WRANGLE-SUMMARIZE-GROUPBY"><strong>??</strong></a> and <a href="#WRANGLE-FILTER-KEEP-NUMERIC"><strong>??</strong></a>.</p></li>
+<li><p>For each stage, keep the last six rows of data. See Recipe <a href="#WRANGLE-SUMMARIZE-GROUPBY"><strong>??</strong></a> and <a href="WRANGLE.html#WRANGLE-SLICE">6.3</a>.</p></li>
+<li><p>For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe <a href="#WRANGLE-SUMMARIZE-GROUPBY"><strong>??</strong></a> and <a href="#WRANGLE-SUMMARIZE-GLOBAL"><strong>??</strong></a>. Assign this table to an object called <code>dat_summ</code>.</p></li>
+<li><p>Merge the two tables <code>dat_summ</code> and <code>dat_stage</code>, by the common variable called <code>stage</code>. See Recipe <a href="#WRANGLE-INNER-JOIN"><strong>??</strong></a>. Assign this table to an object called <code>df_plot</code>.</p></li>
 <li><p>Using <code>df_plot</code>, make a line plot with with <code>speed</code> as the <em>x</em> axis, and <code>vo2</code> as the <em>y</em> axis, and assign it to an object called <code>f</code>. See Recipe <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>.</p></li>
 <li><p>Save image <code>f</code> to a file called <code>myfig.png</code>. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p></li>
 <li><p>You must be wondering, why can’t I see the figure. What must you do to print the picture? See Recipe <a href="get-started.html#INSTALL-READ-WRITE-CODE">2.3</a>.</p></li>
@@ -816,29 +815,29 @@ Figure 8.9: Scatter plot with <code><a href="https://ggplot2.tidyverse.org/refer
 <li><a class="nav-link" href="#line-graphs"><span class="header-section-number">8</span> Line Graphs</a></li>
 <li>
 <a class="nav-link" href="#LINE-GRAPH-BASIC-LINE"><span class="header-section-number">8.1</span> Making a Basic Line Graph</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#problem-23"><span class="header-section-number">8.1.1</span> Problem</a></li>
-<li><a class="nav-link" href="#solution-23"><span class="header-section-number">8.1.2</span> Solution</a></li>
-<li><a class="nav-link" href="#discussion-12"><span class="header-section-number">8.1.3</span> Discussion</a></li>
+<li><a class="nav-link" href="#problem-13"><span class="header-section-number">8.1.1</span> Problem</a></li>
+<li><a class="nav-link" href="#solution-13"><span class="header-section-number">8.1.2</span> Solution</a></li>
+<li><a class="nav-link" href="#discussion-6"><span class="header-section-number">8.1.3</span> Discussion</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#LINE-GRAPH-MULTIPLE-LINE"><span class="header-section-number">8.2</span> Making a Line Graph with Multiple Lines</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#problem-24"><span class="header-section-number">8.2.1</span> Problem</a></li>
-<li><a class="nav-link" href="#solution-24"><span class="header-section-number">8.2.2</span> Solution</a></li>
-<li><a class="nav-link" href="#discussion-13"><span class="header-section-number">8.2.3</span> Discussion</a></li>
+<li><a class="nav-link" href="#problem-14"><span class="header-section-number">8.2.1</span> Problem</a></li>
+<li><a class="nav-link" href="#solution-14"><span class="header-section-number">8.2.2</span> Solution</a></li>
+<li><a class="nav-link" href="#discussion-7"><span class="header-section-number">8.2.3</span> Discussion</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#LINE-GRAPH-LINE-APPEARANCE"><span class="header-section-number">8.3</span> Changing the Appearance of Lines</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#problem-25"><span class="header-section-number">8.3.1</span> Problem</a></li>
-<li><a class="nav-link" href="#solution-25"><span class="header-section-number">8.3.2</span> Solution</a></li>
-<li><a class="nav-link" href="#discussion-14"><span class="header-section-number">8.3.3</span> Discussion</a></li>
+<li><a class="nav-link" href="#problem-15"><span class="header-section-number">8.3.1</span> Problem</a></li>
+<li><a class="nav-link" href="#solution-15"><span class="header-section-number">8.3.2</span> Solution</a></li>
+<li><a class="nav-link" href="#discussion-8"><span class="header-section-number">8.3.3</span> Discussion</a></li>
 </ul>
 </li>
 <li>
 <a class="nav-link" href="#LINE-GRAPH-APPEARANCE-THEME"><span class="header-section-number">8.4</span> Using Themes to Change Overall Appearance of Plot</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#problem-26"><span class="header-section-number">8.4.1</span> Problem</a></li>
-<li><a class="nav-link" href="#solution-26"><span class="header-section-number">8.4.2</span> Solution</a></li>
+<li><a class="nav-link" href="#problem-16"><span class="header-section-number">8.4.1</span> Problem</a></li>
+<li><a class="nav-link" href="#solution-16"><span class="header-section-number">8.4.2</span> Solution</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#LINE-GRAPH-LEARNING-CHECK"><span class="header-section-number">8.5</span> Learning check</a></li>
