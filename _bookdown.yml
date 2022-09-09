@@ -5,7 +5,7 @@ language:
     chapter_name: "Chapter "
 output_dir: "docs"
 rmd_files: ["index.Rmd", 
-            "01-gettingstarted.Rmd", 
+            "01-gettingstarted.Rmd",
             "02-basics.Rmd",
             "03-navigatingworkspace.Rmd",
             "04-input_output.Rmd",

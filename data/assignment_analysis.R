@@ -1,19 +1,6 @@
-## ---------------------------
-##
-##
-## Author: Put your name
-##
-## Date Created: Put the date
-##
-##
-## ---------------------------
-##
-## Notes:
-##   
-##
-## ---------------------------
 
-## ---------------------------
+
+## -----------------------------------------------------------------------------
 
 ## load up the packages we will need
 
@@ -25,7 +12,8 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ## Custom function to get interection between two lines
 ## To get Lactate and Anaerobic Threshold values
-## Ignore the complexity, highlight between Start and End, Run --------------
+## Ignore the complexity, highlight between Start and End, Run -----------------
+
 ## Start ----------------
 curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL) 
 {
@@ -51,7 +39,7 @@ curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL)
 }
 ## End ----------------
 
-## Import data (Task 1)
+## Import data 
 
 ### Import the sheet with the Vo2 data
 dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
@@ -69,37 +57,13 @@ dat_fms_grp <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                             sheet = "XXX")
 
+### Import drop jump data
+dat_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
+                       sheet = "XXX")
+
 ## Analyze FMS data ------------------------------------------------------------
 
-################################ Group FMS #####################################
-
-### Number of athletes scoring a level in FMS (Task 2)
-
-dat_fms_grp <- dat_fms_grp %>% # original data
-  pivot_longer(cols = -id,
-               names_to = "task",
-               values_to = "score") %>%
-  group_by(XXX, XXX) %>%
-  summarize (count = n()) %>%
-  mutate (score = factor (score, levels = c("0", "1", "2", "3")))
-
-### Plot group FMS (Task 3)
-
-plot_fms_grp <- ggplot (XXX) +
-  geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge") +
-  scale_fill_discrete(drop=FALSE) +
-  scale_x_discrete(drop=FALSE)
-
-ggsave(filename = "grp_fms.png", 
-       plot = plot_fms_grp , # the name of the image object you created above.
-       width = 15, 
-       height = 8, 
-       unit = "cm", 
-       dpi = 200)
-
-############################# Individual FMS ###################################
-
-### Plot group FMS (Task 4)
+### Plot group FMS 
 
 plot_fms_indv <- ggplot(XXX) +
   geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")
@@ -111,10 +75,25 @@ ggsave(filename = "ind_fms.png",
        unit = "cm", 
        dpi = 200)
 
+## Analyze drop jump data ------------------------------------------------------
+
+# Maximal bad leg impact value
+max_bad_ampl <- max(df_imu$bad)
+
+# Maximal good leg impact value
+max_good_ampl <- max(df_imu$good)
+
+# Symmetry index 
+
+symmmetry_index <- 
+  ((2* (max_bad_ampl - max_good_ampl))/(max_bad_ampl + max_good_ampl)) * 100
+
+
+symmmetry_index
 
 ## Analyze VO2 data ------------------------------------------------------------
 
-### Rename column names of Vo2 data (Task 5)
+### Rename column names of Vo2 data 
 
 new_names <- c()
 
@@ -125,7 +104,7 @@ colnames (dat_vo2)  <- new_names
 dat_vo2 <- dat_vo2 %>% 
   slice (-c(1))
 
-### Convert column type of Vo2 data (Task 6)
+### Convert column type of Vo2 data 
 
 dat_vo2 <-  dat_vo2 %>%
   mutate (bf = XXX (bf),
@@ -147,7 +126,7 @@ dat_vo2 <-  dat_vo2 %>%
 dat_vo2 <- dat_vo2 %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE))
 
-### Calculate average 30s data per stage of Vo2 data (Task 7)
+### Calculate average 30s data per stage of Vo2 data 
 
 dat_vo2_summ <- dat_vo2 %>%
   group_by(XXX) %>% # for each group
@@ -163,7 +142,7 @@ dat_vo2_summ <- dat_vo2 %>%
              hr = mean (hr))
 
 
-### Combine Vo2 staged data with lactate data (Task 8)
+### Combine Vo2 staged data with lactate data 
 
 dat_vo2_comb <- dat_vo2_summ %>%
   inner_join(dat_stage, by = "XXX")
@@ -190,7 +169,7 @@ ggsave(filename = "lactate.png",
        unit = "cm", 
        dpi = 200)
 
-#### Heart rate (Task 10)
+#### Heart rate 
 
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
@@ -210,13 +189,14 @@ ggsave(filename = "heartrate.png",
        unit = "cm", 
        dpi = 200)
 
-#### Export table (Task 11)
+#### Export table 
 
 write.xlsx(x = XXX,
            sheetName = "vo2",
            file = "data/vo2_table.xlsx")
 
-## Bonus Codes to help you -------------------------------------------------
+## Bonus Codes to help you -----------------------------------------------------
+
 ### Click on everything below and run
 
 

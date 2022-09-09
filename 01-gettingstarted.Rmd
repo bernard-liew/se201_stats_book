@@ -7,7 +7,7 @@ To use R, we'll need to download **2** software: **Base-R**, and **RStudio**. Ba
 
 ### Check for version updates
 
-R and RStudio have been around for several years -- however, they are *constantly* being updated with new features and bug-fixes. At the time that I am writing this sentence ("`r Sys.Date()`"), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.
+R and RStudio have been around for several years -- however, they are *constantly* being updated with new features and bug-fixes. At the time that I am writing this sentence ("`r Sys.Date()`"), the latest version of Base-R is 4.2.1, and the latest version of RStudio is 2022.07.1.
 
 ```{r rlogo, fig.cap= "R logo", fig.margin = TRUE, echo = FALSE, out.width = "40%", fig.align="center"}
 knitr::include_graphics(c("images/chapter-1/Rlogo.png"))

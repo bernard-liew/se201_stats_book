@@ -1,429 +1,67 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization</title>
-  <meta name="description" content="Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization" />
-  
-  
-  
-
-<meta name="author" content="Bernard Liew" />
-
-
-<meta name="date" content="2022-09-06" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="line-graphs.html"/>
-
-<script src="libs/header-attrs-2.14/header-attrs.js"></script>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/font-awesome-5.13.0/js/script.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization</title>
+<meta name="author" content="Bernard Liew">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 9 Your Assignment | A Simple Cookbook for Wrangling and Visualization">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.14/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<meta name="description" content="This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treadmill Test analyses. There are two things to note: With the graphs created, export it and...">
+<meta property="og:description" content="This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treadmill Test analyses. There are two things to note: With the graphs created, export it and...">
+<meta name="twitter:description" content="This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treadmill Test analyses. There are two things to note: With the graphs created, export it and...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li><a href="index.html#intro" id="toc-intro"><span class="toc-section-number">1</span> Preface<span></span></a>
-<ul>
-<li><a href="index.html#why-is-r-so-great" id="toc-why-is-r-so-great"><span class="toc-section-number">1.1</span> Why is R so great?<span></span></a></li>
-<li><a href="index.html#rrelationship" id="toc-rrelationship"><span class="toc-section-number">1.2</span> Why R is like a relationship…<span></span></a></li>
-<li><a href="index.html#things-students-get-wrong" id="toc-things-students-get-wrong"><span class="toc-section-number">1.3</span> 3 things students get wrong<span></span></a>
-<ul>
-<li><a href="index.html#wrong-method-of-launching-software" id="toc-wrong-method-of-launching-software"><span class="toc-section-number">1.3.1</span> Wrong method of launching software<span></span></a></li>
-<li><a href="index.html#not-running-code-from-start" id="toc-not-running-code-from-start"><span class="toc-section-number">1.3.2</span> Not running code from START<span></span></a></li>
-<li><a href="index.html#typographical-errors" id="toc-typographical-errors"><span class="toc-section-number">1.3.3</span> Typographical errors<span></span></a></li>
-</ul></li>
-<li><a href="index.html#r-resources" id="toc-r-resources"><span class="toc-section-number">1.4</span> R resources<span></span></a>
-<ul>
-<li><a href="index.html#r-books" id="toc-r-books"><span class="toc-section-number">1.4.1</span> R books<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="get-started.html#get-started" id="toc-get-started"><span class="toc-section-number">2</span> Getting Started<span></span></a>
-<ul>
-<li><a href="get-started.html#INSTALL-GET-STARTED" id="toc-INSTALL-GET-STARTED"><span class="toc-section-number">2.1</span> Installing Base-R and RStudio<span></span></a>
-<ul>
-<li><a href="get-started.html#check-for-version-updates" id="toc-check-for-version-updates"><span class="toc-section-number">2.1.1</span> Check for version updates<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-GET-FAMILIAR" id="toc-INSTALL-GET-FAMILIAR"><span class="toc-section-number">2.2</span> The four RStudio Windows<span></span></a>
-<ul>
-<li><a href="get-started.html#source---your-notepad-for-code" id="toc-source---your-notepad-for-code"><span class="toc-section-number">2.2.1</span> Source - Your notepad for code<span></span></a></li>
-<li><a href="get-started.html#console-rs-heart" id="toc-console-rs-heart"><span class="toc-section-number">2.2.2</span> Console: R’s Heart<span></span></a></li>
-<li><a href="get-started.html#environment-history" id="toc-environment-history"><span class="toc-section-number">2.2.3</span> Environment / History<span></span></a></li>
-<li><a href="get-started.html#files-plots-packages-help" id="toc-files-plots-packages-help"><span class="toc-section-number">2.2.4</span> Files / Plots / Packages / Help<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-READ-WRITE-CODE" id="toc-INSTALL-READ-WRITE-CODE"><span class="toc-section-number">2.3</span> Reading and writing Code<span></span></a>
-<ul>
-<li><a href="get-started.html#code-chunks" id="toc-code-chunks"><span class="toc-section-number">2.3.1</span> Code Chunks<span></span></a></li>
-<li><a href="get-started.html#comments-with" id="toc-comments-with"><span class="toc-section-number">2.3.2</span> Comments with #<span></span></a></li>
-<li><a href="get-started.html#element-numbers-in-output-1" id="toc-element-numbers-in-output-1"><span class="toc-section-number">2.3.3</span> Element numbers in output [1]<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-DEBUG" id="toc-INSTALL-DEBUG"><span class="toc-section-number">2.4</span> Debugging<span></span></a>
-<ul>
-<li><a href="get-started.html#r-is-not-ready" id="toc-r-is-not-ready"><span class="toc-section-number">2.4.1</span> R is not ready (&gt;)<span></span></a></li>
-<li><a href="get-started.html#misspelled-object-or-function" id="toc-misspelled-object-or-function"><span class="toc-section-number">2.4.2</span> Misspelled object or function<span></span></a></li>
-<li><a href="get-started.html#punctuation-problems" id="toc-punctuation-problems"><span class="toc-section-number">2.4.3</span> Punctuation problems<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-LEARNING-CHECK" id="toc-INSTALL-LEARNING-CHECK"><span class="toc-section-number">2.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#basics" id="toc-basics"><span class="toc-section-number">3</span> The Basics<span></span></a>
-<ul>
-<li><a href="basics.html#download-and-load-packages" id="toc-download-and-load-packages">Download and load packages<span></span></a></li>
-<li><a href="basics.html#BASICS-CONSOLE" id="toc-BASICS-CONSOLE"><span class="toc-section-number">3.1</span> The command-line (Console)<span></span></a></li>
-<li><a href="basics.html#writing-r-scripts-in-an-editor" id="toc-writing-r-scripts-in-an-editor"><span class="toc-section-number">3.2</span> Writing R scripts in an editor<span></span></a>
-<ul>
-<li><a href="basics.html#send-code-from-a-source-to-the-console" id="toc-send-code-from-a-source-to-the-console"><span class="toc-section-number">3.2.1</span> Send code from a source to the console<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#a-brief-style-guide-commenting-and-spacing" id="toc-a-brief-style-guide-commenting-and-spacing"><span class="toc-section-number">3.3</span> A brief style guide: Commenting and spacing<span></span></a>
-<ul>
-<li><a href="basics.html#commenting-code-with-the-pound-sign" id="toc-commenting-code-with-the-pound-sign"><span class="toc-section-number">3.3.1</span> Commenting code with the # (pound) sign<span></span></a></li>
-<li><a href="basics.html#spacing" id="toc-spacing"><span class="toc-section-number">3.3.2</span> Spacing<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#objects-and-functions" id="toc-objects-and-functions"><span class="toc-section-number">3.4</span> Objects and functions<span></span></a>
-<ul>
-<li><a href="basics.html#BASIC-TYPES" id="toc-BASIC-TYPES"><span class="toc-section-number">3.4.1</span> Numbers versus characters<span></span></a></li>
-<li><a href="basics.html#creating-new-objects-with--" id="toc-creating-new-objects-with--"><span class="toc-section-number">3.4.2</span> Creating new objects with &lt;-<span></span></a></li>
-<li><a href="basics.html#how-to-name-objects" id="toc-how-to-name-objects"><span class="toc-section-number">3.4.3</span> How to name objects<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NavigatingTheSoftware" id="toc-NavigatingTheSoftware"><span class="toc-section-number">4</span> Navigating the Software<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#introduction" id="toc-introduction">Introduction<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#download-and-load-packages-1" id="toc-download-and-load-packages-1">Download and load packages<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY" id="toc-NAVIGATE-WORKING-DIRECTORY"><span class="toc-section-number">4.1</span> Getting and Setting the Working Directory<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS" id="toc-NAVIGATE-PROJECTS"><span class="toc-section-number">4.2</span> Creating a new Rstudio project<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE" id="toc-NAVIGATE-INSTALL-PACKAGE"><span class="toc-section-number">4.3</span> Installing Packages<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#installing-a-new-package" id="toc-installing-a-new-package"><span class="toc-section-number">4.3.1</span> Installing a new package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#loading-a-package" id="toc-loading-a-package"><span class="toc-section-number">4.3.2</span> Loading a package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#a-simple-approach-to-package" id="toc-a-simple-approach-to-package"><span class="toc-section-number">4.3.3</span> A simple approach to package<span></span></a></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK" id="toc-NAVIGATE-LEARNING-CHECK"><span class="toc-section-number">4.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="InputOuput.html#InputOuput" id="toc-InputOuput"><span class="toc-section-number">5</span> Input and Output<span></span></a>
-<ul>
-<li><a href="InputOuput.html#download-and-load-packages-2" id="toc-download-and-load-packages-2">Download and load packages<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-FILE" id="toc-INPUT-FILE"><span class="toc-section-number">5.1</span> Dealing with “Cannot Open File” in Windows<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-IMPORT" id="toc-INPUT-IMPORT"><span class="toc-section-number">5.2</span> Reading in Excel “.xlsx” data<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-EXPORT" id="toc-INPUT-EXPORT"><span class="toc-section-number">5.3</span> Writing a Data Frame to Excel<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-LEARNING-CHECK" id="toc-INPUT-LEARNING-CHECK"><span class="toc-section-number">5.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE" id="toc-WRANGLE"><span class="toc-section-number">6</span> Data manipulation<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#download-and-load-packages-3" id="toc-download-and-load-packages-3">Download and load packages<span></span></a></li>
-<li><a href="WRANGLE.html#import-data" id="toc-import-data">Import data<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#let-us-see-the-data" id="toc-let-us-see-the-data">Let us see the data<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-TIDY-DATA" id="toc-WRANGLE-TIDY-DATA"><span class="toc-section-number">6.1</span> Tidy data<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES" id="toc-WRANGLE-RENAME-VARIABLES"><span class="toc-section-number">6.2</span> Renaming variables<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem" id="toc-problem"><span class="toc-section-number">6.2.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution" id="toc-solution"><span class="toc-section-number">6.2.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SLICE" id="toc-WRANGLE-SLICE"><span class="toc-section-number">6.3</span> Selecting rows<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-1" id="toc-problem-1"><span class="toc-section-number">6.3.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-1" id="toc-solution-1"><span class="toc-section-number">6.3.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SELECT" id="toc-WRANGLE-SELECT"><span class="toc-section-number">6.4</span> Selecting columns<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-2" id="toc-problem-2"><span class="toc-section-number">6.4.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-2" id="toc-solution-2"><span class="toc-section-number">6.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC" id="toc-WRANGLE-CHARACTER-2-NUMERIC"><span class="toc-section-number">6.5</span> Convert characters to numeric<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-3" id="toc-problem-3"><span class="toc-section-number">6.5.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-3" id="toc-solution-3"><span class="toc-section-number">6.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME" id="toc-WRANGLE-CHARACTER-2-TIME"><span class="toc-section-number">6.6</span> Convert characters to date and time<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-4" id="toc-problem-4"><span class="toc-section-number">6.6.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-4" id="toc-solution-4"><span class="toc-section-number">6.6.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion" id="toc-discussion"><span class="toc-section-number">6.6.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY" id="toc-WRANGLE-NUMERIC-CATEGORY"><span class="toc-section-number">6.7</span> Split Numeric Variable into Categories<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-5" id="toc-problem-5"><span class="toc-section-number">6.7.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-5" id="toc-solution-5"><span class="toc-section-number">6.7.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-1" id="toc-discussion-1"><span class="toc-section-number">6.7.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-GATHER" id="toc-WRANGLE-GATHER"><span class="toc-section-number">6.8</span> Gathering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-6" id="toc-problem-6"><span class="toc-section-number">6.8.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-6" id="toc-solution-6"><span class="toc-section-number">6.8.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SPREAD" id="toc-WRANGLE-SPREAD"><span class="toc-section-number">6.9</span> Spreading<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-7" id="toc-problem-7"><span class="toc-section-number">6.9.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-7" id="toc-solution-7"><span class="toc-section-number">6.9.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VALUES" id="toc-WRANGLE-RENAME-VALUES"><span class="toc-section-number">6.10</span> Rename values of a variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-8" id="toc-problem-8"><span class="toc-section-number">6.10.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-8" id="toc-solution-8"><span class="toc-section-number">6.10.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS" id="toc-WRANGLE-CHARACTERS-2-FACTORS"><span class="toc-section-number">6.11</span> Creating factors<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-9" id="toc-problem-9"><span class="toc-section-number">6.11.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-9" id="toc-solution-9"><span class="toc-section-number">6.11.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-2" id="toc-discussion-2"><span class="toc-section-number">6.11.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES" id="toc-WRANGLE-NEW-VARIABLES"><span class="toc-section-number">6.12</span> Making a new variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-10" id="toc-problem-10"><span class="toc-section-number">6.12.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-10" id="toc-solution-10"><span class="toc-section-number">6.12.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-3" id="toc-discussion-3"><span class="toc-section-number">6.12.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER" id="toc-WRANGLE-FILTER"><span class="toc-section-number">6.13</span> Filtering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER" id="toc-WRANGLE-FILTER-KEEP-CHARACTER"><span class="toc-section-number">6.13.1</span> Keep rows you want based on condition<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC" id="toc-WRANGLE-FILTER-KEEP-NUMERIC"><span class="toc-section-number">6.13.2</span> Keep rows based on a numerical range<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-4" id="toc-discussion-4"><span class="toc-section-number">6.13.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL" id="toc-WRANGLE-SUMMARIZE-GLOBAL"><span class="toc-section-number">6.14</span> Global summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-13" id="toc-problem-13"><span class="toc-section-number">6.14.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-13" id="toc-solution-13"><span class="toc-section-number">6.14.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-5" id="toc-discussion-5"><span class="toc-section-number">6.14.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY" id="toc-WRANGLE-SUMMARIZE-GROUPBY"><span class="toc-section-number">6.15</span> Group-by summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-14" id="toc-problem-14"><span class="toc-section-number">6.15.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-14" id="toc-solution-14"><span class="toc-section-number">6.15.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-6" id="toc-discussion-6"><span class="toc-section-number">6.15.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-INNER-JOIN" id="toc-WRANGLE-INNER-JOIN"><span class="toc-section-number">6.16</span> Merge two tables together<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-15" id="toc-problem-15"><span class="toc-section-number">6.16.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-15" id="toc-solution-15"><span class="toc-section-number">6.16.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-7" id="toc-discussion-7"><span class="toc-section-number">6.16.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK" id="toc-WRANGLE-LEARNING-CHECK"><span class="toc-section-number">6.17</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#CHAPTER-BAR-GRAPH" id="toc-CHAPTER-BAR-GRAPH"><span class="toc-section-number">7</span> Bar Graphs<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR" id="toc-BAR-GRAPH-BASIC-BAR"><span class="toc-section-number">7.1</span> Making a Basic Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-16" id="toc-problem-16"><span class="toc-section-number">7.1.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-16" id="toc-solution-16"><span class="toc-section-number">7.1.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-8" id="toc-discussion-8"><span class="toc-section-number">7.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY" id="toc-BAR-GRAPH-ANATOMY"><span class="toc-section-number">7.2</span> Anatomy of a Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND" id="toc-BAR-GRAPH-ANATOMY-BACKGROUND"><span class="toc-section-number">7.2.1</span> Plot Background<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES" id="toc-BAR-GRAPH-ANATOMY-AES"><span class="toc-section-number">7.2.2</span> Aesthetics aes()<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS" id="toc-BAR-GRAPH-ANATOMY-GEOMS"><span class="toc-section-number">7.2.3</span> Geometric representations geom()<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR" id="toc-BAR-GRAPH-GROUPED-BAR"><span class="toc-section-number">7.3</span> Grouping Bars Together<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-17" id="toc-problem-17"><span class="toc-section-number">7.3.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-17" id="toc-solution-17"><span class="toc-section-number">7.3.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-9" id="toc-discussion-9"><span class="toc-section-number">7.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS" id="toc-BAR-GRAPH-COLORS"><span class="toc-section-number">7.4</span> Using Colors in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-18" id="toc-problem-18"><span class="toc-section-number">7.4.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-18" id="toc-solution-18"><span class="toc-section-number">7.4.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-10" id="toc-discussion-10"><span class="toc-section-number">7.4.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES" id="toc-BAR-GRAPH-AXES"><span class="toc-section-number">7.5</span> Changing Axes titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-19" id="toc-problem-19"><span class="toc-section-number">7.5.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-19" id="toc-solution-19"><span class="toc-section-number">7.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND" id="toc-BAR-GRAPH-LEGEND"><span class="toc-section-number">7.6</span> Changing Legend titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-20" id="toc-problem-20"><span class="toc-section-number">7.6.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-20" id="toc-solution-20"><span class="toc-section-number">7.6.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE" id="toc-BAR-GRAPH-FONTSIZE"><span class="toc-section-number">7.7</span> Changing font size uniformly across the Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-21" id="toc-problem-21"><span class="toc-section-number">7.7.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-21" id="toc-solution-21"><span class="toc-section-number">7.7.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP" id="toc-BAR-OUTPUT-BITMAP"><span class="toc-section-number">7.8</span> Outputting to Bitmap (PNG/TIFF) Files<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-22" id="toc-problem-22"><span class="toc-section-number">7.8.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-22" id="toc-solution-22"><span class="toc-section-number">7.8.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-11" id="toc-discussion-11"><span class="toc-section-number">7.8.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK" id="toc-BAR-LEARNING-CHECK"><span class="toc-section-number">7.9</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#line-graphs" id="toc-line-graphs"><span class="toc-section-number">8</span> Line Graphs<span></span></a>
-<ul>
-<li><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE" id="toc-LINE-GRAPH-BASIC-LINE"><span class="toc-section-number">8.1</span> Making a Basic Line Graph<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-23" id="toc-problem-23"><span class="toc-section-number">8.1.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-23" id="toc-solution-23"><span class="toc-section-number">8.1.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-12" id="toc-discussion-12"><span class="toc-section-number">8.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE" id="toc-LINE-GRAPH-MULTIPLE-LINE"><span class="toc-section-number">8.2</span> Making a Line Graph with Multiple Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-24" id="toc-problem-24"><span class="toc-section-number">8.2.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-24" id="toc-solution-24"><span class="toc-section-number">8.2.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-13" id="toc-discussion-13"><span class="toc-section-number">8.2.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE" id="toc-LINE-GRAPH-LINE-APPEARANCE"><span class="toc-section-number">8.3</span> Changing the Appearance of Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-25" id="toc-problem-25"><span class="toc-section-number">8.3.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-25" id="toc-solution-25"><span class="toc-section-number">8.3.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-14" id="toc-discussion-14"><span class="toc-section-number">8.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME" id="toc-LINE-GRAPH-APPEARANCE-THEME"><span class="toc-section-number">8.4</span> Using Themes to Change Overall Appearance of Plot<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-26" id="toc-problem-26"><span class="toc-section-number">8.4.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-26" id="toc-solution-26"><span class="toc-section-number">8.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK" id="toc-LINE-GRAPH-LEARNING-CHECK"><span class="toc-section-number">8.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="your-assignment.html#your-assignment" id="toc-your-assignment"><span class="toc-section-number">9</span> Your Assignment<span></span></a>
-<ul>
-<li><a href="your-assignment.html#tasks-to-complete" id="toc-tasks-to-complete"><span class="toc-section-number">9.1</span> Tasks to complete<span></span></a></li>
-<li><a href="your-assignment.html#codes" id="toc-codes"><span class="toc-section-number">9.2</span> Codes<span></span></a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">A Simple Cookbook for Wrangling and Visualization</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple Cookbook for Wrangling and Visualization</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="get-started.html"><span class="header-section-number">2</span> Getting Started</a></li>
+<li><a class="" href="basics.html"><span class="header-section-number">3</span> The Basics</a></li>
+<li><a class="" href="NavigatingTheSoftware.html"><span class="header-section-number">4</span> Navigating the Software</a></li>
+<li><a class="" href="InputOuput.html"><span class="header-section-number">5</span> Input and Output</a></li>
+<li><a class="" href="WRANGLE.html"><span class="header-section-number">6</span> Data manipulation</a></li>
+<li><a class="" href="CHAPTER-BAR-GRAPH.html"><span class="header-section-number">7</span> Bar Graphs</a></li>
+<li><a class="" href="line-graphs.html"><span class="header-section-number">8</span> Line Graphs</a></li>
+<li><a class="active" href="your-assignment.html"><span class="header-section-number">9</span> Your Assignment</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="your-assignment" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Your Assignment<a href="your-assignment.html#your-assignment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="your-assignment" class="section level1" number="9">
+<h1>
+<span class="header-section-number">9</span> Your Assignment<a class="anchor" aria-label="anchor" href="#your-assignment"><i class="fas fa-link"></i></a>
+</h1>
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/1pK88G_WHD0" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
@@ -441,417 +79,382 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Create a project called <code>assignment</code> inside the folder. See Recipe <a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS">4.2</a>.</p></li>
 <li><p>Download the R script in this link <code>assignment_analysis.R</code>. Save this script into the <code>se201/assignment</code> folder. When you open it, you should see the codes below.</p></li>
 </ol>
-<a onclick="fetch(&#39;data:text/plain;base64,IyMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQojIw0KIyMNCiMjIEF1dGhvcjogUHV0IHlvdXIgbmFtZQ0KIyMNCiMjIERhdGUgQ3JlYXRlZDogUHV0IHRoZSBkYXRlDQojIw0KIyMNCiMjIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KIyMNCiMjIE5vdGVzOg0KIyMgICANCiMjDQojIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMjIGxvYWQgdXAgdGhlIHBhY2thZ2VzIHdlIHdpbGwgbmVlZA0KDQppZiAoIXJlcXVpcmUoInBhY21hbiIpKSBpbnN0YWxsLnBhY2thZ2VzKCJwYWNtYW4iKQ0KcGFjbWFuOjpwX2xvYWQodGlkeXZlcnNlLCAjIEFsbCBwdXJwb3NlIHdyYW5nbGluZyBmb3IgZGF0YWZyYW1lcw0KICAgICAgICAgICAgICAgbHVicmlkYXRlLCAjIFRpbWUNCiAgICAgICAgICAgICAgIHRpYmJsZXRpbWUsDQogICAgICAgICAgICAgICBvcGVueGxzeCkgIyB3cml0aW5nIGV4Y2VsIGRvY3VtZW50cw0KDQojIyBDdXN0b20gZnVuY3Rpb24gdG8gZ2V0IGludGVyZWN0aW9uIGJldHdlZW4gdHdvIGxpbmVzDQojIyBUbyBnZXQgTGFjdGF0ZSBhbmQgQW5hZXJvYmljIFRocmVzaG9sZCB2YWx1ZXMNCiMjIElnbm9yZSB0aGUgY29tcGxleGl0eSwgaGlnaGxpZ2h0IGJldHdlZW4gU3RhcnQgYW5kIEVuZCwgUnVuIC0tLS0tLS0tLS0tLS0tDQojIyBTdGFydCAtLS0tLS0tLS0tLS0tLS0tDQpjdXJ2ZV9pbnRlcnNlY3QgPC0gZnVuY3Rpb24gKGN1cnZlMSwgY3VydmUyLCBlbXBpcmljYWwgPSBUUlVFLCBkb21haW4gPSBOVUxMKSANCnsNCiAgaWYgKCFlbXBpcmljYWwgJiBtaXNzaW5nKGRvbWFpbikpIHsNCiAgICBzdG9wKCInZG9tYWluJyBtdXN0IGJlIHByb3ZpZGVkIHdpdGggbm9uLWVtcGlyaWNhbCBjdXJ2ZXMiKQ0KICB9DQogIGlmICghZW1waXJpY2FsICYgKGxlbmd0aChkb21haW4pICE9IDIgfCAhaXMubnVtZXJpYyhkb21haW4pKSkgew0KICAgIHN0b3AoIidkb21haW4nIG11c3QgYmUgYSB0d28tdmFsdWUgbnVtZXJpYyB2ZWN0b3IsIGxpa2UgYygwLCAxMCkiKQ0KICB9DQogIGlmIChlbXBpcmljYWwpIHsNCiAgICBjdXJ2ZTFfZiA8LSBhcHByb3hmdW4oY3VydmUxJHgsIGN1cnZlMSR5LCBydWxlID0gMikNCiAgICBjdXJ2ZTJfZiA8LSBhcHByb3hmdW4oY3VydmUyJHgsIGN1cnZlMiR5LCBydWxlID0gMikNCiAgICBwb2ludF94IDwtIHVuaXJvb3QoZnVuY3Rpb24oeCkgY3VydmUxX2YoeCkgLSBjdXJ2ZTJfZih4KSwgDQogICAgICAgICAgICAgICAgICAgICAgIGMobWluKGN1cnZlMSR4KSwgbWF4KGN1cnZlMSR4KSkpJHJvb3QNCiAgICBwb2ludF95IDwtIGN1cnZlMl9mKHBvaW50X3gpDQogIH0NCiAgZWxzZSB7DQogICAgcG9pbnRfeCA8LSB1bmlyb290KGZ1bmN0aW9uKHgpIGN1cnZlMSh4KSAtIGN1cnZlMih4KSwgDQogICAgICAgICAgICAgICAgICAgICAgIGRvbWFpbikkcm9vdA0KICAgIHBvaW50X3kgPC0gY3VydmUyKHBvaW50X3gpDQogIH0NCiAgcmV0dXJuKGxpc3QoeCA9IHBvaW50X3gsIHkgPSBwb2ludF95KSkNCn0NCiMjIEVuZCAtLS0tLS0tLS0tLS0tLS0tDQoNCiMjIEltcG9ydCBkYXRhIChUYXNrIDEpDQoNCiMjIyBJbXBvcnQgdGhlIHNoZWV0IHdpdGggdGhlIFZvMiBkYXRhDQpkYXRfdm8yIDwtICByZWFkLnhsc3ggKHhsc3hGaWxlID0gImRhdGEvWFhYLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJYWFgiKQ0KDQojIyMgSW1wb3J0IHRoZSBzaGVldCB3aXRoIHRoZSBsYWN0YXRlIGRhdGENCmRhdF9zdGFnZSA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL1hYWC54bHN4IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJYWFgiKQ0KDQojIyMgSW1wb3J0IGdyb3VwIEZNUyBkYXRhDQpkYXRfZm1zX2dycCA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL1hYWC54bHN4IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gIlhYWCIpDQoNCiMjIyBJbXBvcnQgaW5kaXZpZHVhbCBGTVMgZGF0YQ0KZGF0X2Ztc19pbmR2IDwtICByZWFkLnhsc3ggKHhsc3hGaWxlID0gImRhdGEvWFhYLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gIlhYWCIpDQoNCiMjIEFuYWx5emUgRk1TIGRhdGEgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIEdyb3VwIEZNUyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQoNCiMjIyBOdW1iZXIgb2YgYXRobGV0ZXMgc2NvcmluZyBhIGxldmVsIGluIEZNUyAoVGFzayAyKQ0KDQpkYXRfZm1zX2dycCA8LSBkYXRfZm1zX2dycCAlPiUgIyBvcmlnaW5hbCBkYXRhDQogIHBpdm90X2xvbmdlcihjb2xzID0gLWlkLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAidGFzayIsDQogICAgICAgICAgICAgICB2YWx1ZXNfdG8gPSAic2NvcmUiKSAlPiUNCiAgZ3JvdXBfYnkoWFhYLCBYWFgpICU+JQ0KICBzdW1tYXJpemUgKGNvdW50ID0gbigpKSAlPiUNCiAgbXV0YXRlIChzY29yZSA9IGZhY3RvciAoc2NvcmUsIGxldmVscyA9IGMoIjAiLCAiMSIsICIyIiwgIjMiKSkpDQoNCiMjIyBQbG90IGdyb3VwIEZNUyAoVGFzayAzKQ0KDQpwbG90X2Ztc19ncnAgPC0gZ2dwbG90IChYWFgpICsNCiAgZ2VvbV9jb2woYWVzKHggPSBYWFgsIHkgPSBYWFgsIGZpbGwgPSBYWFgpLCBwb3NpdGlvbiA9ICJkb2RnZSIpICsNCiAgc2NhbGVfZmlsbF9kaXNjcmV0ZShkcm9wPUZBTFNFKSArDQogIHNjYWxlX3hfZGlzY3JldGUoZHJvcD1GQUxTRSkNCg0KZ2dzYXZlKGZpbGVuYW1lID0gImdycF9mbXMucG5nIiwgDQogICAgICAgcGxvdCA9IHBsb3RfZm1zX2dycCAsICMgdGhlIG5hbWUgb2YgdGhlIGltYWdlIG9iamVjdCB5b3UgY3JlYXRlZCBhYm92ZS4NCiAgICAgICB3aWR0aCA9IDE1LCANCiAgICAgICBoZWlnaHQgPSA4LCANCiAgICAgICB1bml0ID0gImNtIiwgDQogICAgICAgZHBpID0gMjAwKQ0KDQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyBJbmRpdmlkdWFsIEZNUyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KDQojIyMgUGxvdCBncm91cCBGTVMgKFRhc2sgNCkNCg0KcGxvdF9mbXNfaW5kdiA8LSBnZ3Bsb3QoWFhYKSArDQogIGdlb21fY29sKGFlcyh4ID0gWFhYLCB5ID0gWFhYLCBmaWxsID0gWFhYKSwgcG9zaXRpb24gPSAiZG9kZ2UiKQ0KDQpnZ3NhdmUoZmlsZW5hbWUgPSAiaW5kX2Ztcy5wbmciLCANCiAgICAgICBwbG90ID0gcGxvdF9mbXNfaW5kdiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gMTUsIA0KICAgICAgIGhlaWdodCA9IDgsIA0KICAgICAgIHVuaXQgPSAiY20iLCANCiAgICAgICBkcGkgPSAyMDApDQoNCg0KIyMgQW5hbHl6ZSBWTzIgZGF0YSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyMjIFJlbmFtZSBjb2x1bW4gbmFtZXMgb2YgVm8yIGRhdGEgKFRhc2sgNSkNCg0KbmV3X25hbWVzIDwtIGMoKQ0KDQpjb2xuYW1lcyAoZGF0X3ZvMikgIDwtIG5ld19uYW1lcw0KDQojIyMgUmVtb3ZlIGZpcnN0IHJvdyBvZiBWbzIgZGF0YQ0KDQpkYXRfdm8yIDwtIGRhdF92bzIgJT4lIA0KICBzbGljZSAoLWMoMSkpDQoNCiMjIyBDb252ZXJ0IGNvbHVtbiB0eXBlIG9mIFZvMiBkYXRhIChUYXNrIDYpDQoNCmRhdF92bzIgPC0gIGRhdF92bzIgJT4lDQogIG11dGF0ZSAoYmYgPSBYWFggKGJmKSwNCiAgICAgICAgICB2bzJfbm9ybSA9IFhYWCh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gWFhYKHJlciksDQogICAgICAgICAgdm8yID0gWFhYKHZvMiksDQogICAgICAgICAgdmNvMiA9IFhYWCh2Y28yKSwNCiAgICAgICAgICB2ZSA9IFhYWCh2ZSksDQogICAgICAgICAgaHIgPSBYWFgoaHIpKSAlPiUNCiAgIyBDb252ZXJ0IHRpbWUgdG8gc2Vjb25kcw0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgDQogICAgICAgICAgICBtcygpICU+JSANCiAgICAgICAgICAgIGFzLnBlcmlvZCh1bml0ID0gInNlYyIpICU+JSANCiAgICAgICAgICAgIGFzLm51bWVyaWMgKCkpIA0KDQojIyMgQ3JlYXRlIGEgInN0YWdlIiB2YXJpYWJsZSBpbiBWbzIgZGF0YQ0KDQpkYXRfdm8yIDwtIGRhdF92bzIgJT4lDQogIG11dGF0ZSAoc3RhZ2UgPSBjdXRfaW50ZXJ2YWwodGltZSwgbGVuZ3RoID0gMjEwLCBsYWJlbHMgPSBGQUxTRSkpDQoNCiMjIyBDYWxjdWxhdGUgYXZlcmFnZSAzMHMgZGF0YSBwZXIgc3RhZ2Ugb2YgVm8yIGRhdGEgKFRhc2sgNykNCg0KZGF0X3ZvMl9zdW1tIDwtIGRhdF92bzIgJT4lDQogIGdyb3VwX2J5KFhYWCkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpICU+JQ0KICBmaWx0ZXIgKHJvd19pZCA8IFhYWCkgJT4lICMgdGhyb3cgYXdheSBhbGwgZGF0YSBiZXR3ZWVuIDMgdG8gMzozMCBtaW4NCiAgc2xpY2VfdGFpbCAobiA9IFhYWCklPiUgIyBrZWVwIGxhc3QgMzAgc2VjIHBlciBzdGFnZQ0KICBzdW1tYXJpc2UgKGJmID0gbWVhbiAoYmYpLA0KICAgICAgICAgICAgIHZvMl9ub3JtID0gbWVhbiAodm8yX25vcm0pLA0KICAgICAgICAgICAgIHJlciA9IG1lYW4gKHJlciksDQogICAgICAgICAgICAgdm8yID0gbWVhbiAodm8yKSwNCiAgICAgICAgICAgICB2Y28yID0gbWVhbiAodmNvMiksDQogICAgICAgICAgICAgdmUgPSBtZWFuICh2ZSksDQogICAgICAgICAgICAgaHIgPSBtZWFuIChocikpDQoNCg0KIyMjIENvbWJpbmUgVm8yIHN0YWdlZCBkYXRhIHdpdGggbGFjdGF0ZSBkYXRhIChUYXNrIDgpDQoNCmRhdF92bzJfY29tYiA8LSBkYXRfdm8yX3N1bW0gJT4lDQogIGlubmVyX2pvaW4oZGF0X3N0YWdlLCBieSA9ICJYWFgiKQ0KDQojIyMgUGxvdA0KDQojIyMjIExhY3RhdGUgKFRhc2sgOSkNCg0KZiA8LSBnZ3Bsb3QgKGRhdF92bzJfY29tYikgKw0KICBnZW9tX2xpbmUgKGFlcyAoeCA9IFhYWCwgeSA9IFhYWCksIGNvbG91ciA9ICJYWFgiLCBzaXplID0gMS41KSArIA0KICBsYWJzICh4ID0gIlNwZWVkIChrbS9oKSIsDQogICAgICAgIHkgPSAiTGFjdGF0ZSAobW1vbCkiKSArDQogIHRoZW1lX2J3KCkgKyANCiAgbGFicyAodGl0bGUgPSAiWFhYIikgKyANCiAgdGhlbWUoYXhpcy50ZXh0LnggPSBlbGVtZW50X3RleHQoc2l6ZSA9IFhYWCksDQogICAgICAgIGF4aXMudGV4dC55ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpLCAgDQogICAgICAgIGF4aXMudGl0bGUueCA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSwNCiAgICAgICAgYXhpcy50aXRsZS55ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpKQ0KDQpnZ3NhdmUoZmlsZW5hbWUgPSAibGFjdGF0ZS5wbmciLCANCiAgICAgICBwbG90ID0gZiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gOCwgDQogICAgICAgaGVpZ2h0ID0gOCwgDQogICAgICAgdW5pdCA9ICJjbSIsIA0KICAgICAgIGRwaSA9IDIwMCkNCg0KIyMjIyBIZWFydCByYXRlIChUYXNrIDEwKQ0KDQpmIDwtIGdncGxvdCAoZGF0X3ZvMl9jb21iKSArDQogIGdlb21fbGluZSAoYWVzICh4ID0gWFhYLCB5ID0gWFhYKSwgY29sb3VyID0gIlhYWCIsIHNpemUgPSAxLjUpICsgDQogIGxhYnMgKHggPSAiU3BlZWQgKGttL2gpIiwNCiAgICAgICAgeSA9ICJIZWFydCBSYXRlIChicG0pIikgKw0KICB0aGVtZV9idygpICsgDQogIGxhYnMgKHRpdGxlID0gIlhYWCIpICsgDQogIHRoZW1lKGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpLA0KICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSwgIA0KICAgICAgICBheGlzLnRpdGxlLnggPSBlbGVtZW50X3RleHQoc2l6ZSA9IFhYWCksDQogICAgICAgIGF4aXMudGl0bGUueSA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSkNCg0KZ2dzYXZlKGZpbGVuYW1lID0gImhlYXJ0cmF0ZS5wbmciLCANCiAgICAgICBwbG90ID0gZiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gOCwgDQogICAgICAgaGVpZ2h0ID0gOCwgDQogICAgICAgdW5pdCA9ICJjbSIsIA0KICAgICAgIGRwaSA9IDIwMCkNCg0KIyMjIyBFeHBvcnQgdGFibGUgKFRhc2sgMTEpDQoNCndyaXRlLnhsc3goeCA9IFhYWCwNCiAgICAgICAgICAgc2hlZXROYW1lID0gInZvMiIsDQogICAgICAgICAgIGZpbGUgPSAiZGF0YS92bzJfdGFibGUueGxzeCIpDQoNCiMjIEJvbnVzIENvZGVzIHRvIGhlbHAgeW91IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiMjIyBDbGljayBvbiBldmVyeXRoaW5nIGJlbG93IGFuZCBydW4NCg0KDQojIyMgR2V0IFZPMiBtYXggLCBWTzIgbWF4IHJlbGF0aXZlDQoNCnJvbGxpbmdfbWVhbjYgPC0gcm9sbGlmeShtZWFuLCB3aW5kb3cgPSA2KQ0KDQpyYXdfcm9sbCA8LSBkYXRfdm8yICU+JQ0KICBhcnJhbmdlIChkZXNjICh0aW1lKSkgJT4lDQogIG11dGF0ZV9hdCAodmFycyhiZjpociksIHJvbGxpbmdfbWVhbjYpICU+JQ0KICBuYS5vbWl0KCkgJT4lDQogIHN1bW1hcmlzZV9hdCh2YXJzKGJmOmhyKSwgbWF4LCBuYS5ybSA9IFRSVUUpICU+JQ0KICBtdXRhdGUgKHZvMiA9IHZvMi8xMDAwKQ0KDQpjYXQgKCJUaGUgcmVsYXRpdmUgcGVhayBPMiB1cHRha2UgaXM6IiwgcmF3X3JvbGwkdm8yX25vcm0sICIobWwva2cvbWluKSIpDQpjYXQgKCJUaGUgYWJzb2x1dGUgcGVhayBPMiB1cHRha2UgaXM6IiwgcmF3X3JvbGwkdm8yLCAiKEwvbWluKSIpDQoNCiMjIyBHZXQgbWF4IGFlcm9iaWMgc3BlZWQNCg0KIyMjIyBHZXQgbWF4aW1hbCBzdGFnZSBjb21wbGV0ZWQgbnVtYmVyDQptYXhfc3RhZ2UgPC0gbWF4IChkYXRfdm8yJHN0YWdlKQ0KDQojIyMjIEZpbmQgbnVtYmVyIG9mIHJvd3MgaW4gZmluYWwgc3RhZ2UNCmRhdF92bzJfbGFzdCA8LSBkYXRfdm8yICU+JQ0KICBmaWx0ZXIgKHN0YWdlID09IG1heF9zdGFnZSkNCg0KIyMjIyBDYWxjdWxhdGUgYmFzZWQgb24gcm93cyB0aGUgcHJvcG9ydGlvbiBvZiBzdGFnZSBjb21wbGV0ZWQNCmxhc3Rfc3RhZ2VfcHJvcCA8LSBucm93IChkYXRfdm8yX2xhc3QpLzQyDQoNCiMjIyMgR2V0IHRoZSBzcGVlZCBpbmNyZW1lbnQsIHdoaWNoIHNob3VsZCBiZSBldmVuIGFjcm9zcyBhbGwgc3RhZ2UNCmluY3JlbWVudCA8LSBtZWFuIChkaWZmKGRhdF92bzJfY29tYiRzcGVlZCwgbGFnID0gMSkpDQoNCiMjIyMgR2V0IHRoZSBtYXhpbWFsIGFlcm9iaWMgc3BlZWQNCmFucyA8LSAgbGFzdF9zdGFnZV9wcm9wICogaW5jcmVtZW50DQptYXhfYWVyb2JpY19zcGVlZCA8LSBhbnMgKyBtYXggKGRhdF92bzJfY29tYiRzcGVlZCkNCg0KY2F0ICgiVGhlIG1heGltYWwgYWVyb2JpYyBzcGVlZDoiLCBtYXhfYWVyb2JpY19zcGVlZCwgICIoS20vaCkiKQ0KDQoNCiMjIyBHZXQgTGFjdGF0ZSBhbmQgQW5hZXJvYmljIFRocmVzb2xkDQoNCm0gPC0gbG9lc3MgKGxhY3RhdGUgfiBzcGVlZCwgZGF0YSA9IGRhdF92bzJfY29tYikNCm1pbi5zcGVlZCA8LSBjZWlsaW5nIChtaW4gKGRhdF92bzJfY29tYiRzcGVlZCkpDQptYXguc3BlZWQgPC0gZmxvb3IgKG1heCAoZGF0X3ZvMl9jb21iJHNwZWVkKSkNCm5fcG9pbnRzIDwtIDEwMA0KDQpuZXdfbGFjIDwtIGRhdGEuZnJhbWUgKHNwZWVkID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSkNCm5ld19sYWMkeSA8LSBwcmVkaWN0IChtLCBuZXdkYXRhID0gbmV3X2xhYykNCmNvbG5hbWVzKG5ld19sYWMpWzFdIDwtICJ4Ig0KDQojIyMjIFRocmVzaG9sZCB2YWx1ZXMNCg0KbGFjdGF0ZV90aHJlcyA8LSBkYXRhLmZyYW1lICh4ID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgeSA9IDIpDQoNCmFuYWVyb2JpY190aHJlcyA8LSBkYXRhLmZyYW1lICh4ID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5ID0gNCkNCiMjIyMgU3BlZWQgYXQgdGhyZXNvbGQNCg0Kc3BlZWRfYXRfbGFjX3RocmVzIDwtIGN1cnZlX2ludGVyc2VjdChuZXdfbGFjLCBsYWN0YXRlX3RocmVzKSR4DQpzcGVlZF9hdF9hbmVfdGhyZXMgPC0gY3VydmVfaW50ZXJzZWN0KG5ld19sYWMsIGFuYWVyb2JpY190aHJlcykkeA0KDQojIyMgR2V0IEhSIGF0IHRocmVzaG9sZHMNCg0KbSA8LSBsb2VzcyAoaHIgfiBzcGVlZCwgZGF0YSA9IGRhdF92bzJfY29tYikNCg0KbmV3X2hyIDwtIGRhdGEuZnJhbWUgKHNwZWVkID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSkNCm5ld19ociR5IDwtIHByZWRpY3QgKG0sIG5ld2RhdGEgPSBuZXdfaHIpDQpjb2xuYW1lcyhuZXdfaHIpWzFdIDwtICJ4Ig0KDQoNCmhyX2F0X2xhY190aHJlcyA8LSBuZXdfaHJbd2hpY2gubWluKGFicyhuZXdfaHIkeCAtc3BlZWRfYXRfbGFjX3RocmVzKSksICJ5Il0gJT4lDQogIHJvdW5kICgwKQ0KaHJfYXRfYW5lX3RocmVzIDwtIG5ld19oclt3aGljaC5taW4oYWJzKG5ld19ociR4IC1zcGVlZF9hdF9hbmVfdGhyZXMpKSwgInkiXSAlPiUNCiAgcm91bmQgDQoNCnBpIDwtIGRhdGEuZnJhbWUoVmFyaWFibGUgPSBjKCJMYWN0YXRlIFRocmVzaG9sZCIsICJBbmFlcm9iaWMgVGhyZXNob2xkIiksDQogICAgICAgICAgICAgICAgIFNwZWVkID0gYyhzcGVlZF9hdF9sYWNfdGhyZXMsIHNwZWVkX2F0X2FuZV90aHJlcyApLA0KICAgICAgICAgICAgICAgICBIUiA9IGMoaHJfYXRfbGFjX3RocmVzLCBocl9hdF9hbmVfdGhyZXMpKQ0KDQpjYXQgKCJUaGUgc3BlZWQgKGttL2gpIGFuZCBoZWFydCByYXRlIChiL21pbikgYXQgbGFjdGF0ZSB0aHJlc2hvbGQgYXJlOiIsIHBpWzEsMl0sICJhbmQiLCBwaVsxLDNdKQ0KY2F0ICgiVGhlIHNwZWVkIChrbS9oKSBhbmQgaGVhcnQgcmF0ZSAoYi9taW4pIGF0IGFuYWVyb2JpYyB0aHJlc2hvbGQgYXJlOiIsIHBpWzIsMl0sICJhbmQiLCBwaVsyLDNdKQ0KDQpkZl9wbG90IDwtIGRhdGEuZnJhbWUoc3BlZWQgPSBuZXdfbGFjJHgsDQogICAgICAgICAgICAgICAgICAgICAgbGFjdGF0ZSA9IG5ld19sYWMkeSwNCiAgICAgICAgICAgICAgICAgICAgICBociA9IG5ld19ociR5LA0KICAgICAgICAgICAgICAgICAgICAgIHNwZWVkX2xhYyA9IHNwZWVkX2F0X2xhY190aHJlcywNCiAgICAgICAgICAgICAgICAgICAgICBzcGVlZF9hbmUgPSBzcGVlZF9hdF9hbmVfdGhyZXMpICU+JQ0KICBwaXZvdF9sb25nZXIoY29scyA9IGxhY3RhdGU6aHIsDQogICAgICAgICAgICAgICBuYW1lc190byA9ICJ2YXIiLA0KICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gInZhbCIpDQoNCmdncGxvdCAoZGZfcGxvdCkgKw0KICBnZW9tX2xpbmUgKGFlcyAoeCA9IHNwZWVkLCB5ID0gdmFsKSkgKyANCiAgZ2VvbV92bGluZSh4aW50ZXJjZXB0ID0gc3BlZWRfYXRfbGFjX3RocmVzLCBjb2xvciA9ICJibHVlIiwgbGluZXR5cGUgPSAiZGFzaGVkIikgKyANCiAgZ2VvbV92bGluZSh4aW50ZXJjZXB0ID0gc3BlZWRfYXRfYW5lX3RocmVzLCBjb2xvciA9ICJyZWQiLCBsaW5ldHlwZSA9ICJkYXNoZWQiKSArIA0KICBmYWNldF93cmFwKH52YXIsIG5jb2wgPSAyLCBzY2FsZXMgPSAiZnJlZSIpICsNCiAgbGFicyAoeCA9ICJTcGVlZCIsDQogICAgICAgIHkgPSAiVmFsdWVzIikgKw0KICB0aGVtZV9idygpICsgDQogIGxhYnMgKHRpdGxlID0gIlBsb3Qgb2YgVHJlYWRtaWxsIHRlc3QiKSArIA0KICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTIpLA0KICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChzaXplID0gMTIpLCAgDQogICAgICAgIGF4aXMudGl0bGUueCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTYpLA0KICAgICAgICBheGlzLnRpdGxlLnkgPSBlbGVtZW50X3RleHQoc2l6ZSA9IDE2KSkNCg==&#39;).then(res =&gt; res.blob()).then(blob =&gt; {&#10;      const downloadURL = window.URL.createObjectURL(blob);&#10;      const a = document.createElement(&#39;a&#39;);&#10;      document.body.appendChild(a);&#10;      a.href = downloadURL;&#10;      a.download = &#39;analysis_scripts.R&#39;; a.click();&#10;      window.URL.revokeObjectURL(downloadURL);&#10;      document.body.removeChild(a);&#10;    });">
+<a onclick="fetch('data:text/plain;base64,IyMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQojIw0KIyMNCiMjIEF1dGhvcjogUHV0IHlvdXIgbmFtZQ0KIyMNCiMjIERhdGUgQ3JlYXRlZDogUHV0IHRoZSBkYXRlDQojIw0KIyMNCiMjIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KIyMNCiMjIE5vdGVzOg0KIyMgICANCiMjDQojIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMjIGxvYWQgdXAgdGhlIHBhY2thZ2VzIHdlIHdpbGwgbmVlZA0KDQppZiAoIXJlcXVpcmUoInBhY21hbiIpKSBpbnN0YWxsLnBhY2thZ2VzKCJwYWNtYW4iKQ0KcGFjbWFuOjpwX2xvYWQodGlkeXZlcnNlLCAjIEFsbCBwdXJwb3NlIHdyYW5nbGluZyBmb3IgZGF0YWZyYW1lcw0KICAgICAgICAgICAgICAgbHVicmlkYXRlLCAjIFRpbWUNCiAgICAgICAgICAgICAgIHRpYmJsZXRpbWUsDQogICAgICAgICAgICAgICBvcGVueGxzeCkgIyB3cml0aW5nIGV4Y2VsIGRvY3VtZW50cw0KDQojIyBDdXN0b20gZnVuY3Rpb24gdG8gZ2V0IGludGVyZWN0aW9uIGJldHdlZW4gdHdvIGxpbmVzDQojIyBUbyBnZXQgTGFjdGF0ZSBhbmQgQW5hZXJvYmljIFRocmVzaG9sZCB2YWx1ZXMNCiMjIElnbm9yZSB0aGUgY29tcGxleGl0eSwgaGlnaGxpZ2h0IGJldHdlZW4gU3RhcnQgYW5kIEVuZCwgUnVuIC0tLS0tLS0tLS0tLS0tDQojIyBTdGFydCAtLS0tLS0tLS0tLS0tLS0tDQpjdXJ2ZV9pbnRlcnNlY3QgPC0gZnVuY3Rpb24gKGN1cnZlMSwgY3VydmUyLCBlbXBpcmljYWwgPSBUUlVFLCBkb21haW4gPSBOVUxMKSANCnsNCiAgaWYgKCFlbXBpcmljYWwgJiBtaXNzaW5nKGRvbWFpbikpIHsNCiAgICBzdG9wKCInZG9tYWluJyBtdXN0IGJlIHByb3ZpZGVkIHdpdGggbm9uLWVtcGlyaWNhbCBjdXJ2ZXMiKQ0KICB9DQogIGlmICghZW1waXJpY2FsICYgKGxlbmd0aChkb21haW4pICE9IDIgfCAhaXMubnVtZXJpYyhkb21haW4pKSkgew0KICAgIHN0b3AoIidkb21haW4nIG11c3QgYmUgYSB0d28tdmFsdWUgbnVtZXJpYyB2ZWN0b3IsIGxpa2UgYygwLCAxMCkiKQ0KICB9DQogIGlmIChlbXBpcmljYWwpIHsNCiAgICBjdXJ2ZTFfZiA8LSBhcHByb3hmdW4oY3VydmUxJHgsIGN1cnZlMSR5LCBydWxlID0gMikNCiAgICBjdXJ2ZTJfZiA8LSBhcHByb3hmdW4oY3VydmUyJHgsIGN1cnZlMiR5LCBydWxlID0gMikNCiAgICBwb2ludF94IDwtIHVuaXJvb3QoZnVuY3Rpb24oeCkgY3VydmUxX2YoeCkgLSBjdXJ2ZTJfZih4KSwgDQogICAgICAgICAgICAgICAgICAgICAgIGMobWluKGN1cnZlMSR4KSwgbWF4KGN1cnZlMSR4KSkpJHJvb3QNCiAgICBwb2ludF95IDwtIGN1cnZlMl9mKHBvaW50X3gpDQogIH0NCiAgZWxzZSB7DQogICAgcG9pbnRfeCA8LSB1bmlyb290KGZ1bmN0aW9uKHgpIGN1cnZlMSh4KSAtIGN1cnZlMih4KSwgDQogICAgICAgICAgICAgICAgICAgICAgIGRvbWFpbikkcm9vdA0KICAgIHBvaW50X3kgPC0gY3VydmUyKHBvaW50X3gpDQogIH0NCiAgcmV0dXJuKGxpc3QoeCA9IHBvaW50X3gsIHkgPSBwb2ludF95KSkNCn0NCiMjIEVuZCAtLS0tLS0tLS0tLS0tLS0tDQoNCiMjIEltcG9ydCBkYXRhIChUYXNrIDEpDQoNCiMjIyBJbXBvcnQgdGhlIHNoZWV0IHdpdGggdGhlIFZvMiBkYXRhDQpkYXRfdm8yIDwtICByZWFkLnhsc3ggKHhsc3hGaWxlID0gImRhdGEvWFhYLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJYWFgiKQ0KDQojIyMgSW1wb3J0IHRoZSBzaGVldCB3aXRoIHRoZSBsYWN0YXRlIGRhdGENCmRhdF9zdGFnZSA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL1hYWC54bHN4IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJYWFgiKQ0KDQojIyMgSW1wb3J0IGdyb3VwIEZNUyBkYXRhDQpkYXRfZm1zX2dycCA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL1hYWC54bHN4IiwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gIlhYWCIpDQoNCiMjIyBJbXBvcnQgaW5kaXZpZHVhbCBGTVMgZGF0YQ0KZGF0X2Ztc19pbmR2IDwtICByZWFkLnhsc3ggKHhsc3hGaWxlID0gImRhdGEvWFhYLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gIlhYWCIpDQoNCiMjIEFuYWx5emUgRk1TIGRhdGEgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIEdyb3VwIEZNUyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQoNCiMjIyBOdW1iZXIgb2YgYXRobGV0ZXMgc2NvcmluZyBhIGxldmVsIGluIEZNUyAoVGFzayAyKQ0KDQpkYXRfZm1zX2dycCA8LSBkYXRfZm1zX2dycCAlPiUgIyBvcmlnaW5hbCBkYXRhDQogIHBpdm90X2xvbmdlcihjb2xzID0gLWlkLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAidGFzayIsDQogICAgICAgICAgICAgICB2YWx1ZXNfdG8gPSAic2NvcmUiKSAlPiUNCiAgZ3JvdXBfYnkoWFhYLCBYWFgpICU+JQ0KICBzdW1tYXJpemUgKGNvdW50ID0gbigpKSAlPiUNCiAgbXV0YXRlIChzY29yZSA9IGZhY3RvciAoc2NvcmUsIGxldmVscyA9IGMoIjAiLCAiMSIsICIyIiwgIjMiKSkpDQoNCiMjIyBQbG90IGdyb3VwIEZNUyAoVGFzayAzKQ0KDQpwbG90X2Ztc19ncnAgPC0gZ2dwbG90IChYWFgpICsNCiAgZ2VvbV9jb2woYWVzKHggPSBYWFgsIHkgPSBYWFgsIGZpbGwgPSBYWFgpLCBwb3NpdGlvbiA9ICJkb2RnZSIpICsNCiAgc2NhbGVfZmlsbF9kaXNjcmV0ZShkcm9wPUZBTFNFKSArDQogIHNjYWxlX3hfZGlzY3JldGUoZHJvcD1GQUxTRSkNCg0KZ2dzYXZlKGZpbGVuYW1lID0gImdycF9mbXMucG5nIiwgDQogICAgICAgcGxvdCA9IHBsb3RfZm1zX2dycCAsICMgdGhlIG5hbWUgb2YgdGhlIGltYWdlIG9iamVjdCB5b3UgY3JlYXRlZCBhYm92ZS4NCiAgICAgICB3aWR0aCA9IDE1LCANCiAgICAgICBoZWlnaHQgPSA4LCANCiAgICAgICB1bml0ID0gImNtIiwgDQogICAgICAgZHBpID0gMjAwKQ0KDQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyBJbmRpdmlkdWFsIEZNUyAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KDQojIyMgUGxvdCBncm91cCBGTVMgKFRhc2sgNCkNCg0KcGxvdF9mbXNfaW5kdiA8LSBnZ3Bsb3QoWFhYKSArDQogIGdlb21fY29sKGFlcyh4ID0gWFhYLCB5ID0gWFhYLCBmaWxsID0gWFhYKSwgcG9zaXRpb24gPSAiZG9kZ2UiKQ0KDQpnZ3NhdmUoZmlsZW5hbWUgPSAiaW5kX2Ztcy5wbmciLCANCiAgICAgICBwbG90ID0gcGxvdF9mbXNfaW5kdiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gMTUsIA0KICAgICAgIGhlaWdodCA9IDgsIA0KICAgICAgIHVuaXQgPSAiY20iLCANCiAgICAgICBkcGkgPSAyMDApDQoNCg0KIyMgQW5hbHl6ZSBWTzIgZGF0YSAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KIyMjIFJlbmFtZSBjb2x1bW4gbmFtZXMgb2YgVm8yIGRhdGEgKFRhc2sgNSkNCg0KbmV3X25hbWVzIDwtIGMoKQ0KDQpjb2xuYW1lcyAoZGF0X3ZvMikgIDwtIG5ld19uYW1lcw0KDQojIyMgUmVtb3ZlIGZpcnN0IHJvdyBvZiBWbzIgZGF0YQ0KDQpkYXRfdm8yIDwtIGRhdF92bzIgJT4lIA0KICBzbGljZSAoLWMoMSkpDQoNCiMjIyBDb252ZXJ0IGNvbHVtbiB0eXBlIG9mIFZvMiBkYXRhIChUYXNrIDYpDQoNCmRhdF92bzIgPC0gIGRhdF92bzIgJT4lDQogIG11dGF0ZSAoYmYgPSBYWFggKGJmKSwNCiAgICAgICAgICB2bzJfbm9ybSA9IFhYWCh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gWFhYKHJlciksDQogICAgICAgICAgdm8yID0gWFhYKHZvMiksDQogICAgICAgICAgdmNvMiA9IFhYWCh2Y28yKSwNCiAgICAgICAgICB2ZSA9IFhYWCh2ZSksDQogICAgICAgICAgaHIgPSBYWFgoaHIpKSAlPiUNCiAgIyBDb252ZXJ0IHRpbWUgdG8gc2Vjb25kcw0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgDQogICAgICAgICAgICBtcygpICU+JSANCiAgICAgICAgICAgIGFzLnBlcmlvZCh1bml0ID0gInNlYyIpICU+JSANCiAgICAgICAgICAgIGFzLm51bWVyaWMgKCkpIA0KDQojIyMgQ3JlYXRlIGEgInN0YWdlIiB2YXJpYWJsZSBpbiBWbzIgZGF0YQ0KDQpkYXRfdm8yIDwtIGRhdF92bzIgJT4lDQogIG11dGF0ZSAoc3RhZ2UgPSBjdXRfaW50ZXJ2YWwodGltZSwgbGVuZ3RoID0gMjEwLCBsYWJlbHMgPSBGQUxTRSkpDQoNCiMjIyBDYWxjdWxhdGUgYXZlcmFnZSAzMHMgZGF0YSBwZXIgc3RhZ2Ugb2YgVm8yIGRhdGEgKFRhc2sgNykNCg0KZGF0X3ZvMl9zdW1tIDwtIGRhdF92bzIgJT4lDQogIGdyb3VwX2J5KFhYWCkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpICU+JQ0KICBmaWx0ZXIgKHJvd19pZCA8IFhYWCkgJT4lICMgdGhyb3cgYXdheSBhbGwgZGF0YSBiZXR3ZWVuIDMgdG8gMzozMCBtaW4NCiAgc2xpY2VfdGFpbCAobiA9IFhYWCklPiUgIyBrZWVwIGxhc3QgMzAgc2VjIHBlciBzdGFnZQ0KICBzdW1tYXJpc2UgKGJmID0gbWVhbiAoYmYpLA0KICAgICAgICAgICAgIHZvMl9ub3JtID0gbWVhbiAodm8yX25vcm0pLA0KICAgICAgICAgICAgIHJlciA9IG1lYW4gKHJlciksDQogICAgICAgICAgICAgdm8yID0gbWVhbiAodm8yKSwNCiAgICAgICAgICAgICB2Y28yID0gbWVhbiAodmNvMiksDQogICAgICAgICAgICAgdmUgPSBtZWFuICh2ZSksDQogICAgICAgICAgICAgaHIgPSBtZWFuIChocikpDQoNCg0KIyMjIENvbWJpbmUgVm8yIHN0YWdlZCBkYXRhIHdpdGggbGFjdGF0ZSBkYXRhIChUYXNrIDgpDQoNCmRhdF92bzJfY29tYiA8LSBkYXRfdm8yX3N1bW0gJT4lDQogIGlubmVyX2pvaW4oZGF0X3N0YWdlLCBieSA9ICJYWFgiKQ0KDQojIyMgUGxvdA0KDQojIyMjIExhY3RhdGUgKFRhc2sgOSkNCg0KZiA8LSBnZ3Bsb3QgKGRhdF92bzJfY29tYikgKw0KICBnZW9tX2xpbmUgKGFlcyAoeCA9IFhYWCwgeSA9IFhYWCksIGNvbG91ciA9ICJYWFgiLCBzaXplID0gMS41KSArIA0KICBsYWJzICh4ID0gIlNwZWVkIChrbS9oKSIsDQogICAgICAgIHkgPSAiTGFjdGF0ZSAobW1vbCkiKSArDQogIHRoZW1lX2J3KCkgKyANCiAgbGFicyAodGl0bGUgPSAiWFhYIikgKyANCiAgdGhlbWUoYXhpcy50ZXh0LnggPSBlbGVtZW50X3RleHQoc2l6ZSA9IFhYWCksDQogICAgICAgIGF4aXMudGV4dC55ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpLCAgDQogICAgICAgIGF4aXMudGl0bGUueCA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSwNCiAgICAgICAgYXhpcy50aXRsZS55ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpKQ0KDQpnZ3NhdmUoZmlsZW5hbWUgPSAibGFjdGF0ZS5wbmciLCANCiAgICAgICBwbG90ID0gZiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gOCwgDQogICAgICAgaGVpZ2h0ID0gOCwgDQogICAgICAgdW5pdCA9ICJjbSIsIA0KICAgICAgIGRwaSA9IDIwMCkNCg0KIyMjIyBIZWFydCByYXRlIChUYXNrIDEwKQ0KDQpmIDwtIGdncGxvdCAoZGF0X3ZvMl9jb21iKSArDQogIGdlb21fbGluZSAoYWVzICh4ID0gWFhYLCB5ID0gWFhYKSwgY29sb3VyID0gIlhYWCIsIHNpemUgPSAxLjUpICsgDQogIGxhYnMgKHggPSAiU3BlZWQgKGttL2gpIiwNCiAgICAgICAgeSA9ICJIZWFydCBSYXRlIChicG0pIikgKw0KICB0aGVtZV9idygpICsgDQogIGxhYnMgKHRpdGxlID0gIlhYWCIpICsgDQogIHRoZW1lKGF4aXMudGV4dC54ID0gZWxlbWVudF90ZXh0KHNpemUgPSBYWFgpLA0KICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSwgIA0KICAgICAgICBheGlzLnRpdGxlLnggPSBlbGVtZW50X3RleHQoc2l6ZSA9IFhYWCksDQogICAgICAgIGF4aXMudGl0bGUueSA9IGVsZW1lbnRfdGV4dChzaXplID0gWFhYKSkNCg0KZ2dzYXZlKGZpbGVuYW1lID0gImhlYXJ0cmF0ZS5wbmciLCANCiAgICAgICBwbG90ID0gZiwgIyB0aGUgbmFtZSBvZiB0aGUgaW1hZ2Ugb2JqZWN0IHlvdSBjcmVhdGVkIGFib3ZlLg0KICAgICAgIHdpZHRoID0gOCwgDQogICAgICAgaGVpZ2h0ID0gOCwgDQogICAgICAgdW5pdCA9ICJjbSIsIA0KICAgICAgIGRwaSA9IDIwMCkNCg0KIyMjIyBFeHBvcnQgdGFibGUgKFRhc2sgMTEpDQoNCndyaXRlLnhsc3goeCA9IFhYWCwNCiAgICAgICAgICAgc2hlZXROYW1lID0gInZvMiIsDQogICAgICAgICAgIGZpbGUgPSAiZGF0YS92bzJfdGFibGUueGxzeCIpDQoNCiMjIEJvbnVzIENvZGVzIHRvIGhlbHAgeW91IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiMjIyBDbGljayBvbiBldmVyeXRoaW5nIGJlbG93IGFuZCBydW4NCg0KDQojIyMgR2V0IFZPMiBtYXggLCBWTzIgbWF4IHJlbGF0aXZlDQoNCnJvbGxpbmdfbWVhbjYgPC0gcm9sbGlmeShtZWFuLCB3aW5kb3cgPSA2KQ0KDQpyYXdfcm9sbCA8LSBkYXRfdm8yICU+JQ0KICBhcnJhbmdlIChkZXNjICh0aW1lKSkgJT4lDQogIG11dGF0ZV9hdCAodmFycyhiZjpociksIHJvbGxpbmdfbWVhbjYpICU+JQ0KICBuYS5vbWl0KCkgJT4lDQogIHN1bW1hcmlzZV9hdCh2YXJzKGJmOmhyKSwgbWF4LCBuYS5ybSA9IFRSVUUpICU+JQ0KICBtdXRhdGUgKHZvMiA9IHZvMi8xMDAwKQ0KDQpjYXQgKCJUaGUgcmVsYXRpdmUgcGVhayBPMiB1cHRha2UgaXM6IiwgcmF3X3JvbGwkdm8yX25vcm0sICIobWwva2cvbWluKSIpDQpjYXQgKCJUaGUgYWJzb2x1dGUgcGVhayBPMiB1cHRha2UgaXM6IiwgcmF3X3JvbGwkdm8yLCAiKEwvbWluKSIpDQoNCiMjIyBHZXQgbWF4IGFlcm9iaWMgc3BlZWQNCg0KIyMjIyBHZXQgbWF4aW1hbCBzdGFnZSBjb21wbGV0ZWQgbnVtYmVyDQptYXhfc3RhZ2UgPC0gbWF4IChkYXRfdm8yJHN0YWdlKQ0KDQojIyMjIEZpbmQgbnVtYmVyIG9mIHJvd3MgaW4gZmluYWwgc3RhZ2UNCmRhdF92bzJfbGFzdCA8LSBkYXRfdm8yICU+JQ0KICBmaWx0ZXIgKHN0YWdlID09IG1heF9zdGFnZSkNCg0KIyMjIyBDYWxjdWxhdGUgYmFzZWQgb24gcm93cyB0aGUgcHJvcG9ydGlvbiBvZiBzdGFnZSBjb21wbGV0ZWQNCmxhc3Rfc3RhZ2VfcHJvcCA8LSBucm93IChkYXRfdm8yX2xhc3QpLzQyDQoNCiMjIyMgR2V0IHRoZSBzcGVlZCBpbmNyZW1lbnQsIHdoaWNoIHNob3VsZCBiZSBldmVuIGFjcm9zcyBhbGwgc3RhZ2UNCmluY3JlbWVudCA8LSBtZWFuIChkaWZmKGRhdF92bzJfY29tYiRzcGVlZCwgbGFnID0gMSkpDQoNCiMjIyMgR2V0IHRoZSBtYXhpbWFsIGFlcm9iaWMgc3BlZWQNCmFucyA8LSAgbGFzdF9zdGFnZV9wcm9wICogaW5jcmVtZW50DQptYXhfYWVyb2JpY19zcGVlZCA8LSBhbnMgKyBtYXggKGRhdF92bzJfY29tYiRzcGVlZCkNCg0KY2F0ICgiVGhlIG1heGltYWwgYWVyb2JpYyBzcGVlZDoiLCBtYXhfYWVyb2JpY19zcGVlZCwgICIoS20vaCkiKQ0KDQoNCiMjIyBHZXQgTGFjdGF0ZSBhbmQgQW5hZXJvYmljIFRocmVzb2xkDQoNCm0gPC0gbG9lc3MgKGxhY3RhdGUgfiBzcGVlZCwgZGF0YSA9IGRhdF92bzJfY29tYikNCm1pbi5zcGVlZCA8LSBjZWlsaW5nIChtaW4gKGRhdF92bzJfY29tYiRzcGVlZCkpDQptYXguc3BlZWQgPC0gZmxvb3IgKG1heCAoZGF0X3ZvMl9jb21iJHNwZWVkKSkNCm5fcG9pbnRzIDwtIDEwMA0KDQpuZXdfbGFjIDwtIGRhdGEuZnJhbWUgKHNwZWVkID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSkNCm5ld19sYWMkeSA8LSBwcmVkaWN0IChtLCBuZXdkYXRhID0gbmV3X2xhYykNCmNvbG5hbWVzKG5ld19sYWMpWzFdIDwtICJ4Ig0KDQojIyMjIFRocmVzaG9sZCB2YWx1ZXMNCg0KbGFjdGF0ZV90aHJlcyA8LSBkYXRhLmZyYW1lICh4ID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgeSA9IDIpDQoNCmFuYWVyb2JpY190aHJlcyA8LSBkYXRhLmZyYW1lICh4ID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5ID0gNCkNCiMjIyMgU3BlZWQgYXQgdGhyZXNvbGQNCg0Kc3BlZWRfYXRfbGFjX3RocmVzIDwtIGN1cnZlX2ludGVyc2VjdChuZXdfbGFjLCBsYWN0YXRlX3RocmVzKSR4DQpzcGVlZF9hdF9hbmVfdGhyZXMgPC0gY3VydmVfaW50ZXJzZWN0KG5ld19sYWMsIGFuYWVyb2JpY190aHJlcykkeA0KDQojIyMgR2V0IEhSIGF0IHRocmVzaG9sZHMNCg0KbSA8LSBsb2VzcyAoaHIgfiBzcGVlZCwgZGF0YSA9IGRhdF92bzJfY29tYikNCg0KbmV3X2hyIDwtIGRhdGEuZnJhbWUgKHNwZWVkID0gc2VxIChtaW4uc3BlZWQsIG1heC5zcGVlZCwgbGVuZ3RoLm91dCA9IG5fcG9pbnRzKSkNCm5ld19ociR5IDwtIHByZWRpY3QgKG0sIG5ld2RhdGEgPSBuZXdfaHIpDQpjb2xuYW1lcyhuZXdfaHIpWzFdIDwtICJ4Ig0KDQoNCmhyX2F0X2xhY190aHJlcyA8LSBuZXdfaHJbd2hpY2gubWluKGFicyhuZXdfaHIkeCAtc3BlZWRfYXRfbGFjX3RocmVzKSksICJ5Il0gJT4lDQogIHJvdW5kICgwKQ0KaHJfYXRfYW5lX3RocmVzIDwtIG5ld19oclt3aGljaC5taW4oYWJzKG5ld19ociR4IC1zcGVlZF9hdF9hbmVfdGhyZXMpKSwgInkiXSAlPiUNCiAgcm91bmQgDQoNCnBpIDwtIGRhdGEuZnJhbWUoVmFyaWFibGUgPSBjKCJMYWN0YXRlIFRocmVzaG9sZCIsICJBbmFlcm9iaWMgVGhyZXNob2xkIiksDQogICAgICAgICAgICAgICAgIFNwZWVkID0gYyhzcGVlZF9hdF9sYWNfdGhyZXMsIHNwZWVkX2F0X2FuZV90aHJlcyApLA0KICAgICAgICAgICAgICAgICBIUiA9IGMoaHJfYXRfbGFjX3RocmVzLCBocl9hdF9hbmVfdGhyZXMpKQ0KDQpjYXQgKCJUaGUgc3BlZWQgKGttL2gpIGFuZCBoZWFydCByYXRlIChiL21pbikgYXQgbGFjdGF0ZSB0aHJlc2hvbGQgYXJlOiIsIHBpWzEsMl0sICJhbmQiLCBwaVsxLDNdKQ0KY2F0ICgiVGhlIHNwZWVkIChrbS9oKSBhbmQgaGVhcnQgcmF0ZSAoYi9taW4pIGF0IGFuYWVyb2JpYyB0aHJlc2hvbGQgYXJlOiIsIHBpWzIsMl0sICJhbmQiLCBwaVsyLDNdKQ0KDQpkZl9wbG90IDwtIGRhdGEuZnJhbWUoc3BlZWQgPSBuZXdfbGFjJHgsDQogICAgICAgICAgICAgICAgICAgICAgbGFjdGF0ZSA9IG5ld19sYWMkeSwNCiAgICAgICAgICAgICAgICAgICAgICBociA9IG5ld19ociR5LA0KICAgICAgICAgICAgICAgICAgICAgIHNwZWVkX2xhYyA9IHNwZWVkX2F0X2xhY190aHJlcywNCiAgICAgICAgICAgICAgICAgICAgICBzcGVlZF9hbmUgPSBzcGVlZF9hdF9hbmVfdGhyZXMpICU+JQ0KICBwaXZvdF9sb25nZXIoY29scyA9IGxhY3RhdGU6aHIsDQogICAgICAgICAgICAgICBuYW1lc190byA9ICJ2YXIiLA0KICAgICAgICAgICAgICAgdmFsdWVzX3RvID0gInZhbCIpDQoNCmdncGxvdCAoZGZfcGxvdCkgKw0KICBnZW9tX2xpbmUgKGFlcyAoeCA9IHNwZWVkLCB5ID0gdmFsKSkgKyANCiAgZ2VvbV92bGluZSh4aW50ZXJjZXB0ID0gc3BlZWRfYXRfbGFjX3RocmVzLCBjb2xvciA9ICJibHVlIiwgbGluZXR5cGUgPSAiZGFzaGVkIikgKyANCiAgZ2VvbV92bGluZSh4aW50ZXJjZXB0ID0gc3BlZWRfYXRfYW5lX3RocmVzLCBjb2xvciA9ICJyZWQiLCBsaW5ldHlwZSA9ICJkYXNoZWQiKSArIA0KICBmYWNldF93cmFwKH52YXIsIG5jb2wgPSAyLCBzY2FsZXMgPSAiZnJlZSIpICsNCiAgbGFicyAoeCA9ICJTcGVlZCIsDQogICAgICAgIHkgPSAiVmFsdWVzIikgKw0KICB0aGVtZV9idygpICsgDQogIGxhYnMgKHRpdGxlID0gIlBsb3Qgb2YgVHJlYWRtaWxsIHRlc3QiKSArIA0KICB0aGVtZShheGlzLnRleHQueCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTIpLA0KICAgICAgICBheGlzLnRleHQueSA9IGVsZW1lbnRfdGV4dChzaXplID0gMTIpLCAgDQogICAgICAgIGF4aXMudGl0bGUueCA9IGVsZW1lbnRfdGV4dChzaXplID0gMTYpLA0KICAgICAgICBheGlzLnRpdGxlLnkgPSBlbGVtZW50X3RleHQoc2l6ZSA9IDE2KSkNCg==').then(res =&gt; res.blob()).then(blob =&gt; {
+      const downloadURL = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.href = downloadURL;
+      a.download = 'analysis_scripts.R'; a.click();
+      window.URL.revokeObjectURL(downloadURL);
+      document.body.removeChild(a);
+    });">
 <button class="btn btn-warning" output_extension=".R"><i class="fa fa-save"></i> Assignment template</button>
 </a>
 <ol start="4" style="list-style-type: decimal">
 <li>Inside <code>se201/assignment</code> folder, create a <code>data</code> folder. Put all your raw Excel data into the <code>data</code> folder. <strong>All raw Excel data for this assignment will be on SE201 Moodle&gt;Assessment Information</strong>.</li>
 </ol>
-<div id="tasks-to-complete" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Tasks to complete<a href="your-assignment.html#tasks-to-complete" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tasks-to-complete" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Tasks to complete<a class="anchor" aria-label="anchor" href="#tasks-to-complete"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>1:</strong> Import data. Replace <code>XXX</code> with your Excel file’s name and appropriate sheet name. See Recipe <a href="InputOuput.html#INPUT-IMPORT">5.2</a>.</p>
-<p><strong>2:</strong> Group FMS summary. Find the number of athletes who scored each level in each FMS tasks. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a>.</p>
-<p><strong>3:</strong> Group FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>count</code> as the <em>y</em> axis, <em>fill</em> colour set to the different FMS <code>task</code>s. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR">7.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
-<p><strong>4:</strong> Individual FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>score</code> as the <em>y</em> axis, <em>fill</em> colour set to the different tested <code>side</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR">7.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
-<p><strong>5:</strong> Rename columns. Rename all columns to lower cases, without white spaces. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.2</a>.</p>
-<p><strong>6:</strong> Maker characters to numeric. Replace <code>XXX</code> with the appropriate function to convert all columns apart from time from character to numbers. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.5</a>.</p>
-<p><strong>7:</strong> Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a>.</p>
-<p><strong>8:</strong> Combine two tables. Merge the average data from <em>Task 4</em> with the object called <code>dat_stage</code> along the common header. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-INNER-JOIN">6.16</a>.</p>
-<p><strong>9:</strong> Make a lactate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>lactacte</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
-<p><strong>10:</strong> Make a heart rate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>hr</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
-<p><strong>11:</strong> Export the <code>dat_vo2_comb</code> dataframe to an excel table. This result can be used to fill in the “stage by stage results” in your assignment under incremental treadmill test. Replace <code>XXX</code> with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a>.</p>
+<p><strong>2:</strong> Individual FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>score</code> as the <em>y</em> axis, <em>fill</em> colour set to the different tested <code>side</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR">7.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>3:</strong> Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Then use it to calculate the symmetry index during a single-leg drop land. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-NEW-VARIABLES">6.12</a>.</p>
+<p><strong>4:</strong> Rename columns. Rename all columns to lower cases, without white spaces. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.2</a>.</p>
+<p><strong>5:</strong> Maker characters to numeric. Replace <code>XXX</code> with the appropriate function to convert all columns apart from time from character to numbers. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.5</a>.</p>
+<p><strong>6:</strong> Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY">6.15</a>.</p>
+<p><strong>7:</strong> Combine two tables. Merge the average data from <em>Task 4</em> with the object called <code>dat_stage</code> along the common header. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE.html#WRANGLE-INNER-JOIN">6.16</a>.</p>
+<p><strong>8:</strong> Make a lactate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>lactacte</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>9:</strong> Make a heart rate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>hr</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">8.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">7.8</a>.</p>
+<p><strong>10:</strong> Export the <code>dat_vo2_comb</code> dataframe to an excel table. This result can be used to fill in the “stage by stage results” in your assignment under incremental treadmill test. Replace <code>XXX</code> with the name of the dataframe you are wanting to export. See where the data is being exported into. See Recipe <a href="InputOuput.html#INPUT-EXPORT">5.3</a>.</p>
 </div>
-<div id="codes" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Codes<a href="your-assignment.html#codes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="codes" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Codes<a class="anchor" aria-label="anchor" href="#codes"><i class="fas fa-link"></i></a>
+</h2>
 <p>This is the codes you will see in the script downloaded.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="your-assignment.html#cb155-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-2"><a href="your-assignment.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ---------------------------</span></span>
-<span id="cb155-3"><a href="your-assignment.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-4"><a href="your-assignment.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-5"><a href="your-assignment.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Author: Put your name</span></span>
-<span id="cb155-6"><a href="your-assignment.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-7"><a href="your-assignment.html#cb155-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Date Created: Put the date</span></span>
-<span id="cb155-8"><a href="your-assignment.html#cb155-8" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-9"><a href="your-assignment.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-10"><a href="your-assignment.html#cb155-10" aria-hidden="true" tabindex="-1"></a><span class="do">## ---------------------------</span></span>
-<span id="cb155-11"><a href="your-assignment.html#cb155-11" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-12"><a href="your-assignment.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Notes:</span></span>
-<span id="cb155-13"><a href="your-assignment.html#cb155-13" aria-hidden="true" tabindex="-1"></a><span class="do">##   </span></span>
-<span id="cb155-14"><a href="your-assignment.html#cb155-14" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb155-15"><a href="your-assignment.html#cb155-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ---------------------------</span></span>
-<span id="cb155-16"><a href="your-assignment.html#cb155-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-17"><a href="your-assignment.html#cb155-17" aria-hidden="true" tabindex="-1"></a><span class="do">## ---------------------------</span></span>
-<span id="cb155-18"><a href="your-assignment.html#cb155-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-19"><a href="your-assignment.html#cb155-19" aria-hidden="true" tabindex="-1"></a><span class="do">## load up the packages we will need</span></span>
-<span id="cb155-20"><a href="your-assignment.html#cb155-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-21"><a href="your-assignment.html#cb155-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
-<span id="cb155-22"><a href="your-assignment.html#cb155-22" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, <span class="co"># All purpose wrangling for dataframes</span></span>
-<span id="cb155-23"><a href="your-assignment.html#cb155-23" aria-hidden="true" tabindex="-1"></a>               lubridate, <span class="co"># Time</span></span>
-<span id="cb155-24"><a href="your-assignment.html#cb155-24" aria-hidden="true" tabindex="-1"></a>               tibbletime,</span>
-<span id="cb155-25"><a href="your-assignment.html#cb155-25" aria-hidden="true" tabindex="-1"></a>               openxlsx) <span class="co"># writing excel documents</span></span>
-<span id="cb155-26"><a href="your-assignment.html#cb155-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-27"><a href="your-assignment.html#cb155-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Custom function to get interection between two lines</span></span>
-<span id="cb155-28"><a href="your-assignment.html#cb155-28" aria-hidden="true" tabindex="-1"></a><span class="do">## To get Lactate and Anaerobic Threshold values</span></span>
-<span id="cb155-29"><a href="your-assignment.html#cb155-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Ignore the complexity, highlight between Start and End, Run --------------</span></span>
-<span id="cb155-30"><a href="your-assignment.html#cb155-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Start ----------------</span></span>
-<span id="cb155-31"><a href="your-assignment.html#cb155-31" aria-hidden="true" tabindex="-1"></a>curve_intersect <span class="ot">&lt;-</span> <span class="cf">function</span> (curve1, curve2, <span class="at">empirical =</span> <span class="cn">TRUE</span>, <span class="at">domain =</span> <span class="cn">NULL</span>) </span>
-<span id="cb155-32"><a href="your-assignment.html#cb155-32" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb155-33"><a href="your-assignment.html#cb155-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>empirical <span class="sc">&amp;</span> <span class="fu">missing</span>(domain)) {</span>
-<span id="cb155-34"><a href="your-assignment.html#cb155-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;&#39;domain&#39; must be provided with non-empirical curves&quot;</span>)</span>
-<span id="cb155-35"><a href="your-assignment.html#cb155-35" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb155-36"><a href="your-assignment.html#cb155-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span>empirical <span class="sc">&amp;</span> (<span class="fu">length</span>(domain) <span class="sc">!=</span> <span class="dv">2</span> <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.numeric</span>(domain))) {</span>
-<span id="cb155-37"><a href="your-assignment.html#cb155-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;&#39;domain&#39; must be a two-value numeric vector, like c(0, 10)&quot;</span>)</span>
-<span id="cb155-38"><a href="your-assignment.html#cb155-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb155-39"><a href="your-assignment.html#cb155-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (empirical) {</span>
-<span id="cb155-40"><a href="your-assignment.html#cb155-40" aria-hidden="true" tabindex="-1"></a>    curve1_f <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(curve1<span class="sc">$</span>x, curve1<span class="sc">$</span>y, <span class="at">rule =</span> <span class="dv">2</span>)</span>
-<span id="cb155-41"><a href="your-assignment.html#cb155-41" aria-hidden="true" tabindex="-1"></a>    curve2_f <span class="ot">&lt;-</span> <span class="fu">approxfun</span>(curve2<span class="sc">$</span>x, curve2<span class="sc">$</span>y, <span class="at">rule =</span> <span class="dv">2</span>)</span>
-<span id="cb155-42"><a href="your-assignment.html#cb155-42" aria-hidden="true" tabindex="-1"></a>    point_x <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(<span class="cf">function</span>(x) <span class="fu">curve1_f</span>(x) <span class="sc">-</span> <span class="fu">curve2_f</span>(x), </span>
-<span id="cb155-43"><a href="your-assignment.html#cb155-43" aria-hidden="true" tabindex="-1"></a>                       <span class="fu">c</span>(<span class="fu">min</span>(curve1<span class="sc">$</span>x), <span class="fu">max</span>(curve1<span class="sc">$</span>x)))<span class="sc">$</span>root</span>
-<span id="cb155-44"><a href="your-assignment.html#cb155-44" aria-hidden="true" tabindex="-1"></a>    point_y <span class="ot">&lt;-</span> <span class="fu">curve2_f</span>(point_x)</span>
-<span id="cb155-45"><a href="your-assignment.html#cb155-45" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb155-46"><a href="your-assignment.html#cb155-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb155-47"><a href="your-assignment.html#cb155-47" aria-hidden="true" tabindex="-1"></a>    point_x <span class="ot">&lt;-</span> <span class="fu">uniroot</span>(<span class="cf">function</span>(x) <span class="fu">curve1</span>(x) <span class="sc">-</span> <span class="fu">curve2</span>(x), </span>
-<span id="cb155-48"><a href="your-assignment.html#cb155-48" aria-hidden="true" tabindex="-1"></a>                       domain)<span class="sc">$</span>root</span>
-<span id="cb155-49"><a href="your-assignment.html#cb155-49" aria-hidden="true" tabindex="-1"></a>    point_y <span class="ot">&lt;-</span> <span class="fu">curve2</span>(point_x)</span>
-<span id="cb155-50"><a href="your-assignment.html#cb155-50" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb155-51"><a href="your-assignment.html#cb155-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">x =</span> point_x, <span class="at">y =</span> point_y))</span>
-<span id="cb155-52"><a href="your-assignment.html#cb155-52" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb155-53"><a href="your-assignment.html#cb155-53" aria-hidden="true" tabindex="-1"></a><span class="do">## End ----------------</span></span>
-<span id="cb155-54"><a href="your-assignment.html#cb155-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-55"><a href="your-assignment.html#cb155-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Import data (Task 1)</span></span>
-<span id="cb155-56"><a href="your-assignment.html#cb155-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-57"><a href="your-assignment.html#cb155-57" aria-hidden="true" tabindex="-1"></a><span class="do">### Import the sheet with the Vo2 data</span></span>
-<span id="cb155-58"><a href="your-assignment.html#cb155-58" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</span>
-<span id="cb155-59"><a href="your-assignment.html#cb155-59" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</span>
-<span id="cb155-60"><a href="your-assignment.html#cb155-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-61"><a href="your-assignment.html#cb155-61" aria-hidden="true" tabindex="-1"></a><span class="do">### Import the sheet with the lactate data</span></span>
-<span id="cb155-62"><a href="your-assignment.html#cb155-62" aria-hidden="true" tabindex="-1"></a>dat_stage <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</span>
-<span id="cb155-63"><a href="your-assignment.html#cb155-63" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</span>
-<span id="cb155-64"><a href="your-assignment.html#cb155-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-65"><a href="your-assignment.html#cb155-65" aria-hidden="true" tabindex="-1"></a><span class="do">### Import group FMS data</span></span>
-<span id="cb155-66"><a href="your-assignment.html#cb155-66" aria-hidden="true" tabindex="-1"></a>dat_fms_grp <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</span>
-<span id="cb155-67"><a href="your-assignment.html#cb155-67" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</span>
-<span id="cb155-68"><a href="your-assignment.html#cb155-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-69"><a href="your-assignment.html#cb155-69" aria-hidden="true" tabindex="-1"></a><span class="do">### Import individual FMS data</span></span>
-<span id="cb155-70"><a href="your-assignment.html#cb155-70" aria-hidden="true" tabindex="-1"></a>dat_fms_indv <span class="ot">&lt;-</span>  <span class="fu">read.xlsx</span> (<span class="at">xlsxFile =</span> <span class="st">&quot;data/XXX.xlsx&quot;</span>,</span>
-<span id="cb155-71"><a href="your-assignment.html#cb155-71" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">&quot;XXX&quot;</span>)</span>
-<span id="cb155-72"><a href="your-assignment.html#cb155-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-73"><a href="your-assignment.html#cb155-73" aria-hidden="true" tabindex="-1"></a><span class="do">## Analyze FMS data ------------------------------------------------------------</span></span>
-<span id="cb155-74"><a href="your-assignment.html#cb155-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-75"><a href="your-assignment.html#cb155-75" aria-hidden="true" tabindex="-1"></a><span class="do">################################ Group FMS #####################################</span></span>
-<span id="cb155-76"><a href="your-assignment.html#cb155-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-77"><a href="your-assignment.html#cb155-77" aria-hidden="true" tabindex="-1"></a><span class="do">### Number of athletes scoring a level in FMS (Task 2)</span></span>
-<span id="cb155-78"><a href="your-assignment.html#cb155-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-79"><a href="your-assignment.html#cb155-79" aria-hidden="true" tabindex="-1"></a>dat_fms_grp <span class="ot">&lt;-</span> dat_fms_grp <span class="sc">%&gt;%</span> <span class="co"># original data</span></span>
-<span id="cb155-80"><a href="your-assignment.html#cb155-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>id,</span>
-<span id="cb155-81"><a href="your-assignment.html#cb155-81" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_to =</span> <span class="st">&quot;task&quot;</span>,</span>
-<span id="cb155-82"><a href="your-assignment.html#cb155-82" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">&quot;score&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb155-83"><a href="your-assignment.html#cb155-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(XXX, XXX) <span class="sc">%&gt;%</span></span>
-<span id="cb155-84"><a href="your-assignment.html#cb155-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span> (<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb155-85"><a href="your-assignment.html#cb155-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">score =</span> <span class="fu">factor</span> (score, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>)))</span>
-<span id="cb155-86"><a href="your-assignment.html#cb155-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-87"><a href="your-assignment.html#cb155-87" aria-hidden="true" tabindex="-1"></a><span class="do">### Plot group FMS (Task 3)</span></span>
-<span id="cb155-88"><a href="your-assignment.html#cb155-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-89"><a href="your-assignment.html#cb155-89" aria-hidden="true" tabindex="-1"></a>plot_fms_grp <span class="ot">&lt;-</span> <span class="fu">ggplot</span> (XXX) <span class="sc">+</span></span>
-<span id="cb155-90"><a href="your-assignment.html#cb155-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> XXX, <span class="at">y =</span> XXX, <span class="at">fill =</span> XXX), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb155-91"><a href="your-assignment.html#cb155-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">drop=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb155-92"><a href="your-assignment.html#cb155-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">drop=</span><span class="cn">FALSE</span>)</span>
-<span id="cb155-93"><a href="your-assignment.html#cb155-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-94"><a href="your-assignment.html#cb155-94" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;grp_fms.png&quot;</span>, </span>
-<span id="cb155-95"><a href="your-assignment.html#cb155-95" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> plot_fms_grp , <span class="co"># the name of the image object you created above.</span></span>
-<span id="cb155-96"><a href="your-assignment.html#cb155-96" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">15</span>, </span>
-<span id="cb155-97"><a href="your-assignment.html#cb155-97" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">8</span>, </span>
-<span id="cb155-98"><a href="your-assignment.html#cb155-98" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">&quot;cm&quot;</span>, </span>
-<span id="cb155-99"><a href="your-assignment.html#cb155-99" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span> <span class="dv">200</span>)</span>
-<span id="cb155-100"><a href="your-assignment.html#cb155-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-101"><a href="your-assignment.html#cb155-101" aria-hidden="true" tabindex="-1"></a><span class="do">############################# Individual FMS ###################################</span></span>
-<span id="cb155-102"><a href="your-assignment.html#cb155-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-103"><a href="your-assignment.html#cb155-103" aria-hidden="true" tabindex="-1"></a><span class="do">### Plot group FMS (Task 4)</span></span>
-<span id="cb155-104"><a href="your-assignment.html#cb155-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-105"><a href="your-assignment.html#cb155-105" aria-hidden="true" tabindex="-1"></a>plot_fms_indv <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(XXX) <span class="sc">+</span></span>
-<span id="cb155-106"><a href="your-assignment.html#cb155-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> XXX, <span class="at">y =</span> XXX, <span class="at">fill =</span> XXX), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
-<span id="cb155-107"><a href="your-assignment.html#cb155-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-108"><a href="your-assignment.html#cb155-108" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;ind_fms.png&quot;</span>, </span>
-<span id="cb155-109"><a href="your-assignment.html#cb155-109" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> plot_fms_indv, <span class="co"># the name of the image object you created above.</span></span>
-<span id="cb155-110"><a href="your-assignment.html#cb155-110" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">15</span>, </span>
-<span id="cb155-111"><a href="your-assignment.html#cb155-111" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">8</span>, </span>
-<span id="cb155-112"><a href="your-assignment.html#cb155-112" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">&quot;cm&quot;</span>, </span>
-<span id="cb155-113"><a href="your-assignment.html#cb155-113" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span> <span class="dv">200</span>)</span>
-<span id="cb155-114"><a href="your-assignment.html#cb155-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-115"><a href="your-assignment.html#cb155-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-116"><a href="your-assignment.html#cb155-116" aria-hidden="true" tabindex="-1"></a><span class="do">## Analyze VO2 data ------------------------------------------------------------</span></span>
-<span id="cb155-117"><a href="your-assignment.html#cb155-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-118"><a href="your-assignment.html#cb155-118" aria-hidden="true" tabindex="-1"></a><span class="do">### Rename column names of Vo2 data (Task 5)</span></span>
-<span id="cb155-119"><a href="your-assignment.html#cb155-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-120"><a href="your-assignment.html#cb155-120" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb155-121"><a href="your-assignment.html#cb155-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-122"><a href="your-assignment.html#cb155-122" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span> (dat_vo2)  <span class="ot">&lt;-</span> new_names</span>
-<span id="cb155-123"><a href="your-assignment.html#cb155-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-124"><a href="your-assignment.html#cb155-124" aria-hidden="true" tabindex="-1"></a><span class="do">### Remove first row of Vo2 data</span></span>
-<span id="cb155-125"><a href="your-assignment.html#cb155-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-126"><a href="your-assignment.html#cb155-126" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span> </span>
-<span id="cb155-127"><a href="your-assignment.html#cb155-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span> (<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>))</span>
-<span id="cb155-128"><a href="your-assignment.html#cb155-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-129"><a href="your-assignment.html#cb155-129" aria-hidden="true" tabindex="-1"></a><span class="do">### Convert column type of Vo2 data (Task 6)</span></span>
-<span id="cb155-130"><a href="your-assignment.html#cb155-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-131"><a href="your-assignment.html#cb155-131" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span>  dat_vo2 <span class="sc">%&gt;%</span></span>
-<span id="cb155-132"><a href="your-assignment.html#cb155-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">bf =</span> <span class="fu">XXX</span> (bf),</span>
-<span id="cb155-133"><a href="your-assignment.html#cb155-133" aria-hidden="true" tabindex="-1"></a>          <span class="at">vo2_norm =</span> <span class="fu">XXX</span>(vo2_norm),</span>
-<span id="cb155-134"><a href="your-assignment.html#cb155-134" aria-hidden="true" tabindex="-1"></a>          <span class="at">rer =</span> <span class="fu">XXX</span>(rer),</span>
-<span id="cb155-135"><a href="your-assignment.html#cb155-135" aria-hidden="true" tabindex="-1"></a>          <span class="at">vo2 =</span> <span class="fu">XXX</span>(vo2),</span>
-<span id="cb155-136"><a href="your-assignment.html#cb155-136" aria-hidden="true" tabindex="-1"></a>          <span class="at">vco2 =</span> <span class="fu">XXX</span>(vco2),</span>
-<span id="cb155-137"><a href="your-assignment.html#cb155-137" aria-hidden="true" tabindex="-1"></a>          <span class="at">ve =</span> <span class="fu">XXX</span>(ve),</span>
-<span id="cb155-138"><a href="your-assignment.html#cb155-138" aria-hidden="true" tabindex="-1"></a>          <span class="at">hr =</span> <span class="fu">XXX</span>(hr)) <span class="sc">%&gt;%</span></span>
-<span id="cb155-139"><a href="your-assignment.html#cb155-139" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert time to seconds</span></span>
-<span id="cb155-140"><a href="your-assignment.html#cb155-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">time =</span> time <span class="sc">%&gt;%</span> </span>
-<span id="cb155-141"><a href="your-assignment.html#cb155-141" aria-hidden="true" tabindex="-1"></a>            <span class="fu">str_squish</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb155-142"><a href="your-assignment.html#cb155-142" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ms</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb155-143"><a href="your-assignment.html#cb155-143" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.period</span>(<span class="at">unit =</span> <span class="st">&quot;sec&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb155-144"><a href="your-assignment.html#cb155-144" aria-hidden="true" tabindex="-1"></a>            <span class="fu">as.numeric</span> ()) </span>
-<span id="cb155-145"><a href="your-assignment.html#cb155-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-146"><a href="your-assignment.html#cb155-146" aria-hidden="true" tabindex="-1"></a><span class="do">### Create a &quot;stage&quot; variable in Vo2 data</span></span>
-<span id="cb155-147"><a href="your-assignment.html#cb155-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-148"><a href="your-assignment.html#cb155-148" aria-hidden="true" tabindex="-1"></a>dat_vo2 <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
-<span id="cb155-149"><a href="your-assignment.html#cb155-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">stage =</span> <span class="fu">cut_interval</span>(time, <span class="at">length =</span> <span class="dv">210</span>, <span class="at">labels =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb155-150"><a href="your-assignment.html#cb155-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-151"><a href="your-assignment.html#cb155-151" aria-hidden="true" tabindex="-1"></a><span class="do">### Calculate average 30s data per stage of Vo2 data (Task 7)</span></span>
-<span id="cb155-152"><a href="your-assignment.html#cb155-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-153"><a href="your-assignment.html#cb155-153" aria-hidden="true" tabindex="-1"></a>dat_vo2_summ <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
-<span id="cb155-154"><a href="your-assignment.html#cb155-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(XXX) <span class="sc">%&gt;%</span> <span class="co"># for each group</span></span>
-<span id="cb155-155"><a href="your-assignment.html#cb155-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">row_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb155-156"><a href="your-assignment.html#cb155-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (row_id <span class="sc">&lt;</span> XXX) <span class="sc">%&gt;%</span> <span class="co"># throw away all data between 3 to 3:30 min</span></span>
-<span id="cb155-157"><a href="your-assignment.html#cb155-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span> (<span class="at">n =</span> XXX)<span class="sc">%&gt;%</span> <span class="co"># keep last 30 sec per stage</span></span>
-<span id="cb155-158"><a href="your-assignment.html#cb155-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">bf =</span> <span class="fu">mean</span> (bf),</span>
-<span id="cb155-159"><a href="your-assignment.html#cb155-159" aria-hidden="true" tabindex="-1"></a>             <span class="at">vo2_norm =</span> <span class="fu">mean</span> (vo2_norm),</span>
-<span id="cb155-160"><a href="your-assignment.html#cb155-160" aria-hidden="true" tabindex="-1"></a>             <span class="at">rer =</span> <span class="fu">mean</span> (rer),</span>
-<span id="cb155-161"><a href="your-assignment.html#cb155-161" aria-hidden="true" tabindex="-1"></a>             <span class="at">vo2 =</span> <span class="fu">mean</span> (vo2),</span>
-<span id="cb155-162"><a href="your-assignment.html#cb155-162" aria-hidden="true" tabindex="-1"></a>             <span class="at">vco2 =</span> <span class="fu">mean</span> (vco2),</span>
-<span id="cb155-163"><a href="your-assignment.html#cb155-163" aria-hidden="true" tabindex="-1"></a>             <span class="at">ve =</span> <span class="fu">mean</span> (ve),</span>
-<span id="cb155-164"><a href="your-assignment.html#cb155-164" aria-hidden="true" tabindex="-1"></a>             <span class="at">hr =</span> <span class="fu">mean</span> (hr))</span>
-<span id="cb155-165"><a href="your-assignment.html#cb155-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-166"><a href="your-assignment.html#cb155-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-167"><a href="your-assignment.html#cb155-167" aria-hidden="true" tabindex="-1"></a><span class="do">### Combine Vo2 staged data with lactate data (Task 8)</span></span>
-<span id="cb155-168"><a href="your-assignment.html#cb155-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-169"><a href="your-assignment.html#cb155-169" aria-hidden="true" tabindex="-1"></a>dat_vo2_comb <span class="ot">&lt;-</span> dat_vo2_summ <span class="sc">%&gt;%</span></span>
-<span id="cb155-170"><a href="your-assignment.html#cb155-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(dat_stage, <span class="at">by =</span> <span class="st">&quot;XXX&quot;</span>)</span>
-<span id="cb155-171"><a href="your-assignment.html#cb155-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-172"><a href="your-assignment.html#cb155-172" aria-hidden="true" tabindex="-1"></a><span class="do">### Plot</span></span>
-<span id="cb155-173"><a href="your-assignment.html#cb155-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-174"><a href="your-assignment.html#cb155-174" aria-hidden="true" tabindex="-1"></a><span class="do">#### Lactate (Task 9)</span></span>
-<span id="cb155-175"><a href="your-assignment.html#cb155-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-176"><a href="your-assignment.html#cb155-176" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">ggplot</span> (dat_vo2_comb) <span class="sc">+</span></span>
-<span id="cb155-177"><a href="your-assignment.html#cb155-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span> (<span class="fu">aes</span> (<span class="at">x =</span> XXX, <span class="at">y =</span> XXX), <span class="at">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb155-178"><a href="your-assignment.html#cb155-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</span>
-<span id="cb155-179"><a href="your-assignment.html#cb155-179" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Lactate (mmol)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb155-180"><a href="your-assignment.html#cb155-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb155-181"><a href="your-assignment.html#cb155-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb155-182"><a href="your-assignment.html#cb155-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),</span>
-<span id="cb155-183"><a href="your-assignment.html#cb155-183" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),  </span>
-<span id="cb155-184"><a href="your-assignment.html#cb155-184" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),</span>
-<span id="cb155-185"><a href="your-assignment.html#cb155-185" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX))</span>
-<span id="cb155-186"><a href="your-assignment.html#cb155-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-187"><a href="your-assignment.html#cb155-187" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;lactate.png&quot;</span>, </span>
-<span id="cb155-188"><a href="your-assignment.html#cb155-188" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> f, <span class="co"># the name of the image object you created above.</span></span>
-<span id="cb155-189"><a href="your-assignment.html#cb155-189" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">8</span>, </span>
-<span id="cb155-190"><a href="your-assignment.html#cb155-190" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">8</span>, </span>
-<span id="cb155-191"><a href="your-assignment.html#cb155-191" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">&quot;cm&quot;</span>, </span>
-<span id="cb155-192"><a href="your-assignment.html#cb155-192" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span> <span class="dv">200</span>)</span>
-<span id="cb155-193"><a href="your-assignment.html#cb155-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-194"><a href="your-assignment.html#cb155-194" aria-hidden="true" tabindex="-1"></a><span class="do">#### Heart rate (Task 10)</span></span>
-<span id="cb155-195"><a href="your-assignment.html#cb155-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-196"><a href="your-assignment.html#cb155-196" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">ggplot</span> (dat_vo2_comb) <span class="sc">+</span></span>
-<span id="cb155-197"><a href="your-assignment.html#cb155-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span> (<span class="fu">aes</span> (<span class="at">x =</span> XXX, <span class="at">y =</span> XXX), <span class="at">colour =</span> <span class="st">&quot;XXX&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb155-198"><a href="your-assignment.html#cb155-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">x =</span> <span class="st">&quot;Speed (km/h)&quot;</span>,</span>
-<span id="cb155-199"><a href="your-assignment.html#cb155-199" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Heart Rate (bpm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb155-200"><a href="your-assignment.html#cb155-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb155-201"><a href="your-assignment.html#cb155-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">title =</span> <span class="st">&quot;XXX&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb155-202"><a href="your-assignment.html#cb155-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),</span>
-<span id="cb155-203"><a href="your-assignment.html#cb155-203" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),  </span>
-<span id="cb155-204"><a href="your-assignment.html#cb155-204" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX),</span>
-<span id="cb155-205"><a href="your-assignment.html#cb155-205" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> XXX))</span>
-<span id="cb155-206"><a href="your-assignment.html#cb155-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-207"><a href="your-assignment.html#cb155-207" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;heartrate.png&quot;</span>, </span>
-<span id="cb155-208"><a href="your-assignment.html#cb155-208" aria-hidden="true" tabindex="-1"></a>       <span class="at">plot =</span> f, <span class="co"># the name of the image object you created above.</span></span>
-<span id="cb155-209"><a href="your-assignment.html#cb155-209" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">8</span>, </span>
-<span id="cb155-210"><a href="your-assignment.html#cb155-210" aria-hidden="true" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">8</span>, </span>
-<span id="cb155-211"><a href="your-assignment.html#cb155-211" aria-hidden="true" tabindex="-1"></a>       <span class="at">unit =</span> <span class="st">&quot;cm&quot;</span>, </span>
-<span id="cb155-212"><a href="your-assignment.html#cb155-212" aria-hidden="true" tabindex="-1"></a>       <span class="at">dpi =</span> <span class="dv">200</span>)</span>
-<span id="cb155-213"><a href="your-assignment.html#cb155-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-214"><a href="your-assignment.html#cb155-214" aria-hidden="true" tabindex="-1"></a><span class="do">#### Export table (Task 11)</span></span>
-<span id="cb155-215"><a href="your-assignment.html#cb155-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-216"><a href="your-assignment.html#cb155-216" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(<span class="at">x =</span> XXX,</span>
-<span id="cb155-217"><a href="your-assignment.html#cb155-217" aria-hidden="true" tabindex="-1"></a>           <span class="at">sheetName =</span> <span class="st">&quot;vo2&quot;</span>,</span>
-<span id="cb155-218"><a href="your-assignment.html#cb155-218" aria-hidden="true" tabindex="-1"></a>           <span class="at">file =</span> <span class="st">&quot;data/vo2_table.xlsx&quot;</span>)</span>
-<span id="cb155-219"><a href="your-assignment.html#cb155-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-220"><a href="your-assignment.html#cb155-220" aria-hidden="true" tabindex="-1"></a><span class="do">## Bonus Codes to help you -------------------------------------------------</span></span>
-<span id="cb155-221"><a href="your-assignment.html#cb155-221" aria-hidden="true" tabindex="-1"></a><span class="do">### Click on everything below and run</span></span>
-<span id="cb155-222"><a href="your-assignment.html#cb155-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-223"><a href="your-assignment.html#cb155-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-224"><a href="your-assignment.html#cb155-224" aria-hidden="true" tabindex="-1"></a><span class="do">### Get VO2 max , VO2 max relative</span></span>
-<span id="cb155-225"><a href="your-assignment.html#cb155-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-226"><a href="your-assignment.html#cb155-226" aria-hidden="true" tabindex="-1"></a>rolling_mean6 <span class="ot">&lt;-</span> <span class="fu">rollify</span>(mean, <span class="at">window =</span> <span class="dv">6</span>)</span>
-<span id="cb155-227"><a href="your-assignment.html#cb155-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-228"><a href="your-assignment.html#cb155-228" aria-hidden="true" tabindex="-1"></a>raw_roll <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
-<span id="cb155-229"><a href="your-assignment.html#cb155-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span> (<span class="fu">desc</span> (time)) <span class="sc">%&gt;%</span></span>
-<span id="cb155-230"><a href="your-assignment.html#cb155-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span> (<span class="fu">vars</span>(bf<span class="sc">:</span>hr), rolling_mean6) <span class="sc">%&gt;%</span></span>
-<span id="cb155-231"><a href="your-assignment.html#cb155-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb155-232"><a href="your-assignment.html#cb155-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">vars</span>(bf<span class="sc">:</span>hr), max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb155-233"><a href="your-assignment.html#cb155-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">vo2 =</span> vo2<span class="sc">/</span><span class="dv">1000</span>)</span>
-<span id="cb155-234"><a href="your-assignment.html#cb155-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-235"><a href="your-assignment.html#cb155-235" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> (<span class="st">&quot;The relative peak O2 uptake is:&quot;</span>, raw_roll<span class="sc">$</span>vo2_norm, <span class="st">&quot;(ml/kg/min)&quot;</span>)</span>
-<span id="cb155-236"><a href="your-assignment.html#cb155-236" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> (<span class="st">&quot;The absolute peak O2 uptake is:&quot;</span>, raw_roll<span class="sc">$</span>vo2, <span class="st">&quot;(L/min)&quot;</span>)</span>
-<span id="cb155-237"><a href="your-assignment.html#cb155-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-238"><a href="your-assignment.html#cb155-238" aria-hidden="true" tabindex="-1"></a><span class="do">### Get max aerobic speed</span></span>
-<span id="cb155-239"><a href="your-assignment.html#cb155-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-240"><a href="your-assignment.html#cb155-240" aria-hidden="true" tabindex="-1"></a><span class="do">#### Get maximal stage completed number</span></span>
-<span id="cb155-241"><a href="your-assignment.html#cb155-241" aria-hidden="true" tabindex="-1"></a>max_stage <span class="ot">&lt;-</span> <span class="fu">max</span> (dat_vo2<span class="sc">$</span>stage)</span>
-<span id="cb155-242"><a href="your-assignment.html#cb155-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-243"><a href="your-assignment.html#cb155-243" aria-hidden="true" tabindex="-1"></a><span class="do">#### Find number of rows in final stage</span></span>
-<span id="cb155-244"><a href="your-assignment.html#cb155-244" aria-hidden="true" tabindex="-1"></a>dat_vo2_last <span class="ot">&lt;-</span> dat_vo2 <span class="sc">%&gt;%</span></span>
-<span id="cb155-245"><a href="your-assignment.html#cb155-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span> (stage <span class="sc">==</span> max_stage)</span>
-<span id="cb155-246"><a href="your-assignment.html#cb155-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-247"><a href="your-assignment.html#cb155-247" aria-hidden="true" tabindex="-1"></a><span class="do">#### Calculate based on rows the proportion of stage completed</span></span>
-<span id="cb155-248"><a href="your-assignment.html#cb155-248" aria-hidden="true" tabindex="-1"></a>last_stage_prop <span class="ot">&lt;-</span> <span class="fu">nrow</span> (dat_vo2_last)<span class="sc">/</span><span class="dv">42</span></span>
-<span id="cb155-249"><a href="your-assignment.html#cb155-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-250"><a href="your-assignment.html#cb155-250" aria-hidden="true" tabindex="-1"></a><span class="do">#### Get the speed increment, which should be even across all stage</span></span>
-<span id="cb155-251"><a href="your-assignment.html#cb155-251" aria-hidden="true" tabindex="-1"></a>increment <span class="ot">&lt;-</span> <span class="fu">mean</span> (<span class="fu">diff</span>(dat_vo2_comb<span class="sc">$</span>speed, <span class="at">lag =</span> <span class="dv">1</span>))</span>
-<span id="cb155-252"><a href="your-assignment.html#cb155-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-253"><a href="your-assignment.html#cb155-253" aria-hidden="true" tabindex="-1"></a><span class="do">#### Get the maximal aerobic speed</span></span>
-<span id="cb155-254"><a href="your-assignment.html#cb155-254" aria-hidden="true" tabindex="-1"></a>ans <span class="ot">&lt;-</span>  last_stage_prop <span class="sc">*</span> increment</span>
-<span id="cb155-255"><a href="your-assignment.html#cb155-255" aria-hidden="true" tabindex="-1"></a>max_aerobic_speed <span class="ot">&lt;-</span> ans <span class="sc">+</span> <span class="fu">max</span> (dat_vo2_comb<span class="sc">$</span>speed)</span>
-<span id="cb155-256"><a href="your-assignment.html#cb155-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-257"><a href="your-assignment.html#cb155-257" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> (<span class="st">&quot;The maximal aerobic speed:&quot;</span>, max_aerobic_speed,  <span class="st">&quot;(Km/h)&quot;</span>)</span>
-<span id="cb155-258"><a href="your-assignment.html#cb155-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-259"><a href="your-assignment.html#cb155-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-260"><a href="your-assignment.html#cb155-260" aria-hidden="true" tabindex="-1"></a><span class="do">### Get Lactate and Anaerobic Thresold</span></span>
-<span id="cb155-261"><a href="your-assignment.html#cb155-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-262"><a href="your-assignment.html#cb155-262" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">loess</span> (lactate <span class="sc">~</span> speed, <span class="at">data =</span> dat_vo2_comb)</span>
-<span id="cb155-263"><a href="your-assignment.html#cb155-263" aria-hidden="true" tabindex="-1"></a>min.speed <span class="ot">&lt;-</span> <span class="fu">ceiling</span> (<span class="fu">min</span> (dat_vo2_comb<span class="sc">$</span>speed))</span>
-<span id="cb155-264"><a href="your-assignment.html#cb155-264" aria-hidden="true" tabindex="-1"></a>max.speed <span class="ot">&lt;-</span> <span class="fu">floor</span> (<span class="fu">max</span> (dat_vo2_comb<span class="sc">$</span>speed))</span>
-<span id="cb155-265"><a href="your-assignment.html#cb155-265" aria-hidden="true" tabindex="-1"></a>n_points <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb155-266"><a href="your-assignment.html#cb155-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-267"><a href="your-assignment.html#cb155-267" aria-hidden="true" tabindex="-1"></a>new_lac <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">speed =</span> <span class="fu">seq</span> (min.speed, max.speed, <span class="at">length.out =</span> n_points))</span>
-<span id="cb155-268"><a href="your-assignment.html#cb155-268" aria-hidden="true" tabindex="-1"></a>new_lac<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span> (m, <span class="at">newdata =</span> new_lac)</span>
-<span id="cb155-269"><a href="your-assignment.html#cb155-269" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(new_lac)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span></span>
-<span id="cb155-270"><a href="your-assignment.html#cb155-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-271"><a href="your-assignment.html#cb155-271" aria-hidden="true" tabindex="-1"></a><span class="do">#### Threshold values</span></span>
-<span id="cb155-272"><a href="your-assignment.html#cb155-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-273"><a href="your-assignment.html#cb155-273" aria-hidden="true" tabindex="-1"></a>lactate_thres <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">x =</span> <span class="fu">seq</span> (min.speed, max.speed, <span class="at">length.out =</span> n_points),</span>
-<span id="cb155-274"><a href="your-assignment.html#cb155-274" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> <span class="dv">2</span>)</span>
-<span id="cb155-275"><a href="your-assignment.html#cb155-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-276"><a href="your-assignment.html#cb155-276" aria-hidden="true" tabindex="-1"></a>anaerobic_thres <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">x =</span> <span class="fu">seq</span> (min.speed, max.speed, <span class="at">length.out =</span> n_points),</span>
-<span id="cb155-277"><a href="your-assignment.html#cb155-277" aria-hidden="true" tabindex="-1"></a>                               <span class="at">y =</span> <span class="dv">4</span>)</span>
-<span id="cb155-278"><a href="your-assignment.html#cb155-278" aria-hidden="true" tabindex="-1"></a><span class="do">#### Speed at thresold</span></span>
-<span id="cb155-279"><a href="your-assignment.html#cb155-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-280"><a href="your-assignment.html#cb155-280" aria-hidden="true" tabindex="-1"></a>speed_at_lac_thres <span class="ot">&lt;-</span> <span class="fu">curve_intersect</span>(new_lac, lactate_thres)<span class="sc">$</span>x</span>
-<span id="cb155-281"><a href="your-assignment.html#cb155-281" aria-hidden="true" tabindex="-1"></a>speed_at_ane_thres <span class="ot">&lt;-</span> <span class="fu">curve_intersect</span>(new_lac, anaerobic_thres)<span class="sc">$</span>x</span>
-<span id="cb155-282"><a href="your-assignment.html#cb155-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-283"><a href="your-assignment.html#cb155-283" aria-hidden="true" tabindex="-1"></a><span class="do">### Get HR at thresholds</span></span>
-<span id="cb155-284"><a href="your-assignment.html#cb155-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-285"><a href="your-assignment.html#cb155-285" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">loess</span> (hr <span class="sc">~</span> speed, <span class="at">data =</span> dat_vo2_comb)</span>
-<span id="cb155-286"><a href="your-assignment.html#cb155-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-287"><a href="your-assignment.html#cb155-287" aria-hidden="true" tabindex="-1"></a>new_hr <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">speed =</span> <span class="fu">seq</span> (min.speed, max.speed, <span class="at">length.out =</span> n_points))</span>
-<span id="cb155-288"><a href="your-assignment.html#cb155-288" aria-hidden="true" tabindex="-1"></a>new_hr<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="fu">predict</span> (m, <span class="at">newdata =</span> new_hr)</span>
-<span id="cb155-289"><a href="your-assignment.html#cb155-289" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(new_hr)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;x&quot;</span></span>
-<span id="cb155-290"><a href="your-assignment.html#cb155-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-291"><a href="your-assignment.html#cb155-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-292"><a href="your-assignment.html#cb155-292" aria-hidden="true" tabindex="-1"></a>hr_at_lac_thres <span class="ot">&lt;-</span> new_hr[<span class="fu">which.min</span>(<span class="fu">abs</span>(new_hr<span class="sc">$</span>x <span class="sc">-</span>speed_at_lac_thres)), <span class="st">&quot;y&quot;</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb155-293"><a href="your-assignment.html#cb155-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span> (<span class="dv">0</span>)</span>
-<span id="cb155-294"><a href="your-assignment.html#cb155-294" aria-hidden="true" tabindex="-1"></a>hr_at_ane_thres <span class="ot">&lt;-</span> new_hr[<span class="fu">which.min</span>(<span class="fu">abs</span>(new_hr<span class="sc">$</span>x <span class="sc">-</span>speed_at_ane_thres)), <span class="st">&quot;y&quot;</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb155-295"><a href="your-assignment.html#cb155-295" aria-hidden="true" tabindex="-1"></a>  round </span>
-<span id="cb155-296"><a href="your-assignment.html#cb155-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-297"><a href="your-assignment.html#cb155-297" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">&quot;Lactate Threshold&quot;</span>, <span class="st">&quot;Anaerobic Threshold&quot;</span>),</span>
-<span id="cb155-298"><a href="your-assignment.html#cb155-298" aria-hidden="true" tabindex="-1"></a>                 <span class="at">Speed =</span> <span class="fu">c</span>(speed_at_lac_thres, speed_at_ane_thres ),</span>
-<span id="cb155-299"><a href="your-assignment.html#cb155-299" aria-hidden="true" tabindex="-1"></a>                 <span class="at">HR =</span> <span class="fu">c</span>(hr_at_lac_thres, hr_at_ane_thres))</span>
-<span id="cb155-300"><a href="your-assignment.html#cb155-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-301"><a href="your-assignment.html#cb155-301" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at lactate threshold are:&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">1</span>,<span class="dv">3</span>])</span>
-<span id="cb155-302"><a href="your-assignment.html#cb155-302" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> (<span class="st">&quot;The speed (km/h) and heart rate (b/min) at anaerobic threshold are:&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, pi[<span class="dv">2</span>,<span class="dv">3</span>])</span>
-<span id="cb155-303"><a href="your-assignment.html#cb155-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-304"><a href="your-assignment.html#cb155-304" aria-hidden="true" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">speed =</span> new_lac<span class="sc">$</span>x,</span>
-<span id="cb155-305"><a href="your-assignment.html#cb155-305" aria-hidden="true" tabindex="-1"></a>                      <span class="at">lactate =</span> new_lac<span class="sc">$</span>y,</span>
-<span id="cb155-306"><a href="your-assignment.html#cb155-306" aria-hidden="true" tabindex="-1"></a>                      <span class="at">hr =</span> new_hr<span class="sc">$</span>y,</span>
-<span id="cb155-307"><a href="your-assignment.html#cb155-307" aria-hidden="true" tabindex="-1"></a>                      <span class="at">speed_lac =</span> speed_at_lac_thres,</span>
-<span id="cb155-308"><a href="your-assignment.html#cb155-308" aria-hidden="true" tabindex="-1"></a>                      <span class="at">speed_ane =</span> speed_at_ane_thres) <span class="sc">%&gt;%</span></span>
-<span id="cb155-309"><a href="your-assignment.html#cb155-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> lactate<span class="sc">:</span>hr,</span>
-<span id="cb155-310"><a href="your-assignment.html#cb155-310" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>,</span>
-<span id="cb155-311"><a href="your-assignment.html#cb155-311" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>)</span>
-<span id="cb155-312"><a href="your-assignment.html#cb155-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-313"><a href="your-assignment.html#cb155-313" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span> (df_plot) <span class="sc">+</span></span>
-<span id="cb155-314"><a href="your-assignment.html#cb155-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span> (<span class="fu">aes</span> (<span class="at">x =</span> speed, <span class="at">y =</span> val)) <span class="sc">+</span> </span>
-<span id="cb155-315"><a href="your-assignment.html#cb155-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> speed_at_lac_thres, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb155-316"><a href="your-assignment.html#cb155-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> speed_at_ane_thres, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb155-317"><a href="your-assignment.html#cb155-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>var, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb155-318"><a href="your-assignment.html#cb155-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">x =</span> <span class="st">&quot;Speed&quot;</span>,</span>
-<span id="cb155-319"><a href="your-assignment.html#cb155-319" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">&quot;Values&quot;</span>) <span class="sc">+</span></span>
-<span id="cb155-320"><a href="your-assignment.html#cb155-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb155-321"><a href="your-assignment.html#cb155-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span> (<span class="at">title =</span> <span class="st">&quot;Plot of Treadmill test&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb155-322"><a href="your-assignment.html#cb155-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb155-323"><a href="your-assignment.html#cb155-323" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  </span>
-<span id="cb155-324"><a href="your-assignment.html#cb155-324" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb155-325"><a href="your-assignment.html#cb155-325" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span></span>
+<span><span class="co">## -----------------------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="co">## load up the packages we will need</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://github.com/trinker/pacman">"pacman"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pacman"</span><span class="op">)</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="co"># All purpose wrangling for dataframes</span></span>
+<span>               <span class="va">lubridate</span>, <span class="co"># Time</span></span>
+<span>               <span class="va">tibbletime</span>,</span>
+<span>               <span class="va">openxlsx</span><span class="op">)</span> <span class="co"># writing excel documents</span></span>
+<span></span>
+<span><span class="co">## Custom function to get interection between two lines</span></span>
+<span><span class="co">## To get Lactate and Anaerobic Threshold values</span></span>
+<span><span class="co">## Ignore the complexity, highlight between Start and End, Run -----------------</span></span>
+<span></span>
+<span><span class="co">## Start ----------------</span></span>
+<span><span class="va">curve_intersect</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">curve1</span>, <span class="va">curve2</span>, <span class="va">empirical</span> <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">domain</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> </span>
+<span><span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">empirical</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/missing.html">missing</a></span><span class="op">(</span><span class="va">domain</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"'domain' must be provided with non-empirical curves"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">empirical</span> <span class="op">&amp;</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">domain</span><span class="op">)</span> <span class="op">!=</span> <span class="fl">2</span> <span class="op">|</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">domain</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"'domain' must be a two-value numeric vector, like c(0, 10)"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">empirical</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">curve1_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html">approxfun</a></span><span class="op">(</span><span class="va">curve1</span><span class="op">$</span><span class="va">x</span>, <span class="va">curve1</span><span class="op">$</span><span class="va">y</span>, rule <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="va">curve2_f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/approxfun.html">approxfun</a></span><span class="op">(</span><span class="va">curve2</span><span class="op">$</span><span class="va">x</span>, <span class="va">curve2</span><span class="op">$</span><span class="va">y</span>, rule <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="va">point_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">curve1_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fu">curve2_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, </span>
+<span>                       <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">curve1</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">curve1</span><span class="op">$</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span>
+<span>    <span class="va">point_y</span> <span class="op">&lt;-</span> <span class="fu">curve2_f</span><span class="op">(</span><span class="va">point_x</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">point_x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/uniroot.html">uniroot</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">curve1</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span> <span class="fu">curve2</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, </span>
+<span>                       <span class="va">domain</span><span class="op">)</span><span class="op">$</span><span class="va">root</span></span>
+<span>    <span class="va">point_y</span> <span class="op">&lt;-</span> <span class="fu">curve2</span><span class="op">(</span><span class="va">point_x</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">point_x</span>, y <span class="op">=</span> <span class="va">point_y</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">## End ----------------</span></span>
+<span></span>
+<span><span class="co">## Import data </span></span>
+<span></span>
+<span><span class="co">### Import the sheet with the Vo2 data</span></span>
+<span><span class="va">dat_vo2</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
+<span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Import the sheet with the lactate data</span></span>
+<span><span class="va">dat_stage</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
+<span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Import group FMS data</span></span>
+<span><span class="va">dat_fms_grp</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
+<span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Import individual FMS data</span></span>
+<span><span class="va">dat_fms_indv</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
+<span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Import drop jump data</span></span>
+<span><span class="va">dat_imu</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
+<span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Analyze FMS data ------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="co">### Plot group FMS </span></span>
+<span></span>
+<span><span class="va">plot_fms_indv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">XXX</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>, y <span class="op">=</span> <span class="va">XXX</span>, fill <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"ind_fms.png"</span>, </span>
+<span>       plot <span class="op">=</span> <span class="va">plot_fms_indv</span>, <span class="co"># the name of the image object you created above.</span></span>
+<span>       width <span class="op">=</span> <span class="fl">15</span>, </span>
+<span>       height <span class="op">=</span> <span class="fl">8</span>, </span>
+<span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
+<span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Analyze drop jump data ------------------------------------------------------</span></span>
+<span></span>
+<span><span class="co"># Maximal bad leg impact value</span></span>
+<span><span class="va">max_bad_ampl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">df_imu</span><span class="op">$</span><span class="va">bad</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Maximal good leg impact value</span></span>
+<span><span class="va">max_good_ampl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">df_imu</span><span class="op">$</span><span class="va">good</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Symmetry index </span></span>
+<span></span>
+<span><span class="va">symmmetry_index</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="op">(</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span> <span class="op">(</span><span class="va">max_bad_ampl</span> <span class="op">-</span> <span class="va">max_good_ampl</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="va">max_bad_ampl</span> <span class="op">+</span> <span class="va">max_good_ampl</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span>
+<span></span>
+<span></span>
+<span><span class="va">symmmetry_index</span></span>
+<span></span>
+<span><span class="co">## Analyze VO2 data ------------------------------------------------------------</span></span>
+<span></span>
+<span><span class="co">### Rename column names of Vo2 data </span></span>
+<span></span>
+<span><span class="va">new_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span> <span class="op">(</span><span class="va">dat_vo2</span><span class="op">)</span>  <span class="op">&lt;-</span> <span class="va">new_names</span></span>
+<span></span>
+<span><span class="co">### Remove first row of Vo2 data</span></span>
+<span></span>
+<span><span class="va">dat_vo2</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span> <span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Convert column type of Vo2 data </span></span>
+<span></span>
+<span><span class="va">dat_vo2</span> <span class="op">&lt;-</span>  <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>bf <span class="op">=</span> <span class="fu">XXX</span> <span class="op">(</span><span class="va">bf</span><span class="op">)</span>,</span>
+<span>          vo2_norm <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">vo2_norm</span><span class="op">)</span>,</span>
+<span>          rer <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">rer</span><span class="op">)</span>,</span>
+<span>          vo2 <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">vo2</span><span class="op">)</span>,</span>
+<span>          vco2 <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">vco2</span><span class="op">)</span>,</span>
+<span>          ve <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">ve</span><span class="op">)</span>,</span>
+<span>          hr <span class="op">=</span> <span class="fu">XXX</span><span class="op">(</span><span class="va">hr</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="co"># Convert time to seconds</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>time <span class="op">=</span> <span class="va">time</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>            <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_squish</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>            <span class="fu">ms</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>            <span class="fu">as.period</span><span class="op">(</span>unit <span class="op">=</span> <span class="st">"sec"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>            <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span> <span class="op">(</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">### Create a "stage" variable in Vo2 data</span></span>
+<span></span>
+<span><span class="va">dat_vo2</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>stage <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html">cut_interval</a></span><span class="op">(</span><span class="va">time</span>, length <span class="op">=</span> <span class="fl">210</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Calculate average 30s data per stage of Vo2 data </span></span>
+<span></span>
+<span><span class="va">dat_vo2_summ</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">XXX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># for each group</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>row_id <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/ranking.html">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">row_id</span> <span class="op">&lt;</span> <span class="va">XXX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># throw away all data between 3 to 3:30 min</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_tail</a></span> <span class="op">(</span>n <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># keep last 30 sec per stage</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span> <span class="op">(</span>bf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">bf</span><span class="op">)</span>,</span>
+<span>             vo2_norm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">vo2_norm</span><span class="op">)</span>,</span>
+<span>             rer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">rer</span><span class="op">)</span>,</span>
+<span>             vo2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">vo2</span><span class="op">)</span>,</span>
+<span>             vco2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">vco2</span><span class="op">)</span>,</span>
+<span>             ve <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">ve</span><span class="op">)</span>,</span>
+<span>             hr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">hr</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">### Combine Vo2 staged data with lactate data </span></span>
+<span></span>
+<span><span class="va">dat_vo2_comb</span> <span class="op">&lt;-</span> <span class="va">dat_vo2_summ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">dat_stage</span>, by <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Plot</span></span>
+<span></span>
+<span><span class="co">#### Lactate (Task 9)</span></span>
+<span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>, y <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"XXX"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="st">"Speed (km/h)"</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">"Lactate (mmol)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>title <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,</span>
+<span>        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,  </span>
+<span>        axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,</span>
+<span>        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"lactate.png"</span>, </span>
+<span>       plot <span class="op">=</span> <span class="va">f</span>, <span class="co"># the name of the image object you created above.</span></span>
+<span>       width <span class="op">=</span> <span class="fl">8</span>, </span>
+<span>       height <span class="op">=</span> <span class="fl">8</span>, </span>
+<span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
+<span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#### Heart rate </span></span>
+<span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>, y <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"XXX"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="st">"Speed (km/h)"</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">"Heart Rate (bpm)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>title <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,</span>
+<span>        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,  </span>
+<span>        axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>,</span>
+<span>        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"heartrate.png"</span>, </span>
+<span>       plot <span class="op">=</span> <span class="va">f</span>, <span class="co"># the name of the image object you created above.</span></span>
+<span>       width <span class="op">=</span> <span class="fl">8</span>, </span>
+<span>       height <span class="op">=</span> <span class="fl">8</span>, </span>
+<span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
+<span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#### Export table </span></span>
+<span></span>
+<span><span class="fu">write.xlsx</span><span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>,</span>
+<span>           sheetName <span class="op">=</span> <span class="st">"vo2"</span>,</span>
+<span>           file <span class="op">=</span> <span class="st">"data/vo2_table.xlsx"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Bonus Codes to help you -----------------------------------------------------</span></span>
+<span></span>
+<span><span class="co">### Click on everything below and run</span></span>
+<span></span>
+<span></span>
+<span><span class="co">### Get VO2 max , VO2 max relative</span></span>
+<span></span>
+<span><span class="va">rolling_mean6</span> <span class="op">&lt;-</span> <span class="fu">rollify</span><span class="op">(</span><span class="va">mean</span>, window <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">raw_roll</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span> <span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span> <span class="op">(</span><span class="va">time</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">bf</span><span class="op">:</span><span class="va">hr</span><span class="op">)</span>, <span class="va">rolling_mean6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarise_at</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">bf</span><span class="op">:</span><span class="va">hr</span><span class="op">)</span>, <span class="va">max</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>vo2 <span class="op">=</span> <span class="va">vo2</span><span class="op">/</span><span class="fl">1000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="st">"The relative peak O2 uptake is:"</span>, <span class="va">raw_roll</span><span class="op">$</span><span class="va">vo2_norm</span>, <span class="st">"(ml/kg/min)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="st">"The absolute peak O2 uptake is:"</span>, <span class="va">raw_roll</span><span class="op">$</span><span class="va">vo2</span>, <span class="st">"(L/min)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">### Get max aerobic speed</span></span>
+<span></span>
+<span><span class="co">#### Get maximal stage completed number</span></span>
+<span><span class="va">max_stage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span> <span class="op">(</span><span class="va">dat_vo2</span><span class="op">$</span><span class="va">stage</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#### Find number of rows in final stage</span></span>
+<span><span class="va">dat_vo2_last</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">stage</span> <span class="op">==</span> <span class="va">max_stage</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#### Calculate based on rows the proportion of stage completed</span></span>
+<span><span class="va">last_stage_prop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> <span class="op">(</span><span class="va">dat_vo2_last</span><span class="op">)</span><span class="op">/</span><span class="fl">42</span></span>
+<span></span>
+<span><span class="co">#### Get the speed increment, which should be even across all stage</span></span>
+<span><span class="va">increment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diff.html">diff</a></span><span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">$</span><span class="va">speed</span>, lag <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#### Get the maximal aerobic speed</span></span>
+<span><span class="va">ans</span> <span class="op">&lt;-</span>  <span class="va">last_stage_prop</span> <span class="op">*</span> <span class="va">increment</span></span>
+<span><span class="va">max_aerobic_speed</span> <span class="op">&lt;-</span> <span class="va">ans</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">$</span><span class="va">speed</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="st">"The maximal aerobic speed:"</span>, <span class="va">max_aerobic_speed</span>,  <span class="st">"(Km/h)"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co">### Get Lactate and Anaerobic Thresold</span></span>
+<span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span> <span class="op">(</span><span class="va">lactate</span> <span class="op">~</span> <span class="va">speed</span>, data <span class="op">=</span> <span class="va">dat_vo2_comb</span><span class="op">)</span></span>
+<span><span class="va">min.speed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">$</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">max.speed</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">$</span><span class="va">speed</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">n_points</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="va">new_lac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> <span class="op">(</span>speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="va">min.speed</span>, <span class="va">max.speed</span>, length.out <span class="op">=</span> <span class="va">n_points</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">new_lac</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span> <span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="va">new_lac</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">new_lac</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"x"</span></span>
+<span></span>
+<span><span class="co">#### Threshold values</span></span>
+<span></span>
+<span><span class="va">lactate_thres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="va">min.speed</span>, <span class="va">max.speed</span>, length.out <span class="op">=</span> <span class="va">n_points</span><span class="op">)</span>,</span>
+<span>                             y <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">anaerobic_thres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="va">min.speed</span>, <span class="va">max.speed</span>, length.out <span class="op">=</span> <span class="va">n_points</span><span class="op">)</span>,</span>
+<span>                               y <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">#### Speed at thresold</span></span>
+<span></span>
+<span><span class="va">speed_at_lac_thres</span> <span class="op">&lt;-</span> <span class="fu">curve_intersect</span><span class="op">(</span><span class="va">new_lac</span>, <span class="va">lactate_thres</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
+<span><span class="va">speed_at_ane_thres</span> <span class="op">&lt;-</span> <span class="fu">curve_intersect</span><span class="op">(</span><span class="va">new_lac</span>, <span class="va">anaerobic_thres</span><span class="op">)</span><span class="op">$</span><span class="va">x</span></span>
+<span></span>
+<span><span class="co">### Get HR at thresholds</span></span>
+<span></span>
+<span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/loess.html">loess</a></span> <span class="op">(</span><span class="va">hr</span> <span class="op">~</span> <span class="va">speed</span>, data <span class="op">=</span> <span class="va">dat_vo2_comb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">new_hr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> <span class="op">(</span>speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="va">min.speed</span>, <span class="va">max.speed</span>, length.out <span class="op">=</span> <span class="va">n_points</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">new_hr</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span> <span class="op">(</span><span class="va">m</span>, newdata <span class="op">=</span> <span class="va">new_hr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">new_hr</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"x"</span></span>
+<span></span>
+<span></span>
+<span><span class="va">hr_at_lac_thres</span> <span class="op">&lt;-</span> <span class="va">new_hr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">new_hr</span><span class="op">$</span><span class="va">x</span> <span class="op">-</span><span class="va">speed_at_lac_thres</span><span class="op">)</span><span class="op">)</span>, <span class="st">"y"</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span> <span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">hr_at_ane_thres</span> <span class="op">&lt;-</span> <span class="va">new_hr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">new_hr</span><span class="op">$</span><span class="va">x</span> <span class="op">-</span><span class="va">speed_at_ane_thres</span><span class="op">)</span><span class="op">)</span>, <span class="st">"y"</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="va">round</span> </span>
+<span></span>
+<span><span class="va">pi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>Variable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Lactate Threshold"</span>, <span class="st">"Anaerobic Threshold"</span><span class="op">)</span>,</span>
+<span>                 Speed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">speed_at_lac_thres</span>, <span class="va">speed_at_ane_thres</span> <span class="op">)</span>,</span>
+<span>                 HR <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">hr_at_lac_thres</span>, <span class="va">hr_at_ane_thres</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="st">"The speed (km/h) and heart rate (b/min) at lactate threshold are:"</span>, <span class="va">pi</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span>, <span class="st">"and"</span>, <span class="va">pi</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span> <span class="op">(</span><span class="st">"The speed (km/h) and heart rate (b/min) at anaerobic threshold are:"</span>, <span class="va">pi</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span>, <span class="st">"and"</span>, <span class="va">pi</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>speed <span class="op">=</span> <span class="va">new_lac</span><span class="op">$</span><span class="va">x</span>,</span>
+<span>                      lactate <span class="op">=</span> <span class="va">new_lac</span><span class="op">$</span><span class="va">y</span>,</span>
+<span>                      hr <span class="op">=</span> <span class="va">new_hr</span><span class="op">$</span><span class="va">y</span>,</span>
+<span>                      speed_lac <span class="op">=</span> <span class="va">speed_at_lac_thres</span>,</span>
+<span>                      speed_ane <span class="op">=</span> <span class="va">speed_at_ane_thres</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="va">lactate</span><span class="op">:</span><span class="va">hr</span>,</span>
+<span>               names_to <span class="op">=</span> <span class="st">"var"</span>,</span>
+<span>               values_to <span class="op">=</span> <span class="st">"val"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="va">df_plot</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">speed</span>, y <span class="op">=</span> <span class="va">val</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">speed_at_lac_thres</span>, color <span class="op">=</span> <span class="st">"blue"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">speed_at_ane_thres</span>, color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">var</span>, ncol <span class="op">=</span> <span class="fl">2</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="st">"Speed"</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">"Values"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span> <span class="op">(</span>title <span class="op">=</span> <span class="st">"Plot of Treadmill test"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,</span>
+<span>        axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,  </span>
+<span>        axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span>
+<span>        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="line-graphs.html"><span class="header-section-number">8</span> Line Graphs</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#your-assignment"><span class="header-section-number">9</span> Your Assignment</a></li>
+<li><a class="nav-link" href="#tasks-to-complete"><span class="header-section-number">9.1</span> Tasks to complete</a></li>
+<li><a class="nav-link" href="#codes"><span class="header-section-number">9.2</span> Codes</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="line-graphs.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/blob/master/08-Assignment.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/edit/master/08-Assignment.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-09-09.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
 </body>
-
 </html>

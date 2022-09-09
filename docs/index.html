@@ -1,435 +1,68 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Simple Cookbook for Wrangling and Visualization</title>
-  <meta name="description" content="A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="A Simple Cookbook for Wrangling and Visualization" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Simple Cookbook for Wrangling and Visualization" />
-  
-  
-  
-
-<meta name="author" content="Bernard Liew" />
-
-
-<meta name="date" content="2022-09-06" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-
-<link rel="next" href="get-started.html"/>
-<script src="libs/header-attrs-2.14/header-attrs.js"></script>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/font-awesome-5.13.0/js/script.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 1 Preface | A Simple Cookbook for Wrangling and Visualization</title>
+<meta name="author" content="Bernard Liew">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 1 Preface | A Simple Cookbook for Wrangling and Visualization">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 1 Preface | A Simple Cookbook for Wrangling and Visualization">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.14/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<meta name="description" content="A book created with bookdown.">
+<meta property="og:description" content="A book created with bookdown.">
+<meta name="twitter:description" content="A book created with bookdown.">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li><a href="index.html#intro" id="toc-intro"><span class="toc-section-number">1</span> Preface<span></span></a>
-<ul>
-<li><a href="index.html#why-is-r-so-great" id="toc-why-is-r-so-great"><span class="toc-section-number">1.1</span> Why is R so great?<span></span></a></li>
-<li><a href="index.html#rrelationship" id="toc-rrelationship"><span class="toc-section-number">1.2</span> Why R is like a relationship…<span></span></a></li>
-<li><a href="index.html#things-students-get-wrong" id="toc-things-students-get-wrong"><span class="toc-section-number">1.3</span> 3 things students get wrong<span></span></a>
-<ul>
-<li><a href="index.html#wrong-method-of-launching-software" id="toc-wrong-method-of-launching-software"><span class="toc-section-number">1.3.1</span> Wrong method of launching software<span></span></a></li>
-<li><a href="index.html#not-running-code-from-start" id="toc-not-running-code-from-start"><span class="toc-section-number">1.3.2</span> Not running code from START<span></span></a></li>
-<li><a href="index.html#typographical-errors" id="toc-typographical-errors"><span class="toc-section-number">1.3.3</span> Typographical errors<span></span></a></li>
-</ul></li>
-<li><a href="index.html#r-resources" id="toc-r-resources"><span class="toc-section-number">1.4</span> R resources<span></span></a>
-<ul>
-<li><a href="index.html#r-books" id="toc-r-books"><span class="toc-section-number">1.4.1</span> R books<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="get-started.html#get-started" id="toc-get-started"><span class="toc-section-number">2</span> Getting Started<span></span></a>
-<ul>
-<li><a href="get-started.html#INSTALL-GET-STARTED" id="toc-INSTALL-GET-STARTED"><span class="toc-section-number">2.1</span> Installing Base-R and RStudio<span></span></a>
-<ul>
-<li><a href="get-started.html#check-for-version-updates" id="toc-check-for-version-updates"><span class="toc-section-number">2.1.1</span> Check for version updates<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-GET-FAMILIAR" id="toc-INSTALL-GET-FAMILIAR"><span class="toc-section-number">2.2</span> The four RStudio Windows<span></span></a>
-<ul>
-<li><a href="get-started.html#source---your-notepad-for-code" id="toc-source---your-notepad-for-code"><span class="toc-section-number">2.2.1</span> Source - Your notepad for code<span></span></a></li>
-<li><a href="get-started.html#console-rs-heart" id="toc-console-rs-heart"><span class="toc-section-number">2.2.2</span> Console: R’s Heart<span></span></a></li>
-<li><a href="get-started.html#environment-history" id="toc-environment-history"><span class="toc-section-number">2.2.3</span> Environment / History<span></span></a></li>
-<li><a href="get-started.html#files-plots-packages-help" id="toc-files-plots-packages-help"><span class="toc-section-number">2.2.4</span> Files / Plots / Packages / Help<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-READ-WRITE-CODE" id="toc-INSTALL-READ-WRITE-CODE"><span class="toc-section-number">2.3</span> Reading and writing Code<span></span></a>
-<ul>
-<li><a href="get-started.html#code-chunks" id="toc-code-chunks"><span class="toc-section-number">2.3.1</span> Code Chunks<span></span></a></li>
-<li><a href="get-started.html#comments-with" id="toc-comments-with"><span class="toc-section-number">2.3.2</span> Comments with #<span></span></a></li>
-<li><a href="get-started.html#element-numbers-in-output-1" id="toc-element-numbers-in-output-1"><span class="toc-section-number">2.3.3</span> Element numbers in output [1]<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-DEBUG" id="toc-INSTALL-DEBUG"><span class="toc-section-number">2.4</span> Debugging<span></span></a>
-<ul>
-<li><a href="get-started.html#r-is-not-ready" id="toc-r-is-not-ready"><span class="toc-section-number">2.4.1</span> R is not ready (&gt;)<span></span></a></li>
-<li><a href="get-started.html#misspelled-object-or-function" id="toc-misspelled-object-or-function"><span class="toc-section-number">2.4.2</span> Misspelled object or function<span></span></a></li>
-<li><a href="get-started.html#punctuation-problems" id="toc-punctuation-problems"><span class="toc-section-number">2.4.3</span> Punctuation problems<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-LEARNING-CHECK" id="toc-INSTALL-LEARNING-CHECK"><span class="toc-section-number">2.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#basics" id="toc-basics"><span class="toc-section-number">3</span> The Basics<span></span></a>
-<ul>
-<li><a href="basics.html#download-and-load-packages" id="toc-download-and-load-packages">Download and load packages<span></span></a></li>
-<li><a href="basics.html#BASICS-CONSOLE" id="toc-BASICS-CONSOLE"><span class="toc-section-number">3.1</span> The command-line (Console)<span></span></a></li>
-<li><a href="basics.html#writing-r-scripts-in-an-editor" id="toc-writing-r-scripts-in-an-editor"><span class="toc-section-number">3.2</span> Writing R scripts in an editor<span></span></a>
-<ul>
-<li><a href="basics.html#send-code-from-a-source-to-the-console" id="toc-send-code-from-a-source-to-the-console"><span class="toc-section-number">3.2.1</span> Send code from a source to the console<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#a-brief-style-guide-commenting-and-spacing" id="toc-a-brief-style-guide-commenting-and-spacing"><span class="toc-section-number">3.3</span> A brief style guide: Commenting and spacing<span></span></a>
-<ul>
-<li><a href="basics.html#commenting-code-with-the-pound-sign" id="toc-commenting-code-with-the-pound-sign"><span class="toc-section-number">3.3.1</span> Commenting code with the # (pound) sign<span></span></a></li>
-<li><a href="basics.html#spacing" id="toc-spacing"><span class="toc-section-number">3.3.2</span> Spacing<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#objects-and-functions" id="toc-objects-and-functions"><span class="toc-section-number">3.4</span> Objects and functions<span></span></a>
-<ul>
-<li><a href="basics.html#BASIC-TYPES" id="toc-BASIC-TYPES"><span class="toc-section-number">3.4.1</span> Numbers versus characters<span></span></a></li>
-<li><a href="basics.html#creating-new-objects-with--" id="toc-creating-new-objects-with--"><span class="toc-section-number">3.4.2</span> Creating new objects with &lt;-<span></span></a></li>
-<li><a href="basics.html#how-to-name-objects" id="toc-how-to-name-objects"><span class="toc-section-number">3.4.3</span> How to name objects<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NavigatingTheSoftware" id="toc-NavigatingTheSoftware"><span class="toc-section-number">4</span> Navigating the Software<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#introduction" id="toc-introduction">Introduction<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#download-and-load-packages-1" id="toc-download-and-load-packages-1">Download and load packages<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY" id="toc-NAVIGATE-WORKING-DIRECTORY"><span class="toc-section-number">4.1</span> Getting and Setting the Working Directory<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS" id="toc-NAVIGATE-PROJECTS"><span class="toc-section-number">4.2</span> Creating a new Rstudio project<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE" id="toc-NAVIGATE-INSTALL-PACKAGE"><span class="toc-section-number">4.3</span> Installing Packages<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#installing-a-new-package" id="toc-installing-a-new-package"><span class="toc-section-number">4.3.1</span> Installing a new package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#loading-a-package" id="toc-loading-a-package"><span class="toc-section-number">4.3.2</span> Loading a package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#a-simple-approach-to-package" id="toc-a-simple-approach-to-package"><span class="toc-section-number">4.3.3</span> A simple approach to package<span></span></a></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK" id="toc-NAVIGATE-LEARNING-CHECK"><span class="toc-section-number">4.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="InputOuput.html#InputOuput" id="toc-InputOuput"><span class="toc-section-number">5</span> Input and Output<span></span></a>
-<ul>
-<li><a href="InputOuput.html#download-and-load-packages-2" id="toc-download-and-load-packages-2">Download and load packages<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-FILE" id="toc-INPUT-FILE"><span class="toc-section-number">5.1</span> Dealing with “Cannot Open File” in Windows<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-IMPORT" id="toc-INPUT-IMPORT"><span class="toc-section-number">5.2</span> Reading in Excel “.xlsx” data<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-EXPORT" id="toc-INPUT-EXPORT"><span class="toc-section-number">5.3</span> Writing a Data Frame to Excel<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-LEARNING-CHECK" id="toc-INPUT-LEARNING-CHECK"><span class="toc-section-number">5.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE" id="toc-WRANGLE"><span class="toc-section-number">6</span> Data manipulation<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#download-and-load-packages-3" id="toc-download-and-load-packages-3">Download and load packages<span></span></a></li>
-<li><a href="WRANGLE.html#import-data" id="toc-import-data">Import data<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#let-us-see-the-data" id="toc-let-us-see-the-data">Let us see the data<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-TIDY-DATA" id="toc-WRANGLE-TIDY-DATA"><span class="toc-section-number">6.1</span> Tidy data<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES" id="toc-WRANGLE-RENAME-VARIABLES"><span class="toc-section-number">6.2</span> Renaming variables<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem" id="toc-problem"><span class="toc-section-number">6.2.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution" id="toc-solution"><span class="toc-section-number">6.2.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SLICE" id="toc-WRANGLE-SLICE"><span class="toc-section-number">6.3</span> Selecting rows<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-1" id="toc-problem-1"><span class="toc-section-number">6.3.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-1" id="toc-solution-1"><span class="toc-section-number">6.3.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SELECT" id="toc-WRANGLE-SELECT"><span class="toc-section-number">6.4</span> Selecting columns<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-2" id="toc-problem-2"><span class="toc-section-number">6.4.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-2" id="toc-solution-2"><span class="toc-section-number">6.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC" id="toc-WRANGLE-CHARACTER-2-NUMERIC"><span class="toc-section-number">6.5</span> Convert characters to numeric<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-3" id="toc-problem-3"><span class="toc-section-number">6.5.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-3" id="toc-solution-3"><span class="toc-section-number">6.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME" id="toc-WRANGLE-CHARACTER-2-TIME"><span class="toc-section-number">6.6</span> Convert characters to date and time<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-4" id="toc-problem-4"><span class="toc-section-number">6.6.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-4" id="toc-solution-4"><span class="toc-section-number">6.6.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion" id="toc-discussion"><span class="toc-section-number">6.6.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY" id="toc-WRANGLE-NUMERIC-CATEGORY"><span class="toc-section-number">6.7</span> Split Numeric Variable into Categories<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-5" id="toc-problem-5"><span class="toc-section-number">6.7.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-5" id="toc-solution-5"><span class="toc-section-number">6.7.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-1" id="toc-discussion-1"><span class="toc-section-number">6.7.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-GATHER" id="toc-WRANGLE-GATHER"><span class="toc-section-number">6.8</span> Gathering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-6" id="toc-problem-6"><span class="toc-section-number">6.8.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-6" id="toc-solution-6"><span class="toc-section-number">6.8.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SPREAD" id="toc-WRANGLE-SPREAD"><span class="toc-section-number">6.9</span> Spreading<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-7" id="toc-problem-7"><span class="toc-section-number">6.9.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-7" id="toc-solution-7"><span class="toc-section-number">6.9.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VALUES" id="toc-WRANGLE-RENAME-VALUES"><span class="toc-section-number">6.10</span> Rename values of a variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-8" id="toc-problem-8"><span class="toc-section-number">6.10.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-8" id="toc-solution-8"><span class="toc-section-number">6.10.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS" id="toc-WRANGLE-CHARACTERS-2-FACTORS"><span class="toc-section-number">6.11</span> Creating factors<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-9" id="toc-problem-9"><span class="toc-section-number">6.11.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-9" id="toc-solution-9"><span class="toc-section-number">6.11.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-2" id="toc-discussion-2"><span class="toc-section-number">6.11.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES" id="toc-WRANGLE-NEW-VARIABLES"><span class="toc-section-number">6.12</span> Making a new variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-10" id="toc-problem-10"><span class="toc-section-number">6.12.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-10" id="toc-solution-10"><span class="toc-section-number">6.12.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-3" id="toc-discussion-3"><span class="toc-section-number">6.12.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER" id="toc-WRANGLE-FILTER"><span class="toc-section-number">6.13</span> Filtering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER" id="toc-WRANGLE-FILTER-KEEP-CHARACTER"><span class="toc-section-number">6.13.1</span> Keep rows you want based on condition<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC" id="toc-WRANGLE-FILTER-KEEP-NUMERIC"><span class="toc-section-number">6.13.2</span> Keep rows based on a numerical range<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-4" id="toc-discussion-4"><span class="toc-section-number">6.13.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL" id="toc-WRANGLE-SUMMARIZE-GLOBAL"><span class="toc-section-number">6.14</span> Global summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-13" id="toc-problem-13"><span class="toc-section-number">6.14.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-13" id="toc-solution-13"><span class="toc-section-number">6.14.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-5" id="toc-discussion-5"><span class="toc-section-number">6.14.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY" id="toc-WRANGLE-SUMMARIZE-GROUPBY"><span class="toc-section-number">6.15</span> Group-by summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-14" id="toc-problem-14"><span class="toc-section-number">6.15.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-14" id="toc-solution-14"><span class="toc-section-number">6.15.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-6" id="toc-discussion-6"><span class="toc-section-number">6.15.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-INNER-JOIN" id="toc-WRANGLE-INNER-JOIN"><span class="toc-section-number">6.16</span> Merge two tables together<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-15" id="toc-problem-15"><span class="toc-section-number">6.16.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-15" id="toc-solution-15"><span class="toc-section-number">6.16.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-7" id="toc-discussion-7"><span class="toc-section-number">6.16.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK" id="toc-WRANGLE-LEARNING-CHECK"><span class="toc-section-number">6.17</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#CHAPTER-BAR-GRAPH" id="toc-CHAPTER-BAR-GRAPH"><span class="toc-section-number">7</span> Bar Graphs<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR" id="toc-BAR-GRAPH-BASIC-BAR"><span class="toc-section-number">7.1</span> Making a Basic Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-16" id="toc-problem-16"><span class="toc-section-number">7.1.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-16" id="toc-solution-16"><span class="toc-section-number">7.1.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-8" id="toc-discussion-8"><span class="toc-section-number">7.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY" id="toc-BAR-GRAPH-ANATOMY"><span class="toc-section-number">7.2</span> Anatomy of a Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND" id="toc-BAR-GRAPH-ANATOMY-BACKGROUND"><span class="toc-section-number">7.2.1</span> Plot Background<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES" id="toc-BAR-GRAPH-ANATOMY-AES"><span class="toc-section-number">7.2.2</span> Aesthetics aes()<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS" id="toc-BAR-GRAPH-ANATOMY-GEOMS"><span class="toc-section-number">7.2.3</span> Geometric representations geom()<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR" id="toc-BAR-GRAPH-GROUPED-BAR"><span class="toc-section-number">7.3</span> Grouping Bars Together<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-17" id="toc-problem-17"><span class="toc-section-number">7.3.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-17" id="toc-solution-17"><span class="toc-section-number">7.3.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-9" id="toc-discussion-9"><span class="toc-section-number">7.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS" id="toc-BAR-GRAPH-COLORS"><span class="toc-section-number">7.4</span> Using Colors in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-18" id="toc-problem-18"><span class="toc-section-number">7.4.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-18" id="toc-solution-18"><span class="toc-section-number">7.4.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-10" id="toc-discussion-10"><span class="toc-section-number">7.4.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES" id="toc-BAR-GRAPH-AXES"><span class="toc-section-number">7.5</span> Changing Axes titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-19" id="toc-problem-19"><span class="toc-section-number">7.5.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-19" id="toc-solution-19"><span class="toc-section-number">7.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND" id="toc-BAR-GRAPH-LEGEND"><span class="toc-section-number">7.6</span> Changing Legend titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-20" id="toc-problem-20"><span class="toc-section-number">7.6.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-20" id="toc-solution-20"><span class="toc-section-number">7.6.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE" id="toc-BAR-GRAPH-FONTSIZE"><span class="toc-section-number">7.7</span> Changing font size uniformly across the Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-21" id="toc-problem-21"><span class="toc-section-number">7.7.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-21" id="toc-solution-21"><span class="toc-section-number">7.7.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP" id="toc-BAR-OUTPUT-BITMAP"><span class="toc-section-number">7.8</span> Outputting to Bitmap (PNG/TIFF) Files<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-22" id="toc-problem-22"><span class="toc-section-number">7.8.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-22" id="toc-solution-22"><span class="toc-section-number">7.8.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-11" id="toc-discussion-11"><span class="toc-section-number">7.8.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK" id="toc-BAR-LEARNING-CHECK"><span class="toc-section-number">7.9</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#line-graphs" id="toc-line-graphs"><span class="toc-section-number">8</span> Line Graphs<span></span></a>
-<ul>
-<li><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE" id="toc-LINE-GRAPH-BASIC-LINE"><span class="toc-section-number">8.1</span> Making a Basic Line Graph<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-23" id="toc-problem-23"><span class="toc-section-number">8.1.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-23" id="toc-solution-23"><span class="toc-section-number">8.1.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-12" id="toc-discussion-12"><span class="toc-section-number">8.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE" id="toc-LINE-GRAPH-MULTIPLE-LINE"><span class="toc-section-number">8.2</span> Making a Line Graph with Multiple Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-24" id="toc-problem-24"><span class="toc-section-number">8.2.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-24" id="toc-solution-24"><span class="toc-section-number">8.2.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-13" id="toc-discussion-13"><span class="toc-section-number">8.2.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE" id="toc-LINE-GRAPH-LINE-APPEARANCE"><span class="toc-section-number">8.3</span> Changing the Appearance of Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-25" id="toc-problem-25"><span class="toc-section-number">8.3.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-25" id="toc-solution-25"><span class="toc-section-number">8.3.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-14" id="toc-discussion-14"><span class="toc-section-number">8.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME" id="toc-LINE-GRAPH-APPEARANCE-THEME"><span class="toc-section-number">8.4</span> Using Themes to Change Overall Appearance of Plot<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-26" id="toc-problem-26"><span class="toc-section-number">8.4.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-26" id="toc-solution-26"><span class="toc-section-number">8.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK" id="toc-LINE-GRAPH-LEARNING-CHECK"><span class="toc-section-number">8.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="your-assignment.html#your-assignment" id="toc-your-assignment"><span class="toc-section-number">9</span> Your Assignment<span></span></a>
-<ul>
-<li><a href="your-assignment.html#tasks-to-complete" id="toc-tasks-to-complete"><span class="toc-section-number">9.1</span> Tasks to complete<span></span></a></li>
-<li><a href="your-assignment.html#codes" id="toc-codes"><span class="toc-section-number">9.2</span> Codes<span></span></a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">A Simple Cookbook for Wrangling and Visualization</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple Cookbook for Wrangling and Visualization</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="active" href="index.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="get-started.html"><span class="header-section-number">2</span> Getting Started</a></li>
+<li><a class="" href="basics.html"><span class="header-section-number">3</span> The Basics</a></li>
+<li><a class="" href="NavigatingTheSoftware.html"><span class="header-section-number">4</span> Navigating the Software</a></li>
+<li><a class="" href="InputOuput.html"><span class="header-section-number">5</span> Input and Output</a></li>
+<li><a class="" href="WRANGLE.html"><span class="header-section-number">6</span> Data manipulation</a></li>
+<li><a class="" href="CHAPTER-BAR-GRAPH.html"><span class="header-section-number">7</span> Bar Graphs</a></li>
+<li><a class="" href="line-graphs.html"><span class="header-section-number">8</span> Line Graphs</a></li>
+<li><a class="" href="your-assignment.html"><span class="header-section-number">9</span> Your Assignment</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">A Simple Cookbook for Wrangling and Visualization</h1>
-<p class="author"><em>Bernard Liew</em></p>
-<p class="date"><em>2022-09-06</em></p>
+      </nav>
 </div>
-<div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Preface<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>The purpose of this book is to help you CLEAN your data and produce AMAZING graphics <strong>EASILY</strong> but not fast at first.</p>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="intro" class="section level1" number="1">
+<h1>
+<span class="header-section-number">1</span> Preface<a class="anchor" aria-label="anchor" href="#intro"><i class="fas fa-link"></i></a>
+</h1>
+<p>The purpose of this book is to teach you skills in computer programming to help you analyse commonly collected data in a Sports Science and Coaching environment.</p>
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/tRp6mPDR73k" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
@@ -439,20 +72,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This books is intended to be a cookbook based approach. It has problems and it has solutions. Recipes are provided from which you can edit the necessary portions for your needs.</p>
 <p><strong>What this book is not</strong></p>
 <p>This book does not cover any one topic in extensive detail. If you are interested in conducting analyses or creating plots not covered in the book, I’m sure you’ll find the answer with a quick Google search!</p>
-<div id="why-is-r-so-great" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Why is R so great?<a href="index.html#why-is-r-so-great" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="why-is-r-so-great" class="section level2" number="1.1">
+<h2>
+<span class="header-section-number">1.1</span> Why is R so great?<a class="anchor" aria-label="anchor" href="#why-is-r-so-great"><i class="fas fa-link"></i></a>
+</h2>
 <ol style="list-style-type: decimal">
-<li><p>R is 100% free and as a result, has a huge support community. Unlike SPSS and even Excel, R is, and always will be completely free. This doesn’t just help your wallet - it means that a huge community of R programmers who will constantly develop and distribute new R functionality and packages at a speed that leaves all those other packages in the dust! If you ever have a question about how to implement something in R, a quick Google search will lead you to your answer virtually every single time.</p></li>
+<li><p>R is 100% free and as a result, has a huge support community. Unlike SPSS and even Excel, R is, and always will be completely free. This means that you can actually apply these skills to your workplace after you graduate. There is also a huge community of R programmers who will constantly develop and distribute new R functionality and packages at a speed that leaves all those other packages in the dust! If you ever have a question about how to implement something in R, a quick Google search will lead you to your answer virtually every single time.</p></li>
 <li><p>R is incredibly versatile. You can use R to do everything from calculating simple summary statistics, to performing complex simulations to creating gorgeous plots. If you can imagine an analytical task, you can almost certainly implement it in R.</p></li>
 <li><p>Analyses conducted in R are transparent, easily shareable, and reproducible. If you ask an SPSS user how they conducted a specific analyses, they will either A) Not remember, B) Try (nervously) to construct an analysis procedure on the spot that makes sense - which may or may not correspond to what they actually did months or years ago, or C) Ask you what you are doing in their house. I used to primarily use SPSS, so I speak from experience on this. If you ask an R user (who uses good programming techniques!) how they conducted an analysis, they should always be able to show you the exact code they used. Of course, this doesn’t mean that they used the appropriate analysis or interpreted it correctly, but with all the original code, any problems should be completely transparent!</p></li>
 </ol>
 </div>
-<div id="rrelationship" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Why R is like a relationship…<a href="index.html#rrelationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rrelationship" class="section level2" number="1.2">
+<h2>
+<span class="header-section-number">1.2</span> Why R is like a relationship…<a class="anchor" aria-label="anchor" href="#rrelationship"><i class="fas fa-link"></i></a>
+</h2>
 <p>Yes, R is very much like a relationship. Like relationships, there are two major truths to R programming:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:relationship"></span>
-<img src="images/index/rrelationship.png" alt="R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter." width="315" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:relationship"></span>
+<img src="images/index/rrelationship.png" alt="R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter." width="315"><p class="caption">
 Figure 1.1: R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.
 </p>
 </div>
@@ -460,59 +97,69 @@ Figure 1.1: R will become both your best friend and your worst nightmare. The ba
 <li><p>There is nothing more <em>frustrating</em> than when your code does <em>not</em> work</p></li>
 <li><p>There is nothing more <em>satisfying</em> than when your code <em>does</em> work!</p></li>
 </ol>
-<p>Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a <em>lot</em> of headaches when you get started. You will run into error after error and pound your fists against the table screaming: “WHY ISN’T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!” You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You’ll then wonder why you ever decided to learn R when (::sigh::) SPSS was so “nice and easy.”</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gosling"></span>
-<img src="images/index/gosling.png" alt="When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous." width="216" />
-<p class="caption">
+<p>Anything worth doing, from losing weight to getting a degree, takes time. Learning R is no different. Especially if this is your first experience programming, you are going to experience a <em>lot</em> of headaches when you get started. You will run into error after error and pound your fists against the table screaming: “WHY ISN’T MY CODE WORKING?!?!? There must be something wrong with this stupid software!!!” You will spend hours trying to find a bug in your code, only to find that - frustratingly enough, you had had an extra space or missed a comma somewhere. You’ll then wonder why you ever decided to learn R when SPSS was so “nice and easy.”</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:gosling"></span>
+<img src="images/index/gosling.png" alt="When you first meet R, it will look so fugly that you'll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous." width="216"><p class="caption">
 Figure 1.2: When you first meet R, it will look so fugly that you’ll wonder if this is all some kind of sick joke. But trust me, once you learn how to talk to it, and clean it up a bit, all your friends will be crazy jealous.
 </p>
 </div>
 <p>Trust me, as you gain more programming experience, you’ll experience fewer and fewer bugs (though they’ll never go away completely). Once you get over the initial barriers, you’ll find yourself conducting analyses much, much faster than you ever did before.</p>
 </div>
-<div id="things-students-get-wrong" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> 3 things students get wrong<a href="index.html#things-students-get-wrong" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Based on teaching the previous cohort, there are 3 common errors students make, which will result in errors, leaving many scratching their head, feeling frustrated. Be aware of these errors, and do not fall into the trap.</p>
-<div id="wrong-method-of-launching-software" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Wrong method of launching software<a href="index.html#wrong-method-of-launching-software" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="things-students-get-wrong" class="section level2" number="1.3">
+<h2>
+<span class="header-section-number">1.3</span> 3 things students get wrong<a class="anchor" aria-label="anchor" href="#things-students-get-wrong"><i class="fas fa-link"></i></a>
+</h2>
+<p>There are 3 common errors students make which will result in alot of head banging, and feeling frustrated. Be aware of these errors, and do not fall into the trap.</p>
+<div id="wrong-method-of-launching-software" class="section level3" number="1.3.1">
+<h3>
+<span class="header-section-number">1.3.1</span> Wrong method of launching software<a class="anchor" aria-label="anchor" href="#wrong-method-of-launching-software"><i class="fas fa-link"></i></a>
+</h3>
 <p>This is the biggest source of frustration.Once you have created a project folder for your work, ONLY launch the software by clicking on the blue cube symbol as seen in Figure <a href="index.html#fig:launching">1.3</a>. In chapter <a href="NavigatingTheSoftware.html#NavigatingTheSoftware">4</a>, I will explain why you should launch the software in this manner.</p>
-<div class="figure" style="text-align: left"><span style="display:block;" id="fig:launching"></span>
-<img src="images/index/rstudio_projects.png" alt="This is the symbol to press to launch the software in your asssignment." width="82" />
-<p class="caption">
+<div class="figure" style="text-align: left">
+<span style="display:block;" id="fig:launching"></span>
+<img src="images/index/rstudio_projects.png" alt="This is the symbol to press to launch the software in your asssignment." width="82"><p class="caption">
 Figure 1.3: This is the symbol to press to launch the software in your asssignment.
 </p>
 </div>
 </div>
-<div id="not-running-code-from-start" class="section level3 hasAnchor" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Not running code from START<a href="index.html#not-running-code-from-start" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="not-running-code-from-start" class="section level3" number="1.3.2">
+<h3>
+<span class="header-section-number">1.3.2</span> Not running code from START<a class="anchor" aria-label="anchor" href="#not-running-code-from-start"><i class="fas fa-link"></i></a>
+</h3>
 <p>Looking at the figure <a href="index.html#fig:codeStart">1.4</a> below, say you ran the code from line 3 to line 20, when you close the software - maybe leaving the work partially done for the day, the next time you launch the software, it has no recollection of where you stopped. You need to run the software from the first line of the code to where you stopped, and then continue with your work.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:codeStart"></span>
-<img src="images/index/runCodeStart.png" alt="If you restart your analysis, the software does not have a memory of where you stopped previously ." width="522" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:codeStart"></span>
+<img src="images/index/runCodeStart.png" alt="If you restart your analysis, the software does not have a memory of where you stopped previously ." width="522"><p class="caption">
 Figure 1.4: If you restart your analysis, the software does not have a memory of where you stopped previously .
 </p>
 </div>
 </div>
-<div id="typographical-errors" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Typographical errors<a href="index.html#typographical-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="typographical-errors" class="section level3" number="1.3.3">
+<h3>
+<span class="header-section-number">1.3.3</span> Typographical errors<a class="anchor" aria-label="anchor" href="#typographical-errors"><i class="fas fa-link"></i></a>
+</h3>
 <p>More than 50% of the student queries in the past, centered around the issue of typographical errors. Given that humans can (and do) communicate without perfect grammar, punctuation, and spelling, you WILL naturally assume (wrongly) that computers can ignore mistakes as we can. Computers cannot distinguish what is or is not supposed to be there. For example, if you create a table and call it <code>mytable</code>, but then tried to do some calculations on <code>my table</code>, and error will appear, such as <code>Error: unexpected symbol in "my table"</code>. This error means the computer cannot find <code>my table</code>, only because it does not EXIST.</p>
 </div>
 </div>
-<div id="r-resources" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> R resources<a href="index.html#r-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="r-books" class="section level3 hasAnchor" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> R books<a href="index.html#r-books" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="r-resources" class="section level2" number="1.4">
+<h2>
+<span class="header-section-number">1.4</span> R resources<a class="anchor" aria-label="anchor" href="#r-resources"><i class="fas fa-link"></i></a>
+</h2>
+<div id="r-books" class="section level3" number="1.4.1">
+<h3>
+<span class="header-section-number">1.4.1</span> R books<a class="anchor" aria-label="anchor" href="#r-books"><i class="fas fa-link"></i></a>
+</h3>
 <p>There are many, many excellent (non-pirate) books on R, some of which are available online for free. Here are some that I highly recommend:</p>
-<table>
+<div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="44%" />
-<col width="55%" />
+<col width="44%">
+<col width="55%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">Book</th>
 <th align="left">Description</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left"><a href="http://r4ds.had.co.nz/">R for Data Science by Garrett Grolemund and Hadley Wickham</a></td>
@@ -527,71 +174,54 @@ Figure 1.4: If you restart your analysis, the software does not have a memory of
 <td align="left">Is a useful bag of tips and tricks to get started with R .</td>
 </tr>
 </tbody>
-</table>
-
+</table></div>
 </div>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="empty"></div>
+<div class="next"><a href="get-started.html"><span class="header-section-number">2</span> Getting Started</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#intro"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="nav-link" href="#why-is-r-so-great"><span class="header-section-number">1.1</span> Why is R so great?</a></li>
+<li><a class="nav-link" href="#rrelationship"><span class="header-section-number">1.2</span> Why R is like a relationship…</a></li>
+<li>
+<a class="nav-link" href="#things-students-get-wrong"><span class="header-section-number">1.3</span> 3 things students get wrong</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#wrong-method-of-launching-software"><span class="header-section-number">1.3.1</span> Wrong method of launching software</a></li>
+<li><a class="nav-link" href="#not-running-code-from-start"><span class="header-section-number">1.3.2</span> Not running code from START</a></li>
+<li><a class="nav-link" href="#typographical-errors"><span class="header-section-number">1.3.3</span> Typographical errors</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#r-resources"><span class="header-section-number">1.4</span> R resources</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#r-books"><span class="header-section-number">1.4.1</span> R books</a></li></ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-<a href="get-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-09-09.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
 </body>
-
 </html>

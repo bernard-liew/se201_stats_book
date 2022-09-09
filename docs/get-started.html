@@ -1,453 +1,93 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization</title>
-  <meta name="description" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization" />
-  
-  
-  
-
-<meta name="author" content="Bernard Liew" />
-
-
-<meta name="date" content="2022-09-06" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="index.html"/>
-<link rel="next" href="basics.html"/>
-<script src="libs/header-attrs-2.14/header-attrs.js"></script>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
-<script src="libs/font-awesome-5.13.0/js/script.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization</title>
+<meta name="author" content="Bernard Liew">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 2 Getting Started | A Simple Cookbook for Wrangling and Visualization">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.14/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
+<script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<meta name="description" content="2.1 Installing Base-R and RStudio To use R, we’ll need to download 2 software: Base-R, and RStudio. Base-R is the basic software which contains the R programming language. RStudio is a software...">
+<meta property="og:description" content="2.1 Installing Base-R and RStudio To use R, we’ll need to download 2 software: Base-R, and RStudio. Base-R is the basic software which contains the R programming language. RStudio is a software...">
+<meta name="twitter:description" content="2.1 Installing Base-R and RStudio To use R, we’ll need to download 2 software: Base-R, and RStudio. Base-R is the basic software which contains the R programming language. RStudio is a software...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
-
-<li class="divider"></li>
-<li><a href="index.html#intro" id="toc-intro"><span class="toc-section-number">1</span> Preface<span></span></a>
-<ul>
-<li><a href="index.html#why-is-r-so-great" id="toc-why-is-r-so-great"><span class="toc-section-number">1.1</span> Why is R so great?<span></span></a></li>
-<li><a href="index.html#rrelationship" id="toc-rrelationship"><span class="toc-section-number">1.2</span> Why R is like a relationship…<span></span></a></li>
-<li><a href="index.html#things-students-get-wrong" id="toc-things-students-get-wrong"><span class="toc-section-number">1.3</span> 3 things students get wrong<span></span></a>
-<ul>
-<li><a href="index.html#wrong-method-of-launching-software" id="toc-wrong-method-of-launching-software"><span class="toc-section-number">1.3.1</span> Wrong method of launching software<span></span></a></li>
-<li><a href="index.html#not-running-code-from-start" id="toc-not-running-code-from-start"><span class="toc-section-number">1.3.2</span> Not running code from START<span></span></a></li>
-<li><a href="index.html#typographical-errors" id="toc-typographical-errors"><span class="toc-section-number">1.3.3</span> Typographical errors<span></span></a></li>
-</ul></li>
-<li><a href="index.html#r-resources" id="toc-r-resources"><span class="toc-section-number">1.4</span> R resources<span></span></a>
-<ul>
-<li><a href="index.html#r-books" id="toc-r-books"><span class="toc-section-number">1.4.1</span> R books<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="get-started.html#get-started" id="toc-get-started"><span class="toc-section-number">2</span> Getting Started<span></span></a>
-<ul>
-<li><a href="get-started.html#INSTALL-GET-STARTED" id="toc-INSTALL-GET-STARTED"><span class="toc-section-number">2.1</span> Installing Base-R and RStudio<span></span></a>
-<ul>
-<li><a href="get-started.html#check-for-version-updates" id="toc-check-for-version-updates"><span class="toc-section-number">2.1.1</span> Check for version updates<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-GET-FAMILIAR" id="toc-INSTALL-GET-FAMILIAR"><span class="toc-section-number">2.2</span> The four RStudio Windows<span></span></a>
-<ul>
-<li><a href="get-started.html#source---your-notepad-for-code" id="toc-source---your-notepad-for-code"><span class="toc-section-number">2.2.1</span> Source - Your notepad for code<span></span></a></li>
-<li><a href="get-started.html#console-rs-heart" id="toc-console-rs-heart"><span class="toc-section-number">2.2.2</span> Console: R’s Heart<span></span></a></li>
-<li><a href="get-started.html#environment-history" id="toc-environment-history"><span class="toc-section-number">2.2.3</span> Environment / History<span></span></a></li>
-<li><a href="get-started.html#files-plots-packages-help" id="toc-files-plots-packages-help"><span class="toc-section-number">2.2.4</span> Files / Plots / Packages / Help<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-READ-WRITE-CODE" id="toc-INSTALL-READ-WRITE-CODE"><span class="toc-section-number">2.3</span> Reading and writing Code<span></span></a>
-<ul>
-<li><a href="get-started.html#code-chunks" id="toc-code-chunks"><span class="toc-section-number">2.3.1</span> Code Chunks<span></span></a></li>
-<li><a href="get-started.html#comments-with" id="toc-comments-with"><span class="toc-section-number">2.3.2</span> Comments with #<span></span></a></li>
-<li><a href="get-started.html#element-numbers-in-output-1" id="toc-element-numbers-in-output-1"><span class="toc-section-number">2.3.3</span> Element numbers in output [1]<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-DEBUG" id="toc-INSTALL-DEBUG"><span class="toc-section-number">2.4</span> Debugging<span></span></a>
-<ul>
-<li><a href="get-started.html#r-is-not-ready" id="toc-r-is-not-ready"><span class="toc-section-number">2.4.1</span> R is not ready (&gt;)<span></span></a></li>
-<li><a href="get-started.html#misspelled-object-or-function" id="toc-misspelled-object-or-function"><span class="toc-section-number">2.4.2</span> Misspelled object or function<span></span></a></li>
-<li><a href="get-started.html#punctuation-problems" id="toc-punctuation-problems"><span class="toc-section-number">2.4.3</span> Punctuation problems<span></span></a></li>
-</ul></li>
-<li><a href="get-started.html#INSTALL-LEARNING-CHECK" id="toc-INSTALL-LEARNING-CHECK"><span class="toc-section-number">2.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#basics" id="toc-basics"><span class="toc-section-number">3</span> The Basics<span></span></a>
-<ul>
-<li><a href="basics.html#download-and-load-packages" id="toc-download-and-load-packages">Download and load packages<span></span></a></li>
-<li><a href="basics.html#BASICS-CONSOLE" id="toc-BASICS-CONSOLE"><span class="toc-section-number">3.1</span> The command-line (Console)<span></span></a></li>
-<li><a href="basics.html#writing-r-scripts-in-an-editor" id="toc-writing-r-scripts-in-an-editor"><span class="toc-section-number">3.2</span> Writing R scripts in an editor<span></span></a>
-<ul>
-<li><a href="basics.html#send-code-from-a-source-to-the-console" id="toc-send-code-from-a-source-to-the-console"><span class="toc-section-number">3.2.1</span> Send code from a source to the console<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#a-brief-style-guide-commenting-and-spacing" id="toc-a-brief-style-guide-commenting-and-spacing"><span class="toc-section-number">3.3</span> A brief style guide: Commenting and spacing<span></span></a>
-<ul>
-<li><a href="basics.html#commenting-code-with-the-pound-sign" id="toc-commenting-code-with-the-pound-sign"><span class="toc-section-number">3.3.1</span> Commenting code with the # (pound) sign<span></span></a></li>
-<li><a href="basics.html#spacing" id="toc-spacing"><span class="toc-section-number">3.3.2</span> Spacing<span></span></a></li>
-</ul></li>
-<li><a href="basics.html#objects-and-functions" id="toc-objects-and-functions"><span class="toc-section-number">3.4</span> Objects and functions<span></span></a>
-<ul>
-<li><a href="basics.html#BASIC-TYPES" id="toc-BASIC-TYPES"><span class="toc-section-number">3.4.1</span> Numbers versus characters<span></span></a></li>
-<li><a href="basics.html#creating-new-objects-with--" id="toc-creating-new-objects-with--"><span class="toc-section-number">3.4.2</span> Creating new objects with &lt;-<span></span></a></li>
-<li><a href="basics.html#how-to-name-objects" id="toc-how-to-name-objects"><span class="toc-section-number">3.4.3</span> How to name objects<span></span></a></li>
-</ul></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NavigatingTheSoftware" id="toc-NavigatingTheSoftware"><span class="toc-section-number">4</span> Navigating the Software<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#introduction" id="toc-introduction">Introduction<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#download-and-load-packages-1" id="toc-download-and-load-packages-1">Download and load packages<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-WORKING-DIRECTORY" id="toc-NAVIGATE-WORKING-DIRECTORY"><span class="toc-section-number">4.1</span> Getting and Setting the Working Directory<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-PROJECTS" id="toc-NAVIGATE-PROJECTS"><span class="toc-section-number">4.2</span> Creating a new Rstudio project<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-INSTALL-PACKAGE" id="toc-NAVIGATE-INSTALL-PACKAGE"><span class="toc-section-number">4.3</span> Installing Packages<span></span></a>
-<ul>
-<li><a href="NavigatingTheSoftware.html#installing-a-new-package" id="toc-installing-a-new-package"><span class="toc-section-number">4.3.1</span> Installing a new package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#loading-a-package" id="toc-loading-a-package"><span class="toc-section-number">4.3.2</span> Loading a package<span></span></a></li>
-<li><a href="NavigatingTheSoftware.html#a-simple-approach-to-package" id="toc-a-simple-approach-to-package"><span class="toc-section-number">4.3.3</span> A simple approach to package<span></span></a></li>
-</ul></li>
-<li><a href="NavigatingTheSoftware.html#NAVIGATE-LEARNING-CHECK" id="toc-NAVIGATE-LEARNING-CHECK"><span class="toc-section-number">4.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="InputOuput.html#InputOuput" id="toc-InputOuput"><span class="toc-section-number">5</span> Input and Output<span></span></a>
-<ul>
-<li><a href="InputOuput.html#download-and-load-packages-2" id="toc-download-and-load-packages-2">Download and load packages<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-FILE" id="toc-INPUT-FILE"><span class="toc-section-number">5.1</span> Dealing with “Cannot Open File” in Windows<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-IMPORT" id="toc-INPUT-IMPORT"><span class="toc-section-number">5.2</span> Reading in Excel “.xlsx” data<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-EXPORT" id="toc-INPUT-EXPORT"><span class="toc-section-number">5.3</span> Writing a Data Frame to Excel<span></span></a></li>
-<li><a href="InputOuput.html#INPUT-LEARNING-CHECK" id="toc-INPUT-LEARNING-CHECK"><span class="toc-section-number">5.4</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE" id="toc-WRANGLE"><span class="toc-section-number">6</span> Data manipulation<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#download-and-load-packages-3" id="toc-download-and-load-packages-3">Download and load packages<span></span></a></li>
-<li><a href="WRANGLE.html#import-data" id="toc-import-data">Import data<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#let-us-see-the-data" id="toc-let-us-see-the-data">Let us see the data<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-TIDY-DATA" id="toc-WRANGLE-TIDY-DATA"><span class="toc-section-number">6.1</span> Tidy data<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES" id="toc-WRANGLE-RENAME-VARIABLES"><span class="toc-section-number">6.2</span> Renaming variables<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem" id="toc-problem"><span class="toc-section-number">6.2.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution" id="toc-solution"><span class="toc-section-number">6.2.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SLICE" id="toc-WRANGLE-SLICE"><span class="toc-section-number">6.3</span> Selecting rows<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-1" id="toc-problem-1"><span class="toc-section-number">6.3.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-1" id="toc-solution-1"><span class="toc-section-number">6.3.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SELECT" id="toc-WRANGLE-SELECT"><span class="toc-section-number">6.4</span> Selecting columns<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-2" id="toc-problem-2"><span class="toc-section-number">6.4.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-2" id="toc-solution-2"><span class="toc-section-number">6.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC" id="toc-WRANGLE-CHARACTER-2-NUMERIC"><span class="toc-section-number">6.5</span> Convert characters to numeric<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-3" id="toc-problem-3"><span class="toc-section-number">6.5.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-3" id="toc-solution-3"><span class="toc-section-number">6.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTER-2-TIME" id="toc-WRANGLE-CHARACTER-2-TIME"><span class="toc-section-number">6.6</span> Convert characters to date and time<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-4" id="toc-problem-4"><span class="toc-section-number">6.6.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-4" id="toc-solution-4"><span class="toc-section-number">6.6.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion" id="toc-discussion"><span class="toc-section-number">6.6.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NUMERIC-CATEGORY" id="toc-WRANGLE-NUMERIC-CATEGORY"><span class="toc-section-number">6.7</span> Split Numeric Variable into Categories<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-5" id="toc-problem-5"><span class="toc-section-number">6.7.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-5" id="toc-solution-5"><span class="toc-section-number">6.7.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-1" id="toc-discussion-1"><span class="toc-section-number">6.7.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-GATHER" id="toc-WRANGLE-GATHER"><span class="toc-section-number">6.8</span> Gathering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-6" id="toc-problem-6"><span class="toc-section-number">6.8.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-6" id="toc-solution-6"><span class="toc-section-number">6.8.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SPREAD" id="toc-WRANGLE-SPREAD"><span class="toc-section-number">6.9</span> Spreading<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-7" id="toc-problem-7"><span class="toc-section-number">6.9.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-7" id="toc-solution-7"><span class="toc-section-number">6.9.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-RENAME-VALUES" id="toc-WRANGLE-RENAME-VALUES"><span class="toc-section-number">6.10</span> Rename values of a variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-8" id="toc-problem-8"><span class="toc-section-number">6.10.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-8" id="toc-solution-8"><span class="toc-section-number">6.10.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-CHARACTERS-2-FACTORS" id="toc-WRANGLE-CHARACTERS-2-FACTORS"><span class="toc-section-number">6.11</span> Creating factors<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-9" id="toc-problem-9"><span class="toc-section-number">6.11.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-9" id="toc-solution-9"><span class="toc-section-number">6.11.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-2" id="toc-discussion-2"><span class="toc-section-number">6.11.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-NEW-VARIABLES" id="toc-WRANGLE-NEW-VARIABLES"><span class="toc-section-number">6.12</span> Making a new variable<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-10" id="toc-problem-10"><span class="toc-section-number">6.12.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-10" id="toc-solution-10"><span class="toc-section-number">6.12.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-3" id="toc-discussion-3"><span class="toc-section-number">6.12.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER" id="toc-WRANGLE-FILTER"><span class="toc-section-number">6.13</span> Filtering<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-CHARACTER" id="toc-WRANGLE-FILTER-KEEP-CHARACTER"><span class="toc-section-number">6.13.1</span> Keep rows you want based on condition<span></span></a></li>
-<li><a href="WRANGLE.html#WRANGLE-FILTER-KEEP-NUMERIC" id="toc-WRANGLE-FILTER-KEEP-NUMERIC"><span class="toc-section-number">6.13.2</span> Keep rows based on a numerical range<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-4" id="toc-discussion-4"><span class="toc-section-number">6.13.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GLOBAL" id="toc-WRANGLE-SUMMARIZE-GLOBAL"><span class="toc-section-number">6.14</span> Global summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-13" id="toc-problem-13"><span class="toc-section-number">6.14.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-13" id="toc-solution-13"><span class="toc-section-number">6.14.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-5" id="toc-discussion-5"><span class="toc-section-number">6.14.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-SUMMARIZE-GROUPBY" id="toc-WRANGLE-SUMMARIZE-GROUPBY"><span class="toc-section-number">6.15</span> Group-by summary<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-14" id="toc-problem-14"><span class="toc-section-number">6.15.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-14" id="toc-solution-14"><span class="toc-section-number">6.15.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-6" id="toc-discussion-6"><span class="toc-section-number">6.15.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-INNER-JOIN" id="toc-WRANGLE-INNER-JOIN"><span class="toc-section-number">6.16</span> Merge two tables together<span></span></a>
-<ul>
-<li><a href="WRANGLE.html#problem-15" id="toc-problem-15"><span class="toc-section-number">6.16.1</span> Problem<span></span></a></li>
-<li><a href="WRANGLE.html#solution-15" id="toc-solution-15"><span class="toc-section-number">6.16.2</span> Solution<span></span></a></li>
-<li><a href="WRANGLE.html#discussion-7" id="toc-discussion-7"><span class="toc-section-number">6.16.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="WRANGLE.html#WRANGLE-LEARNING-CHECK" id="toc-WRANGLE-LEARNING-CHECK"><span class="toc-section-number">6.17</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#CHAPTER-BAR-GRAPH" id="toc-CHAPTER-BAR-GRAPH"><span class="toc-section-number">7</span> Bar Graphs<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-BASIC-BAR" id="toc-BAR-GRAPH-BASIC-BAR"><span class="toc-section-number">7.1</span> Making a Basic Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-16" id="toc-problem-16"><span class="toc-section-number">7.1.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-16" id="toc-solution-16"><span class="toc-section-number">7.1.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-8" id="toc-discussion-8"><span class="toc-section-number">7.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY" id="toc-BAR-GRAPH-ANATOMY"><span class="toc-section-number">7.2</span> Anatomy of a Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-BACKGROUND" id="toc-BAR-GRAPH-ANATOMY-BACKGROUND"><span class="toc-section-number">7.2.1</span> Plot Background<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-AES" id="toc-BAR-GRAPH-ANATOMY-AES"><span class="toc-section-number">7.2.2</span> Aesthetics aes()<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-ANATOMY-GEOMS" id="toc-BAR-GRAPH-ANATOMY-GEOMS"><span class="toc-section-number">7.2.3</span> Geometric representations geom()<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR" id="toc-BAR-GRAPH-GROUPED-BAR"><span class="toc-section-number">7.3</span> Grouping Bars Together<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-17" id="toc-problem-17"><span class="toc-section-number">7.3.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-17" id="toc-solution-17"><span class="toc-section-number">7.3.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-9" id="toc-discussion-9"><span class="toc-section-number">7.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-COLORS" id="toc-BAR-GRAPH-COLORS"><span class="toc-section-number">7.4</span> Using Colors in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-18" id="toc-problem-18"><span class="toc-section-number">7.4.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-18" id="toc-solution-18"><span class="toc-section-number">7.4.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-10" id="toc-discussion-10"><span class="toc-section-number">7.4.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-AXES" id="toc-BAR-GRAPH-AXES"><span class="toc-section-number">7.5</span> Changing Axes titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-19" id="toc-problem-19"><span class="toc-section-number">7.5.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-19" id="toc-solution-19"><span class="toc-section-number">7.5.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-LEGEND" id="toc-BAR-GRAPH-LEGEND"><span class="toc-section-number">7.6</span> Changing Legend titles in a Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-20" id="toc-problem-20"><span class="toc-section-number">7.6.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-20" id="toc-solution-20"><span class="toc-section-number">7.6.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-FONTSIZE" id="toc-BAR-GRAPH-FONTSIZE"><span class="toc-section-number">7.7</span> Changing font size uniformly across the Bar Graph<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-21" id="toc-problem-21"><span class="toc-section-number">7.7.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-21" id="toc-solution-21"><span class="toc-section-number">7.7.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP" id="toc-BAR-OUTPUT-BITMAP"><span class="toc-section-number">7.8</span> Outputting to Bitmap (PNG/TIFF) Files<span></span></a>
-<ul>
-<li><a href="CHAPTER-BAR-GRAPH.html#problem-22" id="toc-problem-22"><span class="toc-section-number">7.8.1</span> Problem<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#solution-22" id="toc-solution-22"><span class="toc-section-number">7.8.2</span> Solution<span></span></a></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#discussion-11" id="toc-discussion-11"><span class="toc-section-number">7.8.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="CHAPTER-BAR-GRAPH.html#BAR-LEARNING-CHECK" id="toc-BAR-LEARNING-CHECK"><span class="toc-section-number">7.9</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#line-graphs" id="toc-line-graphs"><span class="toc-section-number">8</span> Line Graphs<span></span></a>
-<ul>
-<li><a href="line-graphs.html#LINE-GRAPH-BASIC-LINE" id="toc-LINE-GRAPH-BASIC-LINE"><span class="toc-section-number">8.1</span> Making a Basic Line Graph<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-23" id="toc-problem-23"><span class="toc-section-number">8.1.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-23" id="toc-solution-23"><span class="toc-section-number">8.1.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-12" id="toc-discussion-12"><span class="toc-section-number">8.1.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE" id="toc-LINE-GRAPH-MULTIPLE-LINE"><span class="toc-section-number">8.2</span> Making a Line Graph with Multiple Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-24" id="toc-problem-24"><span class="toc-section-number">8.2.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-24" id="toc-solution-24"><span class="toc-section-number">8.2.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-13" id="toc-discussion-13"><span class="toc-section-number">8.2.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE" id="toc-LINE-GRAPH-LINE-APPEARANCE"><span class="toc-section-number">8.3</span> Changing the Appearance of Lines<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-25" id="toc-problem-25"><span class="toc-section-number">8.3.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-25" id="toc-solution-25"><span class="toc-section-number">8.3.2</span> Solution<span></span></a></li>
-<li><a href="line-graphs.html#discussion-14" id="toc-discussion-14"><span class="toc-section-number">8.3.3</span> Discussion<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-APPEARANCE-THEME" id="toc-LINE-GRAPH-APPEARANCE-THEME"><span class="toc-section-number">8.4</span> Using Themes to Change Overall Appearance of Plot<span></span></a>
-<ul>
-<li><a href="line-graphs.html#problem-26" id="toc-problem-26"><span class="toc-section-number">8.4.1</span> Problem<span></span></a></li>
-<li><a href="line-graphs.html#solution-26" id="toc-solution-26"><span class="toc-section-number">8.4.2</span> Solution<span></span></a></li>
-</ul></li>
-<li><a href="line-graphs.html#LINE-GRAPH-LEARNING-CHECK" id="toc-LINE-GRAPH-LEARNING-CHECK"><span class="toc-section-number">8.5</span> Learning check<span></span></a></li>
-</ul></li>
-<li><a href="your-assignment.html#your-assignment" id="toc-your-assignment"><span class="toc-section-number">9</span> Your Assignment<span></span></a>
-<ul>
-<li><a href="your-assignment.html#tasks-to-complete" id="toc-tasks-to-complete"><span class="toc-section-number">9.1</span> Tasks to complete<span></span></a></li>
-<li><a href="your-assignment.html#codes" id="toc-codes"><span class="toc-section-number">9.2</span> Codes<span></span></a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">A Simple Cookbook for Wrangling and Visualization</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple Cookbook for Wrangling and Visualization</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="active" href="get-started.html"><span class="header-section-number">2</span> Getting Started</a></li>
+<li><a class="" href="basics.html"><span class="header-section-number">3</span> The Basics</a></li>
+<li><a class="" href="NavigatingTheSoftware.html"><span class="header-section-number">4</span> Navigating the Software</a></li>
+<li><a class="" href="InputOuput.html"><span class="header-section-number">5</span> Input and Output</a></li>
+<li><a class="" href="WRANGLE.html"><span class="header-section-number">6</span> Data manipulation</a></li>
+<li><a class="" href="CHAPTER-BAR-GRAPH.html"><span class="header-section-number">7</span> Bar Graphs</a></li>
+<li><a class="" href="line-graphs.html"><span class="header-section-number">8</span> Line Graphs</a></li>
+<li><a class="" href="your-assignment.html"><span class="header-section-number">9</span> Your Assignment</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="get-started" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Getting Started<a href="get-started.html#get-started" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="INSTALL-GET-STARTED" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Installing Base-R and RStudio<a href="get-started.html#INSTALL-GET-STARTED" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="get-started" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> Getting Started<a class="anchor" aria-label="anchor" href="#get-started"><i class="fas fa-link"></i></a>
+</h1>
+<div id="INSTALL-GET-STARTED" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Installing Base-R and RStudio<a class="anchor" aria-label="anchor" href="#INSTALL-GET-STARTED"><i class="fas fa-link"></i></a>
+</h2>
 <p>To use R, we’ll need to download <strong>2</strong> software: <strong>Base-R</strong>, and <strong>RStudio</strong>. Base-R is the basic software which contains the R programming language. RStudio is a software that makes programming easier. In everyday parlance, R is the engine and RStudio is the car’s frame. Just like you can transfer an engine to different car frames, you can use R using other platforms. But I will use RStudio. Of course, they are totally free and open source.</p>
-<div id="check-for-version-updates" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Check for version updates<a href="get-started.html#check-for-version-updates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R and RStudio have been around for several years – however, they are <em>constantly</em> being updated with new features and bug-fixes. At the time that I am writing this sentence (“2022-09-06”), the latest version of Base-R is 4.1.1, and the latest version of RStudio is 1.4.1717.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rlogo"></span>
-<img src="images/chapter-1/Rlogo.png" alt="R logo" width="40%" />
-<p class="caption">
+<div id="check-for-version-updates" class="section level3" number="2.1.1">
+<h3>
+<span class="header-section-number">2.1.1</span> Check for version updates<a class="anchor" aria-label="anchor" href="#check-for-version-updates"><i class="fas fa-link"></i></a>
+</h3>
+<p>R and RStudio have been around for several years – however, they are <em>constantly</em> being updated with new features and bug-fixes. At the time that I am writing this sentence (“2022-09-09”), the latest version of Base-R is 4.2.1, and the latest version of RStudio is 2022.07.1.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rlogo"></span>
+<img src="images/chapter-1/Rlogo.png" alt="R logo" width="40%"><p class="caption">
 Figure 2.1: R logo
 </p>
 </div>
 <p>To install Base-R, click on one of the following links and follow the instructions.</p>
-<table>
+<div class="inline-table"><table class="table table-sm">
 <colgroup>
-<col width="58%" />
-<col width="41%" />
+<col width="58%">
+<col width="41%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">Operating System</th>
 <th align="left">Link</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Windows</td>
@@ -458,17 +98,17 @@ Figure 2.1: R logo
 <td align="left"><a href="http://cran.r-project.org/bin/macosx/">http://cran.r-project.org/bin/macosx/</a></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Once you’ve installed base-R on your computer, try opening it. When you do you should see a screen like the one in Figure <a href="get-started.html#fig:rscreenshot">2.2</a> (this is the Windows version). As you can see, base R is very much bare-bones software. It’s kind of the equivalent of a simple text editor that comes with your computer.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rscreenshot"></span>
-<img src="images/chapter-1/RScreenshot.png" alt="Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio -- software that helps you to write and use R code more efficiently!" width="75%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rscreenshot"></span>
+<img src="images/chapter-1/RScreenshot.png" alt="Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio -- software that helps you to write and use R code more efficiently!" width="75%"><p class="caption">
 Figure 2.2: Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio – software that helps you to write and use R code more efficiently!
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudiologo"></span>
-<img src="images/chapter-1/RStudio.png" alt="RStudio logo" width="40%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rstudiologo"></span>
+<img src="images/chapter-1/RStudio.png" alt="RStudio logo" width="40%"><p class="caption">
 Figure 2.3: RStudio logo
 </p>
 </div>
@@ -476,21 +116,25 @@ Figure 2.3: RStudio logo
 <p>To download and install RStudio (around 40mb), click on the link below: <a href="https://rstudio.com/products/rstudio/download/#download">https://rstudio.com/products/rstudio/download/#download/</a></p>
 </div>
 </div>
-<div id="INSTALL-GET-FAMILIAR" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> The four RStudio Windows<a href="get-started.html#INSTALL-GET-FAMILIAR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="INSTALL-GET-FAMILIAR" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> The four RStudio Windows<a class="anchor" aria-label="anchor" href="#INSTALL-GET-FAMILIAR"><i class="fas fa-link"></i></a>
+</h2>
 <p>Let’s go ahead and boot up RStudio and see how she looks! When you open RStudio, you’ll see the following four windows (also called panes) shown in in Figure <a href="get-started.html#fig:rstudiowindows">2.4</a>. However, your windows might be in a different order that those in Figure <a href="get-started.html#fig:rstudiowindows">2.4</a>. Ignore for a fact that my screen shows black and yours shows up as white. This is like the wall paper on your computer, it is what makes my eyes at ease.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstudiowindows"></span>
-<img src="images/chapter-1/RStudio_Screenshot_Labels.png" alt="The four panes of RStudio." width="100%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rstudiowindows"></span>
+<img src="images/chapter-1/RStudio_Screenshot_Labels.png" alt="The four panes of RStudio." width="100%"><p class="caption">
 Figure 2.4: The four panes of RStudio.
 </p>
 </div>
 <p>Now, let’s see what each window does in detail.</p>
-<div id="source---your-notepad-for-code" class="section level3 hasAnchor" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Source - Your notepad for code<a href="get-started.html#source---your-notepad-for-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sourcewindow"></span>
-<img src="images/chapter-1/piratesanalysisss.png" alt="The Source contains all of your individual R scripts. The code won't be evaluated until you send it to the Console." width="100%" />
-<p class="caption">
+<div id="source---your-notepad-for-code" class="section level3" number="2.2.1">
+<h3>
+<span class="header-section-number">2.2.1</span> Source - Your notepad for code<a class="anchor" aria-label="anchor" href="#source---your-notepad-for-code"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:sourcewindow"></span>
+<img src="images/chapter-1/piratesanalysisss.png" alt="The Source contains all of your individual R scripts. The code won't be evaluated until you send it to the Console." width="100%"><p class="caption">
 Figure 2.5: The Source contains all of your individual R scripts. The code won’t be evaluated until you send it to the Console.
 </p>
 </div>
@@ -498,26 +142,31 @@ Figure 2.5: The Source contains all of your individual R scripts. The code won�
 <p>You’ll notice that when you’re typing code in a script in the Source panel, R won’t actually evaluate the code as you type. To have R actually evaluate your code, you need to first ‘send’ the code to the Console (we’ll talk about this in the next section).</p>
 <p>There are many ways to send your code from the Source to the console. The slowest way is to copy and paste. A faster way is to highlight the code you wish to evaluate and clicking on the “Run” button on the top right of the Source. Alternatively, you can use the hot-key “Command + Return” on Mac, or “Control + Enter” on PC to send all highlighted code to the console.</p>
 </div>
-<div id="console-rs-heart" class="section level3 hasAnchor" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Console: R’s Heart<a href="get-started.html#console-rs-heart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure"><span style="display:block;" id="fig:consolewindow"></span>
-<img src="images/chapter-1/consoless.png" alt="The console the calculation heart of R. All of your code will (eventually) go through here." width="75%" />
-<p class="caption">
+<div id="console-rs-heart" class="section level3" number="2.2.2">
+<h3>
+<span class="header-section-number">2.2.2</span> Console: R’s Heart<a class="anchor" aria-label="anchor" href="#console-rs-heart"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure">
+<span style="display:block;" id="fig:consolewindow"></span>
+<img src="images/chapter-1/consoless.png" alt="The console the calculation heart of R. All of your code will (eventually) go through here." width="75%"><p class="caption">
 Figure 2.6: The console the calculation heart of R. All of your code will (eventually) go through here.
 </p>
 </div>
 <p>The console is the heart of R. Here is where R actually evaluates code. At the beginning of the console you’ll see the character . This is a prompt that tells you that R is ready for new code. You can type code directly into the console after the prompt and get an immediate response. For example, if you type 1+1 into the console and press enter, you’ll see that R immediately gives an output of 2.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="get-started.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">1</span><span class="op">+</span><span class="fl">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Try calculating 1+1 by typing the code directly into the console - then press Enter. You should see the result [1] 2. Don’t worry about the [1] for now, we’ll get to that later. For now, we’re happy if we just see the 2. Then, type the same code into the Source, and then send the code to the Console by highlighting the code and clicking the “Run” button on the top right hand corner of the Source window. Alternatively, you can use the hot-key “Command + Return” on Mac or “Control + Enter” on Windows.</p>
 <p><strong>Tip</strong>: Try to write most of your code in a document in the Source. Only type directly into the Console to do quick calculations like you are using a calculator.</p>
 <p>So as you can see, you can execute code either by running it from the Source or by typing it directly into the Console. However, 99% most of the time, you should be using the Source rather than the Console. The reason for this is straightforward: If you type code into the console, it won’t be saved (though you can look back on your command History). And if you make a mistake in typing code into the console, you’d have to re-type everything all over again. Instead, it’s better to write all your code in the Source. When you are ready to execute some code, you can then send “Run” it to the console.</p>
 </div>
-<div id="environment-history" class="section level3 hasAnchor" number="2.2.3">
-<h3><span class="header-section-number">2.2.3</span> Environment / History<a href="get-started.html#environment-history" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="figure"><span style="display:block;" id="fig:environwindow"></span>
-<img src="images/chapter-1/environmentss.png" alt="The environment panel shows you all the objects you have defined in your current workspace." width="75%" />
-<p class="caption">
+<div id="environment-history" class="section level3" number="2.2.3">
+<h3>
+<span class="header-section-number">2.2.3</span> Environment / History<a class="anchor" aria-label="anchor" href="#environment-history"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure">
+<span style="display:block;" id="fig:environwindow"></span>
+<img src="images/chapter-1/environmentss.png" alt="The environment panel shows you all the objects you have defined in your current workspace." width="75%"><p class="caption">
 Figure 2.7: The environment panel shows you all the objects you have defined in your current workspace.
 </p>
 </div>
@@ -525,22 +174,25 @@ Figure 2.7: The environment panel shows you all the objects you have defined in 
 <p>The History tab of this panel simply shows you a history of all the code you’ve previously evaluated in the Console.</p>
 <p>As you get more comfortable with R, you might find the Environment / History panel useful. But for now you can just ignore it. If you want to declutter your screen, you can even just minimize the window by clicking the minimize button on the top right of the panel.</p>
 </div>
-<div id="files-plots-packages-help" class="section level3 hasAnchor" number="2.2.4">
-<h3><span class="header-section-number">2.2.4</span> Files / Plots / Packages / Help<a href="get-started.html#files-plots-packages-help" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="files-plots-packages-help" class="section level3" number="2.2.4">
+<h3>
+<span class="header-section-number">2.2.4</span> Files / Plots / Packages / Help<a class="anchor" aria-label="anchor" href="#files-plots-packages-help"><i class="fas fa-link"></i></a>
+</h3>
 <p>The Files / Plots / Packages / Help panel shows you lots of helpful information. Let’s go through each tab in detail:</p>
 <ol style="list-style-type: decimal">
 <li><p>Files - The files panel gives you access to the file directory on your hard drive. One nice feature of the “Files” panel is that you can use it to set your working directory. We’ll talk about working directories in more detail soon.</p></li>
-<li><p>Plots - The Plots panel (no big surprise), shows all your plots. There are buttons for opening the plot in a separate window and exporting the plot as a pdf or jpeg (though you can also do this with code using the <code>pdf()</code> or <code>jpeg()</code> functions.)</p></li>
+<li><p>Plots - The Plots panel (no big surprise), shows all your plots. There are buttons for opening the plot in a separate window and exporting the plot as a pdf or jpeg (though you can also do this with code using the <code><a href="https://rdrr.io/r/grDevices/pdf.html">pdf()</a></code> or <code><a href="https://rdrr.io/r/grDevices/png.html">jpeg()</a></code> functions.)</p></li>
 </ol>
 <p>Let’s see how plots are displayed in the Plots panel. Run the code on the right to display a histogram of the weights of chickens stored in the <code>ChickWeight</code> dataset. When you do, you should see a plot similar to the one in Figure <a href="get-started.html#fig:plotpanel">2.8</a> show up in the Plots panel.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="get-started.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="at">x =</span> ChickWeight<span class="sc">$</span>weight,</span>
-<span id="cb3-2"><a href="get-started.html#cb3-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Chicken Weights&quot;</span>,</span>
-<span id="cb3-3"><a href="get-started.html#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Weight&quot;</span>,</span>
-<span id="cb3-4"><a href="get-started.html#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;skyblue&quot;</span>,</span>
-<span id="cb3-5"><a href="get-started.html#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:plotpanel"></span>
-<img src="images/chapter-1/plotpanelss.png" alt="The plot panel contains all of your plots, like this histogram of the distribution of chicken weights." width="75%" />
-<p class="caption">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">ChickWeight</span><span class="op">$</span><span class="va">weight</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Chicken Weights"</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="st">"Weight"</span>,</span>
+<span>     col <span class="op">=</span> <span class="st">"skyblue"</span>,</span>
+<span>     border <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:plotpanel"></span>
+<img src="images/chapter-1/plotpanelss.png" alt="The plot panel contains all of your plots, like this histogram of the distribution of chicken weights." width="75%"><p class="caption">
 Figure 2.8: The plot panel contains all of your plots, like this histogram of the distribution of chicken weights.
 </p>
 </div>
@@ -548,54 +200,70 @@ Figure 2.8: The plot panel contains all of your plots, like this histogram of th
 <li><p>Packages - Shows a list of all the R packages installed on your harddrive and indicates whether or not they are currently loaded. Packages that are loaded in the current session are checked while those that are installed but not yet loaded are unchecked. We’ll discuss packages in more detail in the next section.</p></li>
 <li><p>Help - Help menu for R functions. You can either type the name of a function in the search window, or use the code to search for a function with the name </p></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="get-started.html#cb4-1" aria-hidden="true" tabindex="-1"></a>?hist   <span class="co"># How does the histogram function work?</span></span>
-<span id="cb4-2"><a href="get-started.html#cb4-2" aria-hidden="true" tabindex="-1"></a>?t.test <span class="co"># What about a t-test?</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">hist</span>   <span class="co"># How does the histogram function work?</span></span>
+<span><span class="op">?</span><span class="va">t.test</span> <span class="co"># What about a t-test?</span></span></code></pre></div>
 </div>
 </div>
-<div id="INSTALL-READ-WRITE-CODE" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Reading and writing Code<a href="get-started.html#INSTALL-READ-WRITE-CODE" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="INSTALL-READ-WRITE-CODE" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Reading and writing Code<a class="anchor" aria-label="anchor" href="#INSTALL-READ-WRITE-CODE"><i class="fas fa-link"></i></a>
+</h2>
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/2_n6y2Ch6Fs" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
 </div>
 </div>
-<div id="code-chunks" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Code Chunks<a href="get-started.html#code-chunks" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="code-chunks" class="section level3" number="2.3.1">
+<h3>
+<span class="header-section-number">2.3.1</span> Code Chunks<a class="anchor" aria-label="anchor" href="#code-chunks"><i class="fas fa-link"></i></a>
+</h3>
 <p>In this book, R code is (almost) always presented in a separate gray box like this one:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="get-started.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A code chunk</span></span>
-<span id="cb5-2"><a href="get-started.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="get-started.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a vector a as the integers from 1 to 5</span></span>
-<span id="cb5-4"><a href="get-started.html#cb5-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb5-5"><a href="get-started.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="get-started.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a</span></span>
-<span id="cb5-7"><a href="get-started.html#cb5-7" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># A code chunk</span></span>
+<span></span>
+<span><span class="co"># Define a vector a as the integers from 1 to 5</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span></span>
+<span><span class="co"># Print a</span></span>
+<span><span class="va">a</span></span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="get-started.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the mean of a?</span></span>
-<span id="cb7-2"><a href="get-started.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># What is the mean of a?</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>This is called a <em>code chunk</em>. You should always be able to copy and paste code chunks directly into R. If you copy a chunk and it does not work for you, it is most likely because the code refers to a package, function, or object that I defined in a previous chunk. If so, read back and look for a previous chunk that contains the missing definition.</p>
 </div>
-<div id="comments-with" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Comments with #<a href="get-started.html#comments-with" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="comments-with" class="section level3" number="2.3.2">
+<h3>
+<span class="header-section-number">2.3.2</span> Comments with #<a class="anchor" aria-label="anchor" href="#comments-with"><i class="fas fa-link"></i></a>
+</h3>
 <p>Lines that begin with # are comments. If you evaluate any code that starts with #, R will just ignore that line. In this book, comments will be either be literal comments that I write directly to explain code, or they will be <em>output</em> generated automatically from R. For example, in the code chunk below, you see lines starting with ##. These are the output from the previous line(s) of code. When you run the code yourself, you should see the same output in your <em>console</em>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="get-started.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a comment I wrote</span></span>
-<span id="cb9-2"><a href="get-started.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="get-started.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># This is a comment I wrote</span></span>
+<span></span>
+<span><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="get-started.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The line above (## [1] 3) is the output from the previous code that has been &#39;commented out&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># The line above (## [1] 3) is the output from the previous code that has been 'commented out'</span></span></code></pre></div>
 </div>
-<div id="element-numbers-in-output-1" class="section level3 hasAnchor" number="2.3.3">
-<h3><span class="header-section-number">2.3.3</span> Element numbers in output [1]<a href="get-started.html#element-numbers-in-output-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="element-numbers-in-output-1" class="section level3" number="2.3.3">
+<h3>
+<span class="header-section-number">2.3.3</span> Element numbers in output [1]<a class="anchor" aria-label="anchor" href="#element-numbers-in-output-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>The output you see will often start with one or more number(s) in brackets such as [1]. This is just a visual way of telling you where the numbers occur in the output. For example, in the code below, I will print a long vector containing the multiples of 2 from 0 to 100:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="get-started.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">100</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##  [1]   0   2   4   6   8  10  12  14  16  18  20  22  24  26  28  30  32  34  36
 ## [20]  38  40  42  44  46  48  50  52  54  56  58  60  62  64  66  68  70  72  74
 ## [39]  76  78  80  82  84  86  88  90  92  94  96  98 100</code></pre>
 <p>As you can see, the first line of the output starts with ## [1], and the next two lines start with [18] and [35]. This is just telling you that 0 is the [1]st element, 34 is the [18]th element, and 68 is the [35]th element. Sometimes this information will be helpful, but most of the time you can just ignore it.</p>
 </div>
 </div>
-<div id="INSTALL-DEBUG" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Debugging<a href="get-started.html#INSTALL-DEBUG" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="INSTALL-DEBUG" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Debugging<a class="anchor" aria-label="anchor" href="#INSTALL-DEBUG"><i class="fas fa-link"></i></a>
+</h2>
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/Zu3Elwuqkhc" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
@@ -604,48 +272,58 @@ Figure 2.8: The plot panel contains all of your plots, like this histogram of th
 <p>When you are programming, you will always, and I do mean always, make errors (also called bugs) in your code. You might misspell a function, include an extra comma, or some days…R just won’t want to work with you (again, see section <a href="index.html#rrelationship">Why R is like a Relationship</a>).</p>
 <p>Debugging will always be a challenge. However, over time you’ll learn which bugs are the most common and get faster and faster at finding and correcting them.</p>
 <p>Here are the most common bugs you’ll run into as you start your R journey.</p>
-<div id="r-is-not-ready" class="section level3 hasAnchor" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> R is not ready (&gt;)<a href="get-started.html#r-is-not-ready" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="r-is-not-ready" class="section level3" number="2.4.1">
+<h3>
+<span class="header-section-number">2.4.1</span> R is not ready (&gt;)<a class="anchor" aria-label="anchor" href="#r-is-not-ready"><i class="fas fa-link"></i></a>
+</h3>
 <p>Another very common problem occurs when R does not seem to be responding to your code. That is, you might run some code like <code>mean(x)</code> expecting some output, but instead, nothing happens. This can be very frustrating because, rather than getting an error, just nothing happens at all. The most common reason for this is because R isn’t <em>ready</em> for new code, instead, it is <em>waiting</em> for you to finish code you started earlier, but never properly finished.</p>
 <p>Think about it this way, R can be in one of two states: it is either <strong>Ready</strong> (&gt;) for new code, or it is <strong>Waiting</strong> (+) for you to finish old code. To see which state R is in, all you have to do is look at the symbol on the console. The <code>&gt;</code> symbol means that R is Ready for new code – this is usually what you want to see. The <code>+</code> symbol means that R is Waiting for you to (properly) finish code you started before. If you see the <code>+</code> symbol, then no matter how much new code you write, R won’t actually evaluate it until you finish the code you started before.</p>
 <p>Thankfully there is an easy solution to this problem (See Figure <a href="get-started.html#fig:rstate">2.9</a>): Just hit the escape key on your keyboard. This will cancel R’s waiting state and make it Ready!</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rstate"></span>
-<img src="images/chapter-1/escapesolution.png" alt="To turn R from a Waiting (+) state to a Ready (&gt;) state, just hit Escape." width="50%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rstate"></span>
+<img src="images/chapter-1/escapesolution.png" alt="To turn R from a Waiting (+) state to a Ready (&gt;) state, just hit Escape." width="50%"><p class="caption">
 Figure 2.9: To turn R from a Waiting (+) state to a Ready (&gt;) state, just hit Escape.
 </p>
 </div>
 </div>
-<div id="misspelled-object-or-function" class="section level3 hasAnchor" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Misspelled object or function<a href="get-started.html#misspelled-object-or-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="misspelled-object-or-function" class="section level3" number="2.4.2">
+<h3>
+<span class="header-section-number">2.4.2</span> Misspelled object or function<a class="anchor" aria-label="anchor" href="#misspelled-object-or-function"><i class="fas fa-link"></i></a>
+</h3>
 <p>If you spell an object or function incorrectly, you’ll receive an error like <code>Error: could not find function</code> or <code>Error: object 'x' not found</code>.</p>
-<p>In the code below, I’ll try to take the mean of a vector <code>data</code>, but I will misspell the function <code>mean()</code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="get-started.html#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="get-started.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="get-started.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Misspelled function: should be mean(x), not meeen(x)</span></span>
-<span id="cb14-4"><a href="get-started.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">meeen</span>(data)</span></code></pre></div>
+<p>In the code below, I’ll try to take the mean of a vector <code>data</code>, but I will misspell the function <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Misspelled function: should be mean(x), not meeen(x)</span></span>
+<span><span class="fu">meeen</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <div class="error">
 Error: could not find function “meeen”
 </div>
 <p>Now, I’ll misspell the object <code>data</code> as <code>dta</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="get-started.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Misspelled object: should be data, not dta</span></span>
-<span id="cb15-2"><a href="get-started.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(dta)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Misspelled object: should be data, not dta</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dta</span><span class="op">)</span></span></code></pre></div>
 <div class="error">
 Error: object ‘dta’ not found
 </div>
-<p>R is case-sensitive, so if you don’t use the correct capitalization you’ll receive an error. In the code below, I’ll use <code>Mean()</code> instead of the correct version <code>mean()</code></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="get-started.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Capitalization is wrong: should be mean(), not Mean()</span></span>
-<span id="cb16-2"><a href="get-started.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Mean</span>(data)</span></code></pre></div>
+<p>R is case-sensitive, so if you don’t use the correct capitalization you’ll receive an error. In the code below, I’ll use <code>Mean()</code> instead of the correct version <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code></p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Capitalization is wrong: should be mean(), not Mean()</span></span>
+<span><span class="fu">Mean</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <div class="error">
 Error: could not find function “Mean”
 </div>
-<p>Here is the correct version where both the object <code>data</code> and function <code>mean()</code> are correctly spelled:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="get-started.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct: both the object and function are correctly spelled</span></span>
-<span id="cb17-2"><a href="get-started.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(data)</span></code></pre></div>
+<p>Here is the correct version where both the object <code>data</code> and function <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> are correctly spelled:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Correct: both the object and function are correctly spelled</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 2.2</code></pre>
 </div>
-<div id="punctuation-problems" class="section level3 hasAnchor" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Punctuation problems<a href="get-started.html#punctuation-problems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="punctuation-problems" class="section level3" number="2.4.3">
+<h3>
+<span class="header-section-number">2.4.3</span> Punctuation problems<a class="anchor" aria-label="anchor" href="#punctuation-problems"><i class="fas fa-link"></i></a>
+</h3>
 <p>Another common error is having bad coding “punctuation”. By that, I mean having an extra space, missing a comma, or using a comma (,) instead of a period (.). In the code below, I’ll try to create a vector using periods instead of commas:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="get-started.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrong: Using periods (.) instead of commas (,)</span></span>
 <span id="cb19-2"><a href="get-started.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="fl">1.</span> <span class="fl">4.</span> <span class="dv">2</span>))</span></code></pre></div>
@@ -653,8 +331,9 @@ Error: could not find function “Mean”
 Error: unexpected numeric constant in “mean(c(1. 4.”
 </div>
 <p>Because I used periods instead of commas, I get the above error. Here is the correct version</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="get-started.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct</span></span>
-<span id="cb20-2"><a href="get-started.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Correct</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] 2.333333</code></pre>
 <p>If you include an extra space in the middle of the name of an object or function, you’ll receive an error. In the code below, I’ll accidentally write <code>Chick Weight</code> instead of <code>ChickWeight</code>:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="get-started.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrong: Extra space in the ChickWeight object name</span></span>
@@ -663,12 +342,15 @@ Error: unexpected numeric constant in “mean(c(1. 4.”
 Error: unexpected symbol in “head(Chick Weight”
 </div>
 <p>Because I had an extra space in the object name, I get the above error. Here is the correction:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="get-started.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correct:</span></span>
-<span id="cb23-2"><a href="get-started.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ChickWeight)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Correct:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ChickWeight</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div id="INSTALL-LEARNING-CHECK" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Learning check<a href="get-started.html#INSTALL-LEARNING-CHECK" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="INSTALL-LEARNING-CHECK" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Learning check<a class="anchor" aria-label="anchor" href="#INSTALL-LEARNING-CHECK"><i class="fas fa-link"></i></a>
+</h2>
 <div class="vembedr">
 <div>
 <iframe src="https://www.youtube.com/embed/KCB_cp8UHU4?start=2" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
@@ -678,76 +360,76 @@ Error: unexpected symbol in “head(Chick Weight”
 <li><p>Download Base-R software and RStudio software.</p></li>
 <li><p>Open up RStudio software and type the following code below into the <strong>console</strong>. What does it give you?</p></li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="get-started.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">1</span><span class="op">+</span><span class="fl">10</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Look at the code below. What will R return after the third line? Make a prediction, then test the code yourself.</li>
 </ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="get-started.html#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb25-2"><a href="get-started.html#cb25-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="dv">10</span></span>
-<span id="cb25-3"><a href="get-started.html#cb25-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">a</span> <span class="op">+</span> <span class="fl">10</span></span>
+<span><span class="va">a</span></span></code></pre></div>
 
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="index.html"><span class="header-section-number">1</span> Preface</a></div>
+<div class="next"><a href="basics.html"><span class="header-section-number">3</span> The Basics</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#get-started"><span class="header-section-number">2</span> Getting Started</a></li>
+<li>
+<a class="nav-link" href="#INSTALL-GET-STARTED"><span class="header-section-number">2.1</span> Installing Base-R and RStudio</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#check-for-version-updates"><span class="header-section-number">2.1.1</span> Check for version updates</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#INSTALL-GET-FAMILIAR"><span class="header-section-number">2.2</span> The four RStudio Windows</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#source---your-notepad-for-code"><span class="header-section-number">2.2.1</span> Source - Your notepad for code</a></li>
+<li><a class="nav-link" href="#console-rs-heart"><span class="header-section-number">2.2.2</span> Console: R’s Heart</a></li>
+<li><a class="nav-link" href="#environment-history"><span class="header-section-number">2.2.3</span> Environment / History</a></li>
+<li><a class="nav-link" href="#files-plots-packages-help"><span class="header-section-number">2.2.4</span> Files / Plots / Packages / Help</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#INSTALL-READ-WRITE-CODE"><span class="header-section-number">2.3</span> Reading and writing Code</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#code-chunks"><span class="header-section-number">2.3.1</span> Code Chunks</a></li>
+<li><a class="nav-link" href="#comments-with"><span class="header-section-number">2.3.2</span> Comments with #</a></li>
+<li><a class="nav-link" href="#element-numbers-in-output-1"><span class="header-section-number">2.3.3</span> Element numbers in output [1]</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#INSTALL-DEBUG"><span class="header-section-number">2.4</span> Debugging</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-is-not-ready"><span class="header-section-number">2.4.1</span> R is not ready (&gt;)</a></li>
+<li><a class="nav-link" href="#misspelled-object-or-function"><span class="header-section-number">2.4.2</span> Misspelled object or function</a></li>
+<li><a class="nav-link" href="#punctuation-problems"><span class="header-section-number">2.4.3</span> Punctuation problems</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#INSTALL-LEARNING-CHECK"><span class="header-section-number">2.5</span> Learning check</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/blob/master/01-gettingstarted.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/bernard-liew/se201_stats_book/tree/2021_version/edit/master/01-gettingstarted.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-09-09.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["se201_stats_book.pdf", "se201_stats_book.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
 </body>
-
 </html>
