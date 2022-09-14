@@ -10,6 +10,7 @@ rmd_files: ["index.Rmd",
             "03-navigatingworkspace.Rmd",
             "04-input_output.Rmd",
             "05-data_manipulation.Rmd",
+            "05-data_manipulation-part2.Rmd",
             "06-barplot.Rmd",
             "07-lineplot.Rmd",
             "08-Assignment.Rmd"]

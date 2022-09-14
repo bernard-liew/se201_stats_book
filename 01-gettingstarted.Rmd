@@ -135,7 +135,7 @@ knitr::include_graphics(c("images/chapter-1/plotpanelss.png"))
 ## Reading and writing Code {#INSTALL-READ-WRITE-CODE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/2_n6y2Ch6Fs")
+vembedr::embed_youtube("2_n6y2Ch6Fs", height = 400)
 ```
 
 
@@ -184,7 +184,7 @@ As you can see, the first line of the output starts with \#\# [1], and the next 
 ## Debugging {#INSTALL-DEBUG}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/Zu3Elwuqkhc")
+vembedr::embed_youtube("Zu3Elwuqkhc", height = 400)
 ```
 
 When you are programming, you will always, and I do mean always, make errors (also called bugs) in your code. You might misspell a function, include an extra comma, or some days...R just won't want to work with you  (again, see section [Why R is like a Relationship](#rrelationship)).
@@ -288,7 +288,7 @@ head(ChickWeight)
 ## Learning check {#INSTALL-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://www.youtube.com/watch?v=KCB_cp8UHU4&list=PLLsXsBAdxWDYXLhdu3HiVlHZK61LViAk9&index=5&t=2s")
+vembedr::embed_youtube("KCB_cp8UHU4", height = 400)
 ```
 
 

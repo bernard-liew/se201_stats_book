@@ -21,7 +21,7 @@ Line graphs are typically used for visualizing how one continuous variable, on t
 
 As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., "small", "medium", "large"), but not when the variable is unordered (e.g., "cow", "goose", "pig"). Most of the examples in this chapter use a continuous *x* variable, but we'll see one example where the variable is converted to a factor and thus treated as a discrete variable.
 
-Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY). The Excel sheet is called `"treadmill_pt4_clean.xlsx"`. 
+Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe \@ref(WRANGLE2-SUMMARIZE-GROUPBY). The Excel sheet is called `"treadmill_pt4_clean.xlsx"`. 
 
 ```{r}
 dat <-  read.xlsx (xlsxFile = "data/treadmill_pt4_clean.xlsx",
@@ -41,7 +41,7 @@ dat <- dat %>%
 ## Making a Basic Line Graph {#LINE-GRAPH-BASIC-LINE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/m0rdWRnWgc8")
+vembedr::embed_youtube("m0rdWRnWgc8", height = 400)
 ```
 
 ### Problem
@@ -93,7 +93,8 @@ ggplot(dat) +
 ## Making a Line Graph with Multiple Lines {#LINE-GRAPH-MULTIPLE-LINE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/VlyE4ZB0RPM")
+vembedr::embed_youtube("VlyE4ZB0RPM", height = 400)
+
 ```
 
 
@@ -147,7 +148,7 @@ ggplot(dat_long) +
 
 ```
 
-To convert a variable to a factor , see also Recipe \@ref(WRANGLE-CHARACTERS-2-FACTORS).
+To convert a variable to a factor , see also Recipe \@ref(WRANGLE2-CHARACTERS-2-FACTORS).
 
 Notice the use of `group = var`. Without this statement, ggplot won't know how to group the data together to draw the lines, and it will not plot anything:
 
@@ -161,7 +162,7 @@ ggplot(dat_long) +
 ## Changing the Appearance of Lines {#LINE-GRAPH-LINE-APPEARANCE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/xOWAMHWUxC4")
+vembedr::embed_youtube("xOWAMHWUxC4", height = 400)
 ```
 
 ### Problem
@@ -226,7 +227,7 @@ knitr::include_graphics(c("images/chapter-7/linetype.png"))
 ## Using Themes to Change Overall Appearance of Plot {#LINE-GRAPH-APPEARANCE-THEME}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/IpmG8N8u6lw")
+vembedr::embed_youtube("IpmG8N8u6lw", height = 400)
 ```
 
 ### Problem
@@ -273,7 +274,7 @@ hw_plot +
 ## Learning check {#LINE-GRAPH-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/7M5_GRm6bYM")
+vembedr::embed_youtube("7M5_GRm6bYM", height = 400)
 ```
 
 1. From your learning check in \@ref(BAR-LEARNING-CHECK), open up your `practice_script.R`. 
@@ -288,15 +289,15 @@ vembedr::embed_url("https://youtu.be/7M5_GRm6bYM")
 
 5. Create a variable called `stage`, where each stage represents 3:30 min worth of VO2 data. See Recipe \@ref(WRANGLE-NUMERIC-CATEGORY).
 
-6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 sec windows in each stage. See Recipe \@ref(WRANGLE-NEW-VARIABLES) and \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+6. For each stage, create a variable called `row_id`, which essentially represents the number of 5 sec windows in each stage. See Recipe \@ref(WRANGLE2-NEW-VARIABLES) and \@ref(WRANGLE2-SUMMARIZE-GROUPBY).
 
-7. For each stage, remove the data between 3 to 3:30min. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-FILTER-KEEP-NUMERIC).
+7. For each stage, remove the data between 3 to 3:30min. See Recipe \@ref(WRANGLE2-SUMMARIZE-GROUPBY) and \@ref(WRANGLE2-FILTER-KEEP-NUMERIC).
 
-8. For each stage, keep the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
+8. For each stage, keep the last six rows of data. See Recipe \@ref(WRANGLE2-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SLICE).
 
-9. For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY) and \@ref(WRANGLE-SUMMARIZE-GLOBAL). Assign this table to an object called `dat_summ`.
+9. For each stage, calculate for all variables for the mean of the last six rows of data. See Recipe \@ref(WRANGLE2-SUMMARIZE-GROUPBY) and \@ref(WRANGLE2-SUMMARIZE-GLOBAL). Assign this table to an object called `dat_summ`.
 
-10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Recipe \@ref(WRANGLE-INNER-JOIN). Assign this table to an object called `df_plot`.
+10. Merge the two tables `dat_summ` and `dat_stage`, by the common variable called `stage`. See Recipe \@ref(WRANGLE2-INNER-JOIN). Assign this table to an object called `df_plot`.
 
 11. Using `df_plot`, make a line plot with with `speed` as the *x* axis, and `vo2` as the *y* axis, and assign it to an object called `f`. See Recipe \@ref(LINE-GRAPH-BASIC-LINE).
 

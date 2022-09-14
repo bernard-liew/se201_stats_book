@@ -2,7 +2,7 @@
 # Your Assignment 
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/1pK88G_WHD0")
+vembedr::embed_youtube("1pK88G_WHD0", height = 400)
 ```
 
 This assignment is designed to create a graphs to visualize the results of the FMS and Incremental Treadmill Test analyses. There are two things to note:
@@ -43,15 +43,15 @@ downloadthis::download_file(
 
 **2:** Individual FMS barplot. Plot a bar graph of `task` as the *x* axis, and `score` as the *y* axis, *fill* colour set to the different tested `side`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-**3:** Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Then use it to calculate the symmetry index during a single-leg drop land. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-NEW-VARIABLES).
+**3:** Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Then use it to calculate the symmetry index during a single-leg drop land. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE2-NEW-VARIABLES).
 
 **4:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
 **5:** Maker characters to numeric. Replace `XXX` with the appropriate function to convert all columns apart from time from character to numbers. See Recipe \@ref(WRANGLE-CHARACTER-2-NUMERIC).
 
-**6:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-SUMMARIZE-GROUPBY).
+**6:** Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE2-SUMMARIZE-GROUPBY).
 
-**7:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE-INNER-JOIN).
+**7:** Combine two tables. Merge the average data from *Task 4* with the object called `dat_stage` along the common header. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE2-INNER-JOIN).
 
 **8:** Make a lactate graph. Plot a line graph of `speed` as the *x* axis, and `lactacte` as the *y* axis, with the line colour `blue`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipes \@ref(LINE-GRAPH-BASIC-LINE), \@ref(LINE-GRAPH-LINE-APPEARANCE). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
@@ -115,10 +115,6 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
-### Import group FMS data
-dat_fms_grp <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
-
 ### Import individual FMS data
 dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
@@ -144,10 +140,10 @@ ggsave(filename = "ind_fms.png",
 ## Analyze drop jump data ------------------------------------------------------
 
 # Maximal bad leg impact value
-max_bad_ampl <- max(df_imu$bad)
+max_bad_ampl <- max(df_imu$XXX)
 
 # Maximal good leg impact value
-max_good_ampl <- max(df_imu$good)
+max_good_ampl <- max(df_imu$XXX)
 
 # Symmetry index 
 

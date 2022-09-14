@@ -23,7 +23,7 @@ knitr::include_graphics(c("images/chapter-3/workspace.jpg"))
 ## Getting and Setting the Working Directory {#NAVIGATE-WORKING-DIRECTORY}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/gjgXcUzpyzU")
+vembedr::embed_youtube("gjgXcUzpyzU", height = 400)
 ```
 
 Your computer is a maze of folders and files. Outside of R, when you want to open a specific file, you probably open up an explorer window that allows you to visually search through the folders on your computer. Or, maybe you select recent files, or type the name of the file in a search box to let your computer do the searching for you. While this system usually works for non-programming tasks, it is a no-go for R. Why? Well, the main problem is that all of these methods require you to *visually* scan your folders and move your mouse to select folders and files that match what you are looking for. When you are programming in R, you need to specify *all* steps in your analyses in a way that can be easily replicated by others and your future self. This means you can't just say: "Find this one file I emailed to myself a week ago" or "Look for a file that looks something like `experimentAversion3.txt`." Instead, you need to be able to write R code that tells R *exactly* where to find critical files -- either on your computer or on the web.
@@ -62,7 +62,7 @@ Any time you're working on something nontrivial in R we recommend creating an RS
 ## Installing Packages {#NAVIGATE-INSTALL-PACKAGE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/f6yTQopoyOg")
+vembedr::embed_youtube("f6yTQopoyOg", height = 400)
 ```
 
 When you download and install R for the first time, you are installing the Base R software. Base R will contain most of the functions you'll use on a daily basis like `mean()` and `hist()`. However, only functions written by the original authors of the R language will appear here. If you want to access data and code written by other people, you'll need to install it as a *package*. An R package is simply a bunch of data, from functions, to help menus, to vignettes (examples), stored in one neat package.
@@ -141,7 +141,7 @@ pacman::p_load(tidyverse) # All purpose wrangling for dataframes
 ## Learning check {#NAVIGATE-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/JYJjXaKrvK4")
+vembedr::embed_youtube("JYJjXaKrvK4", height = 400)
 ```
 
 1. Create a folder called `se201` on your computer desktop.

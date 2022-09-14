@@ -17,7 +17,7 @@ biblio-style: apalike
 The purpose of this book is to teach you skills in computer programming to help you analyse commonly collected data in a Sports Science and Coaching environment.  
 
 ```{r, echo = FALSE}
-vembedr::embed_url( "https://youtu.be/tRp6mPDR73k")
+vembedr::embed_youtube( "W-yPb3gISAI", height = 400)
 ```
 
 

@@ -15,7 +15,7 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 In this chapter, we'll go over the basics of the R language and the RStudio programming environment.
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/r1RTvp4HBWI")
+vembedr::embed_youtube("r1RTvp4HBWI", height = 400)
 ```
 
 
@@ -159,7 +159,7 @@ See how much better that second chunk of code looks? Not only do the comments te
 ## Objects and functions
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/Ks9zntr39fM")
+vembedr::embed_youtube("Ks9zntr39fM", height = 400)
 ```
 
 

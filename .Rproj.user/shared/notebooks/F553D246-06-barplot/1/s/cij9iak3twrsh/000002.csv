@@ -1,5 +1,0 @@
-"0","# This block needs cache=FALSE to set fig.width and fig.height, and have those"
-"0","# persist across cached builds."
-"0",""
-"0","source(""utils.R"", local = TRUE)"
-"2","package ‘igraph’ was built under R version 3.6.2"

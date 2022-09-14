@@ -45,7 +45,7 @@ samp <- read.xlsx ("data\\strength.xlsx")
 ## Reading in Excel ".xlsx" data  {#INPUT-IMPORT}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/ZK-oVC0-5NA")
+vembedr::embed_youtube("ZK-oVC0-5NA", height = 400)
 ```
 
 If you have a .xlsx file that you want to read into R, use the `read.xlsx()` function in the `openxlsx` package.
@@ -70,7 +70,7 @@ strn <-  read.xlsx (xlsxFile = "data/strength.xlsx",
 ## Writing a Data Frame to Excel {#INPUT-EXPORT}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/oZ6yoZ_86BY")
+vembedr::embed_youtube("oZ6yoZ_86BY", height = 400)
 ```
 
 You want to write an R data frame to an Excel file. 
@@ -94,7 +94,7 @@ write.xlsx(x = strn,
 ## Learning check {#INPUT-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/cvI7LyODZ14")
+vembedr::embed_youtube("cvI7LyODZ14", height = 400)
 ```
 
 You can download the 3 files for this learning check below:
@@ -127,10 +127,10 @@ downloadthis::download_file(
 
 ```{r echo=FALSE}
 downloadthis::download_file(
-  path = "data/simFMS.xlsx",
-  output_name = "group_fms",
+  path = "data/rightleg_imu.xlsx",
+  output_name = "rightleg_imu",
   output_extension = ".xlsx",
-  button_label = "Group FMS data",
+  button_label = "Bad leg IMU",
   button_type = "warning",
   has_icon = TRUE,
   icon = "fa fa-save"
@@ -138,7 +138,18 @@ downloadthis::download_file(
 )
 ```
 
-
+```{r echo=FALSE}
+downloadthis::download_file(
+  path = "data/leftleg_imu.xlsx",
+  output_name = "leftleg_imu",
+  output_extension = ".xlsx",
+  button_label = "Good leg IMU",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
+```
 
 1. In your se201/practice folder, create another folder called `data`.
 

@@ -1,4 +1,4 @@
-# Data manipulation{#WRANGLE}
+# Data manipulation - part 1 {#WRANGLE}
 
 ## Download and load packages {-}
 
@@ -14,10 +14,6 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 
 ## Import data {-}
-
-```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/ficAKoksgFI")
-```
 
 Let's load the files from the `data` folder into the work space again. 
 
@@ -106,7 +102,7 @@ good_leg_accl %>%
 ## Tidy data {#WRANGLE-TIDY-DATA}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/LKftcxMdqm8")
+vembedr::embed_youtube("LKftcxMdqm8", height = 400)
 ```
 
 
@@ -165,13 +161,13 @@ The second step is to resolve one of two common problems:
 
 2. One observation might be scattered across multiple rows.
 
-Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` in Recipe \@ref(WRANGLE-SPREAD) and `pivot_longer()` in Recipe \@ref(WRANGLE-GATHER) below.
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` in Recipe \@ref(WRANGLE2-SPREAD) and `pivot_longer()` in Recipe \@ref(WRANGLE2-GATHER) below.
 
 
 ## Renaming variables {#WRANGLE-RENAME-VARIABLES}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/JB4Ex9oFZi0")
+vembedr::embed_youtube("JB4Ex9oFZi0", height = 400)
 ```
 
 ### Problem
@@ -208,12 +204,12 @@ colnames (dat_vo2)
 ## Selecting rows {#WRANGLE-SLICE}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/-VR2j-dNFY0")
+vembedr::embed_youtube("v55dRA291uo", height = 400)
 ```
 
 ### Problem
 
-You want to remove a specific row  or a range of rows. See also Recipe \@ref(WRANGLE-FILTER).
+You want to remove a specific row  or a range of rows. See also Recipe \@ref(WRANGLE2-FILTER).
 
 ### Solution
 
@@ -295,7 +291,7 @@ dat_vo2 <- dat_vo2 %>%
 ## Selecting columns {#WRANGLE-SELECT}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/-VR2j-dNFY0")
+vembedr::embed_youtube("qmz7c_HPUEQ", height = 400)
 ```
 
 ### Problem
@@ -338,7 +334,7 @@ good_vertical_accl %>%
 ## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/j1J63-ePZd8")
+vembedr::embed_youtube("j1J63-ePZd8", height = 400)
 ```
 
 ### Problem
@@ -388,7 +384,7 @@ str(dat_vo2)
 ## Convert characters to date and time {#WRANGLE-CHARACTER-2-TIME}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/rBIq-n-RZxI")
+vembedr::embed_youtube("rBIq-n-RZxI", height = 400)
 ```
 
 ### Problem
@@ -408,7 +404,7 @@ dat_vo2_copy <- dat_vo2
 ```
 
 
-Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES).
+Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE2-NEW-VARIABLES).
 
 ```{r}
 
@@ -435,7 +431,7 @@ Notice in the function above, I chained a series of steps together, using the pi
 
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/imDxCPMgXfE")
+vembedr::embed_youtube("imDxCPMgXfE", height = 400)
 ```
 
 
@@ -506,12 +502,12 @@ time_mutate %>%
 ## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
 
 ```{r, echo = FALSE}
-vembedr::embed_url("https://youtu.be/TYBTXk95doo")
+vembedr::embed_youtube("TYBTXk95doo", height = 400)
 ```
 
 ### Problem
 
-Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
+Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE2-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
 
 ### Solution
 
