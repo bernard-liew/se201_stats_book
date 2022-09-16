@@ -43,7 +43,7 @@ downloadthis::download_file(
 
 **2:** Individual FMS barplot. Plot a bar graph of `task` as the *x* axis, and `score` as the *y* axis, *fill* colour set to the different tested `side`. Give the graph a succinct title. Make the axis texts and titles to be font `size` 12. Replace `XXX` with the appropriate values. See Recipe \@ref(BAR-GRAPH-GROUPED-BAR). Save the plot - See Recipe \@ref(BAR-OUTPUT-BITMAP).
 
-**3:** Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Then use it to calculate the symmetry index during a single-leg drop land. Replace `XXX` with the appropriate values. See Recipe \@ref(WRANGLE2-NEW-VARIABLES).
+**3:** Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Use the vertical acceleration signal `highg_az_m/s/s`. Then use it to calculate the symmetry index during a single-leg drop land. Replace `XXX` with the appropriate value. See Recipe \@ref(WRANGLE2-NEW-VARIABLES).
 
 **4:** Rename columns. Rename all columns to lower cases, without white spaces. See Recipe \@ref(WRANGLE-RENAME-VARIABLES).
 
@@ -120,12 +120,17 @@ dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ### Import drop jump data
-dat_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
+
+#### IMU data of the good leg
+good_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
+                       sheet = "XXX")
+#### IMU data of the bad leg
+bad_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ## Analyze FMS data ------------------------------------------------------------
 
-### Plot group FMS 
+### Plot FMS 
 
 plot_fms_indv <- ggplot(XXX) +
   geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")
@@ -140,10 +145,10 @@ ggsave(filename = "ind_fms.png",
 ## Analyze drop jump data ------------------------------------------------------
 
 # Maximal bad leg impact value
-max_bad_ampl <- max(df_imu$XXX)
+max_bad_ampl <- max(bad_imu %>% select (XXX))
 
 # Maximal good leg impact value
-max_good_ampl <- max(df_imu$XXX)
+max_good_ampl <- max(good_imu %>% select (XXX))
 
 # Symmetry index 
 
@@ -157,7 +162,7 @@ symmmetry_index
 
 ### Rename column names of Vo2 data 
 
-new_names <- c()
+new_names <- c(XXX)
 
 colnames (dat_vo2)  <- new_names
 

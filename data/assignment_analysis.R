@@ -1,5 +1,4 @@
 
-
 ## -----------------------------------------------------------------------------
 
 ## load up the packages we will need
@@ -49,21 +48,22 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                          sheet = "XXX")
 
-### Import group FMS data
-dat_fms_grp <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                           sheet = "XXX")
-
 ### Import individual FMS data
 dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                             sheet = "XXX")
 
 ### Import drop jump data
-dat_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
+
+#### IMU data of the good leg
+good_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
+                        sheet = "XXX")
+#### IMU data of the bad leg
+bad_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
 ## Analyze FMS data ------------------------------------------------------------
 
-### Plot group FMS 
+### Plot FMS 
 
 plot_fms_indv <- ggplot(XXX) +
   geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")
@@ -78,10 +78,10 @@ ggsave(filename = "ind_fms.png",
 ## Analyze drop jump data ------------------------------------------------------
 
 # Maximal bad leg impact value
-max_bad_ampl <- max(df_imu$bad)
+max_bad_ampl <- max(bad_imu %>% select (XXX))
 
 # Maximal good leg impact value
-max_good_ampl <- max(df_imu$good)
+max_good_ampl <- max(good_imu %>% select (XXX))
 
 # Symmetry index 
 
@@ -95,7 +95,7 @@ symmmetry_index
 
 ### Rename column names of Vo2 data 
 
-new_names <- c()
+new_names <- c(XXX)
 
 colnames (dat_vo2)  <- new_names
 
