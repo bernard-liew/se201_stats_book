@@ -101,7 +101,7 @@
 <p><strong>2:</strong> Individual FMS barplot. Plot a bar graph of <code>task</code> as the <em>x</em> axis, and <code>score</code> as the <em>y</em> axis, <em>fill</em> colour set to the different tested <code>side</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-GRAPH-GROUPED-BAR">8.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">8.8</a>.</p>
 <p><strong>3:</strong> Drop jump symmetry. Calculate the maximal vertical acceleration of the good and bad leg. Use the vertical acceleration signal <code>highg_az_m/s/s</code>. Then use it to calculate the symmetry index during a single-leg drop land. Replace <code>XXX</code> with the appropriate value. See Recipe <a href="WRANGLE2.html#WRANGLE2-NEW-VARIABLES">7.5</a>.</p>
 <p><strong>4:</strong> Rename columns. Rename all columns to lower cases, without white spaces. See Recipe <a href="WRANGLE.html#WRANGLE-RENAME-VARIABLES">6.2</a>.</p>
-<p><strong>5:</strong> Maker characters to numeric. Replace <code>XXX</code> with the appropriate function to convert all columns apart from time from character to numbers. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.5</a>.</p>
+<p><strong>5:</strong> Make characters to numeric. Replace <code>XXX</code> with the appropriate function to convert all columns apart from time from character to numbers. See Recipe <a href="WRANGLE.html#WRANGLE-CHARACTER-2-NUMERIC">6.5</a>.</p>
 <p><strong>6:</strong> Find the average 30 sec value (between 2:30 to 3:00min) per stage for all variables. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE2.html#WRANGLE2-SUMMARIZE-GROUPBY">7.8</a>.</p>
 <p><strong>7:</strong> Combine two tables. Merge the average data from <em>Task 4</em> with the object called <code>dat_stage</code> along the common header. Replace <code>XXX</code> with the appropriate values. See Recipe <a href="WRANGLE2.html#WRANGLE2-INNER-JOIN">7.9</a>.</p>
 <p><strong>8:</strong> Make a lactate graph. Plot a line graph of <code>speed</code> as the <em>x</em> axis, and <code>lactacte</code> as the <em>y</em> axis, with the line colour <code>blue</code>. Give the graph a succinct title. Make the axis texts and titles to be font <code>size</code> 12. Replace <code>XXX</code> with the appropriate values. See Recipes <a href="line-graphs.html#LINE-GRAPH-BASIC-LINE">9.1</a>, <a href="line-graphs.html#LINE-GRAPH-LINE-APPEARANCE">9.3</a>. Save the plot - See Recipe <a href="CHAPTER-BAR-GRAPH.html#BAR-OUTPUT-BITMAP">8.8</a>.</p>
@@ -155,7 +155,7 @@
 <span><span class="op">}</span></span>
 <span><span class="co">## End ----------------</span></span>
 <span></span>
-<span><span class="co">## Import data </span></span>
+<span><span class="co">## Import data (Task 1)</span></span>
 <span></span>
 <span><span class="co">### Import the sheet with the Vo2 data</span></span>
 <span><span class="va">dat_vo2</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
@@ -178,7 +178,7 @@
 <span><span class="va">bad_imu</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/XXX.xlsx"</span>,</span>
 <span>                       sheet <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Analyze FMS data ------------------------------------------------------------</span></span>
+<span><span class="co">## Analyze FMS data (Task 2) ---------------------------------------------------</span></span>
 <span></span>
 <span><span class="co">### Plot FMS </span></span>
 <span></span>
@@ -192,7 +192,7 @@
 <span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
 <span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Analyze drop jump data ------------------------------------------------------</span></span>
+<span><span class="co">## Analyze drop jump data (Task 3) ---------------------------------------------</span></span>
 <span></span>
 <span><span class="co"># Maximal bad leg impact value</span></span>
 <span><span class="va">max_bad_ampl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">bad_imu</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span><span class="va">XXX</span><span class="op">)</span><span class="op">)</span></span>
@@ -210,7 +210,7 @@
 <span></span>
 <span><span class="co">## Analyze VO2 data ------------------------------------------------------------</span></span>
 <span></span>
-<span><span class="co">### Rename column names of Vo2 data </span></span>
+<span><span class="co">### Rename column names of Vo2 data (Task 4)</span></span>
 <span></span>
 <span><span class="va">new_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">XXX</span><span class="op">)</span></span>
 <span></span>
@@ -221,7 +221,7 @@
 <span><span class="va">dat_vo2</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span> <span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">### Convert column type of Vo2 data </span></span>
+<span><span class="co">### Convert column type of Vo2 data (Task 5)</span></span>
 <span></span>
 <span><span class="va">dat_vo2</span> <span class="op">&lt;-</span>  <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>bf <span class="op">=</span> <span class="fu">XXX</span> <span class="op">(</span><span class="va">bf</span><span class="op">)</span>,</span>
@@ -243,7 +243,7 @@
 <span><span class="va">dat_vo2</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span>stage <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/cut_interval.html">cut_interval</a></span><span class="op">(</span><span class="va">time</span>, length <span class="op">=</span> <span class="fl">210</span>, labels <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">### Calculate average 30s data per stage of Vo2 data </span></span>
+<span><span class="co">### Calculate average 30s data per stage of Vo2 data (Task 6)</span></span>
 <span></span>
 <span><span class="va">dat_vo2_summ</span> <span class="op">&lt;-</span> <span class="va">dat_vo2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">XXX</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># for each group</span></span>
@@ -259,14 +259,14 @@
 <span>             hr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> <span class="op">(</span><span class="va">hr</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="co">### Combine Vo2 staged data with lactate data </span></span>
+<span><span class="co">### Combine Vo2 staged data with lactate data (Task 7)</span></span>
 <span></span>
 <span><span class="va">dat_vo2_comb</span> <span class="op">&lt;-</span> <span class="va">dat_vo2_summ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">dat_stage</span>, by <span class="op">=</span> <span class="st">"XXX"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">### Plot</span></span>
 <span></span>
-<span><span class="co">#### Lactate (Task 9)</span></span>
+<span><span class="co">#### Lactate (Task 8)</span></span>
 <span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>, y <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"XXX"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -286,7 +286,7 @@
 <span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
 <span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#### Heart rate </span></span>
+<span><span class="co">#### Heart rate (Task 9)</span></span>
 <span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="va">dat_vo2_comb</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span> <span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span> <span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>, y <span class="op">=</span> <span class="va">XXX</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"XXX"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -306,7 +306,7 @@
 <span>       unit <span class="op">=</span> <span class="st">"cm"</span>, </span>
 <span>       dpi <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#### Export table </span></span>
+<span><span class="co">#### Export table (Task 10)</span></span>
 <span></span>
 <span><span class="fu">write.xlsx</span><span class="op">(</span>x <span class="op">=</span> <span class="va">XXX</span>,</span>
 <span>           sheetName <span class="op">=</span> <span class="st">"vo2"</span>,</span>
@@ -448,7 +448,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-09-16.</p>
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-10-07.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

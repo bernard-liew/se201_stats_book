@@ -38,7 +38,7 @@ curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL)
 }
 ## End ----------------
 
-## Import data 
+## Import data (Task 1)
 
 ### Import the sheet with the Vo2 data
 dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
@@ -46,22 +46,22 @@ dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
 
 ### Import the sheet with the lactate data
 dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                         sheet = "XXX")
+                       sheet = "XXX")
 
 ### Import individual FMS data
 dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                            sheet = "XXX")
+                       sheet = "XXX")
 
 ### Import drop jump data
 
 #### IMU data of the good leg
 good_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                        sheet = "XXX")
+                       sheet = "XXX")
 #### IMU data of the bad leg
 bad_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
                        sheet = "XXX")
 
-## Analyze FMS data ------------------------------------------------------------
+## Analyze FMS data (Task 2) ---------------------------------------------------
 
 ### Plot FMS 
 
@@ -75,7 +75,7 @@ ggsave(filename = "ind_fms.png",
        unit = "cm", 
        dpi = 200)
 
-## Analyze drop jump data ------------------------------------------------------
+## Analyze drop jump data (Task 3) ---------------------------------------------
 
 # Maximal bad leg impact value
 max_bad_ampl <- max(bad_imu %>% select (XXX))
@@ -93,7 +93,7 @@ symmmetry_index
 
 ## Analyze VO2 data ------------------------------------------------------------
 
-### Rename column names of Vo2 data 
+### Rename column names of Vo2 data (Task 4)
 
 new_names <- c(XXX)
 
@@ -104,7 +104,7 @@ colnames (dat_vo2)  <- new_names
 dat_vo2 <- dat_vo2 %>% 
   slice (-c(1))
 
-### Convert column type of Vo2 data 
+### Convert column type of Vo2 data (Task 5)
 
 dat_vo2 <-  dat_vo2 %>%
   mutate (bf = XXX (bf),
@@ -126,7 +126,7 @@ dat_vo2 <-  dat_vo2 %>%
 dat_vo2 <- dat_vo2 %>%
   mutate (stage = cut_interval(time, length = 210, labels = FALSE))
 
-### Calculate average 30s data per stage of Vo2 data 
+### Calculate average 30s data per stage of Vo2 data (Task 6)
 
 dat_vo2_summ <- dat_vo2 %>%
   group_by(XXX) %>% # for each group
@@ -142,14 +142,14 @@ dat_vo2_summ <- dat_vo2 %>%
              hr = mean (hr))
 
 
-### Combine Vo2 staged data with lactate data 
+### Combine Vo2 staged data with lactate data (Task 7)
 
 dat_vo2_comb <- dat_vo2_summ %>%
   inner_join(dat_stage, by = "XXX")
 
 ### Plot
 
-#### Lactate (Task 9)
+#### Lactate (Task 8)
 
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
@@ -169,7 +169,7 @@ ggsave(filename = "lactate.png",
        unit = "cm", 
        dpi = 200)
 
-#### Heart rate 
+#### Heart rate (Task 9)
 
 f <- ggplot (dat_vo2_comb) +
   geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
@@ -189,7 +189,7 @@ ggsave(filename = "heartrate.png",
        unit = "cm", 
        dpi = 200)
 
-#### Export table 
+#### Export table (Task 10)
 
 write.xlsx(x = XXX,
            sheetName = "vo2",
