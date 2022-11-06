@@ -171,14 +171,14 @@ You want to change the appearance of the lines in a line graph.
 
 ### Solution
 
-The type of line (solid, dashed, dotted, etc.) is set with `linetype`, the thickness (in mm) with `size`, and the color of the line with `colour` (or `color`).
+The type of line (solid, dashed, dotted, etc.) is set with `linetype`, the thickness (in mm) with `linewidth`, and the color of the line with `colour` (or `color`).
 
 These properties can be set (as shown in Figure \@ref(fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED)) by passing them values in the call to `geom_line()`:
 
-```{r FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED, fig.cap="Line graph with custom linetype, size, and colour"}
+```{r FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED, fig.cap="Line graph with custom linetype, linewidth, and colour"}
 ggplot(dat) +
   geom_line(aes(x = stage, y = vo2), 
-            linetype = "dashed", size = 1, colour = "blue")
+            linetype = "dashed", linewidth = 1, colour = "blue")
 ```
 
 If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, *mapping* variables to the properties, as we saw in Recipe \@ref(LINE-GRAPH-MULTIPLE-LINE), will result in each line looking different. The default colors aren't the most appealing, so you may want to use a different palette, as shown in Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE), by using `scale_colour_brewer()` or `scale_colour_manual()`:
@@ -194,10 +194,10 @@ ggplot(dat_long) +
 
 ### Discussion
 
-To set a single constant color for all the lines, specify colour outside of `aes()`. The same works for size, linetype, and point shape (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES)). You may also have to specify the grouping variable:
+To set a single constant color for all the lines, specify colour outside of `aes()`. The same works for linewidth, linetype, and point shape (Figure \@ref(fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES)). You may also have to specify the grouping variable:
 
 
-(ref:cap-FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES) Line graph with constant size and color (left); With `supp` mapped to `colour`, and with points added (right)
+(ref:cap-FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES) Line graph with constant linewidth and color (left); With `supp` mapped to `colour`, and with points added (right)
 
 ```{r FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES, fig.show="hold", fig.cap="(ref:cap-FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES)"}
 # If both lines have the same properties, you need to specify a variable to
@@ -205,12 +205,12 @@ To set a single constant color for all the lines, specify colour outside of `aes
 
 ggplot(dat_long) +
   geom_line(aes(x = stage, y = val, group = var),
-            colour = "darkgreen", size = 1.5) 
+            colour = "darkgreen", linewidth = 1.5) 
 
 # Since supp is mapped to colour, it will automatically be used for grouping
 ggplot(dat_long) +
   geom_line(aes(x = stage, y = val, colour = var), linetype = "dashed") +  
-  geom_point(aes(x = stage, y = val, colour = var),shape = 22, size = 3, fill = "white")
+  geom_point(aes(x = stage, y = val, colour = var),shape = 22, linewidth = 3, fill = "white")
 
 ```
 

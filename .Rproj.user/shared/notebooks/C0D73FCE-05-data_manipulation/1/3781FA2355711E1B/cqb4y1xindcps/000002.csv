@@ -1,7 +1,0 @@
-"0",""
-"0","# This keeps only the second row"
-"0",""
-"0","dat_vo2 %>% "
-"0","  slice (2) %>%"
-"0","  head() %>%"
-"0","  knitr::kable (digits = 2)"

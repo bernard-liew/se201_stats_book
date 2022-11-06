@@ -1,5 +1,0 @@
-"0","dat_wide <- dat_fms_sub %>% # original data"
-"0","  pivot_wider(names_from = ""side"","
-"0","              values_from = score)"
-"0","dat_wide%>%"
-"0","  knitr::kable (digits = 2)"

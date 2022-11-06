@@ -103,6 +103,15 @@ knitr::include_graphics(c("images/chapter-3/installingpackages.png"))
 
 Like ordering a light bulb, once you've installed a package on your computer you never need to install it again (unless you want to try to install a new version of the package). However, every time you want to use it, you need to turn it on by loading it.
 
+When downloading some packages for the first time, you may receive two prompts below. For now, the simplest options are to click No for both. Downloading and installation should progress till the end.
+
+```{r installfromsource, fig.cap= "Click No when you see this prompt.", fig.margin = TRUE, fig.align = 'center', echo = FALSE, out.width = "75%"}
+knitr::include_graphics(c("images/chapter-3/binary.png"))
+```
+
+```{r installfromsourceagain, fig.cap= "Click No when you see this prompt again.", fig.margin = TRUE, fig.align = 'center', echo = FALSE, out.width = "75%"}
+knitr::include_graphics(c("images/chapter-3/install_source.png"))
+```
 
 ### Loading a package
 

@@ -1,4 +1,0 @@
-"0","# This code block is so that it generates just one of the plots from above"
-"0","ggplot(dat) +"
-"0","  geom_line(aes(x = stage, y = vo2)) +"
-"0","  expand_limits(y = 0)"

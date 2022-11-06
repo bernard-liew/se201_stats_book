@@ -1,4 +1,0 @@
-"0",""
-"0","ggplot(dat) +"
-"0","  geom_line(aes(x = stage, y = vo2))  "
-"0",""

@@ -6,17 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 9 Line Graphs | A Simple Cookbook for Wrangling and Visualization</title>
 <meta name="author" content="Bernard Liew">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Chapter 9 Line Graphs | A Simple Cookbook for Wrangling and Visualization">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 9 Line Graphs | A Simple Cookbook for Wrangling and Visualization">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.14/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
 <script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 <meta name="description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
 <meta property="og:description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
 <meta name="twitter:description" content="Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the x variable represents time,...">
@@ -65,7 +69,7 @@
 <p>Line graphs are typically used for visualizing how one continuous variable, on the y-axis, changes in relation to another continuous variable, on the x-axis. Often the <em>x</em> variable represents time, but it may also represent some other continuous quantity, for example, the amount of a drug administered to experimental subjects.</p>
 <p>As with bar graphs, there are exceptions. Line graphs can also be used with a discrete variable on the x-axis. This is appropriate when the variable is ordered (e.g., “small”, “medium”, “large”), but not when the variable is unordered (e.g., “cow”, “goose”, “pig”). Most of the examples in this chapter use a continuous <em>x</em> variable, but we’ll see one example where the variable is converted to a factor and thus treated as a discrete variable.</p>
 <p>Let us prepare for this chapter by first importing a Vo2 treadmill test data that we have cleaned, and placed in the data folder. See Recipe <a href="WRANGLE2.html#WRANGLE2-SUMMARIZE-GROUPBY">7.8</a>. The Excel sheet is called <code>"treadmill_pt4_clean.xlsx"</code>.</p>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/treadmill_pt4_clean.xlsx"</span>,</span>
 <span>                   sheet <span class="op">=</span> <span class="st">"Sheet1"</span><span class="op">)</span></span>
 <span></span>
@@ -96,7 +100,7 @@
 <span class="header-section-number">9.1.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-23"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>, and specify which variables you mapped to x and y (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE">9.1</a>):</p>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
@@ -351,7 +355,7 @@ hr
 </tbody>
 </table></div>
 <p>With ggplot2, the default <em>y</em> range of a line graph is just enough to include the <em>y</em> values in the data. For some kinds of data, it’s better to have the <em>y</em> range start from zero. You can use <code><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim()</a></code> to set the range, or you can use <code><a href="https://ggplot2.tidyverse.org/reference/expand_limits.html">expand_limits()</a></code> to expand the range to include a value. This will set the range from zero to the maximum value of the demand column in <code>BOD</code> (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-BASIC-LINE-YLIM">9.2</a>):</p>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># These have the same result</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -388,7 +392,7 @@ Figure 9.2: Line graph with manually set y range
 <span class="header-section-number">9.2.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-24"><i class="fas fa-link"></i></a>
 </h3>
 <p>In addition to the variables mapped to the x- and y-axes, map another (discrete) variable to colour or linetype, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-COLOR-TYPE">9.3</a>:</p>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Bring all variables into one column</span></span>
 <span></span>
@@ -614,7 +618,7 @@ vco2
 <p>If the <em>x</em> variable is a factor, you must also tell ggplot to group by that same variable, as described below.</p>
 </blockquote>
 <p>Line graphs can be used with a continuous or categorical variable on the x-axis. Sometimes the variable mapped to the x-axis is <em>conceived</em> of as being categorical, even when it’s stored as a number. In the example here, there are eight values of stage: 1, 2, 3, 4, 5, 6, 7, 8. You may want to treat these as categories rather than values on a continuous scale. To do this, convert <code>stage</code> to a factor (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-FACTOR">9.4</a>):</p>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> <span class="op">(</span><span class="va">stage</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span>, group <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -626,7 +630,7 @@ Figure 9.4: Line graph with continuous x variable converted to a factor
 </div>
 <p>To convert a variable to a factor , see also Recipe <a href="WRANGLE2.html#WRANGLE2-CHARACTERS-2-FACTORS">7.4</a>.</p>
 <p>Notice the use of <code>group = var</code>. Without this statement, ggplot won’t know how to group the data together to draw the lines, and it will not plot anything:</p>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span> <span class="op">(</span><span class="va">stage</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span></span>
@@ -654,20 +658,20 @@ Figure 9.4: Line graph with continuous x variable converted to a factor
 <h3>
 <span class="header-section-number">9.3.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-25"><i class="fas fa-link"></i></a>
 </h3>
-<p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>size</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
+<p>The type of line (solid, dashed, dotted, etc.) is set with <code>linetype</code>, the thickness (in mm) with <code>linewidth</code>, and the color of the line with <code>colour</code> (or <code>color</code>).</p>
 <p>These properties can be set (as shown in Figure <a href="line-graphs.html#fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED">9.5</a>) by passing them values in the call to <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line()</a></code>:</p>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">vo2</span><span class="op">)</span>, </span>
-<span>            linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
+<span>            linetype <span class="op">=</span> <span class="st">"dashed"</span>, linewidth <span class="op">=</span> <span class="fl">1</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED"></span>
-<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED-1.png" alt="Line graph with custom linetype, size, and colour" width="50%"><p class="caption">
-Figure 9.5: Line graph with custom linetype, size, and colour
+<img src="se201_stats_book_files/figure-html/FIG-BAR-GRAPH-BASIC-LINE-CUSTOMIZED-1.png" alt="Line graph with custom linetype, linewidth, and colour" width="50%"><p class="caption">
+Figure 9.5: Line graph with custom linetype, linewidth, and colour
 </p>
 </div>
 <p>If there is more than one line, setting the aesthetic properties will affect all of the lines. On the other hand, <em>mapping</em> variables to the properties, as we saw in Recipe <a href="line-graphs.html#LINE-GRAPH-MULTIPLE-LINE">9.2</a>, will result in each line looking different. The default colors aren’t the most appealing, so you may want to use a different palette, as shown in Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-PALETTE">9.6</a>, by using <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_colour_brewer()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual()</a></code>:</p>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -683,24 +687,26 @@ Figure 9.6: Using a palette from RColorBrewer
 <h3>
 <span class="header-section-number">9.3.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-14"><i class="fas fa-link"></i></a>
 </h3>
-<p>To set a single constant color for all the lines, specify colour outside of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. The same works for size, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">9.7</a>). You may also have to specify the grouping variable:</p>
+<p>To set a single constant color for all the lines, specify colour outside of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. The same works for linewidth, linetype, and point shape (Figure <a href="line-graphs.html#fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES">9.7</a>). You may also have to specify the grouping variable:</p>
 
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If both lines have the same properties, you need to specify a variable to</span></span>
 <span><span class="co"># use for grouping</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, group <span class="op">=</span> <span class="va">var</span><span class="op">)</span>,</span>
-<span>            colour <span class="op">=</span> <span class="st">"darkgreen"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> </span>
+<span>            colour <span class="op">=</span> <span class="st">"darkgreen"</span>, linewidth <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="co"># Since supp is mapped to colour, it will automatically be used for grouping</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_long</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span> <span class="op">+</span>  </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span>,shape <span class="op">=</span> <span class="fl">22</span>, size <span class="op">=</span> <span class="fl">3</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">stage</span>, y <span class="op">=</span> <span class="va">val</span>, colour <span class="op">=</span> <span class="va">var</span><span class="op">)</span>,shape <span class="op">=</span> <span class="fl">22</span>, linewidth <span class="op">=</span> <span class="fl">3</span>, fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in geom_point(aes(x = stage, y = val, colour = var), shape = 22, :</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `linewidth`</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES"></span>
-<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-1.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%"><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-2.png" alt="Line graph with constant size and color (left); With supp mapped to colour, and with points added (right)" width="50%"><p class="caption">
-Figure 9.7: Line graph with constant size and color (left); With <code>supp</code> mapped to <code>colour</code>, and with points added (right)
+<img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-1.png" alt="Line graph with constant linewidth and color (left); With supp mapped to colour, and with points added (right)" width="50%"><img src="se201_stats_book_files/figure-html/FIG-LINE-GRAPH-MULTI-LINE-CONSTANT-AES-2.png" alt="Line graph with constant linewidth and color (left); With supp mapped to colour, and with points added (right)" width="50%"><p class="caption">
+Figure 9.7: Line graph with constant linewidth and color (left); With <code>supp</code> mapped to <code>colour</code>, and with points added (right)
 </p>
 </div>
 <p>The range of different linetypes that is available can be seen in (Figure <a href="line-graphs.html#fig:FIG-LINETYPE-AES">9.8</a>)</p>
@@ -734,7 +740,7 @@ Figure 9.8: The different types of linetype you can use.
 <p>There are many premade themes that are already included in ggplot2. The default ggplot2 theme is <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code>, but the examples below also showcase <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>, <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code>, and <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic()</a></code>.</p>
 <p>To use a premade theme, add <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> or another theme to your plot (Figure <a href="line-graphs.html#fig:FIG-APPEARANCE-THEME">9.9</a>):</p>
 
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create the base plot</span></span>
 <span></span>
 <span><span class="va">hw_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
@@ -859,7 +865,7 @@ Figure 9.9: Scatter plot with <code><a href="https://ggplot2.tidyverse.org/refer
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-10-07.</p>
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-11-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

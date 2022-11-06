@@ -1,7 +1,0 @@
-"0","# First, removes whitespaces around the time variable"
-"0",""
-"0","dat_vo2 %>%"
-"0","  mutate (time = time %>% "
-"0","                 str_squish()) %>%"
-"0","  head()%>%"
-"0","  knitr::kable (digits = 2)"

@@ -1,8 +1,0 @@
-"0",""
-"0","dat_fms <- dat_fms %>%"
-"0","  mutate (side = recode (side, # the variable name"
-"0","                          ""l"" = ""left"", # old label = new label"
-"0","                          ""r"" = ""right"")) # old label = new label"
-"0",""
-"0","dat_fms%>%"
-"0","  knitr::kable (digits = 2)"

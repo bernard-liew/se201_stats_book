@@ -1,4 +1,0 @@
-"0","# Without factor "
-"0",""
-"0","ggplot(dat_fms) +"
-"0","  geom_col(aes(x = task, y = score, fill = side), position = ""dodge"", color = ""black"") "

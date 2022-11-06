@@ -152,7 +152,7 @@ dat_vo2_comb <- dat_vo2_summ %>%
 #### Lactate (Task 8)
 
 f <- ggplot (dat_vo2_comb) +
-  geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
+  geom_line (aes (x = XXX, y = XXX), colour = "XXX", linewidth = 1.5) + 
   labs (x = "Speed (km/h)",
         y = "Lactate (mmol)") +
   theme_bw() + 
@@ -172,7 +172,7 @@ ggsave(filename = "lactate.png",
 #### Heart rate (Task 9)
 
 f <- ggplot (dat_vo2_comb) +
-  geom_line (aes (x = XXX, y = XXX), colour = "XXX", size = 1.5) + 
+  geom_line (aes (x = XXX, y = XXX), colour = "XXX", linewidth = 1.5) + 
   labs (x = "Speed (km/h)",
         y = "Heart Rate (bpm)") +
   theme_bw() + 

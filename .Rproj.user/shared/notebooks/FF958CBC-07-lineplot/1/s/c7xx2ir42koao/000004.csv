@@ -1,5 +1,0 @@
-"0","ggplot(dat_long) +"
-"0","  geom_line(aes(x = stage, y = val, fill = var)) +"
-"0","  geom_point(aes(x = stage, y = val, fill = var),"
-"0","             size = 4, shape = 21)  # Also use a point with a color fill"
-"2","Ignoring unknown aesthetics: fill"

@@ -1,8 +1,0 @@
-"0","# Order of values I desire"
-"0",""
-"0","new_lvls <- c( ""push_up"",""squat"", ""rot_stab"", ""hurdle"", ""lunge"", ""leg_raise"",  ""shd_mob"")"
-"0",""
-"0","dat_fms_relvl <- dat_fms %>%"
-"0","  mutate (task = factor (task, levels = new_lvls))"
-"0",""
-"0",""

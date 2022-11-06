@@ -6,17 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Chapter 8 Bar Graphs | A Simple Cookbook for Wrangling and Visualization</title>
 <meta name="author" content="Bernard Liew">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.29 with bs4_book()">
 <meta property="og:title" content="Chapter 8 Bar Graphs | A Simple Cookbook for Wrangling and Visualization">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chapter 8 Bar Graphs | A Simple Cookbook for Wrangling and Visualization">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.14/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
 <script src="libs/font-awesome-5.13.0/js/script.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="bs4_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="bs4_style.css">
 <meta name="description" content="There are so many types of figures that you can create in R (Figure 8.1). In the next two chapters, I will only delve into two types of figures that I believe is most useful for your case. With...">
 <meta property="og:description" content="There are so many types of figures that you can create in R (Figure 8.1). In the next two chapters, I will only delve into two types of figures that I believe is most useful for your case. With...">
 <meta name="twitter:description" content="There are so many types of figures that you can create in R (Figure 8.1). In the next two chapters, I will only delve into two types of figures that I believe is most useful for your case. With...">
@@ -77,7 +81,7 @@ Figure 8.1: The plotting capabilities are endless.
 <p>Bar graphs are perhaps the most commonly used kind of data visualization. They’re typically used to display numeric values (on the y-axis), for different categories (on the x-axis). For example, a bar graph would be good for showing the prices of four different kinds of items. A bar graph generally wouldn’t be as good for showing prices over time, where time is a continuous variable – though it can be done.</p>
 <p>There’s an important distinction you should be aware of when making bar graphs: sometimes the bar heights represent <strong>counts</strong> of cases in the data set, and sometimes they represent <strong>values</strong> in the data set. Keep this distinction in mind – it can be a source of confusion since they have very different relationships to the data, but the same term is used for both of them. In this chapter I’ll discuss always use bar graphs with <strong>values</strong>.</p>
 <p>Let us prepare for this chapter by importing two FMS tests data. The Excel sheet is called <code>"fms_pt3.xlsx"</code> and <code>"simFMS.xlsx"</code>.</p>
-<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Define factor levels</span></span>
 <span><span class="va">fct_lvls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"squat"</span>, <span class="st">"push_up"</span>, <span class="st">"hurdle"</span>, <span class="st">"lunge"</span>, <span class="st">"leg_raise"</span>, <span class="st">"rot_stab"</span>, <span class="st">"shd_mob"</span><span class="op">)</span></span>
 <span></span>
@@ -2116,7 +2120,7 @@ rot_stab
 </table></div>
 </div>
 <p>Let us also create two more datasets where 1) we take the lower of the two scores for tasks which are assessed bilaterally and 2) count the number of subjects who attain a specific score for each task. See Recipe <a href="WRANGLE2.html#WRANGLE2-SUMMARIZE-GROUPBY">7.8</a>.</p>
-<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_summ</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">task</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span> <span class="op">(</span>total <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> <span class="op">(</span><span class="va">score</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2210,7 +2214,7 @@ shd_mob
 <span class="header-section-number">8.1.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-16"><i class="fas fa-link"></i></a>
 </h3>
 <p>Use <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> and specify what variables you want on the x- and y-axes (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR">8.2</a>):</p>
-<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_summ</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -2226,7 +2230,7 @@ Figure 8.2: Bar graph of values with a discrete x-axis
 <span class="header-section-number">8.1.3</span> Discussion<a class="anchor" aria-label="anchor" href="#discussion-8"><i class="fas fa-link"></i></a>
 </h3>
 <p>By default, bar graphs use a dark grey for the bars. To use a color fill, use <code>fill</code>. Also, by default, there is no outline around the fill. To add an outline, use <code>colour</code>. For Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL">8.3</a>, we use a light blue fill and a black outline:</p>
-<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_summ</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"lightblue"</span>, colour <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -2253,7 +2257,7 @@ Figure 8.3: A single fill and outline color for all bars
 <span class="header-section-number">8.2.1</span> Plot Background<a class="anchor" aria-label="anchor" href="#BAR-GRAPH-ANATOMY-BACKGROUND"><i class="fas fa-link"></i></a>
 </h3>
 <p>To start building the plot, we first specify the data frame that contains the relevant data. Here we are ‘sending the <code>dat_summ</code> data set into the ggplot function’:</p>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># render background</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat_summ</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -2271,7 +2275,7 @@ Figure 8.4: An empty plot area waiting to be filled
 <p>We can call in different columns of data from <code>dat_summ</code> based on their column names. Column names are given as ‘aesthetic’ elements to the ggplot function, and are wrapped in the <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code> function.</p>
 <p>Because we want a bar plot, each bar will have an x and a y coordinate. We want the x axis to represent <code>task</code> ( <code>x = task</code> ), and the y axis to represent the <code>total</code> FMS score ( y = <code>total</code> ).</p>
 <p>See how the x- and y-axis titles, labels, and tick-marks become populated? But still nothing plotted, and that is because you have not tell it what shapes to plot.</p>
-<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">dat_summ</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:FIG-BAR-GRAPH-AES"></span>
@@ -2286,7 +2290,7 @@ Figure 8.5: Setting the aesthetics
 </h3>
 <p>Now we tell the computer what shapes to plot. Given we want a bar plot, we need to specify that the geometric representation (i.e. shape) of the data will be in the bar form, using <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code>.</p>
 <p>Here we are adding a layer (hence the + sign) of points to the plot.</p>
-<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_summ</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">total</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> </span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -2320,7 +2324,7 @@ Figure 8.6: Setting the geometric representation
 <p>Map a variable to fill, and use <code>geom_col(position = "dodge")</code>.</p>
 <p>In this example we’ll use the <code>dat</code> data set, in which we have an FMS score one for each <code>side</code>.</p>
 <p>We’ll map <code>task</code> to the <em>x</em> position and map <code>side</code> to the fill color (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-GROUPED-BAR">8.7</a>):</p>
-<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -2331,7 +2335,7 @@ Figure 8.7: Graph with grouped bars
 </div>
 <p>Let’s try this example on another dataset <code>dat_grp_summ</code>, in which we have the number of subjects who attain a specific FMS <code>score</code> for each <code>task</code>.</p>
 <p>We’ll map <code>task</code> to the <em>x</em> position, <code>count</code> to the <em>y</em> position, and map <code>score</code> to the fill color (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-GROUPED-BAR2">8.8</a>):</p>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat_grp_summ</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">count</span>, fill <span class="op">=</span> <span class="va">score</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html">scale_fill_discrete</a></span><span class="op">(</span>drop<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2372,7 +2376,7 @@ Figure 8.8: Graph with grouped bars
 <span class="header-section-number">8.4.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-18"><i class="fas fa-link"></i></a>
 </h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FILL-MANUAL">8.9</a>).</p>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
@@ -2416,7 +2420,7 @@ Figure 8.10: Names of many colors available in R.
 <span class="header-section-number">8.5.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-19"><i class="fas fa-link"></i></a>
 </h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-AXES">8.11</a>).</p>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2450,7 +2454,7 @@ Figure 8.11: Graph different axes titles
 <span class="header-section-number">8.6.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-20"><i class="fas fa-link"></i></a>
 </h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-LEGEND">8.12</a>).</p>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2485,7 +2489,7 @@ Figure 8.12: Graph different legend title
 <span class="header-section-number">8.7.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-21"><i class="fas fa-link"></i></a>
 </h3>
 <p>Map the appropriate variable to the fill aesthetic (Figure <a href="CHAPTER-BAR-GRAPH.html#fig:FIG-BAR-GRAPH-FONTSIZE">8.13</a>).</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2521,7 +2525,7 @@ Figure 8.13: Graph with font size = 16
 <span class="header-section-number">8.8.2</span> Solution<a class="anchor" aria-label="anchor" href="#solution-22"><i class="fas fa-link"></i></a>
 </h3>
 <p>We will be using <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code>. First we need to assign the gplot we created with <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> to an object, which we can name anything. Here we call the object simply <code>f</code>. There are several important arguments you need. <code>filename</code> is the name of the file and extension you want your image to be called. Here we will use <code>filename = "my_plot.png"</code>. <code>plot</code> is the specific figure you want to save. Here we will use <code>plot = f</code>. <code>width</code> and <code>height</code> allows you to specify how big your image is. <code>unit</code> is whether your <code>width</code> and <code>height</code> are defined in centimeters, <code>"cm"</code>, or inches, <code>"in"</code>. Here I will use <code>units = "cm"</code>, and a 8 cm by 4 cm <code>width</code> and <code>height</code>, respectively. Lastly, the <code>dpi</code> argument specifies the resoultion of the image. Here we use <code>dpi = 300</code>. The file is saved to the working directory of the session.</p>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">task</span>, y <span class="op">=</span> <span class="va">score</span>, fill <span class="op">=</span> <span class="va">side</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -2663,7 +2667,7 @@ Figure 8.14: From left to right: PNG output at 72, 150, and 300 ppi (actual size
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-10-07.</p>
+    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2022-11-06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

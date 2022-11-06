@@ -1,7 +1,0 @@
-"0",""
-"0","# This selects the first, second, and fourth column, and discards the rest"
-"0",""
-"0","dat_vo2 %>%"
-"0","  select (time, bf, rer) %>%"
-"0","  head()%>%"
-"0","  knitr::kable (digits = 2)"

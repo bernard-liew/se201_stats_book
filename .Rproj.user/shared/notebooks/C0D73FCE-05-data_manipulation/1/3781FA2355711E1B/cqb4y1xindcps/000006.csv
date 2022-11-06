@@ -1,7 +1,0 @@
-"0",""
-"0","# This removes the second and third rows"
-"0",""
-"0","dat_vo2 %>% "
-"0","  slice (-(2:3))%>%"
-"0","  head()%>%"
-"0","  knitr::kable (digits = 2)"

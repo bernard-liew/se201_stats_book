@@ -24,6 +24,8 @@ fig:filenewmenu
 fig:package
 fig:cran
 fig:installingpackages
+fig:installfromsource
+fig:installfromsourceagain
 fig:tidy-structure
 fig:col-class
 fig:FIG-BAR-GRAPH-FACTOR-EFFECTS
