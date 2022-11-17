@@ -163,9 +163,7 @@ downloadthis::download_file(
 
 6. Import the Excel file `data/Athlete_1_FMS.xlsx`, and the sheet named `Sheet1` and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
 
-7. Import the Excel file `data/simFMS.xlsx`, and the sheet named `FMS` and assign it to an object `dat_fms_grp`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
-
-8. Download the solution to this learning check below.
+7. Download the solution to this learning check below.
 
 ```{r echo=FALSE}
 downloadthis::download_file(
