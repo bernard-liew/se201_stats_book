@@ -23,7 +23,7 @@ To do your assignment, follow these steps:
 
 ```{r echo=FALSE}
 downloadthis::download_file(
-  path = "data/assignment_analysis.R",
+  path = "data/assignment_analysis2.R",
   output_name = "analysis_scripts",
   output_extension = ".R",
   button_label = "Assignment template",
