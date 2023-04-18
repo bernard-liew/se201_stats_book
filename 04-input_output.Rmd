@@ -24,7 +24,7 @@ The backslashes in the filepath are causing trouble. You can solve this problem 
 When you open a file in R, you give the filename as a character string. Problems arise when the name contains backslashes (`\`) because backslashes have a special meaning inside strings. You’ll probably get something like this:
 
 ``` {r, eval=TRUE, error=TRUE}
-samp <- read.xlsx ("data\strength.xlsx")
+fms <- read.xlsx ("data\groupFMS.xlsx")
 ```
 R escapes every character that follows a backslash and then removes the backslashes. That leaves a meaningless filepath, such as
 `C:Datasample-data.csv` in this example.
@@ -32,13 +32,13 @@ R escapes every character that follows a backslash and then removes the backslas
 The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
 
 ``` {r, eval=FALSE}
-samp <- read.xlsx ("data/strength.xlsx")
+fms <- read.xlsx ("data/groupFMS.xlsx")
 ```
 
 An alternative solution is to double the backslashes, since R replaces two consecutive backslashes with a single backslash:
 
 ``` {r, eval=FALSE}
-samp <- read.xlsx ("data\\strength.xlsx")
+fms <- read.xlsx ("data\\groupFMS.xlsx")
 ```
 
 
@@ -56,13 +56,13 @@ If you have a .xlsx file that you want to read into R, use the `read.xlsx()` fun
 |`sheet`|  The name of the excel sheet or the numerical index. This is useful if you have many sheets in one Excel workbook. If this is not specified, the function automatically reads in the first sheet in the Excel workbook.|
 
 
-In my projects folder, I tend tend to have a habit of create a folder named `data`. This contains all my original data, that I do not want to touch!!! Let's test this function out by reading in an Excel file titled `strength.xlsx`. Since the file is located in a folder called `data` in my working directory, I'll use the file path `xlsxFile = "strength.xlsx"`, and since the sheet I have is named `"data"`, I will use `sheet = "data"`:
+In my projects folder, I tend tend to have a habit of create a folder named `data`. This contains all my original data, that I do not want to touch!!! Let's test this function out by reading in an Excel file titled `groupFMS.xlsx`. Since the file is located in a folder called `data` in my working directory, I'll use the file path `xlsxFile = "groupFMS.xlsx"`, and since the sheet I have is named `"FMS"`, I will use `sheet = "FMS"`:
 
 
 ```{r message=FALSE, warning=FALSE}
 
-strn <-  read.xlsx (xlsxFile = "data/strength.xlsx",
-                    sheet = "data")
+fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx",
+                    sheet = "FMS")
 
 ```
 
@@ -77,16 +77,16 @@ You want to write an R data frame to an Excel file.
 
 | Argument| Description| 
 |:------------|:-------------------------------------------------|
-|`x`| The object you are trying to export and write into an Excel file, commonly a dataframe you modified. For example `x = strn`.|
+|`x`| The object you are trying to export and write into an Excel file, commonly a dataframe you modified. For example `x = fms`.|
 |`sheetName`|  If you want to name the sheet of the Excel workbook.|
 |`file`| Specifying where you want to export the Excel sheet relative to the working directory, and how you want to name the sheet you exported.|
 
 
 ```{r, message=FALSE, eval=FALSE}
 
-write.xlsx(x = strn,
-           sheetName = "strength",
-           file = "data/STRENGTH_write.xlsx")
+write.xlsx(x = fms,
+           sheetName = "FMS",
+           file = "data/groupFMS_write.xlsx")
 ```
 
 
@@ -99,23 +99,11 @@ vembedr::embed_youtube("cvI7LyODZ14", height = 400)
 
 You can download the 3 files for this learning check below:
 
-```{r echo=FALSE}
-downloadthis::download_file(
-  path = "data/Athlete_1_treadmill.xlsx",
-  output_name = "athlete_treadmill",
-  output_extension = ".xlsx",
-  button_label = "Athlete treadmill data",
-  button_type = "warning",
-  has_icon = TRUE,
-  icon = "fa fa-save"
- 
-)
-```
 
 ```{r echo=FALSE}
 downloadthis::download_file(
-  path = "data/Athlete_1_FMS.xlsx",
-  output_name = "athlete_fms",
+  path = "data/groupFMS.xlsx",
+  output_name = "groupFMS",
   output_extension = ".xlsx",
   button_label = "Athlete FMS data",
   button_type = "warning",
@@ -157,11 +145,11 @@ downloadthis::download_file(
 
 3. From your learning check in \@ref(NAVIGATE-LEARNING-CHECK), open RStudio via the `.Rproj` symbol. In the Files tab on the bottom right, you should see the script you created `practice_script.R`. Click on it to open.
 
-4. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet named `raw` and assign it to an object `dat`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
+4. Import the Excel file `data/groupFMS.xlsx` and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
 
-5. Import the Excel file `data/Athlete_1_treadmill.xlsx`, and the sheet named `stage` and assign it to an object `dat_stage`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
+5. Import the Excel file `data/rightleg_imu.xlsx` and assign it to an object `bad_leg_accl`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
 
-6. Import the Excel file `data/Athlete_1_FMS.xlsx`, and the sheet named `Sheet1` and assign it to an object `dat_fms`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
+6. Import the Excel file `data/leftleg_imu.xlsx` and assign it to an object `good_leg_accl`. See  Recipe \@ref(INPUT-IMPORT). Remember to add some comments to remind yourself what this line of code is trying to do. **Save it**.
 
 7. Download the solution to this learning check below.
 

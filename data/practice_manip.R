@@ -2,79 +2,77 @@
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, # All purpose wrangling for dataframes
-               openxlsx,# writing excel documents
-               lubridate,# date-time 
-               tibbletime) # moving average for vo2
+               openxlsx) # moving average for vo2
 
 # Import excel data
 
-dat <-  read.xlsx (xlsxFile = "data/Athlete_1_treadmill.xlsx",
-                    sheet = "raw")
+dat_fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx")
 
-dat_stage <-  read.xlsx (xlsxFile = "data/Athlete_1_treadmill.xlsx",
-                   sheet = "stage")
+bad_leg_accl <-  read.xlsx (xlsxFile = "data/rightleg_imu.xlsx")
 
-dat_fms <-  read.xlsx (xlsxFile = "data/Athlete_1_FMS.xlsx",
-                   sheet = "Sheet1")
+good_leg_accl<-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
 
-dat_fms_grp <-  read.xlsx (xlsxFile = "data/simFMS.xlsx",
-                   sheet = "FMS")
+# Make data wide to long
 
-# Tidy data
+dat_long <- dat_fms %>% # original data
+  pivot_longer(cols = -id,
+               names_to = "task",
+               values_to = "score")
 
-## Rename columns
-names (dat) <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
+# Split task column
 
-## Slice off first row
+dat_long <- dat_long %>%
+  mutate (
+    side = case_when(
+      str_detect(task, "R_") ~ "right",
+      str_detect(task, "L_") ~ "left",
+      TRUE ~ "central"
+    )) %>%
+  mutate (task = str_remove_all(task, "R_|L_"))
 
-dat <- dat%>% 
-  slice (-1) 
+# Count
 
-## Make numeric and time
+fms_count <- dat_long %>%
+  group_by(id, task) %>%
+  summarise (score = min (score)) %>%
+  group_by (task, score) %>%
+  summarise (count = n())
 
-dat <- dat %>%
-  mutate (bf = as.numeric(bf),
-          vo2_norm = as.numeric(vo2_norm),
-          rer = as.numeric(rer),
-          vo2 = as.numeric(vo2),
-          vco2 = as.numeric(vco2),
-          ve = as.numeric(ve),
-          hr = as.numeric(hr)) %>%
-  mutate (time = time %>% 
-            str_squish() %>% # function strips any whitespaces
-            ms() %>% # convert to minutes and seconds
-            as.period(unit = "sec") %>% # converts entirely to seconds
-            as.numeric ()) # strips the S symbol to make it a number
+# Total
 
-## Create variable stage
+fms_total <- dat_long %>%
+  group_by(id, task) %>%
+  summarise (score = min (score)) %>%
+  group_by (id) %>%
+  summarise (Total = sum (score))
 
-dat <- dat%>%
-  mutate (stage = cut_interval(time, length = 210, labels = FALSE))
+# summary
 
-## Create variable of row numbers
+fms_summary <- fms_total %>%
+  summarise (Mean = mean (Total),
+             Sd = sd (Total))
 
-dat <- dat %>%
-  group_by(stage) %>%
-  mutate (row_id = row_number())
+# Select athlete
 
-## Remove last 30s data per stage
+athlete_c <- dat_fms %>%
+  filter (id == "athlete_c")
 
-dat <- dat %>%
-  group_by(stage) %>% # for each group
-  filter (row_id < 37) 
+# Make athlete c data long
 
-## keep last 30s per stage
+athlete_c_long <- athlete_c %>% # original data
+  pivot_longer(cols = -id,
+               names_to = "task",
+               values_to = "score")
 
-dat <- dat %>%
-  group_by(stage) %>% # for each group
-  slice_tail (n = 6)
+# Split task column
 
-## Summarize each column
-dat <- dat %>%
-  group_by(stage) %>% # for each group
-  summarise_at (vars(bf:hr), mean)
+athlete_c_long <- athlete_c_long %>%
+  mutate (
+    side = case_when(
+      str_detect(task, "R_") ~ "right",
+      str_detect(task, "L_") ~ "left",
+      TRUE ~ "central"
+    )) %>%
+  mutate (task = str_remove_all(task, "R_|L_"))
 
-## Export clean vo2 data
 
-write.xlsx(x = dat,
-           file = "data/Athlete_1_treadmill_clean.xlsx")

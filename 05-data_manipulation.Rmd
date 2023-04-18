@@ -1,13 +1,11 @@
-# Data manipulation - part 1 {#WRANGLE}
+# Data manipulation {#WRANGLE}
 
 ## Download and load packages {-}
 
 ```{r, message=FALSE, warning=FALSE}
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, # All purpose wrangling for dataframes
-               openxlsx,# writing excel documents
-               lubridate,# date-time 
-               tibbletime) # moving average for vo2
+               openxlsx) # moving average for vo2
 
 ```
 
@@ -19,63 +17,23 @@ Let's load the files from the `data` folder into the work space again.
 
 ```{r message=FALSE, warning=FALSE}
 
-
-dat_fms <-  read.xlsx (xlsxFile = "data/fms_pt3.xlsx",
-                   sheet = "Sheet1")
-
-dat_fms_grp <- read.xlsx (xlsxFile = "data/simFMS.xlsx",
-                   sheet = "FMS")
-
-dat_vo2 <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
-                   sheet = "raw")
-
-dat_vo2_stage <-  read.xlsx (xlsxFile = "data/treadmill_pt4.xlsx",
-                   sheet = "stage")
+dat_fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx")
 
 bad_leg_accl <-  read.xlsx (xlsxFile = "data/rightleg_imu.xlsx")
 
-good_leg_accl <-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
+good_leg_accl<-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
+
 ```
 
 ### Let us see the data {-}
 
 #### dat_fms table 
 
-This is a table representing a single subject's FMS test scores
+This is a table representing the individual FMS scores of every athlete within a team.
 
 ```{r, echo = FALSE}
 dat_fms %>%
   knitr::kable ()
-```
-
-#### dat_fms_grp
-
-This is a table representing a team's total FMS test score for each task
-
-```{r, echo = FALSE}
-dat_fms_grp %>%
-  knitr::kable ()%>%
-  kableExtra::scroll_box(width = "100%", height = "500px")
-```
-
-
-#### dat_vo2
-
-This is a table representing a single subject's raw VO2 results during incremental treadmill running
-
-```{r, echo = FALSE}
-dat_vo2 %>%
-  knitr::kable () %>%
-  kableExtra::scroll_box(width = "100%", height = "500px")
-```
-#### dat_vo2_stage
-
-This is a table representing a single subject's lactate values during incremental treadmill running
-
-```{r, echo = FALSE}
-dat_vo2_stage %>%
-  knitr::kable () %>%
-  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
 #### Drop jump imu
@@ -161,132 +119,7 @@ The second step is to resolve one of two common problems:
 
 2. One observation might be scattered across multiple rows.
 
-Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` in Recipe \@ref(WRANGLE2-SPREAD) and `pivot_longer()` in Recipe \@ref(WRANGLE2-GATHER) below.
-
-
-## Renaming variables {#WRANGLE-RENAME-VARIABLES}
-
-```{r, echo = FALSE}
-vembedr::embed_youtube("JB4Ex9oFZi0", height = 400)
-```
-
-### Problem
-
-The current column names in the `dat_vo2` dataset is ugly, and you like to abbreviate it. I dislike excessive usage of capitalisations. It is a lot of effort to type.
-
-```{r}
-# This prints the current column names
-
-colnames (dat_vo2) 
-
-```
-
-
-### Solution
-
-Create a vector of 8 new names that you can give to the data. The order of new names must be identical to the order of the old names from left to right.
-
-```{r }
-# New names. Notice the commas and be pedantic about spacing
-
-new_names <- c("time", "bf", "vo2_norm", "rer", "vo2", "vco2", "ve", "hr")
-
-# Give the new names to the old names
-
-colnames (dat_vo2)  <- new_names
-
-# This prints the new column names
-
-colnames (dat_vo2)  
-
-```
-
-## Selecting rows {#WRANGLE-SLICE}
-
-```{r, echo = FALSE}
-vembedr::embed_youtube("v55dRA291uo", height = 400)
-```
-
-### Problem
-
-You want to remove a specific row  or a range of rows. See also Recipe \@ref(WRANGLE2-FILTER).
-
-### Solution
-
-To keep or remove rows based on the row numbers, use `slice ()`, `slice_head()`, or `slice_tail()`. In `slice ()`, when you want to keep the row, add that row number. If you want to remove that row number, use a minus sign, `-`, before the number. If you want to keep or remove a range of numbers, add `start:end` inside `slice()`. In `slice_tail ()` and `slice_head()`, you can keep the bottom, and top, *n* number of rows, respectively, by adding `n = 3` for example inside `slice_tail()` or `slice_head()`.
-
-```{r }
-# This keeps only the second row
-
-vo2_slice <- dat_vo2 %>% 
-  slice (2) 
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# This removes the second row
-vo2_slice <- dat_vo2 %>% 
-  slice (-2) 
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# This removes the second and third rows
-vo2_slice <- dat_vo2 %>% 
-  slice (-(2:3))
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# This keeps the top six rows
-
-vo2_slice <- dat_vo2 %>% 
-  slice_head (n = 6) 
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# This keeps the bottom six rows
-
-vo2_slice <- dat_vo2 %>% 
-  slice_tail (n = 6) 
-```
-
-```{r, echo = FALSE}
-vo2_slice %>%
-  head() %>%
-  knitr::kable (digits = 2)
-```
-
-
-```{r }
-# This removes the first row, and replaces the old data in object dat_vo2
-
-dat_vo2 <- dat_vo2 %>% 
-  slice (-(1))
-
-```
-
+Typically a dataset will only suffer from one of these problems; it'll only suffer from both if you're really unlucky! To fix these problems, you'll need the two most important functions in tidyr: `pivot_wider()` in Recipe \@ref(WRANGLE-SPREAD) and `pivot_longer()` in Recipe \@ref(WRANGLE-GATHER) below.
 
 ## Selecting columns {#WRANGLE-SELECT}
 
@@ -331,198 +164,341 @@ good_vertical_accl %>%
   knitr::kable (digits = 2)
 ```
 
-## Convert characters to numeric {#WRANGLE-CHARACTER-2-NUMERIC}
+### Discussion
+
+Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. For now, let's just accept this as a more efficient way of writing code. 
+
+## Gathering {#WRANGLE-GATHER}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("j1J63-ePZd8", height = 400)
+vembedr::embed_youtube("XVTX1L9iZIo", height = 400)
 ```
 
 ### Problem
 
-The raw Vo2 treadmill dataset contains predominantly numbers, meaning it is numeric in nature. See also Section \@ref(BASIC-TYPES). But let us see the type of data that was imported. The `str()` function provides us with some summary information about the dataframe.
-
-```{r}
-str(dat_vo2)
-```
-
-What you will see is something like this. For the variable `bf`, you will see `$ bf      : chr  "37" "58" "30" "34" ...`. `chr` after the colon. This indicates that this variable is a character (`chr`). In R language, a character is anything from a letter, e.g. `a`, to a word, e.g. `word`, to even a phrase of sentence, e.g. `i hate biomechanics`. A character is always enclosed inside a `""`. 
-
-Why is R so "stupid", that it cannot differentiate numbers from words!! Well it is not that R is stupid, but it is that in our original data, each column have both words and numbers (Figure \@ref(fig:col-class)). It is our fault that the data was untidy.
-
-This was touched on in in Section \@ref(WRANGLE-TIDY-DATA), about why this is bad data formatting. In brief, each column should be made up of one type of data. If it is numbers, make it all numbers; characters, all characters. If you have mix, the default is that R treats that column as all characters. 
-
-The reason why you should not leave numbers as characters is that you cannot do math on it. You cannot add `apples` and `orange` can you?
-
-
-```{r col-class, echo = FALSE, out.width = "100%", fig.cap = "The type of data for each class as it was imported."}
-knitr::include_graphics("images/chapter-5/dat_vo2_column_class.png")
-```
-
+You want to make your data longer. In the data `dat_fms` (go to the start of this chapter to see this data's original shape), you want to merge the 12 columns, and not the `id` column, indicating the 13 FMS tasks and sides, into a single column. For this, you can use the `pivot_longer()` function. 
 
 ### Solution
 
-Use the `mutate()` function and the `as.numeric` function. 
-
-```{r}
-# Make all variables from bf to hr numeric, and replace the current data
-
-dat_vo2 <-  dat_vo2 %>%
-  mutate (bf = as.numeric(bf),
-          vo2_norm = as.numeric(vo2_norm),
-          rer = as.numeric(rer),
-          vo2 = as.numeric(vo2),
-          vco2 = as.numeric(vco2),
-          ve = as.numeric(ve),
-          hr = as.numeric(hr))
-
-# Recheck the type of each column 
-
-str(dat_vo2)
-
+```{r }
+dat_long <- dat_fms %>% # original data
+  pivot_longer(cols = -id,
+              names_to = "task",
+              values_to = "score")
 ```
 
-## Convert characters to date and time {#WRANGLE-CHARACTER-2-TIME}
+```{r, echo = FALSE}
+dat_long %>%
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
+## Spreading {#WRANGLE-SPREAD}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("rBIq-n-RZxI", height = 400)
+vembedr::embed_youtube("utuxfSl1umU", height = 400)
 ```
 
 ### Problem
 
-The raw `dat_vo2` data `time` variable is a character with ugly white spaces. When you use the `str()` function on the time column using the `$` symbol, you can see that each value looks like `"  00:05 "`. It means that is a blank before and after the `00:05`. 
-
-```{r}
-str(dat_vo2$time)
-```
+You want to make your data wider, so lets reverse the `dat_long` data we created in Recipe \@ref(WRANGLE-GATHER).
 
 ### Solution
 
-First, let me create a carbon copy of the data `dat_vo2`, so that I can modify the original data, and keep the carbon copy for explanation and illustration.
-
-```{r}
-dat_vo2_copy <- dat_vo2 
-```
-
-
-Use the `mutate()` function and the `as.numeric` function. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE2-NEW-VARIABLES).
-
-```{r}
-
-# 4 in 1 processing
-
-dat_vo2 <- dat_vo2 %>%
-  mutate (time = time %>% 
-            str_squish() %>% # function strips any whitespaces
-            ms() %>% # convert to minutes and seconds
-            as.period(unit = "sec") %>% # converts entirely to seconds
-            as.numeric ()) # strips the S symbol to make it a number
+```{r }
+dat_wide <- dat_long %>% # original data
+  pivot_wider(names_from = "task",
+              values_from = "score")
 
 ```
 
 ```{r, echo = FALSE}
-dat_vo2 %>%
-  head()%>%
+dat_wide%>%
   knitr::kable (digits = 2)
+```
+
+
+## Making a new variable {#WRANGLE-NEW-VARIABLES}
+
+```{r, echo = FALSE}
+vembedr::embed_youtube("qyqt0CS19h4", height = 400)
+```
+
+### Problem
+
+You want to create new column(s) which may involve some manipulation or math within and between columns
+
+### Solution
+
+#### Example 1
+
+In the `dat_long` data, the `task` column contains two pieces of information. Side for tasks with bilateral involvement, and the task itself. 
+
+You want to create two new columns. A column called `side` which contains `left` and `right` where needed, and if not, a neutral term such as `central`. Another column you want to create is actually a replacement of `task`. You want to strip the `R_` and `L_` suffixes of the current `task` values.
+
+The function `mutate` is useful to create new columns. Inside mutate, you can call many other functions to perform specific manipulations. Three examples below are `case_when`, `str_detect`, `str_remove_all`. `case_when` is useful for renaming the names of variables depending if some conditions are met. `str_detect` is read out loud as "string detect", and is useful for detecting the presence of specific character patterns in a string. `str_remove_all` is read out loud as "string remove all", and is useful for removing the  presence of specific character patterns from a string.
+
+```{r }
+# The below code can be read out loud as "create a new variable called side. When task contains the 'R_' character, put a value of 'right' in side. When task contains the 'L_' character, put a value of 'left' in side. When task contains neither 'R_' nor 'L_', put a value of 'central' in side ".
+
+dat_long <-  dat_long %>%
+  mutate (
+    side = case_when(
+    str_detect(task, "R_") ~ "right",
+    str_detect(task, "L_") ~ "left",
+    TRUE ~ "central"
+  )) 
+
+# The below code can be read out loud as "create a new variable called task, and replace the old task. Strip all values inside task, of the patterns 'R_' or 'L_'.
+
+dat_long <- dat_long %>%
+  mutate (task = str_remove_all(task, "R_|L_"))
+
+```
+
+
+```{r, echo = FALSE}
+head(dat_long)%>%
+  knitr::kable (digits = 2)
+```
+
+
+#### Example 2
+
+There are many math operations you can do including subtraction (`-`), multiplication (`*`), addition (`+`), exponentiation/power to the power of 2 (`^2`). Let us go crazy and try some random creation of new variables.
+
+Let's use the `dat_wide` data. Say for example, we want to add up the individual scores for all tasks, for all athletes.
+
+```{r }
+
+dat_wide <-  dat_wide  %>%
+  mutate (total = 
+            squat + R_hurdle + L_hurdle + 
+            R_lunge + L_lunge + R_shd_mob +
+            L_shd_mob + R_leg_raise + L_leg_raise +
+            push_up + R_rot_stab + L_rot_stab)
+            
+```
+
+```{r, echo = FALSE}
+head(dat_wide)%>%
+  knitr::kable (digits = 2) 
+```
+
+
+For the IMU data, you can automatically find the maximum value of a very long data sequence, and use these values to provide an index of landing impact symmetry.
+
+```{r}
+
+# Maximal bad leg impact value
+max_bad_ampl <- max(bad_vertical_accl)
+
+# Maximal good leg impact value
+max_good_ampl <- max(good_vertical_accl)
+
+```
+```{r}
+
+# Symmetry index 
+
+symmmetry_index <- 
+  ((2* (max_bad_ampl - max_good_ampl))/(max_bad_ampl + max_good_ampl)) * 100
+
+
+symmmetry_index
+
+```
+
+
+
+## Creating factors {#WRANGLE-CHARACTERS-2-FACTORS}
+
+```{r, echo = FALSE}
+vembedr::embed_youtube("B8WN5PzQRdk", height = 400)
+```
+
+### Problem
+
+Factors are a special way of treating variables that are `characters` or words. Words have no inherent order to them. Factors create order, such as small comes first, medium next, and large last. 
+
+Let's use the `dat_long` data, and make `task` a factor, using the function `factor` inside `mutate`. How does R naturally create the order? If you guessed correctly, it orders it alphabetically. 
+
+```{r}
+dat_long <- dat_long %>%
+  mutate (task = factor (task))
+
+levels (dat_long$task)
+```
+
+### Solution
+
+If you want to create your own order. This is how you do it. See the new ordering now.
+
+```{r}
+# Order of values I desire
+new_lvls <- c( "push_up","squat", "rot_stab", "hurdle", "lunge", "leg_raise",  "shd_mob")
+
+dat_long_relvl  <- dat_long %>%
+  mutate (task = factor (task, levels = new_lvls))
+
+levels (dat_long_relvl$task)
 ```
 
 ### Discussion
 
-Notice in the function above, I chained a series of steps together, using the pipe, `%>%`, function. Alternatively, I could do it in separate steps, and we can take a look at how each step changed the appearance of the `time` variable. Let me illustrate each step using the carbon copy data `dat_vo2_copy`.
+Why do you need to convert categorical variables to factors? For visualization, the simple reason is that it allows you to control the order in which items appear first to last. Of course, it has important statistical reasons, of which we do not discuss presently.
 
+(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS) Barplots of the FMS score using R natural ordering (top); and using our custom ordering on the `task` variable (bottom).
 
-```{r, echo = FALSE}
-vembedr::embed_youtube("imDxCPMgXfE", height = 400)
+```{r FIG-BAR-GRAPH-FACTOR-EFFECTS, fig.show="hold", fig.cap="(ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS)"}
+# With old factor levels
+
+dat_long %>%
+  group_by(id, task) %>%
+  mutate (score = min (score)) %>%
+  ggplot() +
+  geom_col(aes(x = task, y = score, fill = id), position = "dodge", color = "black") 
+
+# With factor new levels
+
+dat_long_relvl %>%
+  group_by(id, task) %>%
+  mutate (score = min (score)) %>%
+  ggplot() +
+  geom_col(aes(x = task, y = score, fill = id), position = "dodge", color = "black") 
+
 ```
 
+## Filtering {#WRANGLE-FILTER}
+
+```{r, echo = FALSE}
+vembedr::embed_youtube("-xKvvvsYAXw", height = 400)
+```
+
+Filtering is removing rows you do not want and keeping rows you want based on some condition(s). Filtering deals with keeping or throwing out **rows** of data. Keeping or throwing out columns of data requires the `select()` function, which you learnt in Recipe \@ref(WRANGLE-SELECT).
+
+### Keep rows you want based on condition {#WRANGLE-FILTER-KEEP-CHARACTER}
+
+#### Problem
+
+In the `dat_fms` dataset, you want to keep the row which belongs to athlete a. To do that you need to use the `filter` function to selection `id == "athlete_a"`. Note the `==`, double equal sign, instead of the usual `=`. In this short book, I will not go at length to explain why R is so difficult, only that I ask you to obey the rules of the language. 
+
+#### Solution
 
 ```{r }
-# First, removes whitespaces around the time variable
-time_mutate <- dat_vo2_copy %>%
-  mutate (time = time %>% 
-                 str_squish()) 
+
+athlete_a <- dat_fms %>%
+  filter (id == "athlete_a") 
 ```
 
 ```{r, echo = FALSE}
-time_mutate %>%
-  head()%>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# Second, convert to minutes and seconds
-
-time_mutate <- dat_vo2_copy %>%
-  mutate (time = time %>% 
-                 str_squish()%>%  
-                 ms())
-
-```
-
-```{r, echo = FALSE}
-time_mutate %>%
-  tail () %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# Third, converts entirely to seconds
-
-time_mutate <- dat_vo2_copy %>%
-  mutate (time = time %>% 
-                 str_squish()%>%  
-                 ms() %>%
-                 as.period(unit = "sec")) 
-```
-
-```{r, echo = FALSE}
-time_mutate %>%
-  tail () %>%
-  knitr::kable (digits = 2)
-```
-
-```{r }
-# Fourth, strips the S symbol to make it a number, and assign it to object
-
-time_mutate <- dat_vo2_copy %>%
-  mutate (time = time %>% 
-                 str_squish()%>%  
-                 ms() %>%
-                 as.period(unit = "sec") %>% 
-                 as.numeric ())
-
-```
-
-```{r, echo = FALSE}
-time_mutate %>%
-  tail () %>%
+athlete_a %>%
   knitr::kable (digits = 2)
 ```
 
 
-## Split Numeric Variable into Categories {#WRANGLE-NUMERIC-CATEGORY}
+## Group-by summary {#WRANGLE-SUMMARISE}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("TYBTXk95doo", height = 400)
+vembedr::embed_youtube("997159RN4Qg", height = 400)
 ```
 
 ### Problem
 
-Remember, each stage in VO2 testing is 3:30min (210sec) long, and you collected data in 5sec intervals. You want to split the `time` variable of the `dat_vo2` dataset into chunks of 210 sec, and create a new variable called `stage`. You will learn the `mutate ()` function more in Recipe \@ref(WRANGLE2-NEW-VARIABLES). I will not explain the `cut_interval` function, other than to say that the `length` argument is used to specify the range of evenly spaced values to categorize over.
+For each athlete and task, you want to find the minimum value between right and left side, as that is how the FMS is scored.
 
 ### Solution
 
-```{r}
-dat_vo2 <- dat_vo2 %>%
-  mutate (stage = cut_interval(time, length = 210, labels = FALSE))
+In the `dat_long` data set, we want to use the `summarise ()` function. Notice how I use the `group_by` function first. I want to perform the same task repeatedly for each subgroup of athletes and tasks.
+
+To find the minimum, use the `min` function.
+
+```{r }
+fms_sum <- dat_long %>%
+  group_by(id, task) %>%
+  summarise (score = min (score))
 
 ```
 
 ```{r, echo = FALSE}
-dat_vo2 %>%
-  head()%>%
+fms_sum %>%
   knitr::kable (digits = 2)
 ```
 
+I dare you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!
+
 ### Discussion
 
-Why chunks of 210 sec? Vo2 data analysis, requires you to find the average values of the last 30s of each treadmill testing stage. Based on your Autumn School lessons, recall that each stage is 3 min 30 sec long or 210 sec. When doing data analysis, there is an amount of pre-planning on how to get the desired end product. There is no magic pill, the more analysis you do, the more short cuts you know.
+We can also go berserk by trying out different summary functions, like `mean ()`, `median ()`, `min()` (minimum value), `max` (maximum value). The function `n()` is a really useful one to count the number of rows. If your rows indicate the number of subjects, `n()` essentially counts the number of rows in each subgroup.
+
+```{r }
+
+fms_sum <- dat_long %>%
+  group_by(id, task) %>%
+  summarize (total_score = sum (score),
+             mean_score = mean (score),
+             median_score = median (score),
+             min_score = min (score),
+             max_score = max(score),
+             count = n()) 
+```
+
+If you want to perform two consecutive groupby summary tasks, first identify the lower of the two bilateral scores for tasks with bilateral assessments, then count the number of athletes who scored `0`, `1`, `2`, or `3` for each FMS task, you can accomplish this like below.
+
+```{r }
+
+fms_sum <- dat_long %>%
+  group_by(id, task) %>%
+  summarise (score = min (score)) %>%
+  group_by (task, score) %>%
+  summarise (count = n())
+
+```
+
+```{r, echo = FALSE}
+fms_sum  %>%
+  knitr::kable (digits = 2)
+```
+
+
+## Learning check {#WRANGLE-LEARNING-CHECK}
+
+```{r, echo = FALSE}
+vembedr::embed_youtube("D0a18-ge5tE", height = 400)
+```
+
+1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import three excel files of `data/groupFMS.xlsx`, `data/rightleg_imu.xlsx`, and `data/leftleg_imu.xlsx`, and assign it to appropriately named objects.
+
+2. From the group FMS data, create a long dataframe with three columns, `id`, `task` and `score`. The `task` column contains the names of the FMS exercises, and the `score` column contains the values of the FMS exercises. See Recipe \@ref(WRANGLE-GATHER). Assign this long dataframe to an object called `dat_long`.
+
+3. From the `dat_long` data, split the `task` column into two columns called `side` and `task`. See Recipe \@ref(WRANGLE-NEW-VARIABLES). Assign this modified dataframe to the same object called `dat_long`.
+
+4. From the `dat_long` data, for FMS tasks with bilateral assessments, keep the score with the lower values. For FMS tasks with no bilateral assessments, keep that only score. Thereafter, count the number of athletes which scored a value of `0`, `1`, `2`, or `3` for each FMS task. Assign this result to an object called `fms_count`. See Recipe \@ref(WRANGLE-SUMMARISE).
+
+5. From the `dat_long` data, for FMS tasks with bilateral assessments, keep the score with the lower values. For FMS tasks with no bilateral assessments, keep that only score. Thereafter, for each athlete, sum the score over the seven FMS tasks. Assign this result to an object called `fms_total`. See Recipe \@ref(WRANGLE-SUMMARISE).
+
+6. From the `fms_total` data, find the group mean and standard deviation FMS score. Assign this result to an object called `fms_summary`. See Recipe \@ref(WRANGLE-SUMMARISE).
+
+7. From the group FMS data, select only the row that belongs to `athlete_c`, and assign it to an object called `athlete_c`.
+
+8. From the `athlete_c` data, create a long dataframe with three columns, `id`, `task` and `score`. The `task` column contains the names of the FMS exercises, and the `score` column contains the values of the FMS exercises. See Recipe \@ref(WRANGLE-GATHER). Assign this long dataframe to an object called `athlete_c_long`.
+
+9. From the `athlete_c_long` data, split the `task` column into two columns called `side` and `task`. See Recipe \@ref(WRANGLE-NEW-VARIABLES). Assign this modified dataframe to the same object called `dat_long`.
+
+10. Remember to save your file.
+
+11. Download the solution to this learning check below.
+
+```{r echo=FALSE}
+downloadthis::download_file(
+  path = "data/practice_manip.R",
+  output_name = "Learning check 6 answers",
+  output_extension = ".R",
+  button_label = "Learning check 6 answers",
+  button_type = "warning",
+  has_icon = TRUE,
+  icon = "fa fa-save"
+ 
+)
+```
+

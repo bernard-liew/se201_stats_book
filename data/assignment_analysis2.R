@@ -1,81 +1,131 @@
 
+
 ## -----------------------------------------------------------------------------
 
 ## load up the packages we will need
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, # All purpose wrangling for dataframes
-               lubridate, # Time
-               tibbletime,
                openxlsx) # writing excel documents
-
-## Custom function to get interection between two lines
-## To get Lactate and Anaerobic Threshold values
-## Ignore the complexity, highlight between Start and End, Run -----------------
-
-## Start ----------------
-curve_intersect <- function (curve1, curve2, empirical = TRUE, domain = NULL) 
-{
-  if (!empirical & missing(domain)) {
-    stop("'domain' must be provided with non-empirical curves")
-  }
-  if (!empirical & (length(domain) != 2 | !is.numeric(domain))) {
-    stop("'domain' must be a two-value numeric vector, like c(0, 10)")
-  }
-  if (empirical) {
-    curve1_f <- approxfun(curve1$x, curve1$y, rule = 2)
-    curve2_f <- approxfun(curve2$x, curve2$y, rule = 2)
-    point_x <- uniroot(function(x) curve1_f(x) - curve2_f(x), 
-                       c(min(curve1$x), max(curve1$x)))$root
-    point_y <- curve2_f(point_x)
-  }
-  else {
-    point_x <- uniroot(function(x) curve1(x) - curve2(x), 
-                       domain)$root
-    point_y <- curve2(point_x)
-  }
-  return(list(x = point_x, y = point_y))
-}
-## End ----------------
 
 ## Import data (Task 1)
 
-### Import the sheet with the Vo2 data
-dat_vo2 <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
+# Import excel data
 
-### Import the sheet with the lactate data
-dat_stage <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
+## This is the FMS results of the team
 
-### Import individual FMS data
-dat_fms_indv <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
+dat_fms <-  read.xlsx (xlsxFile = "XXX")
 
-### Import drop jump data
+## Accelerometry findings of the bad leg from a drop land task
 
-#### IMU data of the good leg
-good_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
-#### IMU data of the bad leg
-bad_imu <-  read.xlsx (xlsxFile = "data/XXX.xlsx",
-                       sheet = "XXX")
+bad_leg_accl <-  read.xlsx (xlsxFile = "XXX")
 
-## Analyze FMS data (Task 2) ---------------------------------------------------
+## Accelerometry findings of the good leg from a drop land task
 
-### Plot FMS 
+good_leg_accl<-  read.xlsx (xlsxFile = "XXX")
 
-plot_fms_indv <- ggplot(XXX) +
+## Make the group FMS wide to long (Task 2) ------------------------------------
+
+# Make data wide to long
+
+dat_long <- dat_fms %>% # original data
+  pivot_longer(cols = -id,
+               names_to = "XXX",
+               values_to = "XXX")
+
+# Split task column
+
+dat_long <- dat_long %>%
+  mutate (
+    side = case_when(
+      str_detect(task, "R_") ~ "right",
+      str_detect(task, "L_") ~ "left",
+      TRUE ~ "central"
+    )) %>%
+  mutate (task = str_remove_all(task, "R_|L_"))
+
+## Count number of athletes per task subscore (Task 3) -------------------------
+
+# Count
+
+fms_count <- dat_long %>%
+  group_by(XXX, XXX) %>%
+  summarise (score = XXX (score)) %>%
+  group_by (task, score) %>%
+  summarise (count = XXX())
+
+## Plot the group FMS count data (Task 4) --------------------------------------
+
+# Make factor
+
+fms_count <- fms_count %>%
+  mutate (score = factor (score, levels = c("0", "1", "2", "3")))
+
+############# ********** Code 1 (start)********** ##############################
+
+## Group barplot
+
+ggplot(fms_count) + 
+  geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")+ 
+  scale_fill_discrete(drop=FALSE)
+
+############# ********** Code 1 (end)********** ################################
+
+## Summary statistics of the total FMS score for the team (Task 5) -------------
+
+############# ********** Code 2 (start)********** ##############################
+
+# Total
+
+fms_total <- dat_long %>%
+  group_by(id, task) %>%
+  summarise (score = XXX (score)) %>%
+  group_by (id) %>%
+  summarise (Total = XXX (score))
+
+# summary
+
+fms_summary <- fms_total %>%
+  summarise (Mean = XXX (Total),
+             Sd = XXX (Total))
+
+############# ********** Code 2 (end)********** ################################
+
+## Filter out athlete a data (Task 6) ------------------------------------------
+
+athlete <- dat_fms %>%
+  filter (XXX == "XXX")
+
+## Make the athlete FMS wide to long (Task 7) ----------------------------------
+
+athlete_long <- athlete %>% # original data
+  pivot_longer(cols = -id,
+               names_to = "XXX",
+               values_to = "XXX")
+
+# Split task column
+
+athlete_c_long <- athlete_c_long %>%
+  mutate (
+    side = case_when(
+      str_detect(task, "R_") ~ "right",
+      str_detect(task, "L_") ~ "left",
+      TRUE ~ "central"
+    )) %>%
+  mutate (task = str_remove_all(task, "R_|L_"))
+
+## Plot the individual athlete's FMS data (Task 8) -----------------------------
+
+############# ********** Code 3 (start)********** ##############################
+
+ggplot(athlete_long) + 
   geom_col(aes(x = XXX, y = XXX, fill = XXX), position = "dodge")
 
-ggsave(filename = "ind_fms.png", 
-       plot = plot_fms_indv, # the name of the image object you created above.
-       width = 15, 
-       height = 8, 
-       unit = "cm", 
-       dpi = 200)
+############# ********** Code 3(end)********** ################################
 
-## Analyze drop jump data (Task 3) ---------------------------------------------
+## Analyze drop jump data (Task 9) ---------------------------------------------
+
+############# ********** Code 4 (start)********** ##############################
 
 # Maximal bad leg impact value
 max_bad_ampl <- max(bad_imu %>% select (XXX))
@@ -89,216 +139,5 @@ symmmetry_index <-
   ((2* (max_bad_ampl - max_good_ampl))/(max_bad_ampl + max_good_ampl)) * 100
 
 
-symmmetry_index
+############# ********** Code 4 (end)********** ################################
 
-## Analyze VO2 data ------------------------------------------------------------
-
-### Rename column names of Vo2 data (Task 4)
-
-new_names <- c(XXX)
-
-colnames (dat_vo2)  <- new_names
-
-### Remove first row of Vo2 data
-
-dat_vo2 <- dat_vo2 %>% 
-  slice (-c(1))
-
-### Convert column type of Vo2 data (Task 5)
-
-dat_vo2 <-  dat_vo2 %>%
-  mutate (bf = XXX (bf),
-          vo2_norm = XXX(vo2_norm),
-          rer = XXX(rer),
-          vo2 = XXX(vo2),
-          vco2 = XXX(vco2),
-          ve = XXX(ve),
-          hr = XXX(hr)) %>%
-  # Convert time to seconds
-  mutate (time = time %>% 
-            str_squish() %>% 
-            ms() %>% 
-            as.period(unit = "sec") %>% 
-            as.numeric ()) 
-
-### Create a "stage" variable in Vo2 data
-
-dat_vo2 <- dat_vo2 %>%
-  mutate (stage = cut_interval(time, length = 210, labels = FALSE))
-
-### Calculate average 30s data per stage of Vo2 data (Task 6)
-
-dat_vo2_summ <- dat_vo2 %>%
-  group_by(XXX) %>% # for each group
-  mutate (row_id = row_number()) %>%
-  filter (row_id < XXX) %>% # throw away all data between 3 to 3:30 min
-  slice_tail (n = XXX)%>% # keep last 30 sec per stage
-  summarise (bf = mean (bf),
-             vo2_norm = mean (vo2_norm),
-             rer = mean (rer),
-             vo2 = mean (vo2),
-             vco2 = mean (vco2),
-             ve = mean (ve),
-             hr = mean (hr))
-
-
-### Combine Vo2 staged data with lactate data (Task 7)
-
-dat_vo2_comb <- dat_vo2_summ %>%
-  inner_join(dat_stage, by = "XXX")
-
-### Plot
-
-#### Lactate (Task 8)
-
-f <- ggplot (dat_vo2_comb) +
-  geom_line (aes (x = XXX, y = XXX), colour = "XXX", linewidth = 1.5) + 
-  labs (x = "Speed (km/h)",
-        y = "Lactate (mmol)") +
-  theme_bw() + 
-  labs (title = "XXX") + 
-  theme(axis.text.x = element_text(size = XXX),
-        axis.text.y = element_text(size = XXX),  
-        axis.title.x = element_text(size = XXX),
-        axis.title.y = element_text(size = XXX))
-
-ggsave(filename = "lactate.png", 
-       plot = f, # the name of the image object you created above.
-       width = 8, 
-       height = 8, 
-       unit = "cm", 
-       dpi = 200)
-
-#### Heart rate (Task 9)
-
-f <- ggplot (dat_vo2_comb) +
-  geom_line (aes (x = XXX, y = XXX), colour = "XXX", linewidth = 1.5) + 
-  labs (x = "Speed (km/h)",
-        y = "Heart Rate (bpm)") +
-  theme_bw() + 
-  labs (title = "XXX") + 
-  theme(axis.text.x = element_text(size = XXX),
-        axis.text.y = element_text(size = XXX),  
-        axis.title.x = element_text(size = XXX),
-        axis.title.y = element_text(size = XXX))
-
-ggsave(filename = "heartrate.png", 
-       plot = f, # the name of the image object you created above.
-       width = 8, 
-       height = 8, 
-       unit = "cm", 
-       dpi = 200)
-
-#### Export table (Task 10)
-
-write.xlsx(x = XXX,
-           sheetName = "vo2",
-           file = "data/vo2_table.xlsx")
-
-## Bonus Codes to help you -----------------------------------------------------
-
-### Click on everything below and run
-
-
-### Get VO2 max , VO2 max relative
-
-rolling_mean6 <- rollify(mean, window = 6)
-
-raw_roll <- dat_vo2 %>%
-  arrange (desc (time)) %>%
-  mutate_at (vars(bf:hr), rolling_mean6) %>%
-  na.omit() %>%
-  summarise_at(vars(bf:hr), max, na.rm = TRUE) %>%
-  mutate (vo2 = vo2/1000)
-
-cat ("The relative peak O2 uptake is:", raw_roll$vo2_norm, "(ml/kg/min)")
-cat ("The absolute peak O2 uptake is:", raw_roll$vo2, "(L/min)")
-
-### Get max aerobic speed
-
-#### Get maximal stage completed number
-max_stage <- max (dat_vo2$stage)
-
-#### Find number of rows in final stage
-dat_vo2_last <- dat_vo2 %>%
-  filter (stage == max_stage)
-
-#### Calculate based on rows the proportion of stage completed
-last_stage_prop <- nrow (dat_vo2_last)/42
-
-#### Get the speed increment, which should be even across all stage
-increment <- mean (diff(dat_vo2_comb$speed, lag = 1))
-
-#### Get the maximal aerobic speed
-ans <-  last_stage_prop * increment
-max_aerobic_speed <- ans + max (dat_vo2_comb$speed)
-
-cat ("The maximal aerobic speed:", max_aerobic_speed,  "(Km/h)")
-
-
-### Get Lactate and Anaerobic Thresold
-
-m <- loess (lactate ~ speed, data = dat_vo2_comb)
-min.speed <- ceiling (min (dat_vo2_comb$speed))
-max.speed <- floor (max (dat_vo2_comb$speed))
-n_points <- 100
-
-new_lac <- data.frame (speed = seq (min.speed, max.speed, length.out = n_points))
-new_lac$y <- predict (m, newdata = new_lac)
-colnames(new_lac)[1] <- "x"
-
-#### Threshold values
-
-lactate_thres <- data.frame (x = seq (min.speed, max.speed, length.out = n_points),
-                             y = 2)
-
-anaerobic_thres <- data.frame (x = seq (min.speed, max.speed, length.out = n_points),
-                               y = 4)
-#### Speed at thresold
-
-speed_at_lac_thres <- curve_intersect(new_lac, lactate_thres)$x
-speed_at_ane_thres <- curve_intersect(new_lac, anaerobic_thres)$x
-
-### Get HR at thresholds
-
-m <- loess (hr ~ speed, data = dat_vo2_comb)
-
-new_hr <- data.frame (speed = seq (min.speed, max.speed, length.out = n_points))
-new_hr$y <- predict (m, newdata = new_hr)
-colnames(new_hr)[1] <- "x"
-
-
-hr_at_lac_thres <- new_hr[which.min(abs(new_hr$x -speed_at_lac_thres)), "y"] %>%
-  round (0)
-hr_at_ane_thres <- new_hr[which.min(abs(new_hr$x -speed_at_ane_thres)), "y"] %>%
-  round 
-
-pi <- data.frame(Variable = c("Lactate Threshold", "Anaerobic Threshold"),
-                 Speed = c(speed_at_lac_thres, speed_at_ane_thres ),
-                 HR = c(hr_at_lac_thres, hr_at_ane_thres))
-
-cat ("The speed (km/h) and heart rate (b/min) at lactate threshold are:", pi[1,2], "and", pi[1,3])
-cat ("The speed (km/h) and heart rate (b/min) at anaerobic threshold are:", pi[2,2], "and", pi[2,3])
-
-df_plot <- data.frame(speed = new_lac$x,
-                      lactate = new_lac$y,
-                      hr = new_hr$y,
-                      speed_lac = speed_at_lac_thres,
-                      speed_ane = speed_at_ane_thres) %>%
-  pivot_longer(cols = lactate:hr,
-               names_to = "var",
-               values_to = "val")
-
-ggplot (df_plot) +
-  geom_line (aes (x = speed, y = val)) + 
-  geom_vline(xintercept = speed_at_lac_thres, color = "blue", linetype = "dashed") + 
-  geom_vline(xintercept = speed_at_ane_thres, color = "red", linetype = "dashed") + 
-  facet_wrap(~var, ncol = 2, scales = "free") +
-  labs (x = "Speed",
-        y = "Values") +
-  theme_bw() + 
-  labs (title = "Plot of Treadmill test") + 
-  theme(axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),  
-        axis.title.x = element_text(size = 16),
-        axis.title.y = element_text(size = 16))

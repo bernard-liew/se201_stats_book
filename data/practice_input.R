@@ -2,20 +2,12 @@
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse, # All purpose wrangling for dataframes
-               openxlsx,# writing excel documents
-               lubridate,# date-time 
-               tibbletime) # moving average for vo2
+               openxlsx) # moving average for vo2
 
 # Import excel data
 
-dat <-  read.xlsx (xlsxFile = "data/Athlete_1_treadmill.xlsx",
-                    sheet = "raw")
+dat_fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx")
 
-dat_stage <-  read.xlsx (xlsxFile = "data/Athlete_1_treadmill.xlsx",
-                   sheet = "stage")
+bad_leg_accl <-  read.xlsx (xlsxFile = "data/rightleg_imu.xlsx")
 
-dat_fms <-  read.xlsx (xlsxFile = "data/Athlete_1_FMS.xlsx",
-                   sheet = "Sheet1")
-
-dat_fms_grp <-  read.xlsx (xlsxFile = "data/simFMS.xlsx",
-                   sheet = "FMS")
+good_leg_accl<-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
