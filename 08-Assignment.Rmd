@@ -39,7 +39,7 @@ downloadthis::download_file(
 
 ## Tasks to complete
 
-**1:** Import data. Replace `XXX` with your Excel file's name and appropriate sheet name. See Recipe \@ref(INPUT-IMPORT).
+**1:** Import data. Replace `XXX` with your Excel file's name. See Recipe \@ref(INPUT-IMPORT).
 
 **2:** Make the group FMS data, `dat_fms`, wide to long with three columns: `id`, `task` and `score`. The `task` column contains the names of the FMS tasks, and the `score` column contains the values of the FMS tasks. See Recipe \@ref(WRANGLE-GATHER).
 

@@ -1,5 +1,7 @@
 # Data manipulation {#WRANGLE}
 
+The power of R lies in its ability to do things to data. Here, you will learn several techniques that is essential in everyday sports science and coaching professions.
+
 ## Download and load packages {-}
 
 ```{r, message=FALSE, warning=FALSE}
@@ -27,20 +29,17 @@ good_leg_accl<-  read.xlsx (xlsxFile = "data/leftleg_imu.xlsx")
 
 ### Let us see the data {-}
 
-#### dat_fms table 
+**Table containing the group FMS data** 
 
 This is a table representing the individual FMS scores of every athlete within a team.
 
 ```{r, echo = FALSE}
 dat_fms %>%
-  knitr::kable ()
+  knitr::kable () %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
-#### Drop jump imu
-
-Bad leg
-
-This is a table representing a single subject's single leg drop jump imu data.
+**Data contains the IMU signals from a drop-land task of the bad leg**
 
 ```{r, echo = FALSE}
 bad_leg_accl %>%
@@ -48,7 +47,7 @@ bad_leg_accl %>%
   kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
-Good leg
+**Data contains the IMU signals from a drop-land task of the good leg**
 
 ```{r, echo = FALSE}
 good_leg_accl %>%
@@ -176,7 +175,7 @@ vembedr::embed_youtube("XVTX1L9iZIo", height = 400)
 
 ### Problem
 
-You want to make your data longer. In the data `dat_fms` (go to the start of this chapter to see this data's original shape), you want to merge the 12 columns, and not the `id` column, indicating the 13 FMS tasks and sides, into a single column. For this, you can use the `pivot_longer()` function. 
+You want to reshape the structure of your data from wide to long. This is tidy data. In the data `dat_fms`, you want to merge the 12 FMS task columns into one, and not the `id` column, indicating the 12 FMS tasks and sides. For this, you can use the `pivot_longer()` function. 
 
 ### Solution
 
@@ -201,7 +200,7 @@ vembedr::embed_youtube("utuxfSl1umU", height = 400)
 
 ### Problem
 
-You want to make your data wider, so lets reverse the `dat_long` data we created in Recipe \@ref(WRANGLE-GATHER).
+You want to reshape the structure of your data from long to wide. So lets reverse the `dat_long` data we created in Recipe \@ref(WRANGLE-GATHER).
 
 ### Solution
 
@@ -232,11 +231,11 @@ You want to create new column(s) which may involve some manipulation or math wit
 
 #### Example 1
 
-In the `dat_long` data, the `task` column contains two pieces of information. Side for tasks with bilateral involvement, and the task itself. 
+In the `dat_long` data, the `task` column contains two pieces of information. Side (right or left) for tasks with bilateral involvement, and the task itself. 
 
-You want to create two new columns. A column called `side` which contains `left` and `right` where needed, and if not, a neutral term such as `central`. Another column you want to create is actually a replacement of `task`. You want to strip the `R_` and `L_` suffixes of the current `task` values.
+You want to create two new columns. A column called `side` which contains `left` and `right` where needed, and if not, a neutral term such as `central`. Another column you want to create is actually a replacement of the old column, `task`. You want to strip the `R_` and `L_` suffixes of the current `task` values.
 
-The function `mutate` is useful to create new columns. Inside mutate, you can call many other functions to perform specific manipulations. Three examples below are `case_when`, `str_detect`, `str_remove_all`. `case_when` is useful for renaming the names of variables depending if some conditions are met. `str_detect` is read out loud as "string detect", and is useful for detecting the presence of specific character patterns in a string. `str_remove_all` is read out loud as "string remove all", and is useful for removing the  presence of specific character patterns from a string.
+The function `mutate` is useful to create new variables. Inside mutate, you can call many other functions to perform specific manipulations. Three examples below are `case_when`, `str_detect`, `str_remove_all`. `case_when` is useful for renaming the names of variables depending if some conditions are met. `str_detect` is read out loud as "string detect", and is useful for detecting the presence of specific character patterns in a string. `str_remove_all` is read out loud as "string remove all", and is useful for removing the  presence of specific character patterns from a string.
 
 ```{r }
 # The below code can be read out loud as "create a new variable called side. When task contains the 'R_' character, put a value of 'right' in side. When task contains the 'L_' character, put a value of 'left' in side. When task contains neither 'R_' nor 'L_', put a value of 'central' in side ".
@@ -265,7 +264,7 @@ head(dat_long)%>%
 
 #### Example 2
 
-There are many math operations you can do including subtraction (`-`), multiplication (`*`), addition (`+`), exponentiation/power to the power of 2 (`^2`). Let us go crazy and try some random creation of new variables.
+There are many math operations you can do including subtraction (`-`), multiplication (`*`), addition (`+`), exponentiation/power to the power of 2 (`^2`). 
 
 Let's use the `dat_wide` data. Say for example, we want to add up the individual scores for all tasks, for all athletes.
 
@@ -422,7 +421,8 @@ fms_sum <- dat_long %>%
 
 ```{r, echo = FALSE}
 fms_sum %>%
-  knitr::kable (digits = 2)
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
 I dare you to find an easier way to calculate such scores in one line of code. That is one reason why I use a programming language like R. It is fast!!!
@@ -443,6 +443,12 @@ fms_sum <- dat_long %>%
              count = n()) 
 ```
 
+```{r, echo = FALSE}
+fms_sum %>%
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
+```
+
 If you want to perform two consecutive groupby summary tasks, first identify the lower of the two bilateral scores for tasks with bilateral assessments, then count the number of athletes who scored `0`, `1`, `2`, or `3` for each FMS task, you can accomplish this like below.
 
 ```{r }
@@ -456,8 +462,9 @@ fms_sum <- dat_long %>%
 ```
 
 ```{r, echo = FALSE}
-fms_sum  %>%
-  knitr::kable (digits = 2)
+fms_sum %>%
+  knitr::kable (digits = 2) %>%
+  kableExtra::scroll_box(width = "100%", height = "500px")
 ```
 
 

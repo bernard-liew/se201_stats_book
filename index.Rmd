@@ -1,5 +1,5 @@
 --- 
-title: "A Simple Cookbook for Wrangling and Visualization"
+title: "Getting started in Sports Data analysis: SE201"
 author: "Bernard Liew"
 date: "`r Sys.Date()`"
 documentclass: book

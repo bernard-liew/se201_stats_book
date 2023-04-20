@@ -43,7 +43,7 @@ dat_fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx")
 ```
 Group FMS summary table
 
-Let's create a summary table with three columns, `task`, `score`, and `Count`. 
+Let's create a summary table with three columns, `task`, `score`, and `Count`. This could should be what you have gotten from learning check \@ref(WRANGLE-LEARNING-CHECK).
 
 ```{r}
 dat_grp <- dat_fms %>% # original data

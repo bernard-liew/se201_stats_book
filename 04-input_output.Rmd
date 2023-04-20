@@ -2,6 +2,8 @@
 
 ## Download and load packages {-}
 
+The most important aspect when working with data is knowing how to import data into the software, and exporting your data out of the software.
+
 ```{r, message=FALSE, warning=FALSE}
 
 if (!require("pacman")) install.packages("pacman")
@@ -13,9 +15,9 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 ## Dealing with “Cannot Open File” in Windows {#INPUT-FILE}
 
 
-You are running R on Windows, and you are using filenames such as `C:\data\sample.xlsx`. R says it cannot open the file, but you know the file does exist.
+You are running R on Windows, and you are using filenames such as `C:\data\sample.xlsx`. R says it cannot open the file, but you know the file does exist. You see the file with your own eyes.
 
-The backslashes in the filepath are causing trouble. You can solve this problem in one of two ways:
+The backslashes, `\`, in the filepath are causing trouble. You can solve this problem in one of two ways:
 
 -   Change the backslashes, `\`, to forward, `/`, slashes: `"C:/data/sample.txt"`.
 
@@ -24,12 +26,9 @@ The backslashes in the filepath are causing trouble. You can solve this problem 
 When you open a file in R, you give the filename as a character string. Problems arise when the name contains backslashes (`\`) because backslashes have a special meaning inside strings. You’ll probably get something like this:
 
 ``` {r, eval=TRUE, error=TRUE}
-fms <- read.xlsx ("data\groupFMS.xlsx")
+dat_fms <- read.xlsx ("data\groupFMS.xlsx")
 ```
-R escapes every character that follows a backslash and then removes the backslashes. That leaves a meaningless filepath, such as
-`C:Datasample-data.csv` in this example.
-
-The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
+R escapes every character that follows a backslash and then removes the backslashes. The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
 
 ``` {r, eval=FALSE}
 fms <- read.xlsx ("data/groupFMS.xlsx")
@@ -69,11 +68,13 @@ fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx",
 
 ## Writing a Data Frame to Excel {#INPUT-EXPORT}
 
+After you have done some work on the data, you want to write (i.e. export) an R data frame to an Excel file. 
+
+
 ```{r, echo = FALSE}
 vembedr::embed_youtube("oZ6yoZ_86BY", height = 400)
 ```
 
-You want to write an R data frame to an Excel file. 
 
 | Argument| Description| 
 |:------------|:-------------------------------------------------|
@@ -88,7 +89,6 @@ write.xlsx(x = fms,
            sheetName = "FMS",
            file = "data/groupFMS_write.xlsx")
 ```
-
 
 
 ## Learning check {#INPUT-LEARNING-CHECK}

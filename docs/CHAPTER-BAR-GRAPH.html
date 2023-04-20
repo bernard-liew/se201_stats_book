@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization</title>
+<title>Chapter 7 Bar Graphs | Getting started in Sports Data analysis: SE201</title>
 <meta name="author" content="Bernard Liew">
 <meta name="generator" content="bookdown 0.30 with bs4_book()">
-<meta property="og:title" content="Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization">
+<meta property="og:title" content="Chapter 7 Bar Graphs | Getting started in Sports Data analysis: SE201">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 7 Bar Graphs | A Simple Cookbook for Wrangling and Visualization">
+<meta name="twitter:title" content="Chapter 7 Bar Graphs | Getting started in Sports Data analysis: SE201">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.1/transition.js"></script><script src="libs/bs3compat-0.4.1/tabs.js"></script><script src="libs/bs3compat-0.4.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
-        <a href="index.html" title="">A Simple Cookbook for Wrangling and Visualization</a>
+        <a href="index.html" title="">Getting started in Sports Data analysis: SE201</a>
       </h1>
       <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
@@ -86,7 +86,7 @@ Figure 7.1: The plotting capabilities are endless.
 <span><span class="co"># Import data</span></span>
 <span><span class="va">dat_fms</span> <span class="op">&lt;-</span>  <span class="fu">read.xlsx</span> <span class="op">(</span>xlsxFile <span class="op">=</span> <span class="st">"data/groupFMS.xlsx"</span><span class="op">)</span></span></code></pre></div>
 <p>Group FMS summary table</p>
-<p>Let’s create a summary table with three columns, <code>task</code>, <code>score</code>, and <code>Count</code>.</p>
+<p>Let’s create a summary table with three columns, <code>task</code>, <code>score</code>, and <code>Count</code>. This could should be what you have gotten from learning check <a href="WRANGLE.html#WRANGLE-LEARNING-CHECK">6.9</a>.</p>
 <div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_grp</span> <span class="op">&lt;-</span> <span class="va">dat_fms</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># original data</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">id</span>,</span>
@@ -111,1862 +111,201 @@ Figure 7.1: The plotting capabilities are endless.
 <div class="inline-table"><table class="table table-sm">
 <thead><tr>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-id
-</th>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 task
 </th>
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 score
 </th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+count
+</th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
 hurdle
 </td>
 <td style="text-align:left;">
 2
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+22
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_a
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_b
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_b
-</td>
 <td style="text-align:left;">
 hurdle
 </td>
 <td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_b
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
 3
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_b
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_b
-</td>
 <td style="text-align:left;">
 leg_raise
 </td>
 <td style="text-align:left;">
 1
 </td>
+<td style="text-align:right;">
+8
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-athlete_b
+leg_raise
 </td>
 <td style="text-align:left;">
-push_up
+2
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+leg_raise
 </td>
 <td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
 3
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-athlete_b
+lunge
 </td>
 <td style="text-align:left;">
-rot_stab
+1
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 2
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-athlete_c
-</td>
-<td style="text-align:left;">
-squat
+lunge
 </td>
 <td style="text-align:left;">
 2
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_c
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+21
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_c
-</td>
 <td style="text-align:left;">
 lunge
 </td>
 <td style="text-align:left;">
 3
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_c
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_c
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
+<td style="text-align:right;">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_c
-</td>
 <td style="text-align:left;">
 push_up
 </td>
 <td style="text-align:left;">
 1
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_c
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_d
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_d
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_d
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_d
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_d
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_d
-</td>
 <td style="text-align:left;">
 push_up
 </td>
 <td style="text-align:left;">
 2
 </td>
+<td style="text-align:right;">
+4
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
-athlete_d
+push_up
 </td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 rot_stab
 </td>
 <td style="text-align:left;">
 1
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+6
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_e
-</td>
 <td style="text-align:left;">
 rot_stab
 </td>
 <td style="text-align:left;">
 2
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+18
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_f
-</td>
 <td style="text-align:left;">
 shd_mob
 </td>
 <td style="text-align:left;">
 2
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+24
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_f
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_g
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_h
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_i
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
 <td style="text-align:left;">
 squat
 </td>
 <td style="text-align:left;">
 1
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+15
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_j
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_k
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
 <td style="text-align:left;">
 squat
 </td>
 <td style="text-align:left;">
 2
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+4
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_l
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_m
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_n
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
 <td style="text-align:left;">
 squat
 </td>
 <td style="text-align:left;">
 3
 </td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_o
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_p
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_q
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_r
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_s
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_t
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_u
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_v
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_w
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-squat
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-hurdle
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-lunge
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-shd_mob
-</td>
-<td style="text-align:left;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-leg_raise
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-push_up
-</td>
-<td style="text-align:left;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athlete_x
-</td>
-<td style="text-align:left;">
-rot_stab
-</td>
-<td style="text-align:left;">
-2
+<td style="text-align:right;">
+5
 </td>
 </tr>
 </tbody>
@@ -2622,7 +961,7 @@ Figure 7.14: From left to right: PNG output at 72, 150, and 300 ppi (actual size
 <li><p>Remember to save your file.</p></li>
 <li><p>Download the solution to this learning check below.</p></li>
 </ol>
-<a onclick="fetch('data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCwjIHdyaXRpbmcgZXhjZWwgZG9jdW1lbnRzDQogICAgICAgICAgICAgICBsdWJyaWRhdGUsIyBkYXRlLXRpbWUgDQogICAgICAgICAgICAgICB0aWJibGV0aW1lKSAjIG1vdmluZyBhdmVyYWdlIGZvciB2bzINCg0KIyBJbXBvcnQgZXhjZWwgZGF0YQ0KDQpkYXQgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJyYXciKQ0KDQpkYXRfc3RhZ2UgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfdHJlYWRtaWxsLnhsc3giLA0KICAgICAgICAgICAgICAgICAgIHNoZWV0ID0gInN0YWdlIikNCg0KZGF0X2ZtcyA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL0F0aGxldGVfMV9GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiU2hlZXQxIikNCg0KZGF0X2Ztc19ncnAgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9zaW1GTVMueGxzeCIsDQogICAgICAgICAgICAgICAgICAgc2hlZXQgPSAiRk1TIikNCg0KIyBUaWR5IGRhdGENCg0KIyMgUmVuYW1lIGNvbHVtbnMNCm5hbWVzIChkYXQpIDwtIGMoInRpbWUiLCAiYmYiLCAidm8yX25vcm0iLCAicmVyIiwgInZvMiIsICJ2Y28yIiwgInZlIiwgImhyIikNCg0KIyMgU2xpY2Ugb2ZmIGZpcnN0IHJvdw0KDQpkYXQgPC0gZGF0JT4lIA0KICBzbGljZSAoLTEpIA0KDQojIyBNYWtlIG51bWVyaWMgYW5kIHRpbWUNCg0KZGF0IDwtIGRhdCAlPiUNCiAgbXV0YXRlIChiZiA9IGFzLm51bWVyaWMoYmYpLA0KICAgICAgICAgIHZvMl9ub3JtID0gYXMubnVtZXJpYyh2bzJfbm9ybSksDQogICAgICAgICAgcmVyID0gYXMubnVtZXJpYyhyZXIpLA0KICAgICAgICAgIHZvMiA9IGFzLm51bWVyaWModm8yKSwNCiAgICAgICAgICB2Y28yID0gYXMubnVtZXJpYyh2Y28yKSwNCiAgICAgICAgICB2ZSA9IGFzLm51bWVyaWModmUpLA0KICAgICAgICAgIGhyID0gYXMubnVtZXJpYyhocikpICU+JQ0KICBtdXRhdGUgKHRpbWUgPSB0aW1lICU+JSANCiAgICAgICAgICAgIHN0cl9zcXVpc2goKSAlPiUgIyBmdW5jdGlvbiBzdHJpcHMgYW55IHdoaXRlc3BhY2VzDQogICAgICAgICAgICBtcygpICU+JSAjIGNvbnZlcnQgdG8gbWludXRlcyBhbmQgc2Vjb25kcw0KICAgICAgICAgICAgYXMucGVyaW9kKHVuaXQgPSAic2VjIikgJT4lICMgY29udmVydHMgZW50aXJlbHkgdG8gc2Vjb25kcw0KICAgICAgICAgICAgYXMubnVtZXJpYyAoKSkgIyBzdHJpcHMgdGhlIFMgc3ltYm9sIHRvIG1ha2UgaXQgYSBudW1iZXINCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIHN0YWdlDQoNCmRhdCA8LSBkYXQlPiUNCiAgbXV0YXRlIChzdGFnZSA9IGN1dF9pbnRlcnZhbCh0aW1lLCBsZW5ndGggPSAyMTAsIGxhYmVscyA9IEZBTFNFKSkNCg0KIyMgQ3JlYXRlIHZhcmlhYmxlIG9mIHJvdyBudW1iZXJzDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUNCiAgbXV0YXRlIChyb3dfaWQgPSByb3dfbnVtYmVyKCkpDQoNCiMjIFJlbW92ZSBsYXN0IDMwcyBkYXRhIHBlciBzdGFnZQ0KDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgZmlsdGVyIChyb3dfaWQgPCAzNykgDQoNCiMjIGtlZXAgbGFzdCAzMHMgcGVyIHN0YWdlDQoNCmRhdCA8LSBkYXQgJT4lDQogIGdyb3VwX2J5KHN0YWdlKSAlPiUgIyBmb3IgZWFjaCBncm91cA0KICBzbGljZV90YWlsIChuID0gNikNCg0KIyMgU3VtbWFyaXplIGVhY2ggY29sdW1uDQpkYXQgPC0gZGF0ICU+JQ0KICBncm91cF9ieShzdGFnZSkgJT4lICMgZm9yIGVhY2ggZ3JvdXANCiAgc3VtbWFyaXNlX2F0ICh2YXJzKGJmOmhyKSwgbWVhbikNCg0KIyMgRXhwb3J0IGNsZWFuIHZvMiBkYXRhDQoNCndyaXRlLnhsc3goeCA9IGRhdCwNCiAgICAgICAgICAgZmlsZSA9ICJkYXRhL0F0aGxldGVfMV90cmVhZG1pbGxfY2xlYW4ueGxzeCIpDQoNCiMgQ3JlYXRlIGJhcnBsb3QNCg0KIyMgSW1wb3J0IEZNUyBkYXRhDQoNCmRhdF9mbXMgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9BdGhsZXRlXzFfRk1TLnhsc3giLA0KICAgICAgICAgICAgICAgICAgICAgICBzaGVldCA9ICJTaGVldDEiKQ0KDQojIyBGTVMgbWluaW11bSBzY29yZQ0KDQpkYXRfc3VtbSA8LSBkYXRfZm1zICU+JQ0KICBncm91cF9ieSh0YXNrKSAlPiUNCiAgc3VtbWFyaXplICh0b3RhbCA9IG1pbiAoc2NvcmUpKSANCg0KIyMgQmFycGxvdA0KDQpnZ3Bsb3QoZGF0X3N1bW0pICsgDQogIGdlb21fY29sKGFlcyh4ID0gdGFzaywgeSA9IHRvdGFsKSkNCg0KIyMgQ2hhbmdlIGJhcnBsb3QgY29sb3VyDQoNCmdncGxvdChkYXRfc3VtbSkgKyANCiAgZ2VvbV9jb2woYWVzKHggPSB0YXNrLCB5ID0gdG90YWwpLCBmaWxsID0gImJsdWUiLCBjb2xvdXIgPSAicmVkIikgDQo=').then(res =&gt; res.blob()).then(blob =&gt; {
+<a onclick="fetch('data:text/plain;base64,IyBMb2FkIHBhY2thZ2VzDQoNCmlmICghcmVxdWlyZSgicGFjbWFuIikpIGluc3RhbGwucGFja2FnZXMoInBhY21hbiIpDQpwYWNtYW46OnBfbG9hZCh0aWR5dmVyc2UsICMgQWxsIHB1cnBvc2Ugd3JhbmdsaW5nIGZvciBkYXRhZnJhbWVzDQogICAgICAgICAgICAgICBvcGVueGxzeCkgIyBtb3ZpbmcgYXZlcmFnZSBmb3Igdm8yDQoNCiMgSW1wb3J0IGV4Y2VsIGRhdGENCg0KZGF0X2ZtcyA8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL2dyb3VwRk1TLnhsc3giKQ0KDQpiYWRfbGVnX2FjY2wgPC0gIHJlYWQueGxzeCAoeGxzeEZpbGUgPSAiZGF0YS9yaWdodGxlZ19pbXUueGxzeCIpDQoNCmdvb2RfbGVnX2FjY2w8LSAgcmVhZC54bHN4ICh4bHN4RmlsZSA9ICJkYXRhL2xlZnRsZWdfaW11Lnhsc3giKQ0KDQojIE1ha2UgZGF0YSB3aWRlIHRvIGxvbmcNCg0KZGF0X2xvbmcgPC0gZGF0X2ZtcyAlPiUgIyBvcmlnaW5hbCBkYXRhDQogIHBpdm90X2xvbmdlcihjb2xzID0gLWlkLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAidGFzayIsDQogICAgICAgICAgICAgICB2YWx1ZXNfdG8gPSAic2NvcmUiKQ0KDQojIFNwbGl0IHRhc2sgY29sdW1uDQoNCmRhdF9sb25nIDwtIGRhdF9sb25nICU+JQ0KICBtdXRhdGUgKA0KICAgIHNpZGUgPSBjYXNlX3doZW4oDQogICAgICBzdHJfZGV0ZWN0KHRhc2ssICJSXyIpIH4gInJpZ2h0IiwNCiAgICAgIHN0cl9kZXRlY3QodGFzaywgIkxfIikgfiAibGVmdCIsDQogICAgICBUUlVFIH4gImNlbnRyYWwiDQogICAgKSkgJT4lDQogIG11dGF0ZSAodGFzayA9IHN0cl9yZW1vdmVfYWxsKHRhc2ssICJSX3xMXyIpKQ0KDQojIENvdW50DQoNCmZtc19jb3VudCA8LSBkYXRfbG9uZyAlPiUNCiAgZ3JvdXBfYnkoaWQsIHRhc2spICU+JQ0KICBzdW1tYXJpc2UgKHNjb3JlID0gbWluIChzY29yZSkpICU+JQ0KICBncm91cF9ieSAodGFzaywgc2NvcmUpICU+JQ0KICBzdW1tYXJpc2UgKGNvdW50ID0gbigpKQ0KDQojIFRvdGFsDQoNCmZtc190b3RhbCA8LSBkYXRfbG9uZyAlPiUNCiAgZ3JvdXBfYnkoaWQsIHRhc2spICU+JQ0KICBzdW1tYXJpc2UgKHNjb3JlID0gbWluIChzY29yZSkpICU+JQ0KICBncm91cF9ieSAoaWQpICU+JQ0KICBzdW1tYXJpc2UgKFRvdGFsID0gc3VtIChzY29yZSkpDQoNCiMgc3VtbWFyeQ0KDQpmbXNfc3VtbWFyeSA8LSBmbXNfdG90YWwgJT4lDQogIHN1bW1hcmlzZSAoTWVhbiA9IG1lYW4gKFRvdGFsKSwNCiAgICAgICAgICAgICBTZCA9IHNkIChUb3RhbCkpDQoNCiMgU2VsZWN0IGF0aGxldGUNCg0KYXRobGV0ZV9jIDwtIGRhdF9mbXMgJT4lDQogIGZpbHRlciAoaWQgPT0gImF0aGxldGVfYyIpDQoNCiMgTWFrZSBhdGhsZXRlIGMgZGF0YSBsb25nDQoNCmF0aGxldGVfY19sb25nIDwtIGF0aGxldGVfYyAlPiUgIyBvcmlnaW5hbCBkYXRhDQogIHBpdm90X2xvbmdlcihjb2xzID0gLWlkLA0KICAgICAgICAgICAgICAgbmFtZXNfdG8gPSAidGFzayIsDQogICAgICAgICAgICAgICB2YWx1ZXNfdG8gPSAic2NvcmUiKQ0KDQojIFNwbGl0IHRhc2sgY29sdW1uDQoNCmF0aGxldGVfY19sb25nIDwtIGF0aGxldGVfY19sb25nICU+JQ0KICBtdXRhdGUgKA0KICAgIHNpZGUgPSBjYXNlX3doZW4oDQogICAgICBzdHJfZGV0ZWN0KHRhc2ssICJSXyIpIH4gInJpZ2h0IiwNCiAgICAgIHN0cl9kZXRlY3QodGFzaywgIkxfIikgfiAibGVmdCIsDQogICAgICBUUlVFIH4gImNlbnRyYWwiDQogICAgKSkgJT4lDQogIG11dGF0ZSAodGFzayA9IHN0cl9yZW1vdmVfYWxsKHRhc2ssICJSX3xMXyIpKQ0KDQoNCiMjIEF0aGxldGUgYyBCYXJwbG90DQoNCmdncGxvdChhdGhsZXRlX2NfbG9uZykgKyANCiAgZ2VvbV9jb2woYWVzKHggPSB0YXNrLCB5ID0gc2NvcmUsIGZpbGwgPSBzaWRlKSwgcG9zaXRpb24gPSAiZG9kZ2UiKQ0KDQojIE1ha2UgZmFjdG9yDQoNCmZtc19jb3VudCA8LSBmbXNfY291bnQgJT4lDQogIG11dGF0ZSAoc2NvcmUgPSBmYWN0b3IgKHNjb3JlLCBsZXZlbHMgPSBjKCIwIiwgIjEiLCAiMiIsICIzIikpKQ0KDQojIyBHcm91cCBiYXJwbG90DQoNCmdncGxvdChmbXNfY291bnQpICsgDQogIGdlb21fY29sKGFlcyh4ID0gdGFzaywgeSA9IGNvdW50LCBmaWxsID0gc2NvcmUpLCBwb3NpdGlvbiA9ICJkb2RnZSIpKyANCiAgc2NhbGVfZmlsbF9kaXNjcmV0ZShkcm9wPUZBTFNFKQ0K').then(res =&gt; res.blob()).then(blob =&gt; {
       const downloadURL = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       document.body.appendChild(a);
@@ -2714,7 +1053,7 @@ Figure 7.14: From left to right: PNG output at 72, 150, and 300 ppi (actual size
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>A Simple Cookbook for Wrangling and Visualization</strong>" was written by Bernard Liew. It was last built on 2023-04-18.</p>
+    <p>"<strong>Getting started in Sports Data analysis: SE201</strong>" was written by Bernard Liew. It was last built on 2023-04-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
