@@ -31,20 +31,20 @@ dat_fms <- read.xlsx ("data\groupFMS.xlsx")
 R escapes every character that follows a backslash and then removes the backslashes. The simple solution is to use forward slashes instead of backslashes. R leaves the forward slashes alone, and Windows treats them just like backslashes. Problem solved:
 
 ``` {r, eval=FALSE}
-fms <- read.xlsx ("data/groupFMS.xlsx")
+dat_fms <- read.xlsx ("data/groupFMS.xlsx")
 ```
 
 An alternative solution is to double the backslashes, since R replaces two consecutive backslashes with a single backslash:
 
 ``` {r, eval=FALSE}
-fms <- read.xlsx ("data\\groupFMS.xlsx")
+dat_fms <- read.xlsx ("data\\groupFMS.xlsx")
 ```
 
 
 ## Reading in Excel ".xlsx" data  {#INPUT-IMPORT}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("ZK-oVC0-5NA", height = 400)
+vembedr::embed_youtube("1rsXLJLp5Gw", height = 400)
 ```
 
 If you have a .xlsx file that you want to read into R, use the `read.xlsx()` function in the `openxlsx` package.
@@ -60,7 +60,7 @@ In my projects folder, I tend tend to have a habit of create a folder named `dat
 
 ```{r message=FALSE, warning=FALSE}
 
-fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx",
+dat_fms <-  read.xlsx (xlsxFile = "data/groupFMS.xlsx",
                     sheet = "FMS")
 
 ```
@@ -72,7 +72,7 @@ After you have done some work on the data, you want to write (i.e. export) an R 
 
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("oZ6yoZ_86BY", height = 400)
+vembedr::embed_youtube("8ovIt0PK8AE", height = 400)
 ```
 
 
@@ -85,7 +85,7 @@ vembedr::embed_youtube("oZ6yoZ_86BY", height = 400)
 
 ```{r, message=FALSE, eval=FALSE}
 
-write.xlsx(x = fms,
+write.xlsx(x = dat_fms,
            sheetName = "FMS",
            file = "data/groupFMS_write.xlsx")
 ```
@@ -94,7 +94,7 @@ write.xlsx(x = fms,
 ## Learning check {#INPUT-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("cvI7LyODZ14", height = 400)
+vembedr::embed_youtube("L2Aw96JekEc", height = 400)
 ```
 
 You can download the 3 files for this learning check below:

@@ -123,7 +123,7 @@ Typically a dataset will only suffer from one of these problems; it'll only suff
 ## Selecting columns {#WRANGLE-SELECT}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("qmz7c_HPUEQ", height = 400)
+vembedr::embed_youtube("w3NWqv0yzRw", height = 400)
 ```
 
 ### Problem
@@ -170,7 +170,7 @@ Notice in the function above, I chained a series of steps together, using the pi
 ## Gathering {#WRANGLE-GATHER}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("XVTX1L9iZIo", height = 400)
+vembedr::embed_youtube("-ouaXbHYaFc", height = 400)
 ```
 
 ### Problem
@@ -195,7 +195,7 @@ dat_long %>%
 ## Spreading {#WRANGLE-SPREAD}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("utuxfSl1umU", height = 400)
+vembedr::embed_youtube("qM8FRIXwZ7M", height = 400)
 ```
 
 ### Problem
@@ -220,7 +220,7 @@ dat_wide%>%
 ## Making a new variable {#WRANGLE-NEW-VARIABLES}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("qyqt0CS19h4", height = 400)
+vembedr::embed_youtube("24ocZMvvSUc", height = 400)
 ```
 
 ### Problem
@@ -313,7 +313,7 @@ symmmetry_index
 ## Creating factors {#WRANGLE-CHARACTERS-2-FACTORS}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("B8WN5PzQRdk", height = 400)
+vembedr::embed_youtube("b47cJ_tTA2U", height = 400)
 ```
 
 ### Problem
@@ -371,7 +371,7 @@ dat_long_relvl %>%
 ## Filtering {#WRANGLE-FILTER}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("-xKvvvsYAXw", height = 400)
+vembedr::embed_youtube("cJl2HVMsKYE", height = 400)
 ```
 
 Filtering is removing rows you do not want and keeping rows you want based on some condition(s). Filtering deals with keeping or throwing out **rows** of data. Keeping or throwing out columns of data requires the `select()` function, which you learnt in Recipe \@ref(WRANGLE-SELECT).
@@ -399,7 +399,7 @@ athlete_a %>%
 ## Group-by summary {#WRANGLE-SUMMARISE}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("997159RN4Qg", height = 400)
+vembedr::embed_youtube("9lSv-NjmBWQQ", height = 400)
 ```
 
 ### Problem
@@ -471,7 +471,7 @@ fms_sum %>%
 ## Learning check {#WRANGLE-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("D0a18-ge5tE", height = 400)
+vembedr::embed_youtube("Uj7Jzi0BU2M", height = 400)
 ```
 
 1. From your learning check in \@ref(INPUT-LEARNING-CHECK), open up your `practice_script.R`. You should already have the codes to import three excel files of `data/groupFMS.xlsx`, `data/rightleg_imu.xlsx`, and `data/leftleg_imu.xlsx`, and assign it to appropriately named objects.

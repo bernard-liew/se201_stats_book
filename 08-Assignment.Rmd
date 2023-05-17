@@ -2,7 +2,7 @@
 # Your Assignment 
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("b6U0EQE0QSw", height = 400)
+vembedr::embed_youtube("CzodzIqC97Y", height = 400)
 ```
 
 This assignment is designed to help you rapidly generate summary numbers and create graphs from data you will find as a sports scientist or coach. There are two things to note:

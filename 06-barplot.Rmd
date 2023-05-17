@@ -16,11 +16,6 @@ source("utils.R", local = TRUE)
 
 # Bar Graphs {#CHAPTER-BAR-GRAPH}
 
-```{r, echo = FALSE}
-vembedr::embed_youtube("2JKC9pCN9O4", height = 400)
-```
-
-
 There are so many types of figures that you can create in R (Figure \@ref(fig:FIG-RICH-GRAPH)). I will only delve into one type of figure that I believe is most useful for your case. With this basic skills, you have the foundation to delve deeper into this software if you desire. 
 
 ```{r FIG-RICH-GRAPH, echo=FALSE, fig.align='center', fig.cap="The plotting capabilities are endless.", fig.height=15}
@@ -116,6 +111,11 @@ dat_summ %>%
 
 ## Making a Basic Bar Graph {#BAR-GRAPH-BASIC-BAR}
 
+
+```{r, echo = FALSE}
+vembedr::embed_youtube("SszyupgnpPE", height = 400)
+```
+
 ### Problem
 
 You have a data frame where one column represents the *x* position of each bar, and another column represents the vertical *y* height of each bar.
@@ -189,7 +189,7 @@ Notice the code difference in Recipe \@ref(BAR-GRAPH-ANATOMY-GEOMS) and Recipe \
 ## Grouping Bars Together {#BAR-GRAPH-GROUPED-BAR}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("1AqQgJKCwps", height = 400)
+vembedr::embed_youtube("DvftSrrRKBI", height = 400)
 ```
 
 ### Problem
@@ -231,7 +231,7 @@ Other aesthetics, such as `colour` (the color of the outlines of the bars), can 
 ## Using Colors in a Bar Graph {#BAR-GRAPH-COLORS}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("d6CqH8Cjwjg", height = 400)
+vembedr::embed_youtube("Oy--0wk6bAI", height = 400)
 ```
 
 
@@ -378,7 +378,7 @@ The exact appearance of the resulting bitmaps varies from platform to platform. 
 ## Learning check {#BAR-LEARNING-CHECK}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("-01qJKm-c9I", height = 400)
+vembedr::embed_youtube("-2SGjMrcAFsY", height = 400)
 ```
 
 1. Open up your `practice_script.R`, updated from the learning check in \@ref(WRANGLE-LEARNING-CHECK).You should already have codes to help you import your files, and process your files.
