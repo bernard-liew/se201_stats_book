@@ -1,0 +1,27 @@
+h1:get-started Getting Started
+h2:INSTALL-GET-STARTED Installing Base-R and RStudio
+h3:check-for-version-updates Check for version updates
+fig:rlogo R logo
+fig:rscreenshot Here is how the base R application looks. While you can use the base R application alone, most people I know use RStudio -- software that helps you to write and use R code more efficiently!
+fig:rstudiologo RStudio logo
+h2:INSTALL-GET-FAMILIAR The four RStudio Windows
+fig:rstudiowindows The four panes of RStudio.
+h3:source---your-notepad-for-code Source - Your notepad for code
+fig:sourcewindow The Source contains all of your individual R scripts. The code won
+h3:console-rs-heart Console: R’s Heart
+fig:consolewindow The console the calculation heart of R. All of your code will (eventually) go through here.
+h3:environment-history Environment / History
+fig:environwindow The environment panel shows you all the objects you have defined in your current workspace.
+h3:files-plots-packages-help Files / Plots / Packages / Help
+fig:plotpanel The plot panel contains all of your plots, like this histogram of the distribution of chicken weights.
+h2:INSTALL-READ-WRITE-CODE Reading and writing Code
+h3:code-chunks Code Chunks
+h3:comments-with Comments with #
+h3:element-numbers-in-output-1 Element numbers in output [1]
+h2:INSTALL-DEBUG Debugging
+h3:r-is-not-ready R is not ready (>)
+fig:rstate To turn R from a Waiting (+) state to a Ready (>) state, just hit Escape.
+h3:misspelled-object-or-function Misspelled object or function
+h3:punctuation-problems Punctuation problems
+h2:INSTALL-LEARNING-CHECK Learning check
+

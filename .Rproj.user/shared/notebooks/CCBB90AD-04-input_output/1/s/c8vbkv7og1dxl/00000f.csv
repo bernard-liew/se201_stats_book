@@ -1,0 +1,5 @@
+"0",""
+"0","if (!require(""pacman"")) install.packages(""pacman"")"
+"0","pacman::p_load(tidyverse, # All purpose wrangling for dataframes"
+"0","               openxlsx) # writing excel documents"
+"0",""

@@ -1,0 +1,20 @@
+h1:basics The Basics
+h2:download-and-load-packages Download and load packages
+h2:BASICS-CONSOLE The command-line (Console)
+h2:writing-r-scripts-in-an-editor Writing R scripts in an editor
+fig:editor Here
+h3:send-code-from-a-source-to-the-console Send code from a source to the console
+fig:runcode To evaluate code from the source, highlight it and run it.
+h2:a-brief-style-guide-commenting-and-spacing A brief style guide: Commenting and spacing
+fig:futureself As Stan discovered in season six of South Park, your future self is a lazy, possibly intoxicated moron. So do your future self a favor and make your code look nice. Also maybe go for a run once in a while.
+h3:commenting-code-with-the-pound-sign Commenting code with the # (pound) sign
+h3:spacing Spacing
+fig:pileofshit Don
+h2:objects-and-functions Objects and functions
+h3:BASIC-TYPES Numbers versus characters
+h3:creating-new-objects-with-- Creating new objects with <-
+h4:to-change-an-object-you-must-assign-it-again To change an object, you must assign it again!
+h3:how-to-name-objects How to name objects
+h4:r-is-case-sensitive R is case-sensitive!
+fig:datetext Like a text message, you should probably watch your use of capitalization in R.
+

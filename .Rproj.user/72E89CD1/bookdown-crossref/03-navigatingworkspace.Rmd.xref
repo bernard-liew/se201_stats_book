@@ -1,0 +1,17 @@
+h1:NavigatingTheSoftware Navigating the Software
+h2:introduction Introduction
+h2:download-and-load-packages Download and load packages
+fig:workspace Your workspace -- all the objects, functions, and delicious glue you
+h2:NAVIGATE-WORKING-DIRECTORY Getting and Setting the Working Directory
+h2:NAVIGATE-PROJECTS Creating a new Rstudio project
+fig:filenew-drop Selecting New Project
+fig:filenewmenu New Project dialog
+h2:NAVIGATE-INSTALL-PACKAGE Installing Packages
+fig:package An R package is like a lightbulb. First you need to order it with install.packages(). Then, every time you want to use it, you need to turn it on with library()
+h3:installing-a-new-package Installing a new package
+fig:cran CRAN (Comprehensive R Archive Network) is the main source of R packages
+fig:installingpackages When you install a new package, you
+h3:loading-a-package Loading a package
+h3:a-simple-approach-to-package A simple approach to package
+h2:NAVIGATE-LEARNING-CHECK Learning check
+

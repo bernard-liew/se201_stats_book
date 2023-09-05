@@ -1,0 +1,46 @@
+h1:CHAPTER-BAR-GRAPH Bar Graphs
+fig:FIG-RICH-GRAPH The plotting capabilities are endless.
+h2:BAR-GRAPH-BASIC-BAR Making a Basic Bar Graph
+h3:problem Problem
+h3:solution Solution
+fig:FIG-BAR-GRAPH-BASIC-BAR Bar graph of values with a discrete x-axis
+h3:discussion Discussion
+fig:FIG-BAR-GRAPH-BASIC-BAR-SINGLE-FILL A single fill and outline color for all bars
+h2:BAR-GRAPH-ANATOMY Anatomy of a Graph
+h3:BAR-GRAPH-ANATOMY-BACKGROUND Plot Background
+fig:FIG-BAR-GRAPH-BACKGROUND An empty plot area waiting to be filled
+h3:BAR-GRAPH-ANATOMY-AES Aesthetics aes()
+fig:FIG-BAR-GRAPH-AES Setting the aesthetics
+h3:BAR-GRAPH-ANATOMY-GEOMS Geometric representations geom()
+fig:FIG-BAR-GRAPH-GEOMS Setting the geometric representation
+h2:BAR-GRAPH-GROUPED-BAR Grouping Bars Together
+h3:problem-1 Problem
+h3:solution-1 Solution
+fig:FIG-BAR-GRAPH-GROUPED-BAR Graph with grouped bars
+fig:FIG-BAR-GRAPH-GROUPED-BAR2 Graph with grouped bars
+h3:discussion-1 Discussion
+h2:BAR-GRAPH-COLORS Using Colors in a Bar Graph
+h3:problem-2 Problem
+h3:solution-2 Solution
+fig:FIG-BAR-GRAPH-FILL-MANUAL Graph with different colors, black outlines, and sorted by percentage change
+h3:discussion-2 Discussion
+fig:FIG-COLOR-NAMES Names of many colors available in R.
+h2:BAR-GRAPH-AXES Changing Axes titles in a Bar Graph
+h3:problem-3 Problem
+h3:solution-3 Solution
+fig:FIG-BAR-GRAPH-AXES Graph different axes titles
+h2:BAR-GRAPH-LEGEND Changing Legend titles in a Bar Graph
+h3:problem-4 Problem
+h3:solution-4 Solution
+fig:FIG-BAR-GRAPH-LEGEND Graph different legend title
+h2:BAR-GRAPH-FONTSIZE Changing font size uniformly across the Bar Graph
+h3:problem-5 Problem
+h3:solution-5 Solution
+fig:FIG-BAR-GRAPH-FONTSIZE Graph with font size = 16
+h2:BAR-OUTPUT-BITMAP Outputting to Bitmap (PNG/TIFF) Files
+h3:problem-6 Problem
+h3:solution-6 Solution
+h3:discussion-3 Discussion
+fig:FIG-OUTPUT-BITMAP-RES From left to right: PNG output at 72, 150, and 300 ppi (actual size)
+h2:BAR-LEARNING-CHECK Learning check
+

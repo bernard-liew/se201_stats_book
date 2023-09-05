@@ -10,6 +10,7 @@ monofontoptions: Scale=0.7
 bibliography: book.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
+always_allow_html: yes
 ---
 
 # Preface {#intro}

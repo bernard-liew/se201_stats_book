@@ -14,15 +14,18 @@ pacman::p_load(tidyverse, # All purpose wrangling for dataframes
 
 ## This is the FMS results of the team
 
-dat_fms <-  read.xlsx (xlsxFile = "XXX")
+dat_fms <-  read.xlsx (xlsxFile = "XXX",
+                       sheet = "XXX")
 
 ## Accelerometry findings of the bad leg from a drop land task
 
-bad_leg_accl <-  read.xlsx (xlsxFile = "XXX")
+bad_leg_accl <-  read.xlsx (xlsxFile = "XXX",
+                            sheet = "XXX")
 
 ## Accelerometry findings of the good leg from a drop land task
 
-good_leg_accl<-  read.xlsx (xlsxFile = "XXX")
+good_leg_accl<-  read.xlsx (xlsxFile = "XXX",
+                            sheet = "XXX")
 
 ## Make the group FMS wide to long (Task 2) ------------------------------------
 
@@ -105,7 +108,7 @@ athlete_long <- athlete %>% # original data
 
 # Split task column
 
-athlete_c_long <- athlete_c_long %>%
+athlete_long <- athlete_long %>%
   mutate (
     side = case_when(
       str_detect(task, "R_") ~ "right",
@@ -128,10 +131,10 @@ ggplot(athlete_long) +
 ############# ********** Code 4 (start)********** ##############################
 
 # Maximal bad leg impact value
-max_bad_ampl <- max(bad_imu %>% select (XXX))
+max_bad_ampl <- max(bad_leg_accl %>% select (XXX))
 
 # Maximal good leg impact value
-max_good_ampl <- max(good_imu %>% select (XXX))
+max_good_ampl <- max(good_leg_accl %>% select (XXX))
 
 # Symmetry index 
 
@@ -140,4 +143,3 @@ symmmetry_index <-
 
 
 ############# ********** Code 4 (end)********** ################################
-

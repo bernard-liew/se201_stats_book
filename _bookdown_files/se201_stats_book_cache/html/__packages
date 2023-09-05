@@ -8,15 +8,10 @@ purrr
 dplyr
 stringr
 forcats
+lubridate
 jpeg
 coda
 Matrix
-BayesFactor
-circlize
-yarrr
 openxlsx
-lubridate
-tibbletime
 igraph
 MASS
-timechange

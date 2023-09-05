@@ -1,0 +1,43 @@
+h1:WRANGLE2 Data manipulation - part 2
+h2:download-and-load-packages Download and load packages
+h2:WRANGLE2-GATHER Gathering
+h3:problem Problem
+h3:solution Solution
+h2:WRANGLE2-SPREAD Spreading
+h3:problem-1 Problem
+h3:solution-1 Solution
+h2:WRANGLE2-RENAME-VALUES Rename values of a variable
+h3:problem-2 Problem
+h3:solution-2 Solution
+h2:WRANGLE2-CHARACTERS-2-FACTORS Creating factors
+h3:problem-3 Problem
+h3:solution-3 Solution
+h3:discussion Discussion
+fig:FIG-BAR-GRAPH-FACTOR-EFFECTS (ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS)
+h2:WRANGLE2-NEW-VARIABLES Making a new variable
+h3:problem-4 Problem
+h3:solution-4 Solution
+h3:discussion-1 Discussion
+h2:WRANGLE2-FILTER Filtering
+h3:WRANGLE2-FILTER-KEEP-CHARACTER Keep rows you want based on condition
+h4:problem-5 Problem
+h4:solution-5 Solution
+h3:WRANGLE2-FILTER-KEEP-NUMERIC Keep rows based on a numerical range
+h4:problem-6 Problem
+h4:solution-6 Solution
+h3:discussion-2 Discussion
+h2:WRANGLE2-SUMMARIZE-GLOBAL Global summary
+h3:problem-7 Problem
+h3:solution-7 Solution
+h3:discussion-3 Discussion
+h2:WRANGLE2-SUMMARIZE-GROUPBY Group-by summary
+h3:problem-8 Problem
+h3:solution-8 Solution
+h3:discussion-4 Discussion
+tab:echo Stage by stage VO2 analysis
+h2:WRANGLE2-INNER-JOIN Merge two tables together
+h3:problem-9 Problem
+h3:solution-9 Solution
+h3:discussion-5 Discussion
+h2:WRANGLE2-LEARNING-CHECK Learning check
+

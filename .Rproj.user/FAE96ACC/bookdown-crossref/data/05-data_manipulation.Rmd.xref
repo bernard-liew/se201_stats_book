@@ -1,0 +1,73 @@
+h1:WRANGLE Data manipulation
+h2:download-and-load-packages Download and load packages
+h2:import-data Import data
+h3:let-us-see-the-data Let us see the data
+h4:dat_fms-table dat_fms table
+h4:dat_fms_grp dat_fms_grp
+h4:dat_vo2 dat_vo2
+h4:dat_vo2_stage dat_vo2_stage
+h4:drop-jump-imu Drop jump imu
+h2:WRANGLE-TIDY-DATA Tidy data
+fig:tidy-structure Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.
+h2:WRANGLE-RENAME-VARIABLES Renaming variables
+h3:problem Problem
+h3:solution Solution
+h2:WRANGLE-SLICE Selecting rows
+h3:problem-1 Problem
+h3:solution-1 Solution
+h2:WRANGLE-SELECT Selecting columns
+h3:problem-2 Problem
+h3:solution-2 Solution
+h2:WRANGLE-CHARACTER-2-NUMERIC Convert characters to numeric
+h3:problem-3 Problem
+fig:col-class The type of data for each class as it was imported.
+h3:solution-3 Solution
+h2:WRANGLE-CHARACTER-2-TIME Convert characters to date and time
+h3:problem-4 Problem
+h3:solution-4 Solution
+h3:discussion Discussion
+h2:WRANGLE-NUMERIC-CATEGORY Split Numeric Variable into Categories
+h3:problem-5 Problem
+h3:solution-5 Solution
+h3:discussion-1 Discussion
+h2:WRANGLE-GATHER Gathering
+h3:problem-6 Problem
+h3:solution-6 Solution
+h2:WRANGLE-SPREAD Spreading
+h3:problem-7 Problem
+h3:solution-7 Solution
+h2:WRANGLE-RENAME-VALUES Rename values of a variable
+h3:problem-8 Problem
+h3:solution-8 Solution
+h2:WRANGLE-CHARACTERS-2-FACTORS Creating factors
+h3:problem-9 Problem
+h3:solution-9 Solution
+h3:discussion-2 Discussion
+fig:FIG-BAR-GRAPH-FACTOR-EFFECTS (ref:cap-FIG-BAR-GRAPH-FACTOR-EFFECTS)
+h2:WRANGLE-NEW-VARIABLES Making a new variable
+h3:problem-10 Problem
+h3:solution-10 Solution
+h3:discussion-3 Discussion
+h2:WRANGLE-FILTER Filtering
+h3:WRANGLE-FILTER-KEEP-CHARACTER Keep rows you want based on condition
+h4:problem-11 Problem
+h4:solution-11 Solution
+h3:WRANGLE-FILTER-KEEP-NUMERIC Keep rows based on a numerical range
+h4:problem-12 Problem
+h4:solution-12 Solution
+h3:discussion-4 Discussion
+h2:WRANGLE-SUMMARIZE-GLOBAL Global summary
+h3:problem-13 Problem
+h3:solution-13 Solution
+h3:discussion-5 Discussion
+h2:WRANGLE-SUMMARIZE-GROUPBY Group-by summary
+h3:problem-14 Problem
+h3:solution-14 Solution
+h3:discussion-6 Discussion
+tab:echo Stage by stage VO2 analysis
+h2:WRANGLE-INNER-JOIN Merge two tables together
+h3:problem-15 Problem
+h3:solution-15 Solution
+h3:discussion-7 Discussion
+h2:WRANGLE-LEARNING-CHECK Learning check
+

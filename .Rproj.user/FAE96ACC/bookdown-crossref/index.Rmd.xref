@@ -1,0 +1,14 @@
+h1:intro Preface
+h2:why-is-r-so-great Why is R so great?
+h2:rrelationship Why R is like a relationship…
+fig:relationship R will become both your best friend and your worst nightmare. The bad times will make the good times oh so much sweeter.
+fig:gosling When you first meet R, it will look so fugly that you
+h2:things-students-get-wrong 3 things students get wrong
+h3:wrong-method-of-launching-software Wrong method of launching software
+fig:launching This is the symbol to press to launch the software in your asssignment.
+h3:not-running-code-from-start Not running code from START
+fig:codeStart If you restart your analysis, the software does not have a memory of where you stopped previously .
+h3:typographical-errors Typographical errors
+h2:r-resources R resources
+h3:r-books R books
+

@@ -1,0 +1,5 @@
+"0",""
+"0","# This selects the vertical acceleration signal of the IMU of the good leg"
+"0",""
+"0","good_vertical_accl <- good_leg_accl %>%"
+"0","  select (""highg_az_m/s/s"")"

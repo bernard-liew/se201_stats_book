@@ -1,0 +1,6 @@
+"0","dat_wide <- dat_long %>% # original data"
+"0","  pivot_wider(names_from = ""task"","
+"0","              values_from = ""score"")"
+"2","Error in pivot_wider(., names_from = ""task"", values_from = ""score"") : 
+  object 'dat_long' not found
+"

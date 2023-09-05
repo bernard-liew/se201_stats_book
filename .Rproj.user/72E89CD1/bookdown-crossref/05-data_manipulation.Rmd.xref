@@ -1,0 +1,33 @@
+h1:WRANGLE Data manipulation - part 1
+h2:download-and-load-packages Download and load packages
+h2:import-data Import data
+h3:let-us-see-the-data Let us see the data
+h4:dat_fms-table dat_fms table
+h4:dat_fms_grp dat_fms_grp
+h4:dat_vo2 dat_vo2
+h4:dat_vo2_stage dat_vo2_stage
+h4:drop-jump-imu Drop jump imu
+h2:WRANGLE-TIDY-DATA Tidy data
+fig:tidy-structure Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.
+h2:WRANGLE-RENAME-VARIABLES Renaming variables
+h3:problem Problem
+h3:solution Solution
+h2:WRANGLE-SLICE Selecting rows
+h3:problem-1 Problem
+h3:solution-1 Solution
+h2:WRANGLE-SELECT Selecting columns
+h3:problem-2 Problem
+h3:solution-2 Solution
+h2:WRANGLE-CHARACTER-2-NUMERIC Convert characters to numeric
+h3:problem-3 Problem
+fig:col-class The type of data for each class as it was imported.
+h3:solution-3 Solution
+h2:WRANGLE-CHARACTER-2-TIME Convert characters to date and time
+h3:problem-4 Problem
+h3:solution-4 Solution
+h3:discussion Discussion
+h2:WRANGLE-NUMERIC-CATEGORY Split Numeric Variable into Categories
+h3:problem-5 Problem
+h3:solution-5 Solution
+h3:discussion-1 Discussion
+

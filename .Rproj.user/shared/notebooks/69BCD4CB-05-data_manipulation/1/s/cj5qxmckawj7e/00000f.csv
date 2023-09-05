@@ -1,0 +1,7 @@
+"0",""
+"0","dat_fms <-  read.xlsx (xlsxFile = ""data/groupFMS.xlsx"")"
+"0",""
+"0","bad_leg_accl <-  read.xlsx (xlsxFile = ""data/rightleg_imu.xlsx"")"
+"0",""
+"0","good_leg_accl<-  read.xlsx (xlsxFile = ""data/leftleg_imu.xlsx"")"
+"0",""

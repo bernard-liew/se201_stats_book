@@ -1,0 +1,10 @@
+"0","bad_vertical_accl <- bad_leg_accl %>%
+  select (highg_az_m/s/s)
+"
+"1","[1m[33mError[39m in `select()`:[22m
+[33m![39m Can't subset columns that don't exist.
+[31m✖[39m Column `highg_az_m` doesn't exist.
+Backtrace:
+[90m 1. [39mbad_leg_accl %>% select(highg_az_m/s/s)
+[90m 3. [39m[1m[94mdplyr:::select.data.frame([39m[22m., highg_az_m/s/s[1m[94m)[39m[22m
+"
