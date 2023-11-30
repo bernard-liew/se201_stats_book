@@ -399,7 +399,7 @@ athlete_a %>%
 ## Group-by summary {#WRANGLE-SUMMARISE}
 
 ```{r, echo = FALSE}
-vembedr::embed_youtube("9lSv-NjmBWQQ", height = 400)
+vembedr::embed_youtube("6N6XmWP2aqg", height = 400)
 ```
 
 ### Problem
