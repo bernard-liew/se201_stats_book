@@ -1,0 +1,4 @@
+"0","fms_sum <- dat_long %>%"
+"0","  group_by(id, task) %>%"
+"0","  summarise (score = min (score))"
+"2","`summarise()` has grouped output by 'id'. You can override using the `.groups` argument."
